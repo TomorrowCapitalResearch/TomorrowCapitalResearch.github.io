@@ -31,18 +31,18 @@
 .brand span {
   font-size: 60px; /* <-- Your requested text size */
   font-weight: 100;
-  color: #ffffff;  /* If navbar background is white */
+  color: #000000;  /* If navbar background is white */
   line-height: 1;
   user-select: none; /* Prevent highlight on drag */
 }
     
 .menu { display:flex; gap:22px; align-items:center; }
-.menu a, .menu .menu-trigger { font-weight:600; color:#ffffff; text-decoration:none; }
+.menu a, .menu .menu-trigger { font-weight:600; color:#000000; text-decoration:none; }
 
 /* Dropdown containers */
 .menu-item { position:relative; }
 .menu-trigger {
-  background:transparent; border:0; padding:8px 0; cursor:pointer; font:inherit; color:#0f172a;
+  background:transparent; border:0; padding:8px 0; cursor:pointer; font:inherit; color:#FF0101;
   display:flex; align-items:center; gap:6px;
 }
 .menu-trigger:focus { outline:2px solid #0E3275; outline-offset:3px; border-radius:6px; }
@@ -56,9 +56,9 @@
   padding:8px; margin:0; list-style:none; display:none;
 }
 .submenu a {
-  display:block; padding:10px 12px; border-radius:8px; color:#0f172a;
+  display:block; padding:10px 12px; border-radius:8px; color:#FF0101;
 }
-.submenu a:hover { background:#EFF4FF; color:#0A1D45; }
+.submenu a:hover { background:#000000; color:#FF0101; }
 
 /* Show submenu on hover (desktop) */
 @media (hover:hover) {

@@ -45,16 +45,16 @@
   background:transparent; border:0; padding:8px 0; cursor:pointer; font:inherit; color:#0033FF;
   display:flex; align-items:center; gap:6px;
 }
-.menu-trigger:focus { outline:3px solid #0033FF; outline-offset:3px; border-radius:6px; }
+.menu-trigger:focus { outline:3px solid #0033FF; outline-offset:3px; }
 
 /* Submenu base */
 .submenu {
   position:absolute; top:110%; left:0; min-width:220px;
-  background:#ffffff; border:3px solid rgba(0,51,255,1); border-radius:10px;
+  background:#ffffff; border:3px solid rgba(0,51,255,1);
   padding:8px; margin:0; list-style:none; display:none;
 }
 .submenu a {
-  display:block; padding:10px 12px; border-radius:8px; color:#0033FF;
+  display:block; padding:10px 12px;color:#0033FF;
 }
 .submenu a:hover { background:#0033FF; color:#ffffff; }
 
@@ -88,8 +88,6 @@
       background:var(--blue);
       color:#eef2ff;
       padding:28px 28px 24px;
-      border-radius:14px;
-      box-shadow:0 16px 40px rgba(14,50,117,.35);
       border:1px solid rgba(255,255,255,.15);
     }
     .panel h1{
@@ -101,14 +99,14 @@
     .panel .cta{
       display:inline-block; margin-top:6px;
       background:#fff; color:var(--blue-600);
-      padding:10px 14px; border-radius:10px;
+      padding:10px 14px;
       text-decoration:none; font-weight:700;
     }
     .panel .cta:hover{filter:brightness(.95)}
 
     /* MAIN placeholder (optional extra content below hero) */
     main{max-width:1200px;margin:40px auto;padding:0 20px}
-    main .placeholder{height:200px;border:1px dashed #d1d5db;border-radius:12px;display:grid;place-items:center;color:#6b7280}
+    main .placeholder{height:200px;border:1px dashed #d1d5db;display:grid;place-items:center;color:#6b7280}
 
     /* FOOTER */
     footer {

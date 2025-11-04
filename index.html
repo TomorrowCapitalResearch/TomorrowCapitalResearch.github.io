@@ -1,259 +1,68 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8">
   <title>Tomorrow Capital Research</title>
-  
-  <meta name="description" content="Tomorrow Capital Research — algorithmic trading research and engineering." />
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-    :root{
-      --blue:#0B5FFF; /* brand blue */
-      --blue-600:#0a53e4;
-      --black:#0b0d12;
-      --gray-900:#0d1117;
-      --gray-800:#111827;
-      --gray-700:#1f2937;
-      --gray-600:#374151;
-      --gray-500:#6b7280;
-      --white:#ffffff;
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #ffffff;
+      color: #111;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
-    html,body{margin:0;padding:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:#0d1117;color:#e5e7eb;scroll-behavior:smooth}
-    a{color:var(--white);text-decoration:none}
-    img{max-width:100%;display:block}
-    
-    /* Header */
-    .header{position:sticky;top:0;z-index:50;background:rgba(13,17,23,.7);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.06)}
-    .nav{max-width:1200px;margin:auto;display:flex;align-items:center;justify-content:space-between;padding:14px 20px}
-    .logo{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.5px}
-    .logo-mark{width:34px;height:34px;border-radius:10px;background:conic-gradient(from 180deg at 50% 50%, var(--blue), #69a9ff 60%, var(--white) 60%, var(--blue));display:grid;place-items:center;box-shadow:0 8px 24px rgba(11,95,255,.35)}
-    .logo-mark span{width:18px;height:18px;border:2px solid #fff;border-radius:50%;box-shadow:0 0 0 2px rgba(11,95,255,.25)}
-    .menu{display:flex;gap:20px;align-items:center}
-    .menu a{opacity:.9;font-weight:500}
-    .menu a:hover{opacity:1;color:#fff}
-    .cta{padding:10px 14px;border-radius:12px;background:var(--blue);font-weight:700;box-shadow:0 10px 20px rgba(11,95,255,.35);}
-    .cta:hover{background:var(--blue-600)}
-
-    /* Sections */
-    
-    section{padding:80px 20px}
-    .container{max-width:1200px;margin:auto}
-
-    /* Section 1: Hero */
-    .hero{display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:center}
-    .badge{display:inline-flex;gap:8px;align-items:center;background:rgba(11,95,255,.15);color:#dbe8ff;border:1px solid rgba(11,95,255,.35);padding:8px 12px;border-radius:999px;font-size:12px;font-weight:600;letter-spacing:.3px}
-    .title{font-size:clamp(36px,4vw,60px);line-height:1.05;margin:16px 0;font-weight:900;color:#f8fafc}
-    .subtitle{font-size:clamp(16px,1.5vw,18px);color:#c7d2fe;opacity:.9}
-    .hero-visual{position:relative;isolation:isolate}
-    .orb{position:absolute;inset:auto auto 10% -8%;width:180px;height:180px;background:radial-gradient(circle at 30% 30%, #69a9ff 0%, rgba(11,95,255,.15) 55%, rgba(11,95,255,0) 60%);filter:blur(6px);z-index:-1}
-    .panel{border:1px solid rgba(255,255,255,.08);background:linear-gradient(180deg, rgba(17,24,39,.7), rgba(17,24,39,.55));backdrop-filter:blur(6px);border-radius:16px;padding:18px;margin-bottom:14px}
-    .kpi-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-    .kpi{background:#0f172a;border:1px solid rgba(255,255,255,.06);padding:16px;border-radius:12px}
-    .kpi h4{margin:0 0 6px;font-size:12px;color:#9fb7ff;text-transform:uppercase;letter-spacing:.8px}
-    .kpi .v{font-size:22px;font-weight:800}
-
-    /* Section 2: Video */
-    .split{display:grid;grid-template-columns:1.05fr 1fr;gap:40px;align-items:center}
-    .video{aspect-ratio:16/9;border-radius:16px;border:1px solid rgba(255,255,255,.08);overflow:hidden;box-shadow:0 16px 40px rgba(0,0,0,.35)}
-
-    /* Section 3: Performance */
-    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-    .card{background:#0f172a;border:1px solid rgba(255,255,255,.06);border-radius:16px;padding:18px}
-    .card h3{margin:0 0 8px;color:#e5edff}
-    canvas{width:100% !important;height:280px !important}
-
-    /* Footer */
-    footer{background:#000;padding:50px 20px;color:#9ca3af}
-    .foot{max-width:1200px;margin:auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:30px}
-    .foot h4{color:#fff;margin:0 0 12px}
-    .foot a{color:#cbd5e1;opacity:.9}
-    .foot a:hover{opacity:1}
-    .copyright{border-top:1px solid rgba(255,255,255,.08);margin-top:28px;padding-top:18px;text-align:center;color:#94a3b8}
-
-    /* Responsive */
-    @media (max-width: 980px){
-      .hero,.split{grid-template-columns:1fr}
-      .cards{grid-template-columns:1fr}
-      .menu{display:none}
+    header {
+      background: #0E3275; /* deep blue */
+      padding: 16px;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-right: 20px;
+      font-weight: 500;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    main {
+      flex: 1;
+      padding: 40px 20px;
+    }
+    footer {
+      background: #000;
+      color: #ccc;
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
     }
   </style>
 </head>
 
-  
 <body>
-  <!-- HEADER -->
-  <header class="header">
-    <nav class="nav" aria-label="Main">
-      <a class="logo" href="#top" id="logo-button" title="Logo button">
-        <span class="logo-mark" aria-hidden="true"><span></span></span>
-        <span>Tomorrow&nbsp;Capital&nbsp;Research</span>
-      </a>
-      <div class="menu" role="menubar">
-        <a role="menuitem" href="#who">Who we are</a>
-        <a role="menuitem" href="#what">What we do</a>
-        <a role="menuitem" href="#news">News</a>
-        <a role="menuitem" href="#culture">Culture</a>
-        <a role="menuitem" href="#careers">Careers</a>
-        <a role="menuitem" href="#contact" class="cta">Contact</a>
-      </div>
+  <header>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">Who we are</a>
+      <a href="research.html">What we do</a>
+      <a href="careers.html">Careers</a>
+      <a href="contact.html">Contact</a>
     </nav>
   </header>
 
-  <!-- SECTION 1: HERO / INTRO -->
-  <main id="top">
-    <section class="container hero" id="who">
-      <div>
-        <span class="badge">ALGORITHMIC TRADING • RESEARCH • ENGINEERING</span>
-        <h1 class="title">Systematic intelligence for tomorrow’s markets</h1>
-        <p class="subtitle">We build research‑driven, multi‑asset trading systems — uniting modern statistics, ML, and robust execution to deliver persistent, risk‑aware returns.</p>
-        <div style="margin-top:22px;display:flex;gap:12px;flex-wrap:wrap">
-          <a class="cta" href="#what">What we do</a>
-          <a class="cta" href="#performance" style="background:transparent;border:1px solid rgba(255,255,255,.18);box-shadow:none">View performance</a>
-        </div>
-      </div>
-      <div class="hero-visual" aria-hidden="true">
-        <div class="panel">
-          <div class="kpi-row">
-            <div class="kpi"><h4>Sharpe (TTM)</h4><div class="v" id="kpi-sharpe">—</div></div>
-            <div class="kpi"><h4>CAGR (since inception)</h4><div class="v" id="kpi-cagr">—</div></div>
-            <div class="kpi"><h4>Max Drawdown</h4><div class="v" id="kpi-mdd">—</div></div>
-          </div>
-        </div>
-        <div class="panel">
-          <div style="display:flex;align-items:center;gap:12px">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M3 17l6-6 4 4 7-7" stroke="#69a9ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <div>
-              <div style="font-weight:700;color:#e6f0ff">Live risk & PnL telemetry</div>
-              <div style="color:#9fb7ff;font-size:13px">Real‑time portfolio and execution diagnostics.</div>
-            </div>
-          </div>
-        </div>
-        <div class="orb"></div>
-      </div>
-    </section>
-
-    <!-- SECTION 2: VIDEO & DESCRIPTION -->
-    <section class="container split" id="what">
-      <div class="video">
-        <!-- Replace the src with your own hosted MP4/WebM or YouTube embed -->
-        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Intro video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-      </div>
-      <div>
-        <h2 style="margin-top:0;font-size:32px;color:#e5edff">Research, architecture, execution</h2>
-        <p style="color:#c7d2fe">Our stack spans signal research (stat‑arb, trend, market microstructure), portfolio construction (risk parity, Kelly‑aware tilts, CVaR limits), and execution (adaptive market making, slippage‑aware scheduling). We combine interpretable models with ML where it adds edge, under strict controls and monitoring.</p>
-        <ul style="margin:16px 0 0;line-height:1.7;color:#d1d5db">
-          <li><strong style="color:#e5edff">Data</strong> — clean pipelines, point‑in‑time features, robust backtests.</li>
-          <li><strong style="color:#e5edff">Signals</strong> — cross‑sectional & time‑series alphas, regime & risk models.</li>
-          <li><strong style="color:#e5edff">Execution</strong> — smart order routing, liquidity & inventory control.</li>
-          <li><strong style="color:#e5edff">Governance</strong> — change control, notebooks‑to‑prod, real‑time telemetry.</li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- SECTION 3: PERFORMANCE -->
-    <section class="container" id="performance">
-      <h2 style="margin:0 0 14px;font-size:32px;color:#e5edff">Performance</h2>
-      <p style="margin-top:0;color:#c7d2fe">Illustrative metrics and diagrams. Replace the placeholder data with your actual audited statistics.</p>
-      <div class="cards">
-        <div class="card">
-          <h3>Equity Curve</h3>
-          <canvas id="chart-equity"></canvas>
-        </div>
-        <div class="card">
-          <h3>Monthly Returns</h3>
-          <canvas id="chart-heat"></canvas>
-        </div>
-        <div class="card">
-          <h3>Drawdown</h3>
-          <canvas id="chart-dd"></canvas>
-        </div>
-      </div>
-    </section>
+  <main>
+    <h1>Welcome to Tomorrow Capital Research</h1>
+    <p>This is your landing page. Add your intro content here.</p>
   </main>
 
-  <!-- FOOTER -->
-  <footer id="contact">
-    <div class="foot">
-      <div>
-        <div class="logo" style="margin-bottom:10px">
-          <span class="logo-mark" aria-hidden="true"><span></span></span>
-          <span>Tomorrow Capital Research</span>
-        </div>
-        <p style="max-width:520px">We are an algorithmic trading research company. If you’re a researcher, engineer, PM, or partner who cares about rigorous process and clean execution, we’d love to talk.</p>
-      </div>
-      <div>
-        <h4 id="news">News</h4>
-        <a href="#">Q4 update (coming soon)</a><br>
-        <a href="#">Research notes</a>
-      </div>
-      <div>
-        <h4 id="culture">Culture</h4>
-        <a href="#">How we work</a><br>
-        <a href="#">Open‑source</a>
-      </div>
-      <div>
-        <h4 id="careers">Careers</h4>
-        <a href="#">Open roles</a><br>
-        <a href="mailto:careers@tomorrow.capital">careers@tomorrow.capital</a>
-      </div>
-    </div>
-    <div class="copyright">© <span id="year"></span> Tomorrow Capital Research. All rights reserved.</div>
+  <footer>
+    © <span id="year"></span> Tomorrow Capital Research. All rights reserved.
   </footer>
 
-  <!-- Scripts -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
   <script>
-    // --- Footer year ---
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // --- Example KPIs (replace with real values) ---
-    const kpis = { sharpe: 2.1, cagr: 0.31, mdd: -0.08 };
-    const fmtPct = (x)=> (x*100).toFixed(1)+"%";
-    document.getElementById('kpi-sharpe').textContent = kpis.sharpe.toFixed(2);
-    document.getElementById('kpi-cagr').textContent = fmtPct(kpis.cagr);
-    document.getElementById('kpi-mdd').textContent = fmtPct(kpis.mdd);
-
-    // --- Placeholder performance data ---
-    // Equity (cumulative) — monthly points
-    const labelsEq = Array.from({length:36}, (_,i)=>{
-      const d = new Date(); d.setMonth(d.getMonth()-35+i); return d.toLocaleString(undefined,{month:'short', year:'2-digit'});
-    });
-    let eq=1, equity=[1];
-    for(let i=1;i<labelsEq.length;i++){const r=(Math.random()-.4)/20; eq*= (1+r); equity.push(eq)}
-
-    // Drawdown from equity
-    const peak = []; let p=equity[0];
-    for(let v of equity){ p=Math.max(p,v); peak.push((v-p)/p) }
-
-    // Heatmap-like monthly returns (as bars)
-    const rets = equity.map((v,i,arr)=> i? v/arr[i-1]-1 : 0);
-
-    // --- Charts ---
-    new Chart(document.getElementById('chart-equity'),{
-      type:'line',
-      data:{ labels:labelsEq, datasets:[{ label:'Equity', data:equity, borderColor: getComputedStyle(document.documentElement).getPropertyValue('--blue'), tension:.25 }]},
-      options:{ plugins:{legend:{display:false}}, scales:{x:{grid:{color:'rgba(255,255,255,.06)'}}, y:{grid:{color:'rgba(255,255,255,.06)'}}} }
-    });
-
-    new Chart(document.getElementById('chart-dd'),{
-      type:'line',
-      data:{ labels:labelsEq, datasets:[{ label:'Drawdown', data:peak, borderColor:'#ef4444', tension:.25 }]},
-      options:{ plugins:{legend:{display:false}}, scales:{y:{ticks:{callback:(v)=> (v*100).toFixed(0)+'%'}}} }
-    });
-
-    new Chart(document.getElementById('chart-heat'),{
-      type:'bar',
-      data:{ labels:labelsEq, datasets:[{ label:'Monthly return', data:rets, backgroundColor: rets.map(r=> r>=0? 'rgba(11,95,255,.8)' : 'rgba(239,68,68,.8)') }]},
-      options:{ plugins:{legend:{display:false}}, scales:{y:{ticks:{callback:(v)=> (v*100)+'%'}}} }
-    });
+    document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
 </html>

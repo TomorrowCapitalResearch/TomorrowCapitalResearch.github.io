@@ -186,8 +186,54 @@
     © <span id="year"></span> Tomorrow Capital Research. All rights reserved.
   </footer>
 
+
   <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+document.getElementById('year').textContent = new Date().getFullYear();
+
+    
+  // Toggle dropdowns on click/tap and close when clicking elsewhere
+  document.querySelectorAll('.menu-item.has-submenu .menu-trigger').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const item = e.currentTarget.closest('.menu-item');
+      const isOpen = item.classList.contains('open');
+
+      // Close all others
+      document.querySelectorAll('.menu-item.has-submenu').forEach(mi => {
+        mi.classList.remove('open');
+        const t = mi.querySelector('.menu-trigger');
+        if (t) t.setAttribute('aria-expanded', 'false');
+      });
+
+      // Toggle current
+      if (!isOpen) {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  // Close on outside click
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.menu')) {
+      document.querySelectorAll('.menu-item.has-submenu').forEach(mi => {
+        mi.classList.remove('open');
+        const t = mi.querySelector('.menu-trigger');
+        if (t) t.setAttribute('aria-expanded', 'false');
+      });
+    }
+  });
+
+  // Basic Esc-to-close
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.menu-item.has-submenu').forEach(mi => {
+        mi.classList.remove('open');
+        const t = mi.querySelector('.menu-trigger');
+        if (t) t.setAttribute('aria-expanded', 'false');
+      });
+    }
+  });
+</script>
+
 </body>
 </html>

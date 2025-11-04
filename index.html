@@ -3,8 +3,6 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  /* Icon & tap bar */
   <title>Tomorrow Capital Research</title>
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -14,14 +12,47 @@
   *{box-sizing:border-box}
   html,body{margin:0;padding:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:var(--text);background:#fff}
 
-    /* NAVBAR */
-    .nav{position:sticky; top:0; z-index:10; background:#fff; border-bottom:1px solid rgba(0,0,0,.06);}
-    .nav-inner{max-width:1200px; margin:auto; display:flex; align-items:center; justify-content:space-between; padding:14px 20px;}
-    .brand{display:flex; align-items:center; gap:12px; font-weight:700}
-    .brand img{height:32px; width:auto; display:block}
-    .menu{display:flex; gap:22px}
-    .menu a{color:#0f172a; text-decoration:none; font-weight:600; opacity:.9}
-    .menu a:hover{opacity:1; text-decoration:underline}
+/* Base navbar (adjust if you already have styles) */
+.nav { position: sticky; top: 0; z-index: 20; background:#fff; border-bottom:1px solid rgba(0,0,0,.06); }
+.nav-inner { max-width:1200px; margin:auto; padding:14px 20px; display:flex; align-items:center; justify-content:space-between; }
+.menu { display:flex; gap:22px; align-items:center; }
+.menu a, .menu .menu-trigger { font-weight:600; color:#0f172a; text-decoration:none; }
+
+/* Dropdown containers */
+.menu-item { position:relative; }
+.menu-trigger {
+  background:transparent; border:0; padding:8px 0; cursor:pointer; font:inherit; color:#0f172a;
+  display:flex; align-items:center; gap:6px;
+}
+.menu-trigger:focus { outline:2px solid #0E3275; outline-offset:3px; border-radius:6px; }
+.caret { font-size:.8em; opacity:.75; }
+
+/* Submenu base */
+.submenu {
+  position:absolute; top:110%; left:0; min-width:220px;
+  background:#ffffff; border:1px solid rgba(0,0,0,.08); border-radius:10px;
+  box-shadow:0 12px 28px rgba(10,29,69,.12);
+  padding:8px; margin:0; list-style:none; display:none;
+}
+.submenu a {
+  display:block; padding:10px 12px; border-radius:8px; color:#0f172a;
+}
+.submenu a:hover { background:#EFF4FF; color:#0A1D45; }
+
+/* Show submenu on hover (desktop) */
+@media (hover:hover) {
+  .has-submenu:hover > .submenu { display:block; }
+}
+
+/* When opened via JS (mobile / keyboard) */
+.menu-item.open > .submenu { display:block; }
+
+/* Simple mobile stacking (optional) */
+@media (max-width: 900px) {
+  .menu { gap:14px; }
+  .submenu { left:0; right:auto; }
+}
+
 
     /* HERO */
     .hero{position:relative; min-height:72vh; display:grid; grid-template-columns: 1fr; overflow:hidden;}
@@ -80,20 +111,59 @@
 <body>
 
   <!-- NAVBAR -->
-  <header class="nav">
-    <div class="nav-inner">
-      <a class="brand" href="index.html" title="Tomorrow Capital Research">
-        <img src="assets/tomorrow_logo_deep.svg" alt="TCR logo">
-        <span>Tomorrow Capital Research</span>
-      </a>
-      <nav class="menu" aria-label="Primary">
-        <a href="about.html">About</a>
-        <a href="research.html">Research</a>
-        <a href="careers.html">Careers</a>
-        <a href="contact.html">Contact</a>
-      </nav>
-    </div>
-  </header>
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html" title="Tomorrow Capital Research">
+      <img src="assets/tomorrow_logo_deep.svg" alt="TCR logo" style="height:32px;width:auto">
+      <span>Tomorrow Capital Research</span>
+    </a>
+
+    <nav class="menu" aria-label="Primary">
+      <!-- About dropdown -->
+      <div class="menu-item has-submenu">
+        <button class="menu-trigger" aria-haspopup="true" aria-expanded="false">
+          About
+          <span class="caret" aria-hidden="true">▾</span>
+        </button>
+        <ul class="submenu" role="menu">
+          <li><a role="menuitem" href="about.html">Who we are</a></li>
+          <li><a role="menuitem" href="mission.html">Mission & values</a></li>
+          <li><a role="menuitem" href="team.html">Team</a></li>
+        </ul>
+      </div>
+
+      <!-- Research dropdown -->
+      <div class="menu-item has-submenu">
+        <button class="menu-trigger" aria-haspopup="true" aria-expanded="false">
+          Research
+          <span class="caret" aria-hidden="true">▾</span>
+        </button>
+        <ul class="submenu" role="menu">
+          <li><a role="menuitem" href="signals.html">Signals</a></li>
+          <li><a role="menuitem" href="portfolio.html">Portfolio</a></li>
+          <li><a role="menuitem" href="execution.html">Execution</a></li>
+          <li><a role="menuitem" href="notes.html">Research notes</a></li>
+        </ul>
+      </div>
+
+      <!-- Careers dropdown -->
+      <div class="menu-item has-submenu">
+        <button class="menu-trigger" aria-haspopup="true" aria-expanded="false">
+          Careers
+          <span class="caret" aria-hidden="true">▾</span>
+        </button>
+        <ul class="submenu" role="menu">
+          <li><a role="menuitem" href="careers.html">Open roles</a></li>
+          <li><a role="menuitem" href="internships.html">Internships</a></li>
+          <li><a role="menuitem" href="culture.html">Culture</a></li>
+        </ul>
+      </div>
+
+      <!-- Regular link -->
+      <a class="menu-link" href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
 
   <!-- HERO with image + blue panel on the right -->
   <section class="hero" aria-label="Hero">

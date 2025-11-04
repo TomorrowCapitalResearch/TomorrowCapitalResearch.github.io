@@ -13,8 +13,28 @@
   html,body{margin:0;padding:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:var(--text);background:#fff}
 
 /* Base navbar (adjust if you already have styles) */
-.nav { position: sticky; top: 0; z-index: 20; background:#fff; border-bottom:1px solid rgba(0,0,0,.06); }
+.nav { position: sticky; top: 0; z-index: 20; background:#404040; border-bottom:3px solid rgba(0,0,0,.06); }
 .nav-inner { max-width:1200px; margin:auto; padding:14px 20px; display:flex; align-items:center; justify-content:space-between; }
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 16px;        /* space between logo + text */
+  pointer-events: none; /* ensures it's not clickable anywhere */
+}
+
+.brand img {
+  height: 60px;    /* Adjust logo size here */
+  width: auto;
+}
+
+.brand span {
+  font-size: 72px; /* <-- Your requested text size */
+  font-weight: 800;
+  color: #0f172a;  /* If navbar background is white */
+  line-height: 1;
+  user-select: none; /* Prevent highlight on drag */
+}
+    
 .menu { display:flex; gap:22px; align-items:center; }
 .menu a, .menu .menu-trigger { font-weight:600; color:#0f172a; text-decoration:none; }
 
@@ -113,7 +133,7 @@
   <!-- NAVBAR -->
 <header class="nav">
   <div class="nav-inner">
-    <a class="brand" href="index.html" title="Tomorrow Capital Research">
+    <a class="brand">
       <img src="assets/logo.png" alt="TMRW" style="height:50px">
       <span>Tomorrow</span>
     </a>
@@ -165,6 +185,8 @@
   </div>
 </header>
 
+
+  
   <!-- HERO with image + blue panel on the right -->
   <section class="hero" aria-label="Hero">
     <!-- Replace with your own image -->

@@ -24,8 +24,18 @@
 }
 
 .brand img {
-  height: 70px;    /* Adjust logo size here */
+  height: 40px;    /* Adjust logo size here */
   width: auto;
+}
+
+.brand-text {
+  font-family: Arial, sans-serif;   /* ensures Arial is used */
+  font-size:48px;                   /* adjust to preferred size */
+  font-weight:bold;                 /* matches the strong brand look */
+  letter-spacing:-1px;              /* pulls characters closer together */
+  color:#0033FF;                    /* same blue as your logo */
+  line-height:1;                    /* ensures text sits nicely next to logo */
+  user-select:none;
 }
 
 .brand span {
@@ -60,7 +70,6 @@
 }
 .menu-trigger:focus-visible {
   outline:3px solid #0033FF;
-  border-radius:6px;
 }
 
 /* Dropdown containers */
@@ -169,10 +178,10 @@
   <!-- NAVBAR -->
 <header class="nav">
   <div class="nav-inner">
-    <a class="brand">
-      <img src="assets/logo.png" alt="TMRW" style="height:50px">
-      <span>Tomorrow</span>
-    </a>
+    <div class="brand">
+    <img src="assets/tomorrow_logo_deep.svg" alt="Tomorrow Capital Research logo">
+    <span class="brand-text">Tomorrow</span>
+    </div>
 
     <nav class="menu" aria-label="Primary">
       <!-- About dropdown -->

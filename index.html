@@ -59,11 +59,12 @@
   display:flex;
   align-items:center;
   gap:6px;
-  transition: color .15s ease, text-underline-offset .15s ease;
+  transition: color .15s ease, text-underline-offset .15s ease; text-decoration-thickness .15s ease;
 }
 .menu a:hover,
 .menu .menu-trigger:hover {
   text-decoration: underline;
+  text-decoration-thickness: 3px;
   text-decoration-color:#0033FF;   /* blue underline */
   text-underline-offset:5px;
   color:#000;                       /* keep text black if you prefer */
@@ -179,7 +180,7 @@
 <header class="nav">
   <div class="nav-inner">
     <div class="brand">
-    <img src="assets/tomorrow_logo_deep.svg" alt="Tomorrow Capital Research logo">
+    <img src="assets/logo.png" alt="Tomorrow Capital Research logo">
     <span class="brand-text">Tomorrow</span>
     </div>
 

@@ -16,6 +16,12 @@
   --blue:#0E3275;     /* deep */
   --blue-2:#0A1D45;   /* deeper */
   --white:#fff;
+  --navy:#0B0E2A;        /* deep navy */
+  --navy-2:#0A1135;      /* slightly lighter for gradient mix */
+  --ink:#D7DBF2;         /* light ink text */
+  --ink-dim:#A6ACCC;     /* dimmer text */
+  --link:#E9EDFF;        /* link color */
+  --ring:#3E4A8F;        /* outline ring for focus */
 }
 
 /* Navbar basics you already have */
@@ -145,25 +151,138 @@ body{position:relative}
     main{max-width:1200px;margin:40px auto;padding:0 20px}
     main .placeholder{height:200px;border:1px dashed #d1d5db;display:grid;place-items:center;color:#6b7280}
 
-    /* FOOTER */
-    footer {
-    margin-top:10px;
-    background: #0033FF;
-    color:#ffffff;
-    padding:40px 120px;
-    text-align:right;
-    font-size:14px;
-    }
+
     
-    /* Responsive */
-    @media (max-width: 900px){
-      .menu{gap:14px}
-      .panel{right:4%; left:4%; width:auto; bottom:6%}
-    }
+
+
+
+
+
+
+    
+/* Footer shell */
+.site-footer{
+  background: linear-gradient(180deg, var(--navy), #0B0E2A);
+  color: var(--ink);
+  padding: 56px 0 32px;
+}
+.footer-inner{
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Top row */
+.footer-top{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap: 40px;
+  min-height: 120px;
+}
+.footer-brand{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+.footer-brand img{ height:36px; width:auto; display:block; }
+.footer-brand span{ font:700 22px/1.2 Arial, sans-serif; letter-spacing:.2px; }
+
+/* Right side quick links */
+.footer-links{
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+  text-align:right;
+}
+.footer-links a{
+  color: var(--link);
+  text-decoration:none;
+  font:600 18px/1.4 Arial, sans-serif;
+}
+.footer-links a:hover{
+  text-decoration:underline;
+  text-underline-offset:3px;
+}
+
+/* Divider */
+.footer-rule{
+  border:0;
+  border-top:1px solid rgba(255,255,255,.12);
+  margin: 28px 0;
+}
+
+/* Bottom row */
+.footer-bottom{
+  display:grid;
+  grid-template-columns: 1fr 1fr auto;
+  align-items:center;
+  gap:18px;
+}
+.footer-legal{
+  display:flex;
+  gap:22px;
+  flex-wrap:wrap;
+}
+.footer-legal a{
+  color: var(--ink);
+  opacity:.9;
+  text-decoration:none;
+  font:500 14px/1.6 Arial, sans-serif;
+}
+.footer-legal a:hover{ text-decoration:underline; text-underline-offset:3px; }
+
+.footer-copy{
+  color: var(--ink-dim);
+  font:500 14px/1.6 Arial, sans-serif;
+}
+
+/* Social round buttons */
+.footer-social{
+  display:flex; gap:14px;
+}
+.social-btn{
+  width:40px; height:40px; display:grid; place-items:center;
+  color: var(--link);
+  border:1px solid rgba(255,255,255,.25);
+  border-radius:999px;
+  text-decoration:none;
+}
+.social-btn:hover{
+  background: rgba(255,255,255,.08);
+  border-color: rgba(255,255,255,.45);
+}
+
+/* Footnotes link */
+.footer-footnotes{
+  margin-top: 10px;
+}
+.footer-footnotes a{
+  color: var(--ink);
+  text-decoration:underline;
+  text-underline-offset:3px;
+  opacity:.9;
+}
+
+/* Responsive */
+@media (max-width: 900px){
+  .footer-top{ flex-direction:column; align-items:flex-start; text-align:left; }
+  .footer-links{ text-align:left; }
+  .footer-bottom{ grid-template-columns: 1fr; text-align:left; }
+  .footer-social{ justify-content:flex-start; }
+}
+
   </style>
 </head>
 <body>
 
+
+
+
+
+
+
+  
   <!-- NAVBAR -->
 <header class="nav">
   <div class="nav-inner">
@@ -171,8 +290,6 @@ body{position:relative}
     <img src="assets/logo.png" alt="Tomorrow Capital Research logo">
     <span class="brand-text">Tomorrow</span>
     </div>
-
-
 
     
     <nav class="menu" aria-label="Primary">
@@ -239,6 +356,11 @@ body{position:relative}
 </header>
 
 
+
+
+
+
+  
   
   <!-- HERO with image + blue panel on the right -->
   <section class="hero" aria-label="Hero">
@@ -250,9 +372,6 @@ body{position:relative}
       <a class="cta" href="research.html">Explore our research</a>
     </div>
   </section>
-
-
-
 
   
   <!-- Optional extra content area -->
@@ -283,11 +402,72 @@ body{position:relative}
     </div>
   </section>
 
+
+
+
+
+  
   
   <!-- FOOTER -->
-  <footer>
-    © <span id="year"></span> Tomorrow Capital Research. All rights reserved.
-  </footer>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <!-- Top row -->
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="assets/tomorrow_logo_deep.svg" alt="Tomorrow Capital Research" />
+        <span>Tomorrow&nbsp;Capital&nbsp;Research</span>
+      </div>
+
+      <nav class="footer-links" aria-label="Footer quick links">
+        <a href="about.html">Who We Are</a>
+        <a href="research.html">What We Do</a>
+        <a href="news.html">News & Insights</a>
+        <a href="careers.html">Careers</a>
+      </nav>
+    </div>
+
+    <hr class="footer-rule" />
+
+    <!-- Bottom row -->
+    <div class="footer-bottom">
+      <nav class="footer-legal" aria-label="Legal">
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms of Use</a>
+        <a href="notices.html">Notices</a>
+        <a href="disclosures.html">Disclosures</a>
+      </nav>
+
+      <div class="footer-copy">© <span id="year"></span> Tomorrow Capital Research. All rights reserved.</div>
+
+      <div class="footer-social" aria-label="Social">
+        <!-- LinkedIn -->
+        <a class="social-btn" href="#" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M4.98 3.5A2.5 2.5 0 1 1 0 3.5a2.5 2.5 0 0 1 4.98 0zM.5 8.5h4.9V24H.5zM8.5 8.5h4.7v2.1h.1c.7-1.2 2.4-2.5 4.9-2.5 5.2 0 6.2 3.4 6.2 7.7V24h-4.9v-6.8c0-1.6 0-3.7-2.2-3.7-2.2 0-2.6 1.7-2.6 3.6V24H8.5z"/></svg>
+        </a>
+        <!-- Facebook -->
+        <a class="social-btn" href="#" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2.3V12h2.3V9.7c0-2.2 1.3-3.4 3.3-3.4.95 0 1.9.17 1.9.17v2.1h-1.1c-1 0-1.3.64-1.3 1.3V12h2.3l-.37 2.9h-1.9v7A10 10 0 0 0 22 12z"/></svg>
+        </a>
+        <!-- Instagram -->
+        <a class="social-btn" href="#" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5A5.5 5.5 0 1 1 6.5 13 5.51 5.51 0 0 1 12 7.5zm0 2A3.5 3.5 0 1 0 15.5 13 3.5 3.5 0 0 0 12 9.5zm6.25-2.75a1.25 1.25 0 1 1-1.25 1.25 1.25 1.25 0 0 1 1.25-1.25z"/></svg>
+        </a>
+        <!-- YouTube -->
+        <a class="social-btn" href="#" aria-label="YouTube">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.3 3.5 12 3.5 12 3.5s-7.3 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c2.1.6 9.4.6 9.4.6s7.3 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.8 15.5V8.5l6.3 3.5z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <hr class="footer-rule" />
+
+    <!-- Optional footnotes link -->
+    <div class="footer-footnotes">
+      <a href="#footnotes">View footnotes for this page.</a>
+    </div>
+  </div>
+</footer>
+
 
 
 

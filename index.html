@@ -18,10 +18,10 @@
   --white:#fff;
   --navy:#0B0E2A;        /* deep navy */
   --navy-2:#0A1135;      /* slightly lighter for gradient mix */
-  --ink:#D7DBF2;         /* light ink text */
-  --ink-dim:#A6ACCC;     /* dimmer text */
-  --link:#E9EDFF;        /* link color */
-  --ring:#3E4A8F;        /* outline ring for focus */
+  --ink:#ffffff;         /* light ink text */
+  --ink-dim:#0E2841;     /* dimmer text */
+  --link:#0E2841;        /* link color */
+  --ring:#ffffff;        /* outline ring for focus */
 }
 
 /* Navbar basics you already have */
@@ -172,6 +172,7 @@ body{position:relative}
   color: var(--ink);
   padding: 56px 0 32px;
 }
+    
 .footer-inner{
   max-width: 1200px;
   margin: 0 auto;
@@ -186,11 +187,13 @@ body{position:relative}
   gap: 40px;
   min-height: 120px;
 }
+    
 .footer-brand{
   display:flex;
   align-items:center;
   gap:14px;
 }
+    
 .footer-brand img{ height:36px; width:auto; display:block; }
 .footer-brand span{ font:700 22px/1.2 Arial, sans-serif; letter-spacing:.2px; }
 
@@ -201,11 +204,13 @@ body{position:relative}
   gap:16px;
   text-align:right;
 }
+    
 .footer-links a{
   color: var(--link);
   text-decoration:none;
   font:600 18px/1.4 Arial, sans-serif;
 }
+    
 .footer-links a:hover{
   text-decoration:underline;
   text-underline-offset:3px;
@@ -214,7 +219,7 @@ body{position:relative}
 /* Divider */
 .footer-rule{
   border:0;
-  border-top:1px solid rgba(255,255,255,.12);
+  border-top:5px solid rgba(255,255,255,.12);
   margin: 28px 0;
 }
 
@@ -420,8 +425,8 @@ body{position:relative}
     <!-- Top row -->
     <div class="footer-top">
       <div class="footer-brand">
-        <img src="assets/tomorrow_logo_deep.svg" alt="Tomorrow Capital Research" />
-        <span>Tomorrow&nbsp;Capital&nbsp;Research</span>
+        <img src="assets/logo.png" alt="Tomorrow Capital Research" />
+        <span>Tomorrow</span>
       </div>
 
       <nav class="footer-links" aria-label="Footer quick links">

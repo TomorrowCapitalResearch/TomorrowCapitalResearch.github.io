@@ -412,6 +412,66 @@ body{position:relative}
           clip-path: polygon(0 0, 100% 0, 100% 100%, 14% 100%);
 }
 
+
+
+    :root{
+  --blue:#0E3275; --ink:#0B0D12;
+}
+
+.edge-panel{
+  display:grid;
+  grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);
+  align-items:stretch;
+  min-height: 420px;
+  width: 100vw;                 /* full bleed */
+  margin-left: 50%;
+  transform: translateX(-50%);  /* center the 100vw section */
+}
+
+.edge-panel .media{
+  position:relative;
+  overflow:hidden;
+}
+
+.edge-panel .media img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  /* the angled cut */
+  clip-path: polygon(0 0, 86% 0, 80% 100%, 0 100%);
+}
+
+.edge-panel .content{
+  background:#fff;
+  padding: clamp(24px, 4vw, 64px);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:16px;
+}
+
+/* Right-attached version (image on right, mirrored angle) */
+.edge-panel.right{
+  grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);
+}
+.edge-panel.right .media{ order:2; }
+.edge-panel.right .media img{
+  clip-path: polygon(20% 0, 100% 0, 100% 100%, 14% 100%);
+}
+
+/* Nice CTA */
+.cta{ color:var(--blue); font-weight:600; text-underline-offset:3px; }
+
+/* Mobile: stack and remove the angle if you prefer */
+@media (max-width: 800px){
+  .edge-panel{
+    grid-template-columns:1fr;
+    min-height:unset;
+  }
+  .edge-panel .media img{ clip-path:none; height:48vh; }
+}
+
     
   </style>
 </head>
@@ -497,6 +557,12 @@ body{position:relative}
 </header>
 
 
+
+
+
+
+
+  
   
   <!-- HERO with image + blue panel on the right -->
   <section class="hero" aria-label="Hero">
@@ -508,6 +574,19 @@ body{position:relative}
       <a class="cta" href="research.html">Explore our research</a>
     </div>
   </section>
+
+
+<section class="edge-panel left">
+  <div class="media">
+    <img src="your-image.jpg" alt="About us">
+  </div>
+  <div class="content">
+    <h2>About us</h2>
+    <p>We are a leading global financial services group…</p>
+    <a class="cta" href="#">Learn more</a>
+  </div>
+</section>
+
 
   
 <section class="slice">

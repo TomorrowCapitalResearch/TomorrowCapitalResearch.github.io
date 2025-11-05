@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   
-  <style>:root{ --blue:#0E3275; --blue-600:#0A1D45; --text:#0b0d12; --white:#ffffff; --footer:#000000;}
+  <style>
   *{box-sizing:border-box}
   html,body{margin:0;padding:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:var(--text);background:#fff}
 
@@ -25,12 +25,12 @@
 }
 
 /* Navbar basics you already have */
-.nav{position:sticky; top:0; z-index:1000; background:#fff; border-bottom:1px solid rgba(0,0,0,.06)}
+.nav{position:sticky; top:0; z-index:1000; background:#ffffff; border-bottom:1px solid rgba(0,0,0,.06)}
 .nav-inner{max-width:1200px; margin:auto; padding:14px 20px; display:flex; align-items:center; justify-content:space-between}
 .menu{display:flex; gap:28px; align-items:center}
 .menu .menu-trigger, .menu .menu-link{
   font:600 18px/1.2 Arial, sans-serif;
-  color:#0b0d12;
+  color:#0033FF;
   background:none; border:0; padding:10px 0; cursor:pointer;
   text-decoration:none;
 }
@@ -55,8 +55,8 @@
 .mega-panel{
   display:none;
   min-height:320px;
-  background: linear-gradient(90deg, #173d8a, #072e7d);
-  color:var(--white);
+  background: #0033FF;
+  color:#ffffff;
   border-top:1px solid rgba(255,255,255,.15);
   box-shadow:0 30px 60px rgba(10,29,69,.35);
   padding:40px 6vw;
@@ -66,11 +66,13 @@
 .mega-panel.open{ display:grid; }
 
 .mega-left h2{ margin:0 0 18px; font:700 clamp(26px,3vw,40px)/1.1 Arial, sans-serif }
+
 .mega-left .btn{
   display:inline-block; margin-top:12px;
   background:#71E6EE; color:#052247; font-weight:700;
   padding:12px 18px; border-radius:28px; text-decoration:none;
 }
+    
 .mega-right ul{ list-style:none; margin:0; padding:0 }
 .mega-right li{ margin:16px 0 }
 .mega-right a{ color:#eaf2ff; text-decoration:none; font:500 18px/1.5 Arial, sans-serif }
@@ -79,13 +81,17 @@
 /* Close button (X) */
 .mega-close{
   position:absolute; top:16px; right:24px;
-  background:transparent; border:0; color:#fff; font-size:32px; line-height:1; cursor:pointer;
+  background:transparent; border:0; color:#ffffff; font-size:32px; line-height:1; cursor:pointer;
   opacity:.9;
 }
 .mega-close:hover{ opacity:1 }
 
 /* Prevent page content from being overlapped awkwardly */
 body{position:relative}
+
+
+
+
 
   .brand {
   display: flex;
@@ -407,23 +413,6 @@ body{position:relative}
           clip-path: polygon(0 0, 100% 0, 100% 100%, 14% 100%);
 }
 
-    .geom-panel {
-  background: #0E3275 url("data:image/svg+xml,%3Csvg width='800' height='800' viewBox='0 0 800 800' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M100 200 L200 100 L300 150 L300 250 L200 300 Z' stroke='%23FFFFFF20' stroke-width='2'/%3E%3Cpath d='M400 400 L500 350 L600 420 L580 520 L460 540 Z' stroke='%23FFFFFF20' stroke-width='2'/%3E%3Cpath d='M150 500 L230 450 L330 500 L310 600 L190 630 Z' stroke='%230B0D1299' stroke-width='2'/%3E%3C/svg%3E") center/cover no-repeat;
-  padding: 100px 60px;
-  color: white;
-  position: relative;
-}
-
-.geom-content {
-  max-width: 700px;
-}
-
-    .geom-divider {
-  height: 80px;
-  background: url("data:image/svg+xml,%3Csvg width='200' height='80' viewBox='0 0 200 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 40 Q25 0 50 40 T100 40 T150 40 T200 40' fill='none' stroke='%230E3275' stroke-width='2'/%3E%3C/svg%3E") repeat-x;
-  background-size: 200px 80px;
-}
-
     
   </style>
 </head>
@@ -521,18 +510,6 @@ body{position:relative}
     </div>
   </section>
 
-<div class="geom-divider"></div>
-
-  
-<section class="geom-panel">
-  <div class="geom-content">
-    <h2>Our Research Philosophy</h2>
-    <p>We study market structure, liquidity, and systemic dynamics to build adaptive investment systems.</p>
-  </div>
-</section>
-
-<div class="geom-divider"></div>
-
   
 <section class="slice">
   <div class="slice-inner">
@@ -548,7 +525,6 @@ body{position:relative}
   </div>
 </section>
 
-<div class="geom-divider"></div>
 
 
 <section class="skew-block">
@@ -570,8 +546,6 @@ body{position:relative}
   </div>
 </section>
 
-
-<div class="geom-divider"></div>
 
 
 

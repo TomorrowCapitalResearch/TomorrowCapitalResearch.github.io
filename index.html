@@ -19,8 +19,8 @@
   --navy:#0B0E2A;        /* deep navy */
   --navy-2:#0A1135;      /* slightly lighter for gradient mix */
   --ink:#ffffff;         /* light ink text */
-  --ink-dim:#0E2841;     /* dimmer text */
-  --link:#0E2841;        /* link color */
+  --ink-dim:#ffffff;     /* dimmer text */
+  --link:#ffffff;        /* link color */
   --ring:#ffffff;        /* outline ring for focus */
 }
 
@@ -168,7 +168,7 @@ body{position:relative}
     
 /* Footer shell */
 .site-footer{
-  background: linear-gradient(180deg, var(--navy), #0B0E2A);
+  background: #0E2841;
   color: var(--ink);
   padding: 56px 0 32px;
 }
@@ -219,8 +219,8 @@ body{position:relative}
 /* Divider */
 .footer-rule{
   border:0;
-  border-top:5px solid rgba(255,255,255,.12);
-  margin: 28px 0;
+  border-top:2px solid rgba(255,255,255,.5);
+  margin: 6px 0;
 }
 
 /* Bottom row */
@@ -255,12 +255,12 @@ body{position:relative}
 .social-btn{
   width:40px; height:40px; display:grid; place-items:center;
   color: var(--link);
-  border:1px solid rgba(255,255,255,.25);
+  border:1px solid rgba(255,255,255,.5);
   border-radius:999px;
   text-decoration:none;
 }
 .social-btn:hover{
-  background: rgba(255,255,255,.08);
+  background: rgba(255,255,255,.45);
   border-color: rgba(255,255,255,.45);
 }
 

@@ -104,6 +104,13 @@
   color:#ffffff;
 }
 
+.menu-item.open > .menu-trigger {
+  text-decoration: underline;
+  text-decoration-color: #0033FF;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 5px;
+}
+    
 /* Desktop: open submenu when hovering the tab or the submenu itself */
 @media (hover:hover) {
   .has-submenu:hover > .submenu { display:block; }
@@ -111,11 +118,6 @@
 
 /* JS-controlled open state (mobile & enhanced desktop) */
 .menu-item.open > .submenu { display:block; }
-.menu-item.open > .menu-trigger { 
-  text-decoration: underline;
-  text-decoration-color:#0033FF;
-  text-underline-offset:5px;
-}
 
 /* Optional: tighter layout on small screens */
 @media (max-width: 900px) {
@@ -295,41 +297,50 @@
   <script>
 document.getElementById('year').textContent = new Date().getFullYear();
 
-  // Open the hovered tab's submenu and close others (desktop enhancement)
-  const menu = document.querySelector('.menu');
   const items = document.querySelectorAll('.menu-item.has-submenu');
+  const triggers = document.querySelectorAll('.menu-trigger');
 
-  items.forEach(item => {
-    item.addEventListener('mouseenter', () => {
-      // close others
-      items.forEach(i => i.classList.remove('open'));
-      // open this one
-      item.classList.add('open');
-      const t = item.querySelector('.menu-trigger');
-      if (t) t.setAttribute('aria-expanded', 'true');
-    });
-  });
-
-  // When you hover a different tab, the 'mouseenter' above switches it.
-  // When you leave the whole menu area, close all.
-  menu.addEventListener('mouseleave', () => {
-    items.forEach(i => {
-      i.classList.remove('open');
-      const t = i.querySelector('.menu-trigger');
-      if (t) t.setAttribute('aria-expanded', 'false');
-    });
-  });
-
-  // Mobile/touch: toggle on click
-  document.querySelectorAll('.menu-trigger').forEach(btn => {
+  // open/close on click
+  triggers.forEach(btn => {
     btn.addEventListener('click', (e) => {
       const item = e.currentTarget.closest('.menu-item');
       const isOpen = item.classList.contains('open');
-      items.forEach(i => i.classList.remove('open'));
-      if (!isOpen) item.classList.add('open');
-      document.querySelectorAll('.menu-trigger').forEach(b => b.setAttribute('aria-expanded','false'));
-      e.currentTarget.setAttribute('aria-expanded', String(!isOpen));
+
+      // close all
+      items.forEach(i => {
+        i.classList.remove('open');
+        const t = i.querySelector('.menu-trigger');
+        if (t) t.setAttribute('aria-expanded', 'false');
+      });
+
+      // toggle current
+      if (!isOpen) {
+        item.classList.add('open');
+        e.currentTarget.setAttribute('aria-expanded', 'true');
+      }
     });
+  });
+
+  // close if click outside any menu
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.menu')) {
+      items.forEach(i => {
+        i.classList.remove('open');
+        const t = i.querySelector('.menu-trigger');
+        if (t) t.setAttribute('aria-expanded', 'false');
+      });
+    }
+  });
+
+  // Esc to close
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      items.forEach(i => {
+        i.classList.remove('open');
+        const t = i.querySelector('.menu-trigger');
+        if (t) t.setAttribute('aria-expanded', 'false');
+      });
+    }
   });
 </script>
 

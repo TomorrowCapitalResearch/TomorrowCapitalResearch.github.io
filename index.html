@@ -104,20 +104,18 @@
   color:#ffffff;
 }
 
+
+/* JS-controlled open state (mobile & enhanced desktop) */
+.menu-item.open > .submenu { display:block; }
+    
 .menu-item.open > .menu-trigger {
   text-decoration: underline;
   text-decoration-color: #0033FF;
   text-decoration-thickness: 3px;
   text-underline-offset: 5px;
 }
-    
-/* Desktop: open submenu when hovering the tab or the submenu itself */
-@media (hover:hover) {
-  .has-submenu:hover > .submenu { display:block; }
-}
 
-/* JS-controlled open state (mobile & enhanced desktop) */
-.menu-item.open > .submenu { display:block; }
+
 
 /* Optional: tighter layout on small screens */
 @media (max-width: 900px) {

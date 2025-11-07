@@ -15,8 +15,10 @@
 :root{
   --white:#ffffff; /* White */
   --black:#000000; /* Black */
+  
   --lb: #DCEAF7; /* Light Blue*/
   --blue:#61CBF4; /* Blue */
+  
   --db:#0E3275;  /* Deep Blue */
   --contrast:#0A1D45;   /* Contrast elements Grey */
   --text:#156082;
@@ -53,7 +55,7 @@
 
 /* Each panel */
 .mega-panel{
-  display:flex;
+  display: none;
   width: 100%;
   min-height:280px;
   background: linear-gradient(to right, var(--blue), var(--lb));
@@ -68,15 +70,16 @@
     
 .divider {
   width: 1px;
-  background-color: rgba(255, 255, 255, 0.4); /* subtle line */
+  background-color: rgba(255, 255, 255, 1); /* subtle line */
   margin: 0 40px; /* spacing on both sides */
+  align-self:stretch;  
 }
     
-.mega-left h2{ margin:0 0 18px; font:700 clamp(26px,3vw,40px)/1.1 "Inter", sans-serif }
+.mega-left h2{ margin:0 0 16px; font:700 clamp(26px,3vw,40px)/1.1 "Inter", sans-serif }
 
 .mega-left .btn{
   display:inline-block; margin-top:12px;
-  background:#71E6EE; color:#052247; font-weight:700;
+  background:var(--blue) color:var(--lb); font-weight:700;
   padding:12px 18px; border-radius:28px; text-decoration:none;
 }
     

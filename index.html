@@ -10,7 +10,7 @@
   
   <style>
   *{box-sizing:border-box}
-  html,body{margin:0;padding:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:var(--text);background:#fff}
+  html,body{margin:0;padding:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:#ffffff}
 
 :root{
   --white:#ffffff; /* White */
@@ -19,26 +19,25 @@
   --blue:#61CBF4; /* Blue */
   --db:#0E3275;  /* Deep Blue */
   --contrast:#0A1D45;   /* Contrast elements Grey */
+  --text:#156082
+  --texthover:#0F9ED5
   
 }
-
-
-
     
 /* Navbar basics you already have */
 .nav{position:sticky; top:0; z-index:1000; background:#ffffff; border-bottom:1px solid rgba(0,0,0,.06)}
 .nav-inner{max-width:100%; margin:auto; padding:20px 20px; display:flex; align-items:center; justify-content:space-between}
 .menu{display:flex; gap:12px; align-items:center}
 .menu .menu-trigger, .menu .menu-link{
-  font:600 18px/1.2 "Helvetica", sans-serif;
-  color:#0033FF;
+  font:600 16px/1.2 "Inter", sans-serif;
+  color:var(--text);
   background:none; border:0; padding:30px 10px; cursor:pointer;
   text-decoration:none;
 }
 
 .menu .menu-trigger:hover, .menu .menu-link:hover{
   text-decoration:underline;
-  text-decoration-color:#0033FF;
+  text-decoration-color:var(--texthover);
   text-decoration-thickness:3px;
   text-underline-offset:5px;
 }
@@ -107,7 +106,7 @@ body{position:relative}
   font-size:48px;                   /* adjust to preferred size */
   font-weight:bold;                 /* matches the strong brand look */
   letter-spacing:-1px;              /* pulls characters closer together */
-  color:#0033FF;                    /* same blue as your logo */
+  color:var(--text);                    /* same blue as your logo */
   line-height:1;                    /* ensures text sits nicely next to logo */
   user-select:none;
 }

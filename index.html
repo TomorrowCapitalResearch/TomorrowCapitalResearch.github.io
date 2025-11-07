@@ -111,7 +111,6 @@ body{position:relative}
 .brand-text {
   font-family: "Inter", sans-serif;   /* ensures Arial is used */
   font-size:48px;                   /* adjust to preferred size */
-  font-weight:bold;                 /* matches the strong brand look */
   letter-spacing:-1px;              /* pulls characters closer together */
   color:var(--text);                    /* same blue as your logo */
   line-height:1;                    /* ensures text sits nicely next to logo */
@@ -119,9 +118,8 @@ body{position:relative}
 }
 
 .brand span {
-  color: #0033FF;  /* Make it match the logo blue */
+  color: var(--text)
   font-size: 48px;
-  font-weight: bold;
   letter-spacing:-1px;
   line-height: 1;
 }

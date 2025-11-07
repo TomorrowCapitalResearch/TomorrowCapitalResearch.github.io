@@ -64,7 +64,6 @@
   border-top:1px solid rgba(125,125,125,.5);
   box-shadow:0 20px 40px rgba(10,29,69,.35);
   padding:40px 60px;
-  display:grid;                     /* keep grid */
   grid-template-columns: 1.2fr auto 1fr; /* left | divider | right */
   align-items: center;              /* vertical alignment for left/right */
   column-gap: 40px;
@@ -88,7 +87,8 @@ s
 }
     
 .mega-right{ grid-column:3; display:flex; justify-content:center; }
-.mega-right ul{ display:flex; flex-direction:column; gap:16px; margin:0; padding:0; }
+.mega-right ul{ display:flex; flex-direction:column; list-style: none; gap:16px; margin:0; padding:0; }
+.mega-right li{ margin: 16px 0; }
 .mega-right a{
   display:inline-block;
   background:var(--white);

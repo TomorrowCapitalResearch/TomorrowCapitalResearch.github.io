@@ -56,14 +56,14 @@
 /* Each panel */
 .mega-panel{
   display: none;
-  width: 100%;
+  width: 99%;
   min-height:280px;
   background: linear-gradient(to right, var(--blue), var(--lb));
   color:var(--white);
   border-top:1px solid rgba(125,125,125,.5);
   box-shadow:0 20px 40px rgba(10,29,69,.35);
   padding:40px 60px;
-  grid-template-columns: 1fr 1.5fr;  /* left column + right links */
+  grid-template-columns: 1fr 1.2fr;  /* left column + right links */
   gap:40px;
 }
 .mega-panel.open{ display:grid; }
@@ -85,7 +85,7 @@
     
 .mega-right ul{ list-style:none; margin:0; padding:0 }
 .mega-right li{ margin:16px 0 }
-.mega-right a{ color:#eaf2ff; text-decoration:none; font:500 18px/1.5 Arial, sans-serif }
+.mega-right a{ color:var(--white); text-decoration:none; font:500 18px/1.5 Arial, sans-serif }
 .mega-right a:hover{ text-decoration:underline; text-underline-offset:4px }
 
 /* Close button (X) */
@@ -284,8 +284,9 @@ body{position:relative}
     <div class="mega-left">
       <h2>Who We Are</h2>
       <a class="btn" href="about.html">Learn More</a>
-      <div class="divider"></div>
+      
     </div>  
+    <div class="divider"></div>
     <div class="mega-right">
       <ul>
         <li><a href="mission.html">Mission & Values</a></li>
@@ -302,8 +303,8 @@ body{position:relative}
     <div class="mega-left">
       <h2>What We Do</h2>
       <a class="btn" href="research.html">Learn More</a>
-      <div class="divider"></div>
     </div>
+    <div class="divider"></div>
     <div class="mega-right">
       <ul>
         <li><a href="signals.html">Signals</a></li>
@@ -321,8 +322,8 @@ body{position:relative}
     <div class="mega-left">
       <h2>Careers</h2>
       <a class="btn" href="careers.html">Open Roles</a>
-      <div class="divider"></div>
     </div>
+    <div class="divider"></div>
     <div class="mega-right">
       <ul>
         <li><a href="careers.html">Experienced</a></li>

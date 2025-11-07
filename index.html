@@ -64,7 +64,7 @@
   border-top:1px solid rgba(125,125,125,.5);
   box-shadow:0 20px 40px rgba(10,29,69,.35);
   padding:40px 60px;
-  grid-template-columns: 1.2fr auto 1fr; /* left | divider | right */
+  grid-template-columns: 1fr auto 5fr; /* left | divider | right */
   align-items: center;              /* vertical alignment for left/right */
   column-gap: 40px;
 }
@@ -83,7 +83,7 @@ s
 .mega-left .btn{
   display:inline-block; margin-top:12px;
   background:var(--white); color:var(--text); font-weight:700;
-  padding:12px 18px; border-radius:28px; text-decoration:none;
+  padding:12px 6px; border-radius:28px; text-decoration:none;
 }
     
 .mega-right{ grid-column:3; display:flex; justify-content:center; }
@@ -93,7 +93,7 @@ s
   display:inline-block;
   color:var(--text);
   font:700 16px/1 "Inter", sans-serif;
-  padding:12px 18px;
+  padding:12px 6px;
   text-decoration:none;
 }
 .mega-right a:hover{ text-decoration:none; filter:brightness(0.95); }

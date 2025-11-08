@@ -316,7 +316,7 @@ body{position:relative}
     max-width: min(620px, 80%);
     padding: 24px 28px;
     color: var(--text);
-    background: var(--box-bg);
+    background: var(--white);
     /* create the slope */
     -webkit-clip-path: polygon(0 0, 86% 0, 100% 100%, 0% 100%);
             clip-path: polygon(0 0, 86% 0, 100% 100%, 0% 100%);
@@ -352,6 +352,68 @@ body{position:relative}
               clip-path: polygon(0 0, 90% 0, 100% 100%, 0% 100%);
     }
   }
+
+
+/* Divider between hero and following content */
+.section-divider {
+  height: 6px;
+  width: 100%;
+  background: linear-gradient(to right, #0B3D91, #7AB8FF);
+  margin: 80px 0; /* adjust spacing to taste */
+  border-radius: 6px;
+}
+
+/* Section background colors */
+.info-section.light {
+  background: #E9F3FF; /* light blue */
+}
+
+.info-section.white {
+  background: #ffffff;
+}
+
+/* Layout container */
+.info-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 120px 60px;
+}
+
+/* Left column headline */
+.info-left h2 {
+  font-size: 64px;
+  font-weight: 500;
+  line-height: 1.1;
+  color: #0A0A0A;
+  margin: 0;
+}
+
+/* Right column supporting text */
+.info-right p {
+  font-size: 22px;
+  line-height: 1.5;
+  max-width: 620px;
+  margin: 0;
+  color: #2A2A2A;
+}
+
+/* Responsive (mobile / tablet behavior) */
+@media (max-width: 900px) {
+  .info-container {
+    grid-template-columns: 1fr;
+  }
+
+  .info-left h2 {
+    font-size: 42px;
+    margin-bottom: 24px;
+  }
+}
+
+
+
     
   </style>
 </head>
@@ -489,7 +551,38 @@ body{position:relative}
   </section>
 
 
+<div class="section-divider"></div>
 
+<!-- ✅ Section 1 (Light Blue Background) -->
+<section class="info-section light">
+  <div class="info-container">
+    <div class="info-left">
+      <h2>The Next-Generation<br> Capital Markets Firm</h2>
+    </div>
+    <div class="info-right">
+      <p>
+        Our work is powered by the deepest integration of financial,
+        mathematical, and engineering expertise. We combine systematic
+        innovation with cutting-edge analytics and trading infrastructure.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ✅ Section 2 (White Background) -->
+<section class="info-section white">
+  <div class="info-container">
+    <div class="info-left">
+      <h2>Proven Innovators.<br> Trusted Partners.</h2>
+    </div>
+    <div class="info-right">
+      <p>
+        Exceptional people. Advanced predictive models. Infrastructure that scales.
+        We deliver world-class execution and liquidity to global markets — today and tomorrow.
+      </p>
+    </div>
+  </div>
+</section>
 
 
 

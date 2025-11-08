@@ -315,9 +315,9 @@ body{position:relative}
   /* Caption box with a downward-sloped right edge */
   .hero-caption {
     position: absolute;
-    left: clamp(12px, 2.5vw, 32px);
-    bottom: clamp(12px, 2.5vw, 32px);
-    max-width: min(620px, 100%);
+    left: 50px;
+    bottom: 50px;
+    max-width: 700px;
     padding: 24px 28px;
     color: var(--text);
     background: var(--white);
@@ -329,14 +329,14 @@ body{position:relative}
   .hero-caption h3 {
     margin: 0 0 8px 0;
     font-weight: 500;
-    font-size: clamp(18px, 2.2vw, 24px);
+    font-size: 40px;
     line-height: 1.15;
     letter-spacing: .1px;
   }
 
   .hero-caption p {
     margin: 0;
-    font-size: clamp(14px, 1.6vw, 18px);
+    font-size: 14px;
     line-height: 1.45;
     color: var(--muted);
   }
@@ -355,10 +355,11 @@ body{position:relative}
 
 /* Divider between hero and following content */
 .section-divider {
+  
   height: 6px;
-  width: 80%;
-  background: linear-gradient(to right, var(--lb), var(--blue));
-  margin: 20px 0; /* adjust spacing to taste */
+  width: 80px;
+  background: linear-gradient(to right, var(--blue), var(--lb));
+  margin: 40px auto; /* adjust spacing to taste */
 }
 
 /* Section background colors */

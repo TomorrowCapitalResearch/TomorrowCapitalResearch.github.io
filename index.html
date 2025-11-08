@@ -24,6 +24,7 @@
   --contrast:#0A1D45;   /* Contrast elements Grey */
   --text:#156082;
   --texthover:#0F9ED5;
+  
   --page-max: 1200px;
   --side-pad: 24px;
   --hero-image: url("assets/A1.jpeg");
@@ -327,7 +328,7 @@ body{position:relative}
 
   .hero-caption h3 {
     margin: 0 0 8px 0;
-    font-weight: 600;
+    font-weight: 500;
     font-size: clamp(18px, 2.2vw, 24px);
     line-height: 1.15;
     letter-spacing: .1px;
@@ -348,8 +349,6 @@ body{position:relative}
       left: 4%;
       right: 4%;
       /* slightly softer slope on tiny screens */
-      -webkit-clip-path: polygon(0 0, 90% 0, 100% 100%, 0% 100%);
-              clip-path: polygon(0 0, 90% 0, 100% 100%, 0% 100%);
     }
   }
 
@@ -357,19 +356,18 @@ body{position:relative}
 /* Divider between hero and following content */
 .section-divider {
   height: 6px;
-  width: 100%;
-  background: linear-gradient(to right, #0B3D91, #7AB8FF);
-  margin: 80px 0; /* adjust spacing to taste */
-  border-radius: 6px;
+  width: 80%;
+  background: linear-gradient(to right, var(--lb), var(--blue));
+  margin: 20px 0; /* adjust spacing to taste */
 }
 
 /* Section background colors */
 .info-section.light {
-  background: #E9F3FF; /* light blue */
+  background: var(--lb);
 }
 
 .info-section.white {
-  background: #ffffff;
+  background: var(--white);
 }
 
 /* Layout container */
@@ -387,7 +385,7 @@ body{position:relative}
   font-size: 64px;
   font-weight: 500;
   line-height: 1.1;
-  color: #0A0A0A;
+  color: var(--text);
   margin: 0;
 }
 
@@ -397,7 +395,7 @@ body{position:relative}
   line-height: 1.5;
   max-width: 620px;
   margin: 0;
-  color: #2A2A2A;
+  color: var(--text);
 }
 
 /* Responsive (mobile / tablet behavior) */
@@ -413,6 +411,10 @@ body{position:relative}
 }
 
 
+
+
+
+    
 /* Section wrapper */
 .kpis{
   background: var(--paper);
@@ -669,6 +671,8 @@ We combine insight, intelligence, and integrity to move markets forward.</p>
   </div>
 </section>
 
+<div class="section-divider"></div>
+  
   <!-- ✅ KPI Section -->
 <section class="kpis">
   <div class="kpi-grid">

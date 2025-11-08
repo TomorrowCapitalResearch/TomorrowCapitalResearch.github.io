@@ -27,10 +27,13 @@
   --page-max: 1200px;
   --side-pad: 24px;
   --hero-image: url("assets/A1.jpeg");
-    /* swap in your asset if you want:
-       url("/path/to/your/image.jpg"); */
-  --box-bg: #f1efec;         /* warm light gray like the example */
-  --muted: #4b5563;
+  --brand-blue:#153E9F;          /* Citadel-like deep blue */
+  --ink:#0A0A0A;
+  --muted:#2A2A2A;
+  --card:#F1EFED;                 /* Rothschild-like warm grey card */
+  --paper:#FFFFFF;
+  --gold:#C59B3B;                 /* optional accent for chevrons/links */
+  --radius:14px;
   
 }
 
@@ -413,6 +416,88 @@ body{position:relative}
 }
 
 
+/* Section wrapper */
+.kpis{
+  background: var(--paper);
+  padding: 80px 60px;
+}
+
+/* 2×2 grid like Rothschild cards */
+.kpi-grid{
+  max-width:1400px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:48px;
+}
+
+/* Card styling (Rothschild feel) */
+.kpi-card{
+  background:var(--card);
+  border:1px solid rgba(10,10,10,0.08);
+  border-radius:var(--radius);
+  padding:42px 48px;
+  box-shadow:0 1px 0 rgba(10,10,10,0.03);
+  transition:transform .2s ease, box-shadow .2s ease;
+}
+.kpi-card:hover{
+  transform:translateY(-2px);
+  box-shadow:0 10px 24px rgba(10,10,10,.08);
+}
+
+/* Big blue metric (Citadel style) */
+.kpi-metric{
+  font-weight:700;
+  font-size:132px;
+  line-height:.85;
+  letter-spacing:-2px;
+  color:var(--brand-blue);
+  margin:0 0 16px 0;
+  display:flex;
+  align-items:flex-start;
+  gap:8px;
+}
+.kpi-prefix{ font-size:.35em; line-height:1; transform:translateY(10px); }
+.kpi-suffix{ font-size:.35em; line-height:1; transform:translateY(12px); }
+
+/* Titles & body */
+.kpi-title{
+  font:500 28px/1.2 "Inter",system-ui,sans-serif;
+  color:var(--ink);
+  margin:10px 0 10px;
+}
+.kpi-desc{
+  color:var(--muted);
+  font-size:18px;
+  line-height:1.5;
+  margin:0 0 18px 0;
+  max-width:46ch;
+}
+
+/* Link styled like Rothschild chevron */
+.kpi-link{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  color:#1D2E73;                 /* muted navy */
+  text-decoration:none;
+  font-weight:500;
+}
+.kpi-link::before{
+  content:"›";
+  color:var(--gold);
+  font-size:22px;
+  line-height:1;
+  transform:translateY(-1px);
+}
+
+/* Responsive */
+@media (max-width: 960px){
+  .kpi-grid{ grid-template-columns:1fr; gap:32px; }
+  .kpi-metric{ font-size:96px; }
+  .kpi-title{ font-size:24px; }
+}
+
 
     
   </style>
@@ -581,6 +666,45 @@ body{position:relative}
         We deliver world-class execution and liquidity to global markets — today and tomorrow.
       </p>
     </div>
+  </div>
+</section>
+
+  <!-- ✅ KPI Section -->
+<section class="kpis">
+  <div class="kpi-grid">
+
+    <!-- Card 1 -->
+    <article class="kpi-card">
+      <div class="kpi-metric"><span class="kpi-prefix">#</span>1</div>
+      <h3 class="kpi-title">U.S. retail market making</h3>
+      <p class="kpi-desc">~35% of U.S.-listed retail volume executed through our platform.</p>
+      <a class="kpi-link" href="#">Learn more</a>
+    </article>
+
+    <!-- Card 2 -->
+    <article class="kpi-card">
+      <div class="kpi-metric"><span class="kpi-prefix">$</span>654<span class="kpi-suffix">B</span></div>
+      <h3 class="kpi-title">Daily notional value</h3>
+      <p class="kpi-desc">Approximate value executed in 24 hours, excluding swaps.</p>
+      <a class="kpi-link" href="#">Read methodology</a>
+    </article>
+
+    <!-- Card 3 -->
+    <article class="kpi-card">
+      <div class="kpi-metric">7<span class="kpi-suffix">x</span></div>
+      <h3 class="kpi-title">Flow Market Maker of the Year</h3>
+      <p class="kpi-desc">Risk Awards recognition from 2017 to 2024.</p>
+      <a class="kpi-link" href="#">Awards & recognition</a>
+    </article>
+
+    <!-- Card 4 (example) -->
+    <article class="kpi-card">
+      <div class="kpi-metric">24<span class="kpi-suffix">/6</span></div>
+      <h3 class="kpi-title">Global coverage</h3>
+      <p class="kpi-desc">Round-the-clock trading across major regions and asset classes.</p>
+      <a class="kpi-link" href="#">See our footprint</a>
+    </article>
+
   </div>
 </section>
 

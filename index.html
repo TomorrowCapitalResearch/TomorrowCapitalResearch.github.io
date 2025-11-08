@@ -278,6 +278,106 @@ body{position:relative}
 
 
 
+
+/* ===== HERO ===== */
+.hero{
+  position: relative;
+  background: var(--lb);
+  isolation: isolate;
+}
+
+.hero-inner{
+  /* two columns: left card (narrow) + image (wide) */
+  display: grid;
+  grid-template-columns: minmax(280px, 560px) 1fr;
+  min-height: clamp(480px, 72vh, 780px);
+}
+
+/* Left card */
+.hero-card{
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  /* a floating card look */
+  margin: clamp(24px, 6vw, 56px);
+  padding: clamp(20px, 4vw, 36px);
+  background: rgba(255,255,255,0.9);
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(10,29,69,.15);
+  backdrop-filter: blur(6px);
+  color: var(--contrast);
+}
+
+.hero-overline{
+  margin: 0 0 4px 0;
+  font: 700 12px/1.1 "Inter", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  color: var(--db);
+}
+
+.hero-title{
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  font-size: clamp(28px, 4.5vw, 44px);
+  line-height: 1.08;
+  color: var(--contrast);
+}
+
+.hero-copy{
+  margin: 0;
+  font: 500 16px/1.6 "Inter", sans-serif;
+  color: var(--text);
+}
+
+/* Optional buttons if you use them
+.btn{ display:inline-block; text-decoration:none; border-radius:28px; padding:12px 18px; font:700 14px/1 "Inter",sans-serif; }
+.btn-primary{ background: var(--blue); color: #fff; }
+.btn-primary:hover{ filter: brightness(.95); }
+.btn-ghost{ background: transparent; color: var(--db); border:1px solid rgba(10,29,69,.18); }
+.btn-ghost:hover{ background: rgba(10,29,69,.06); }
+*/
+
+/* Right image */
+.hero-media{
+  position: relative;
+  margin: 0;
+}
+.hero-media img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Subtle dark gradient to keep text readable if image is bright */
+.hero-media::after{
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(to left, rgba(10,29,69,.45), rgba(10,29,69,0));
+  pointer-events: none;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 980px){
+  .hero-inner{
+    grid-template-columns: 1fr;
+  }
+  .hero-card{
+    order: 2;                 /* text first when scrolling */
+    margin-top: 0;
+  }
+  .hero-media{
+    order: 1;
+    min-height: 42vh;
+  }
+  .hero-media::after{
+    background: linear-gradient(to bottom, rgba(10,29,69,.40), rgba(10,29,69,0) 40%);
+  }
+}
     
   </style>
 </head>
@@ -300,9 +400,11 @@ body{position:relative}
 
     
     <nav class="menu" aria-label="Primary">
-      <button class="menu-trigger" data-panel="mega-about" aria-haspopup="true" aria-expanded="false">About</button>
+      <button class="menu-trigger" data-panel="mega-wwa" aria-haspopup="true" aria-expanded="false">Who We Are</button>
+      <button class="menu-trigger" data-panel="mega-wwd" aria-haspopup="true" aria-expanded="false">What We Do</button>
+      <button class="menu-trigger" data-panel="mega-news" aria-haspopup="true" aria-expanded="false">What Is New</button>
       <button class="menu-trigger" data-panel="mega-research" aria-haspopup="true" aria-expanded="false">Research</button>
-      <button class="menu-trigger" data-panel="mega-careers" aria-haspopup="true" aria-expanded="false">Careers</button>
+      <button class="menu-trigger" data-panel="mega-careers" aria-haspopup="true" aria-expanded="false">How To Join</button>
       <a class="menu-link" href="contact.html">Contact</a>
     </nav>
   </div>
@@ -310,12 +412,13 @@ body{position:relative}
 
 <!-- MEGA DROPDOWN AREA -->
 <div class="mega" id="mega-root" aria-live="polite">
-  <!-- About panel -->
-  <section id="mega-about" class="mega-panel" role="dialog" aria-label="About menu" aria-modal="false">
+  
+  <!-- Who We Are Panel -->
+  <section id="mega-wwa" class="mega-panel" role="dialog" aria-label="Who We Are menu" aria-modal="false">
     <button class="mega-close" aria-label="Close menu">×</button>
     <div class="mega-left">
       <h2>Who We Are</h2>
-      <a class="btn" href="about.html">Learn More</a>
+      <a class="btn" href="who-we-are.html">Learn More</a>
       
     </div>  
     <div class="divider"></div>
@@ -328,12 +431,44 @@ body{position:relative}
     </div>
   </section>
 
+  <!-- What We Do panel -->
+  <section id="mega-wwd" class="mega-panel" role="dialog" aria-label="What We Do menu" aria-modal="false">
+    <button class="mega-close" aria-label="Close menu">×</button>
+    <div class="mega-left">
+      <h2>What We Do</h2>
+      <a class="btn" href="what-we-do.html">Learn More</a>
+      
+    </div>  
+    <div class="divider"></div>
+    <div class="mega-right">
+      <ul>
+        <li><a href="test.html">tests</a></li>
+      </ul>
+    </div>
+  </section>
+
+    <!-- What Is New panel -->
+  <section id="mega-news" class="mega-panel" role="dialog" aria-label="What Is New menu" aria-modal="false">
+    <button class="mega-close" aria-label="Close menu">×</button>
+    
+    <div class="mega-left">
+      <h2>What Is New</h2>
+      <a class="btn" href="news.html">Learn More</a>
+    </div>
+    <div class="divider"></div>
+    <div class="mega-right">
+      <ul>
+        <li><a href="corp.html">corporate news</a></li>
+      </ul>
+    </div>
+  </section>
+
   <!-- Research panel -->
   <section id="mega-research" class="mega-panel" role="dialog" aria-label="Research menu" aria-modal="false">
     <button class="mega-close" aria-label="Close menu">×</button>
     
     <div class="mega-left">
-      <h2>What We Do</h2>
+      <h2>Research</h2>
       <a class="btn" href="research.html">Learn More</a>
     </div>
     <div class="divider"></div>
@@ -347,12 +482,12 @@ body{position:relative}
     </div>
   </section>
 
-  <!-- Careers panel -->
-  <section id="mega-careers" class="mega-panel" role="dialog" aria-label="Careers menu" aria-modal="false">
+  <!-- How To Join panel -->
+  <section id="mega-careers" class="mega-panel" role="dialog" aria-label="How To Join menu" aria-modal="false">
     <button class="mega-close" aria-label="Close menu">×</button>
     
     <div class="mega-left">
-      <h2>Careers</h2>
+      <h2>How To Join</h2>
       <a class="btn" href="careers.html">Open Roles</a>
     </div>
     <div class="divider"></div>
@@ -368,6 +503,46 @@ body{position:relative}
   
 </header>
 
+
+
+<!-- HERO / LANDING SECTION -->
+<section class="hero">
+  <div class="hero-inner">
+    <!-- Left box -->
+    <div class="hero-card" role="region" aria-label="Tomorrow Capital Research">
+      <p class="hero-overline">For a better tomorrow</p>
+      <h1 class="hero-title">We use markets to move the world forward</h1>
+      <p class="hero-copy">
+        Tomorrow Capital Research builds algorithmic trading and systematic investing
+        strategies powered by technology and mathematics. We design resilient,
+        data-driven systems that allocate capital efficiently, lower frictions,
+        and support a more prosperous future—every day.
+      </p>
+      <!-- Optional CTAs -->
+      <!-- <div class="hero-ctas">
+        <a class="btn btn-primary" href="research.html">Explore Research</a>
+        <a class="btn btn-ghost" href="about.html">Who We Are</a>
+      </div> -->
+    </div>
+
+    <!-- Right image -->
+    <figure class="hero-media">
+      <img
+        src="assets/hero-markets.jpg"
+        alt="Abstract market visualization with geometric paths and gradients"
+        loading="eager"
+        decoding="async"
+      />
+    </figure>
+  </div>
+</section>
+
+
+
+
+
+
+  
   <!-- FOOTER -->
 <footer class="site-footer">
   <div class="footer-inner">

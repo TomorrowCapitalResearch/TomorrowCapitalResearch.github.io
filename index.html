@@ -503,6 +503,76 @@ body{position:relative}
 }
 
 
+/* Layout container */
+.about-section {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  align-items: center;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 120px 60px;
+  gap: 60px;
+}
+
+/* Left Image Panel */
+.about-image {
+  height: 520px;
+  background-image: url("your-image.jpg"); /* replace this */
+  background-size: cover;
+  background-position: center;
+  clip-path: polygon(0 0, 100% 0, 90% 100%, 0% 100%);
+  border-radius: 4px;
+}
+
+/* Right Text Column */
+.about-text h2 {
+  font-family: "Georgia", "Times New Roman", serif;
+  font-size: 44px;
+  font-weight: 500;
+  color: #1D2E73; /* deep Rothschild blue */
+  margin-bottom: 24px;
+}
+
+.about-text p {
+  font-size: 20px;
+  line-height: 1.55;
+  color: #3d3e41;
+  max-width: 46ch;
+  margin-bottom: 32px;
+}
+
+/* Link with Gold Chevron */
+.about-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 20px;
+  color: #1D2E73;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.about-link::before {
+  content: "›";
+  color: #C59B3B; /* Rothschild gold */
+  font-size: 26px;
+  line-height: 1;
+}
+
+/* Responsive */
+@media(max-width: 900px){
+  .about-section {
+    grid-template-columns: 1fr;
+    padding: 80px 30px;
+  }
+  .about-image {
+    height: 380px;
+    clip-path: none; /* unclipped on small screens for simpler display */
+  }
+  .about-text h2 { font-size: 36px; }
+}
+
+
     
   </style>
 </head>
@@ -756,6 +826,21 @@ Driven by discipline, innovation, and relentless pursuit, we don’t just follow
 
 
 
+<section class="about-section">
+  <div class="about-image"></div>
+
+  <div class="about-text">
+    <h2>About us</h2>
+    <p>
+      We are a leading global financial services group, with seven generations
+      of stewardship and a long-standing presence at the centre of international
+      financial markets. Our approach is built on responsibility, discretion,
+      and a commitment to long-term value.
+    </p>
+
+    <a href="#" class="about-link">Learn more</a>
+  </div>
+</section>
 
 
 

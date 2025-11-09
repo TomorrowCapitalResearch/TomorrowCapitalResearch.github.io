@@ -357,9 +357,9 @@ body{position:relative}
 .section-divider {
   
   height: 2px;
-  width: 600px;
+  width: 400px;
   background: linear-gradient(to right, var(--blue), var(--lb));
-  margin: 20px auto; /* adjust spacing to taste */
+  margin: 10px auto; /* adjust spacing to taste */
 }
 
 /* Section background colors */
@@ -378,11 +378,11 @@ body{position:relative}
 /* Layout container */
 .info-container {
   display: grid;
-  grid-template-columns: 1fr 1.35fr;
+  grid-template-columns: 1fr 1.30fr;
   gap: 30px;
   max-width: 1400px;
   margin: 0 auto;
-  padding: 60px 60px;
+  padding: 80px 80px;
 }
 
 /* Left column headline */
@@ -423,7 +423,7 @@ body{position:relative}
 /* Section wrapper */
 .kpis{
   background: var(--paper);
-  padding: 80px 60px;
+  padding: 60px 60px;
 }
 
 /* 2×2 grid like Rothschild cards */
@@ -432,15 +432,14 @@ body{position:relative}
   margin:0 auto;
   display:grid;
   grid-template-columns:repeat(2,1fr);
-  gap:48px;
+  gap:30px;
 }
 
 /* Card styling (Rothschild feel) */
 .kpi-card{
   background:var(--card);
   border:1px solid rgba(10,10,10,0.08);
-  border-radius:var(--radius);
-  padding:42px 48px;
+  padding:32px 32px;
   box-shadow:0 1px 0 rgba(10,10,10,0.03);
   transition:transform .2s ease, box-shadow .2s ease;
 }
@@ -451,11 +450,11 @@ body{position:relative}
 
 /* Big blue metric (Citadel style) */
 .kpi-metric{
-  font-weight:700;
-  font-size:132px;
+  font-weight:500;
+  font-size:120px;
   line-height:.85;
   letter-spacing:-2px;
-  color:var(--brand-blue);
+  color:var(--text);
   margin:0 0 16px 0;
   display:flex;
   align-items:flex-start;

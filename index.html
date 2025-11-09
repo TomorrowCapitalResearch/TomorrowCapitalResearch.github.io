@@ -436,10 +436,8 @@ body{position:relative}
 
 /* Each KPI card */
 .kpi-card {
-  padding: 48px 60px;
+  padding: 30px 30px;
   background: #F1EFED;
-  background:var(--card);
-  border:1px solid rgba(10,10,10,0.08);
   position: relative;
   box-shadow:0 1px 0 rgba(10,10,10,0.03);
   transition:transform .2s ease, box-shadow .2s ease;
@@ -460,21 +458,21 @@ body{position:relative}
   content: "";
   position: absolute;
   top: 0;
-  left: 5%;
-  right: 5%;
-  height: 4px;
-  background: linear-gradient(to right, #0B74D1, #B2E4FF);
+  left: 15%;
+  right: 15%;
+  height: 2px;
+  background: linear-gradient(to right, var(--blue), var(--lb));
 }
 
 /* Vertical Divider (middle vertical line) */
 .kpi-card:nth-child(odd)::after {
   content: "";
   position: absolute;
-  top: 5%;
-  bottom: 5%;
+  top: 15%;
+  bottom: 15%;
   right: 0;
-  width: 4px;
-  background: linear-gradient(to bottom, #0B74D1, #B2E4FF);
+  width: 2px;
+  background: linear-gradient(to bottom, var(--blue), var(--lb));
 }
 
 .kpi-card:hover{

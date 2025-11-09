@@ -423,26 +423,60 @@ body{position:relative}
 /* Section wrapper */
 .kpis{
   background: var(--paper);
-  padding: 60px 60px;
+  padding: 20px 20px;
+}
+    
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0; /* We remove gaps — we will create dividers ourselves */
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
-/* 2×2 grid like Rothschild cards */
-.kpi-grid{
-  max-width:1400px;
-  margin:0 auto;
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:30px;
-}
-
-/* Card styling (Rothschild feel) */
-.kpi-card{
+/* Each KPI card */
+.kpi-card {
+  padding: 48px 60px;
+  background: #F1EFED;
   background:var(--card);
   border:1px solid rgba(10,10,10,0.08);
-  padding:32px 32px;
+  position: relative;
   box-shadow:0 1px 0 rgba(10,10,10,0.03);
   transition:transform .2s ease, box-shadow .2s ease;
 }
+
+/* Horizontal Divider */
+.kpi-card:nth-child(1),
+.kpi-card:nth-child(2) {
+  border-bottom: none;
+}
+.kpi-card:nth-child(3),
+.kpi-card:nth-child(4) {
+  border-top: none;
+}
+
+/* Add top & bottom gradient lines */
+.kpi-card:not(:nth-child(1)):not(:nth-child(2))::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 5%;
+  right: 5%;
+  height: 4px;
+  background: linear-gradient(to right, #0B74D1, #B2E4FF);
+}
+
+/* Vertical Divider (middle vertical line) */
+.kpi-card:nth-child(odd)::after {
+  content: "";
+  position: absolute;
+  top: 5%;
+  bottom: 5%;
+  right: 0;
+  width: 4px;
+  background: linear-gradient(to bottom, #0B74D1, #B2E4FF);
+}
+
 .kpi-card:hover{
   transform:translateY(-2px);
   box-shadow:0 10px 24px rgba(10,10,10,.08);

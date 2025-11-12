@@ -125,15 +125,43 @@
 }
     
 .mega-right{ grid-column:3; display:flex; justify-content:left; }
+
+#mega-research .mega-right ul,
+#mega-wwd .mega-right ul{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(220px, 1fr));
+  column-gap: 48px;   /* space between the columns */
+  row-gap: 12px;      /* space between items */
+  align-content: start;
+}
+
+#mega-research .mega-right li,
+#mega-wwd .mega-right li{
+  margin: 0; /* grid handles spacing */
+}
+
+    
 .mega-right ul{ display:flex; flex-direction:column; list-style: none; gap:0px; margin:0; padding:0; }
 .mega-right li{ margin: 5px 0; }
+
+/* Smooth interaction for submenu links */
 .mega-right a{
-  display:inline-block;
-  color:var(--text);
-  font:500 16px/1 "Inter", sans-serif;
-  text-decoration:none;
+  display: inline-block;
+  padding: 6px 2px;  /* a little hit area */
+  color: var(--text);
+  font: 500 16px/1 "Inter", sans-serif;
+  text-decoration: none;
+  transition: color .15s ease, filter .15s ease, text-decoration-color .15s;
 }
-.mega-right a:hover{ text-decoration:none; filter:brightness(0.95); }
+
+.mega-right a:hover,
+.mega-right a:focus-visible{
+  color: var(--texthover);
+  filter: brightness(1.2);            /* subtle brighten */
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
 
 /* Close button (X) */
 .mega-close{

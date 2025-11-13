@@ -89,24 +89,37 @@ async function injectFragment(hostSelector, url, baseHref) {
   
 <body>
 
-<div id="site-header"></div>
-<script>
-injectFragment(
-  "#site-header",
-  "https://tomorrowcapitalresearch.github.io/shared/header.html",
-  "https://tomorrowcapitalresearch.github.io/shared/"
-);
-</script>
+  <!-- ================= -->
+  <!--  2️⃣  HEADER SLOT  -->
+  <!-- ================= -->
+  <div id="site-header"></div>
+  <script>
+    injectFragment(
+      "#site-header",
+      "https://tomorrowcapitalresearch.github.io/shared/header.html",
+      "https://tomorrowcapitalresearch.github.io/shared/"
+    );
+  </script>
 
+  <!-- ===================== -->
+  <!--  MAIN PAGE CONTENT    -->
+  <!-- ===================== -->
+  <main style="min-height:70vh;padding:40px;">
+    <h1>Welcome to Tomorrow Capital Research</h1>
+    <p>Your page content here.</p>
+  </main>
 
-<div id="site-footer"></div>
-<script>
-injectFragment(
-  "#site-footer",
-  "https://tomorrowcapitalresearch.github.io/shared/footer.html",
-  "https://tomorrowcapitalresearch.github.io/shared/"
-);
-</script>
+  <!-- ================= -->
+  <!--  3️⃣  FOOTER SLOT  -->
+  <!-- ================= -->
+  <div id="site-footer"></div>
+  <script>
+    injectFragment(
+      "#site-footer",
+      "https://tomorrowcapitalresearch.github.io/shared/footer.html",
+      "https://tomorrowcapitalresearch.github.io/shared/"
+    );
+  </script>
 
 </body>
 

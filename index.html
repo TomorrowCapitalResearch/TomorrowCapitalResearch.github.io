@@ -156,6 +156,9 @@
 <body>
 
 <div id="site-header"></div>
+  <script>
+    inject("site-header", "TomorrowCapitalResearch.github.io/header.html");
+  </script>
 
   <!-- FOOTER -->
 <footer class="site-footer">
@@ -236,7 +239,7 @@
   
 <script>
 
-  inject("site-header", "TomorrowCapitalResearch.github.io/header.html");
+  
 
   
   document.getElementById('year').textContent = new Date().getFullYear();

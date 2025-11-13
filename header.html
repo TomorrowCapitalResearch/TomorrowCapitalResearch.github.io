@@ -286,7 +286,97 @@ body{position:relative}
 </header>
 
 <script>
-  
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const nav     = document.querySelector('.nav');
+  const menu    = document.querySelector('.menu');
+  const root    = document.getElementById('mega-root');
+  const triggers= document.querySelectorAll('.menu .menu-trigger');
+  const panels  = document.querySelectorAll('.mega-panel');
+
+  // If navbar height changes (responsive), keep the panel snug under it
+  const placeMega = () => {
+    const navRect = nav.getBoundingClientRect();
+    root.style.top = `${navRect.height}px`;
+  };
+  placeMega();
+  window.addEventListener('resize', placeMega);
+
+  let hoverCloseTimer = null;
+
+  function openPanel(id){
+    root.classList.add('open');
+    panels.forEach(p => p.classList.toggle('open', p.id === id));
+    triggers.forEach(t => t.setAttribute('aria-expanded', String(t.dataset.panel === id)));
+  }
+
+  function closeAll(){
+    root.classList.remove('open');
+    panels.forEach(p => p.classList.remove('open'));
+    triggers.forEach(t => t.setAttribute('aria-expanded','false'));
+  }
+
+  // Open/switch on hover or click
+  triggers.forEach(btn => {
+    const id = btn.dataset.panel;
+    btn.addEventListener('mouseenter', () => openPanel(id));
+    btn.addEventListener('click', (e) => { e.preventDefault(); openPanel(id); });
+    // Keyboard accessibility: open when focused with Tab
+    btn.addEventListener('focus', () => openPanel(id));
+  });
+
+  // Close with the X
+  root.addEventListener('click', (e) => {
+    if (e.target.closest('.mega-close')) closeAll();
+  });
+
+  // Close on Escape
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeAll(); });
+
+  // Helper: are we hovering inside nav or mega?
+  const isInsideHoverZone = (event) => {
+    const insideNav  = event.relatedTarget && (event.relatedTarget === nav || nav.contains(event.relatedTarget));
+    const insideMega = event.relatedTarget && (event.relatedTarget === root || root.contains(event.relatedTarget));
+    return insideNav || insideMega;
+  };
+
+  // Start a short timer when leaving nav or panel; cancel if the pointer enters the other region
+  const startCloseTimer = () => {
+    clearTimeout(hoverCloseTimer);
+    hoverCloseTimer = setTimeout(() => {
+      // If the pointer is not over nav or mega when timer fires, close.
+      const hovered = document.querySelector(':hover');
+      const overNav  = hovered && (hovered === nav || nav.contains(hovered));
+      const overMega = hovered && (hovered === root || root.contains(hovered));
+      if (!overNav && !overMega) closeAll();
+    }, 120); // small delay prevents flicker during the gap between elements
+  };
+
+  // Leave handlers for both zones
+  nav.addEventListener('mouseleave', (e) => { if (!isInsideHoverZone(e)) startCloseTimer(); });
+  root.addEventListener('mouseleave', (e) => { if (!isInsideHoverZone(e)) startCloseTimer(); });
+
+  // Entering either zone cancels any pending close
+  nav.addEventListener('mouseenter', () => clearTimeout(hoverCloseTimer));
+  root.addEventListener('mouseenter', () => clearTimeout(hoverCloseTimer));
+
+  // Optional: clicking anywhere outside both zones closes it
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.mega') && !e.target.closest('.menu')) closeAll();
+  });
+
+  // Touch support: tap a trigger toggles its panel; tap outside closes
+  // (prevents immediate navigation on mobile when you want to open the panel)
+  triggers.forEach(btn => {
+    btn.addEventListener('touchstart', (e) => {
+      const id = btn.dataset.panel;
+      const alreadyOpen = root.classList.contains('open') && document.getElementById(id).classList.contains('open');
+      if (!alreadyOpen) {
+        e.preventDefault();
+        openPanel(id);
+      }
+    }, {passive:false});
+  });
 </script>
 
 <!-- ===== /Tomorrow Shared Header ===== -->

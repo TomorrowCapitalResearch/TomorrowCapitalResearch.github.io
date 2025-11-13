@@ -152,14 +152,76 @@
 
 
 </style>
+
+<script>
+async function inject(targetSelector, url, baseHref) {
+  const el = document.querySelector(targetSelector);
+  if (!el) return;
+
+  const res = await fetch(url, { cache: "no-store" });
+  if (!res.ok) throw new Error(`Failed to load ${url}`);
+  const html = await res.text();
+
+  const doc = new DOMParser().parseFromString(html, "text/html");
+
+  // If your shared header uses relative URLs, set a base so they resolve correctly
+  if (baseHref) {
+    const base = document.createElement("base");
+    base.href = baseHref;
+    doc.head.prepend(base);
+  }
+
+  // Move any <link rel="stylesheet"> and <style> to <head> (avoid duplicates)
+  doc.querySelectorAll('link[rel="stylesheet"]').forEach(link => {
+    if (![...document.styleSheets].some(ss => ss.href === link.href)) {
+      document.head.appendChild(link.cloneNode(true));
+    }
+  });
+  doc.querySelectorAll('style').forEach(style => {
+    document.head.appendChild(style.cloneNode(true));
+  });
+
+  // Inject the HTML structure (prefer <header> if present)
+  const root = doc.querySelector("header") || doc.body;
+  const clone = root.cloneNode(true);
+  clone.querySelectorAll("script").forEach(s => s.remove());
+  el.replaceChildren(...clone.childNodes);
+
+  // Execute any scripts from the fragment (inline and external, incl. modules)
+  doc.querySelectorAll("script").forEach(s => {
+    const scr = document.createElement("script");
+    if (s.src) scr.src = s.src; else scr.textContent = s.textContent;
+    if (s.type) scr.type = s.type;
+    if (s.defer) scr.defer = true;
+    if (s.async) scr.async = true;
+    document.body.appendChild(scr);
+  });
+}
+</script>
+
+
+
+
+
+  
 </head>
 <body>
 
 <div id="site-header"></div>
-  <script>
-    inject("site-header", "tomorrowcapitalresearch.github.io/shared/header.html");
-  </script>
+<script>
+  inject("#site-header", "https://tomorrowcapitalresearch.github.io/shared/header.html",
+         "https://tomorrowcapitalresearch.github.io/shared/");
+</script>
 
+
+
+
+
+
+
+
+
+  
   <!-- FOOTER -->
 <footer class="site-footer">
   <div class="footer-inner">
@@ -238,10 +300,6 @@
 
   
 <script>
-
-  
-
-  
   document.getElementById('year').textContent = new Date().getFullYear();
 
   const nav     = document.querySelector('.nav');

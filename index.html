@@ -37,51 +37,72 @@
 </style>
 
 <script>
+function absolutizeAttr(node, attr, base) {
+  const val = node.getAttribute(attr);
+  if (!val || /^(https?:)?\/\//i.test(val) || val.startsWith('data:') || val.startsWith('mailto:') || val.startsWith('#')) return;
+  try { node.setAttribute(attr, new URL(val, base).href); } catch {}
+}
+
 async function injectFragment(hostSelector, url, baseHref) {
   const host = document.querySelector(hostSelector);
   if (!host) { console.error("inject: host not found", hostSelector); return; }
+
   try {
-    const res = await fetch(url, {cache:"no-store"});
+    const res = await fetch(url, { cache: "no-store" });
     if (!res.ok) throw new Error(`HTTP ${res.status} for ${url}`);
     const html = await res.text();
 
+    // Parse once
     const doc = new DOMParser().parseFromString(html, "text/html");
 
-    // Ensure relative links in the fragment resolve properly
-    if (baseHref) {
-      const base = document.createElement("base");
-      base.href = baseHref;
-      doc.head.prepend(base);
-    }
+    // --- 1) Make all URLs inside the fragment absolute (so no <base> needed)
+    const base = baseHref || (new URL(url, location.href)).href;
+    doc.querySelectorAll('a[href], link[href], img[src], script[src]').forEach(el => {
+      if (el.hasAttribute('href')) absolutizeAttr(el, 'href', base);
+      if (el.hasAttribute('src'))  absolutizeAttr(el, 'src',  base);
+    });
 
-    // Move styles into <head> (avoid duplicates)
+    // --- 2) Move styles into <head> (avoid duplicates)
     doc.querySelectorAll('link[rel="stylesheet"]').forEach(link => {
-      if (!link.href) return;
-      const exists = [...document.styleSheets].some(s => s.href === link.href);
+      const href = link.getAttribute('href');
+      if (!href) return;
+      const exists = [...document.styleSheets].some(s => s.href === href);
       if (!exists) document.head.appendChild(link.cloneNode(true));
     });
     doc.querySelectorAll('style').forEach(style => {
       document.head.appendChild(style.cloneNode(true));
     });
 
-    // Inject header DOM (without scripts)
-    const root = doc.querySelector("header") || doc.body;
+    // --- 3) Inject the DOM (without scripts)
+    const root = doc.querySelector('header, footer, body') || doc.body;
     const fragment = root.cloneNode(true);
-    fragment.querySelectorAll("script").forEach(s => s.remove());
+    fragment.querySelectorAll('script').forEach(s => s.remove());
     host.replaceChildren(...fragment.childNodes);
 
-    // Execute scripts from fragment (inline + external, supports type="module")
-    doc.querySelectorAll("script").forEach(s => {
-      const scr = document.createElement("script");
+    // --- 4) Now execute scripts from the fragment
+    doc.querySelectorAll('script').forEach(s => {
+      const scr = document.createElement('script');
       if (s.src) scr.src = s.src; else scr.textContent = s.textContent;
-      if (s.type) scr.type = s.type;
+      if (s.type) scr.type = s.type;       // supports type="module"
       if (s.defer) scr.defer = true;
       if (s.async) scr.async = true;
       document.body.appendChild(scr);
     });
-  } catch (err) {
-    console.error("inject failed:", err);
-    host.textContent = "Failed to load header.";
+
+    // --- 5) Optional safety: if your header expects to adjust the mega top,
+    // make sure the container is present and not hidden behind the nav.
+    const nav  = host.querySelector('.nav');
+    const mega = host.querySelector('#mega-root');
+    if (nav && mega) {
+      const h = nav.getBoundingClientRect().height || nav.offsetHeight || 0;
+      mega.style.top = h + 'px';
+      // Keep it above content just in case
+      mega.style.zIndex = '1001';
+    }
+
+  } catch (e) {
+    console.error('inject failed:', e);
+    host.innerHTML = '<div style="padding:12px;color:#a00;background:#fee;border:1px solid #fbb">Failed to load shared fragment.</div>';
   }
 }
 </script>

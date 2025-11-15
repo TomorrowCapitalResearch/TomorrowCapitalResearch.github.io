@@ -145,61 +145,133 @@ async function injectFragment(hostSelector, url, baseHref) {
     );
   </script>
 
-  <!-- ===================== -->
-  <!--  hero CONTENT    -->
-  <!-- ===================== -->
-  <main style="min-height:70vh;padding:40px;">
-    <h1>For a Better Tomorrow</h1>
-    <p>Harnessing algorithmic trading, systematic investing, and mathematics to build the future of finance</p>
-    <p>Discover Our Framework </p>
-  </main>
+    <!-- HERO -->
+  <section class="hero">
+    <div class="container hero__inner stack-lg">
+      <h1>For a Better Tomorrow</h1>
+      <p class="lede">Harnessing algorithmic trading, systematic investing, and mathematics to build the future of finance.</p>
+      <div class="hero__cta">
+        <a href="#about" class="button button--primary">Discover Our Framework</a>
+        <a href="#kpis" class="button button--ghost">Performance & KPIs</a>
+      </div>
+    </div>
+  </section>
 
-    <!-- ===================== -->
-  <!--  vision CONTENT    -->
-  <!-- ===================== -->
-  <main style="min-height:70vh;padding:40px;">
-    <h1>The future of Trading, Today</h1>
-    <p>We bring tomorrow’s innovations in algorithmic trading, systematic investing, and quantitative finance into the world today.
-Combining deep research, adaptive AI, and engineering precision, we outperform, evolve, and predict with unmatched accuracy.</p>
-  </main>
+  <div class="divider"></div>
 
-    <!-- ===================== -->
-  <!--  KPIs CONTENT    -->
-  <!-- ===================== -->
-  <main style="min-height:70vh;padding:40px;">
-    <h1>Optimizing returns, controlling risk</h1>
-    <p>Our frameworks are built to maximize performance under disciplined risk control.
-Every layer — from research to execution — is engineered to deliver adaptive, risk-adjusted excellence</p>
-    <p> 13%+ Live net Annual Return, 2.1 Sharpe Ratio, <5% Maximum drawdown, 30+ active live data streams.</p>
-  </main>
+  <!-- ABOUT / VISION -->
+  <section id="about">
+    <div class="container grid grid-2 about">
+      <div>
+        <h2>The Future of Trading, Today</h2>
+      </div>
+      <div class="stack-md">
+        <p class="lede">We bring tomorrow’s innovations in algorithmic trading, systematic investing, and quantitative finance into the world today.</p>
+        <p>Combining deep research, adaptive AI, and engineering precision, we design systems that outperform, evolve, and predict with accuracy.</p>
+      </div>
+    </div>
+  </section>
 
-      <!-- ===================== -->
-  <!--  Core Pillars CONTENT    -->
-  <!-- ===================== -->
-  <main style="min-height:70vh;padding:40px;">
-    <h1>For a Better Tomorrow</h1>
-    <p>Harnessing algorithmic trading, systematic investing, and mathematics to build the future of finance</p>
-    <p>Discover Our Framework</p>
-  </main>
+  <!-- EDGE / KPIs -->
+  <section id="kpis" class="section--alt">
+    <div class="container">
+      <h2>Optimizing Returns, Controlling Risk</h2>
+      <p class="stack-sm">Our frameworks are built to maximize performance under disciplined risk control. Every layer — from research to execution — is engineered for adaptive, risk-adjusted excellence.</p>
 
-      <!-- ===================== -->
-  <!--  Culture CONTENT    -->
-  <!-- ===================== -->
-  <main style="min-height:70vh;padding:40px;">
-    <h1>Built for Eternity - Forged by the unstoppable</h1>
-    <p>We bring together exceptional researchers, engineers, and strategists who challenge the impossible.
-Driven by discipline, intellect, and innovation, our team builds systems designed to learn, adapt, and endure.
-Where others stop, we begin.</p>
-    <p>4000+ global contributors, 120+ strategies deployed, 1000+ assets traded, 15TB+ data processed</p>
-  </main>
+      <div class="kpis grid grid-4">
+        <div class="kpi">
+          <div class="kpi__value">13%+</div>
+          <div class="kpi__label">Live Net Annual Return</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi__value">2.1</div>
+          <div class="kpi__label">Sharpe Ratio (avg.)</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi__value">&lt;5%</div>
+          <div class="kpi__label">Maximum Drawdown</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi__value">30+</div>
+          <div class="kpi__label">Active Data Streams</div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        <!-- ===================== -->
-  <!--  About CONTENT    -->
-  <!-- ===================== -->
-  <main style="min-height:70vh;padding:40px;">
-    <h1>Vission</h1>
-    <p>Tomorrow Capital unites quantitative research, AI, and market expertise to redefine how capital grows — sustainably, intelligently, and globally.</p>
-  </main>
+  <!-- CORE PILLARS (optional slot, reuse or replace) -->
+  <section>
+    <div class="container grid grid-2">
+      <div class="stack-md">
+        <h2>Core Pillars</h2>
+        <p class="lede">Research depth. Adaptive engineering. Microstructure discipline. Integrated risk.</p>
+        <p>Our multi-layer framework aligns enterprise strategy, portfolio design, alpha generation, and execution — closing the loop from theory to fills.</p>
+      </div>
+      <div class="grid grid-2">
+        <div class="kpi">
+          <div class="kpi__value">4</div>
+          <div class="kpi__label">Decision Layers</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi__value">∞</div>
+          <div class="kpi__label">Strategy Capacity</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi__value">ms</div>
+          <div class="kpi__label">Latency Targets</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi__value">24/7</div>
+          <div class="kpi__label">Global Coverage</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CULTURE -->
+  <section class="section--dark culture">
+    <div class="container stack-lg">
+      <h2>Built for Eternity — Forged by the Unstoppable</h2>
+      <p class="lede">We unite exceptional researchers, engineers, and strategists who challenge the impossible. Our systems are designed to learn, adapt, and endure. Where others stop, we begin.</p>
+
+      <div class="kpis grid grid-4">
+        <div class="kpi">
+          <div class="kpi__value">4,000+</div>
+          <div class="kpi__label">Global Contributors</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi__value">120+</div>
+          <div class="kpi__label">Strategies Deployed</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi__value">1,000+</div>
+          <div class="kpi__label">Assets Traded</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi__value">15TB+</div>
+          <div class="kpi__label">Data Processed Daily</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VISION / CONTACT CTA -->
+  <section>
+    <div class="container grid grid-2">
+      <div class="stack-md">
+        <h2>Vision</h2>
+        <p class="lede">Tomorrow Capital unites quantitative research, AI, and market expertise to redefine how capital grows — sustainably, intelligently, and globally.</p>
+      </div>
+      <div class="stack-md">
+        <h3>Work With Us</h3>
+        <p>Institutions, founders, and researchers — partner with us to build what’s next.</p>
+        <div class="stack-sm">
+          <a href="#site-footer" class="button button--primary">Contact</a>
+          <a href="#about" class="button" style="border:1px solid #d0d6ea;">Explore the Framework</a>
+        </div>
+      </div>
+    </div>
+  </section>
   
   <!-- ================= -->
   <!--  3️⃣  FOOTER SLOT  -->

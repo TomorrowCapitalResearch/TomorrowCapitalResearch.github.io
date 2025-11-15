@@ -33,7 +33,110 @@
   --paper:#FFFFFF;
   --gold:#C59B3B;                 /* optional accent for chevrons/links */
   --radius:14px;
-}
+  --hero-image:url("assets/A1.jpeg");
+  --hero-overlay: linear-gradient(180deg, rgba(10,10,10,.45), rgba(10,10,10,.55));
+    }
+
+    /* ---------- Layout Utilities ---------- */
+    .container { max-width: var(--page-max); margin: 0 auto; padding: 0 var(--side-pad); }
+    .stack-xxl > * + * { margin-top: 48px; }
+    .stack-xl  > * + * { margin-top: 32px; }
+    .stack-lg  > * + * { margin-top: 24px; }
+    .stack-md  > * + * { margin-top: 16px; }
+    .stack-sm  > * + * { margin-top: 10px; }
+
+    .grid {
+      display: grid;
+      gap: 20px;
+    }
+    @media (min-width: 720px) {
+      .grid-2 { grid-template-columns: 1fr 1fr; }
+      .grid-3 { grid-template-columns: repeat(3, 1fr); }
+      .grid-4 { grid-template-columns: repeat(4, 1fr); }
+    }
+
+    /* ---------- Typography ---------- */
+    h1, h2, h3 { margin: 0 0 12px 0; line-height: 1.15; letter-spacing: -0.02em; }
+    h1 { font-weight: 800; font-size: clamp(36px, 6vw, 56px); }
+    h2 { font-weight: 800; font-size: clamp(28px, 4vw, 36px); }
+    h3 { font-weight: 700; font-size: clamp(20px, 2.4vw, 22px); }
+    p  { margin: 0; color: #2a2a2a; font-size: 16px; }
+    .lede { font-size: clamp(18px, 2.2vw, 20px); color:#1a1a1a; }
+
+    a.button, .button {
+      display:inline-block; border-radius: 999px; padding: 12px 20px;
+      font-weight: 600; text-decoration:none; transition: transform .08s ease, background .2s ease, color .2s ease;
+    }
+    .button--primary { background: var(--brand-blue); color: var(--white); }
+    .button--primary:hover { transform: translateY(-1px); background:#0f2f7d; }
+    .button--ghost   { border:1px solid rgba(255,255,255,.6); color:#fff; }
+    .button--ghost:hover { background: rgba(255,255,255,.08); }
+
+    /* ---------- Sections ---------- */
+    section { padding: clamp(56px, 8vw, 96px) 0; }
+    .section--alt    { background: var(--lb); }
+    .section--dark   { background: #0B1D44; color:#EAF2FF; }
+    .section--dark p { color:#CFE0FF; }
+
+    /* Divider (thin gradient line between sections) */
+    .divider {
+      height: 2px;
+      background: linear-gradient(90deg, rgba(21,62,159,0) 0%, rgba(21,62,159,.25) 20%, rgba(21,62,159,.6) 50%, rgba(21,62,159,.25) 80%, rgba(21,62,159,0) 100%);
+    }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      position: relative;
+      min-height: 70vh;
+      display: grid;
+      align-items: end;
+      color: #fff;
+      background:
+        var(--hero-overlay),
+        var(--hero-image);
+      background-size: cover;
+      background-position: center;
+      isolation: isolate;
+    }
+    .hero__inner { padding: clamp(28px, 5vw, 48px) 0 64px 0; }
+    .hero h1 { color:#fff; }
+    .hero .lede { color:#EAF2FF; max-width: 760px; }
+    .hero__cta { margin-top: 20px; display:flex; gap:12px; flex-wrap: wrap; }
+
+    /* ---------- Two-Column About ---------- */
+    .about { align-items: start; }
+    .about h2 { color: var(--brand-blue); }
+
+    /* ---------- KPI Cards ---------- */
+    .kpis { margin-top: 28px; }
+    .kpi {
+      background: var(--card);
+      border: 1px solid rgba(10,13,30,.08);
+      border-radius: var(--radius);
+      padding: 18px;
+    }
+    .kpi__value {
+      font-weight: 800;
+      font-size: clamp(28px, 4vw, 36px);
+      color: var(--brand-blue);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .kpi__label { color:#585e6b; font-size:14px; }
+
+    /* ---------- Culture ---------- */
+    .culture h2 { color:#EAF2FF; }
+    .culture .kpi { background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.15); }
+    .culture .kpi__value { color:#ffffff; }
+    .culture .kpi__label { color:#c9d6ff; }
+
+    /* ---------- Footer slots (loaded via injector) ---------- */
+    #site-header, #site-footer { min-height: 1px; }
+
+    /* ---------- Motion Respect ---------- */
+    @media (prefers-reduced-motion: reduce) {
+      * { scroll-behavior: auto !important; transition: none !important; animation: none !important; }
+    }
 
 </style>
 <script>

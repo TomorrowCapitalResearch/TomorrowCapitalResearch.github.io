@@ -34,8 +34,6 @@
   --gold:#C59B3B;                 /* optional accent for chevrons/links */
   --radius:14px;
 }
-</style>
-
 <script>
 function absolutizeAttr(node, attr, base) {
   const val = node.getAttribute(attr);
@@ -43,26 +41,44 @@ function absolutizeAttr(node, attr, base) {
   try { node.setAttribute(attr, new URL(val, base).href); } catch {}
 }
 
+function loadScriptInOrder(s) {
+  return new Promise(resolve => {
+    const el = document.createElement('script');
+    if (s.src) {
+      el.src = s.src;
+      // don't copy defer/async; we want deterministic order
+      el.onload = () => resolve();
+      el.onerror = () => resolve(); // fail-soft so the rest still run
+      document.body.appendChild(el);
+    } else {
+      // inline: execute synchronously
+      el.textContent = s.textContent;
+      if (s.type) el.type = s.type; // handles type="module" inline
+      document.body.appendChild(el);
+      resolve();
+    }
+  });
+}
+
 async function injectFragment(hostSelector, url, baseHref) {
   const host = document.querySelector(hostSelector);
-  if (!host) { console.error("inject: host not found", hostSelector); return; }
+  if (!host) { console.error("inject: host not found", hostSelector); return false; }
 
   try {
     const res = await fetch(url, { cache: "no-store" });
     if (!res.ok) throw new Error(`HTTP ${res.status} for ${url}`);
     const html = await res.text();
 
-    // Parse once
     const doc = new DOMParser().parseFromString(html, "text/html");
 
-    // --- 1) Make all URLs inside the fragment absolute (so no <base> needed)
+    // 1) Absolutize all URLs so relative paths resolve to the shared repo
     const base = baseHref || (new URL(url, location.href)).href;
     doc.querySelectorAll('a[href], link[href], img[src], script[src]').forEach(el => {
       if (el.hasAttribute('href')) absolutizeAttr(el, 'href', base);
       if (el.hasAttribute('src'))  absolutizeAttr(el, 'src',  base);
     });
 
-    // --- 2) Move styles into <head> (avoid duplicates)
+    // 2) Move styles into <head> (avoid duplicates)
     doc.querySelectorAll('link[rel="stylesheet"]').forEach(link => {
       const href = link.getAttribute('href');
       if (!href) return;
@@ -73,39 +89,44 @@ async function injectFragment(hostSelector, url, baseHref) {
       document.head.appendChild(style.cloneNode(true));
     });
 
-    // --- 3) Inject the DOM (without scripts)
+    // 3) Inject DOM (but strip scripts for now)
     const root = doc.querySelector('header, footer, body') || doc.body;
     const fragment = root.cloneNode(true);
     fragment.querySelectorAll('script').forEach(s => s.remove());
     host.replaceChildren(...fragment.childNodes);
 
-    // --- 4) Now execute scripts from the fragment
-    doc.querySelectorAll('script').forEach(s => {
-      const scr = document.createElement('script');
-      if (s.src) scr.src = s.src; else scr.textContent = s.textContent;
-      if (s.type) scr.type = s.type;       // supports type="module"
-      if (s.defer) scr.defer = true;
-      if (s.async) scr.async = true;
-      document.body.appendChild(scr);
-    });
+    // 4) Execute scripts sequentially and await each
+    const scripts = [...doc.querySelectorAll('script')];
+    for (const s of scripts) {
+      await loadScriptInOrder(s);
+    }
 
-    // --- 5) Optional safety: if your header expects to adjust the mega top,
-    // make sure the container is present and not hidden behind the nav.
+    // 5) After scripts are loaded, adjust mega position & z-index
     const nav  = host.querySelector('.nav');
     const mega = host.querySelector('#mega-root');
     if (nav && mega) {
-      const h = nav.getBoundingClientRect().height || nav.offsetHeight || 0;
-      mega.style.top = h + 'px';
-      // Keep it above content just in case
-      mega.style.zIndex = '1001';
+      const placeMega = () => {
+        const h = nav.getBoundingClientRect().height || nav.offsetHeight || 0;
+        mega.style.top = h + 'px';
+        mega.style.zIndex = '1001';
+      };
+      placeMega();
+      addEventListener('load', placeMega);
+      addEventListener('resize', placeMega);
     }
+
+    // 6) Signal to any listeners that header/footer is ready
+    document.dispatchEvent(new CustomEvent('tmrw:header-ready', { detail: { host: hostSelector } }));
+    return true;
 
   } catch (e) {
     console.error('inject failed:', e);
     host.innerHTML = '<div style="padding:12px;color:#a00;background:#fee;border:1px solid #fbb">Failed to load shared fragment.</div>';
+    return false;
   }
 }
 </script>
+
 </head>
   
 <body>

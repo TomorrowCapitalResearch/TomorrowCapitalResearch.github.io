@@ -405,3 +405,32 @@ body{position:relative}
 </script>
 
 <!-- ===== /Tomorrow Shared Header ===== -->
+
+<script>
+(function(){
+  const nav  = document.querySelector('.nav');
+  const root = document.getElementById('mega-root');
+  const triggers = document.querySelectorAll('.menu .menu-trigger');
+  const panels   = document.querySelectorAll('.mega-panel');
+  if (!nav || !root || !triggers.length || !panels.length) return;
+
+  const placeMega = () => {
+    const h = nav.getBoundingClientRect().height || 0;
+    root.style.top = h + 'px';
+  };
+  placeMega(); addEventListener('resize', placeMega);
+
+  function openPanel(id){ root.classList.add('open'); panels.forEach(p=>p.classList.toggle('open', p.id===id)); triggers.forEach(t=>t.setAttribute('aria-expanded', String(t.dataset.panel===id))); }
+  function closeAll(){ root.classList.remove('open'); panels.forEach(p=>p.classList.remove('open')); triggers.forEach(t=>t.setAttribute('aria-expanded','false')); }
+
+  triggers.forEach(btn => {
+    const id = btn.dataset.panel;
+    btn.addEventListener('mouseenter', () => openPanel(id));
+    btn.addEventListener('click', e => { e.preventDefault(); openPanel(id); });
+    btn.addEventListener('focus', () => openPanel(id));
+  });
+  root.addEventListener('click', e => { if (e.target.closest('.mega-close')) closeAll(); });
+  addEventListener('keydown', e => { if (e.key === 'Escape') closeAll(); });
+})();
+</script>
+

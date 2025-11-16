@@ -114,6 +114,106 @@
   }
 }
 
+/* ===== Asset classes section ===== */
+
+.asset-section {
+  background: var(--db);          /* deep blue band */
+  color: #ffffff;
+  padding: 64px 0 120px;         /* extra bottom so cards can “sit” */
+}
+
+/* Top heading row */
+.asset-head {
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: 0 var(--side-pad);
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1.5fr);
+  gap: 32px;
+}
+
+.asset-title {
+  font-size: clamp(30px, 4vw, 40px);
+  font-weight: 700;
+  line-height: 1.1;
+  margin: 0;
+}
+
+.asset-copy {
+  font-size: 15px;
+  line-height: 1.6;
+  max-width: 40rem;
+  margin: 0;
+  color: #E5EEFF;
+}
+
+/* Card row that overlaps the blue background */
+.asset-cards {
+  max-width: var(--page-max);
+  margin: 32px auto 0;
+  padding: 0 var(--side-pad);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  transform: translateY(40px);    /* pulls cards down over the edge */
+}
+
+/* Individual card */
+.asset-card {
+  background: #F6F7F9;
+  color: #111827;
+  padding: 22px 22px 24px;
+  border-radius: 4px;
+  box-shadow: 0 12px 24px rgba(0,0,0,0.10);
+  border-top: 4px solid transparent;
+}
+
+.asset-card--active {
+  border-top-color: var(--blue);  /* highlight centre card */
+}
+
+.asset-card h3 {
+  margin: 0 0 8px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.asset-card p {
+  margin: 0 0 14px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #4B5563;
+}
+
+/* Explore link with chevron */
+.asset-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1D2E73;
+  text-decoration: none;
+}
+
+.asset-link::after {
+  content: "›";
+  font-size: 16px;
+  line-height: 1;
+}
+
+/* Responsive stacking */
+@media (max-width: 840px) {
+  .asset-head {
+    grid-template-columns: 1fr;
+  }
+  .asset-cards {
+    grid-template-columns: 1fr;
+    transform: translateY(24px);
+  }
+}
+
+
 </style>
 
 <script>
@@ -216,7 +316,52 @@ async function injectFragment(hostSelector, url, baseHref) {
   </div>
 </section>
 
-  
+<section class="asset-section">
+  <!-- Top blue band content -->
+  <div class="asset-head">
+    <div>
+      <h2 class="asset-title">Expertise Across Asset Classes</h2>
+    </div>
+    <div>
+      <p class="asset-copy">
+        We provide liquidity and systematic investing across a range of markets.
+        From digital assets to FX and equities, our strategies are designed to
+        adapt to changing regimes while maintaining disciplined risk control.
+      </p>
+    </div>
+  </div>
+
+  <!-- Overlapping cards -->
+  <div class="asset-cards">
+    <article class="asset-card">
+      <h3>Crypto & Digital Assets</h3>
+      <p>
+        Market making and systematic strategies in major spot and derivative
+        venues, with 24/7 coverage and exchange-level microstructure insight.
+      </p>
+      <a href="#crypto" class="asset-link">Explore Digital Assets</a>
+    </article>
+
+    <article class="asset-card asset-card--active">
+      <h3>FX & Metals</h3>
+      <p>
+        Short- and medium-horizon trading in currencies and precious metals,
+        combining macro factors with order-book dynamics and flow signals.
+      </p>
+      <a href="#fx" class="asset-link">Explore FX & Metals</a>
+    </article>
+
+    <article class="asset-card">
+      <h3>Equities & Index Products</h3>
+      <p>
+        Systematic alpha, statistical arbitrage and liquidity provision across
+        single names, ETFs and index products in developed and emerging markets.
+      </p>
+      <a href="#equities" class="asset-link">Explore Equities</a>
+    </article>
+  </div>
+</section>
+
 
   <!-- ================= -->
   <!--  3️⃣  FOOTER SLOT  -->

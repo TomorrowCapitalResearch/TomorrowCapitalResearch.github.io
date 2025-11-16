@@ -437,6 +437,122 @@
   }
 }
 
+    /* Section wrapper */
+.careers-sections {
+  padding: 40px 20px 72px;
+  background-color: #ffffff;
+}
+
+/* Each alternating band */
+.careers-row {
+  max-width: 1160px;
+  margin: 0 auto 72px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  align-items: stretch;
+}
+
+.careers-row--reverse {
+  flex-direction: row-reverse;
+}
+
+/* Image / media pane */
+.careers-media {
+  flex: 1 1 360px;
+  min-height: 260px;
+  border-radius: 8px;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Placeholder gradients – replace with real images when you have them */
+.careers-media--trading {
+  background-image: linear-gradient(135deg, #0e3275, #61cbf4);
+}
+
+.careers-media--engineering {
+  background-image: linear-gradient(135deg, #0e3275, #0fb0ff);
+}
+
+/* If you switch to <img>, use this instead:
+.careers-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+*/
+
+/* Text column */
+.careers-copy {
+  flex: 1 1 420px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.careers-copy h2 {
+  font-size: 24px;
+  margin: 0 0 8px;
+}
+
+.careers-copy-intro {
+  margin: 0 0 20px;
+  color: #4b5563;
+  line-height: 1.6;
+}
+
+/* Individual roles inside each band */
+.role-block {
+  margin-bottom: 20px;
+}
+
+.role-block h3 {
+  font-size: 18px;
+  margin: 0 0 6px;
+}
+
+.role-block p {
+  margin: 0 0 8px;
+  line-height: 1.6;
+  color: #111827;
+}
+
+.role-block ul {
+  margin: 0 0 8px 18px;
+  padding: 0;
+  color: #111827;
+}
+
+.role-block ul li {
+  margin-bottom: 4px;
+}
+
+.role-highlight {
+  margin: 0;
+  font-size: 14px;
+  color: #111827;
+}
+
+.role-highlight span {
+  font-weight: 600;
+}
+
+/* Responsive behaviour – stack like mobile view of Two Sigma page */
+@media (max-width: 900px) {
+  .careers-row,
+  .careers-row--reverse {
+    flex-direction: column;
+  }
+
+  .careers-row {
+    margin-bottom: 48px;
+  }
+}
+
+
   </style>
 </head>
 <body>
@@ -560,101 +676,112 @@
     </div>
   </section>
 
-  <!-- Job Openings -->
-  <section class="careers-openings">
-    <div class="careers-openings-header">
-      <h2>Open Roles</h2>
-      <p>We’re currently hiring for a small, focused team in London and remote.</p>
+  <!-- Open Roles – piece-by-piece layout -->
+<section class="careers-sections">
+
+  <!-- Row 1: Trading & Research -->
+  <div class="careers-row">
+    <div class="careers-media careers-media--trading">
+      <!-- Optional: replace this with an <img> if you have one -->
+      <!-- <img src="assets/trading-team.jpg" alt="Trading and research team"> -->
     </div>
 
-    <div class="job-list">
+    <div class="careers-copy">
+      <h2>Trading & Research Roles</h2>
+      <p class="careers-copy-intro">
+        We’re building a focused team to explore short- and medium-horizon opportunities across
+        crypto, FX, and equities. You’ll work inside our adaptive portfolio and execution
+        frameworks, with the freedom to follow the data.
+      </p>
 
       <!-- Algorithmic Trader -->
-      <article class="job-card">
-        <header class="job-header">
-          <h3>Algorithmic Trader</h3>
-          <p class="job-location">London · Full-time · 2025 intake</p>
-        </header>
-        <p class="job-intro">
-          Design, test, and run live trading strategies across global markets. Work within our
+      <div class="role-block">
+        <h3>Algorithmic Trader — London</h3>
+        <p>
+          Design, test, and run live trading strategies across global markets. You’ll work within our
           adaptive execution and portfolio frameworks to explore new alpha ideas and market microstructures.
         </p>
-        <ul class="job-bullets">
+        <ul>
           <li>Strong quantitative reasoning and comfort with uncertainty.</li>
           <li>Fluency in Python, R, or a similar analytical language.</li>
           <li>Passion for markets and data-driven strategy design.</li>
         </ul>
-        <p class="job-highlight">
-          <span class="label">What matters most:</span>
-          curiosity, discipline, and the will to learn faster than markets evolve.
+        <p class="role-highlight">
+          <span>What matters most:</span> curiosity, discipline, and the will to learn faster than markets evolve.
         </p>
-      </article>
+      </div>
 
-      <!-- Quant Dev -->
-      <article class="job-card">
-        <header class="job-header">
-          <h3>Quantitative Developer (C++)</h3>
-          <p class="job-location">London · Full-time · 2025 intake</p>
-        </header>
-        <p class="job-intro">
-          Engineer low-latency systems and scalable research tools powering our multi-asset trading engine.
-          Collaborate with researchers to turn models into production-grade pipelines.
+      <!-- Quantitative Researcher -->
+      <div class="role-block">
+        <h3>Quantitative Researcher — HFT / MFT (Crypto · FX · Equities) — London</h3>
+        <p>
+          Research short- and medium-frequency trading signals using advanced statistical and machine-learning
+          methods. You will prototype and test new strategies within our high-performance simulation environment.
         </p>
-        <ul class="job-bullets">
-          <li>Proficiency in modern C++ (17/20) and multithreaded design.</li>
-          <li>Knowledge of data structures, performance tuning, and networking.</li>
-          <li>Interest in quantitative finance and real-time systems.</li>
-        </ul>
-        <p class="job-highlight">
-          <span class="label">What matters most:</span>
-          clean code, curiosity, and ownership from concept to deployment.
-        </p>
-      </article>
-
-      <!-- HR / Payroll / Accounting -->
-      <article class="job-card">
-        <header class="job-header">
-          <h3>HR / Payroll / Accounting</h3>
-          <p class="job-location">London · Full-time · 2025 intake</p>
-        </header>
-        <p class="job-intro">
-          Join the core operations team supporting our growing research and trading organization. Manage payroll,
-          accounting records, and employee logistics with precision and trust.
-        </p>
-        <ul class="job-bullets">
-          <li>Experience or interest in HR, finance, or bookkeeping systems.</li>
-          <li>Structured mindset and strong attention to detail.</li>
-          <li>Comfort with Excel / Sheets and modern HR software.</li>
-        </ul>
-        <p class="job-highlight">
-          <span class="label">What matters most:</span>
-          reliability, integrity, and a passion for enabling world-class teams.
-        </p>
-      </article>
-
-      <!-- Quant Researcher -->
-      <article class="job-card">
-        <header class="job-header">
-          <h3>Quantitative Researcher — HFT / MFT (Crypto · FX · Equities)</h3>
-          <p class="job-location">London · Full-time · 2025 intake</p>
-        </header>
-        <p class="job-intro">
-          Research short- and medium-frequency trading signals using advanced statistical and machine-learning methods.
-          Prototype and test new strategies within our high-performance simulation environment.
-        </p>
-        <ul class="job-bullets">
+        <ul>
           <li>Strong analytical and mathematical foundation.</li>
           <li>Experience with Python, C++, or similar quantitative tools.</li>
           <li>Understanding of markets or data-science concepts.</li>
         </ul>
-        <p class="job-highlight">
-          <span class="label">What matters most:</span>
-          independent thinking, scientific rigour, and the drive to explore new frontiers.
+        <p class="role-highlight">
+          <span>What matters most:</span> independent thinking, scientific rigour, and the drive to explore new frontiers.
         </p>
-      </article>
-
+      </div>
     </div>
-  </section>
+  </div>
+
+  <!-- Row 2: Engineering & Operations -->
+  <div class="careers-row careers-row--reverse">
+    <div class="careers-media careers-media--engineering">
+      <!-- Optional: replace this with an <img> -->
+      <!-- <img src="assets/engineering-team.jpg" alt="Engineering and operations"> -->
+    </div>
+
+    <div class="careers-copy">
+      <h2>Engineering & Operations Roles</h2>
+      <p class="careers-copy-intro">
+        Under the surface, Tomorrow Capital runs on robust systems and precise operations. These roles turn
+        research ideas into reliable infrastructure and keep the firm running smoothly.
+      </p>
+
+      <!-- Quantitative Developer -->
+      <div class="role-block">
+        <h3>Quantitative Developer (C++) — London</h3>
+        <p>
+          Engineer low-latency systems and scalable research tools powering our multi-asset trading engine.
+          Collaborate with researchers to turn models into production-grade pipelines.
+        </p>
+        <ul>
+          <li>Proficiency in modern C++ (17/20) and multithreaded design.</li>
+          <li>Knowledge of data structures, performance tuning, and networking.</li>
+          <li>Interest in quantitative finance and real-time systems.</li>
+        </ul>
+        <p class="role-highlight">
+          <span>What matters most:</span> clean code, curiosity, and ownership from concept to deployment.
+        </p>
+      </div>
+
+      <!-- HR / Payroll / Accounting -->
+      <div class="role-block">
+        <h3>HR / Payroll / Accounting — London</h3>
+        <p>
+          Join the core operations team supporting our growing research and trading organization. You’ll manage
+          payroll, accounting records, and employee logistics with precision and trust.
+        </p>
+        <ul>
+          <li>Experience or interest in HR, finance, or bookkeeping systems.</li>
+          <li>Structured mindset and strong attention to detail.</li>
+          <li>Comfort with Excel / Sheets and modern HR software.</li>
+        </ul>
+        <p class="role-highlight">
+          <span>What matters most:</span> reliability, integrity, and a passion for enabling world-class teams.
+        </p>
+      </div>
+    </div>
+  </div>
+
+</section>
+
 
   <!-- Who We Look For -->
   <section class="careers-who">

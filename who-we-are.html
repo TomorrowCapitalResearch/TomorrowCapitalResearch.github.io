@@ -172,7 +172,146 @@
   }
 }
 
+.split-intro {
+  padding: 72px 20px;
+  background-color: #ffffff;
+}
 
+.split-intro-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: flex;
+  gap: 56px;
+}
+
+.split-intro-left {
+  flex: 0 0 32%;
+}
+
+.split-intro-left h2 {
+  font-size: clamp(28px, 3vw, 36px);
+  line-height: 1.15;
+  margin: 0;
+  font-weight: 500;
+}
+
+.split-intro-right {
+  flex: 1 1 auto;
+  font-size: 15px;
+  line-height: 1.8;
+  color: #374151;
+}
+
+.split-intro-right p {
+  margin: 0 0 14px;
+}
+
+.split-intro-right p:last-of-type {
+  margin-bottom: 0;
+}
+
+/* Responsive: stack columns */
+@media (max-width: 768px) {
+  .split-intro-inner {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .split-intro-left {
+    flex: 0 0 auto;
+  }
+}
+
+.alt-feature-section {
+  background: var(--db, #0E3275); /* Your deep blue */
+  padding: 80px 20px;
+  color: #ffffff;
+}
+
+/* Each block */
+.alt-feature-block {
+  max-width: 1200px;
+  margin: 0 auto 80px;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.alt-feature-block:last-of-type {
+  margin-bottom: 0;
+}
+
+/* Reverse layout */
+.alt-feature-block.reverse {
+  flex-direction: row-reverse;
+}
+
+/* Images */
+.alt-feature-media {
+  flex: 1 1 50%;
+}
+
+.alt-feature-media img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+}
+
+/* Text */
+.alt-feature-text {
+  flex: 1 1 50%;
+  max-width: 500px;
+}
+
+.alt-feature-text h2 {
+  font-size: clamp(32px, 4vw, 42px);
+  line-height: 1.2;
+  margin: 0 0 20px;
+  font-weight: 600;
+}
+
+.alt-feature-text p {
+  margin: 0 0 24px;
+  line-height: 1.7;
+  font-size: 16px;
+  color: #e2e8f0;
+}
+
+/* Button */
+.alt-feature-button {
+  display: inline-block;
+  padding: 10px 22px;
+  font-size: 14px;
+  border-radius: 999px;
+  background: #5ce1e6; /* turquoise like screenshot */
+  color: #0e3275;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.alt-feature-button:hover {
+  opacity: 0.85;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .alt-feature-block,
+  .alt-feature-block.reverse {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .alt-feature-text {
+    max-width: none;
+  }
+
+  .alt-feature-button {
+    margin: 0 auto;
+  }
+}
 
 
     
@@ -264,6 +403,10 @@ async function injectFragment(hostSelector, url, baseHref) {
     );
   </script>
 
+
+
+
+
 <section class="who-hero">
   <div class="who-hero-media">
     <!-- Replace src with your own image -->
@@ -283,6 +426,71 @@ async function injectFragment(hostSelector, url, baseHref) {
 </section>
 
 
+  
+<section class="split-intro">
+  <div class="split-intro-inner">
+    <div class="split-intro-left">
+      <h2>A Force for Transformation</h2>
+    </div>
+
+    <div class="split-intro-right">
+      <p>
+        We are the next-generation capital markets firm, operating at the pace of modern
+        technology rather than legacy finance. Tomorrow Capital is built for rapid
+        experimentation, systematic learning, and long-term compounding.
+      </p>
+      <p>
+        We’re a highly technical and commercially minded team that uses data, algorithms,
+        and collaboration to solve complex problems and make an outsized impact. Our people
+        — and the systems we build — sit at the intersection of markets, technology, and research.
+      </p>
+      <p>
+        Our ideas power adaptive trading strategies, provide liquidity, and explore what the
+        future of finance can look like — today and tomorrow.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<section class="alt-feature-section">
+
+  <!-- Block 1 -->
+  <div class="alt-feature-block">
+    <div class="alt-feature-media">
+      <img src="assets/leadership.jpg" alt="Leadership presentation">
+    </div>
+
+    <div class="alt-feature-text">
+      <h2>Inspired by<br>Our Leadership</h2>
+      <p>
+        Many of our leaders have built their careers here. They are committed to
+        developing ambitious talent and moving forward together toward shared goals.
+      </p>
+      <a href="#" class="alt-feature-button">View Leadership Team</a>
+    </div>
+  </div>
+
+  <!-- Block 2 (reverse layout) -->
+  <div class="alt-feature-block reverse">
+    <div class="alt-feature-text">
+      <h2>Committed to<br>Our Communities</h2>
+      <p>
+        Our extraordinary colleagues apply their talents to create real impact
+        beyond the workplace. Our civic leadership efforts expand access to
+        education, support local initiatives, and strengthen our communities.
+      </p>
+      <a href="#" class="alt-feature-button">Learn About Our Civic Leadership</a>
+    </div>
+
+    <div class="alt-feature-media">
+      <img src="assets/community.jpg" alt="Community engagement">
+    </div>
+  </div>
+
+</section>
+
+  
   
 <section class="values-section">
   <div class="values-inner">

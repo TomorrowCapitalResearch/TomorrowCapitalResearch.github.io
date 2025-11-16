@@ -307,7 +307,73 @@
   }
 }
 
+/* ===== Competitive Advantage section ===== */
 
+.advantage-section {
+  padding: 56px 0;
+  background: var(--paper);
+}
+
+.advantage-inner {
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: 0 var(--side-pad);
+}
+
+.advantage-title {
+  font-size: clamp(28px, 3.2vw, 34px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0 0 28px 0;
+  color: var(--ink);
+}
+
+/* 3 columns with vertical dividers */
+.advantage-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 32px;
+}
+
+.advantage-item {
+  padding-right: 16px;
+}
+
+/* add vertical divider on middle + right cards */
+.advantage-item:nth-child(2),
+.advantage-item:nth-child(3) {
+  border-left: 1px solid rgba(0,0,0,0.12);
+  padding-left: 24px;
+}
+
+.advantage-item h3 {
+  margin: 0 0 10px 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.advantage-item p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #4B5563;
+}
+
+/* Responsive: stack cards, drop vertical lines */
+@media (max-width: 840px) {
+  .advantage-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .advantage-item {
+    border-left: none !important;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+    
 </style>
 
 <script>
@@ -494,6 +560,41 @@ async function injectFragment(hostSelector, url, baseHref) {
       </p>
       <a href="#equities" class="asset-link">Explore Equities</a>
     </article>
+  </div>
+</section>
+
+  <section class="advantage-section">
+  <div class="advantage-inner">
+    <h2 class="advantage-title">Our Competitive Advantage</h2>
+
+    <div class="advantage-grid">
+      <article class="advantage-item">
+        <h3>Exceptional Talent</h3>
+        <p>
+          We bring together curious, independent minds across quantitative finance,
+          software engineering and research. Our people are encouraged to question
+          assumptions, share ideas and take ownership from concept to live trading.
+        </p>
+      </article>
+
+      <article class="advantage-item">
+        <h3>Industry-Leading Analytics</h3>
+        <p>
+          From market-state models to high-resolution microstructure analytics, our
+          framework turns raw data into decisions. We constantly test, refine and
+          retire models based on real performance, not stories.
+        </p>
+      </article>
+
+      <article class="advantage-item">
+        <h3>Scalable, Resilient Platform</h3>
+        <p>
+          Our infrastructure is built to scale across assets, venues and horizons.
+          Careful systems design lets us manage complexity, control risk and adapt
+          quickly as markets evolve.
+        </p>
+      </article>
+    </div>
   </div>
 </section>
 

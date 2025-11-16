@@ -35,126 +35,85 @@
   --radius:14px;
 }
 
+/* == Trading feature section (image + overlapping blue card) == */
 
+.trading-feature {
+  position: relative;
+  max-width: 1400px;
+  margin: 0 auto;
+  background: #f5f5f5;          /* bottom white/grey band */
+}
 
-    /* ========== Layout & Typography Utilities ========== */
-    h1,h2,h3{
-      margin:0 0 12px 0;
-      line-height:1.15;
-      letter-spacing:-0.02em;
-    }
-    h1{
-      font-weight:800;
-      font-size:clamp(32px,4vw,40px);
-      color:var(--brand-blue);
-    }
-    h2{
-      font-weight:700;
-      font-size:clamp(24px,2.8vw,30px);
-      color:var(--ink);
-    }
-    h3{
-      font-weight:600;
-      font-size:clamp(18px,2.4vw,20px);
-      color:var(--ink);
-    }
-    p{
-      margin:0;
-      font-size:15px;
-      line-height:1.55;
-      color:#333;
-    }
+/* Big image at the top */
+.trading-feature__media {
+  width: 100%;
+  height: 460px;                /* adjust to taste */
+  background-image: url("assets/trading-desk.jpg"); /* your image here */
+  background-size: cover;
+  background-position: center;
+}
 
-    .lede{
-      font-size:clamp(18px,2.2vw,20px);
-      color:#333;
-      max-width:60rem;
-    }
+/* Blue card that overlaps image and white band */
+.trading-feature__card {
+  position: absolute;
+  right: 5%;
+  bottom: -60px;                /* pulls card down over the edge */
+  max-width: 420px;
+  padding: 28px 32px;
+  background: var(--db);        /* deep blue from your palette */
+  color: #ffffff;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.35);
+}
 
-    .container{
-      max-width: var(--page-max);
-      margin: 0 auto;
-      padding: 0 var(--side-pad);
-    }
+/* Little left accent strip (optional, like Citadel) */
+.trading-feature__card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 16px;
+  bottom: 16px;
+  width: 6px;
+  background: var(--blue);
+}
 
-    .grid{
-      display:grid;
-      gap:24px;
-    }
-    @media (min-width: 720px){
-      .grid-2{ grid-template-columns:1fr 1fr; }
-      .grid-3{ grid-template-columns:repeat(3,1fr); }
-      .grid-4{ grid-template-columns:repeat(4,1fr); }
-    }
+/* Text inside card */
+.trading-feature__title {
+  margin: 0 0 10px 10px;       /* shift to clear accent strip */
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 1.15;
+}
 
-    .stack-xxl > * + * { margin-top:48px; }
-    .stack-xl  > * + * { margin-top:32px; }
-    .stack-lg  > * + * { margin-top:24px; }
-    .stack-md  > * + * { margin-top:16px; }
+.trading-feature__body {
+  margin: 0 0 0 10px;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #e5ecff;
+}
 
-    .section--alt{
-      background:var(--lb);
-      padding: clamp(56px,8vw,80px) 0;
-    }
-    .page-section{
-      padding: clamp(56px,8vw,80px) 0;
-    }
-    .section--dark{
-      background:#0B1D44;
-      color:#EAF2FF;
-    }
-    .section--dark p{ color:#CFE0FF; }
-    .section--dark h2{ color:#ffffff; }
+/* Add some space under the whole block so the card has room */
+.trading-feature + section,
+.trading-feature + div {
+  margin-top: 80px;
+}
 
-    .button,
-    a.button{
-      display:inline-block;
-      border-radius:999px;
-      padding:10px 18px;
-      font-weight:600;
-      font-size:15px;
-      text-decoration:none;
-      cursor:pointer;
-      transition:background .2s ease,color .2s ease,transform .08s ease;
-    }
-    .button--primary{
-      background:var(--brand-blue);
-      color:#fff;
-      border:1px solid var(--brand-blue);
-    }
-    .button--primary:hover{
-      background:#0f2f7d;
-      transform:translateY(-1px);
-    }
-    .button--ghost{
-      border:1px solid rgba(10,10,10,0.1);
-      color:var(--brand-blue);
-      background:transparent;
-    }
-    .button--ghost:hover{
-      background:rgba(21,62,159,0.04);
-    }
+/* Mobile: card becomes normal block below image (no overlap) */
+@media (max-width: 768px) {
+  .trading-feature__media {
+    height: 320px;
+  }
 
-    /* Simple card styling reused as “pillars” / markets cards */
-    .kpi{
-      background:var(--card);
-      border-radius:var(--radius);
-      padding:20px 18px;
-      border:1px solid rgba(10,10,10,0.06);
-    }
-    .kpi p{
-      font-size:15px;
-      line-height:1.5;
-      color:#333;
-    }
+  .trading-feature__card {
+    position: static;
+    margin: -20px 16px 0 16px;  /* slight overlap feeling without absolute pos */
+    max-width: none;
+  }
 
-    .pillars-label{
-      text-transform:uppercase;
-      font-size:11px;
-      letter-spacing:0.12em;
-      color:#6b7280;
-      margin-bottom:4px;
-    }
+  .trading-feature__title {
+    font-size: 24px;
+  }
+}
+
 </style>
 
 <script>
@@ -243,141 +202,21 @@ async function injectFragment(hostSelector, url, baseHref) {
     );
   </script>
 
-  <!-- ========== HERO / INTRO ========== -->
-  <section class="section--alt" id="trading">
-    <div class="container stack-xl">
-      <div class="stack-md">
-        <h1>What We Do</h1>
-        <p class="lede">
-          We design and operate algorithmic trading systems across digital assets, FX, equities and alternative markets —
-          uniting quantitative research, AI and engineering to turn complexity into opportunity.
-        </p>
-      </div>
+ <section class="trading-feature">
+  <div class="trading-feature__media"></div>
 
-      <div class="grid grid-2 stack-md">
-        <div class="stack-md">
-          <h2>Algorithmic trading, end to end</h2>
-          <p>
-            Tomorrow Capital runs a fully integrated research–to–execution pipeline. We build, test and deploy systematic
-            strategies across multiple time horizons:
-          </p>
-          <ul>
-            <li>Short-horizon <strong>HFT / MFT</strong> strategies and market-making.</li>
-            <li>Medium-horizon statistical and machine-learning strategies.</li>
-            <li>Longer-horizon systematic portfolios and cross-asset themes.</li>
-          </ul>
-        </div>
-        <div class="stack-md">
-          <h3>Where we focus</h3>
-          <p>Our systems monitor and trade:</p>
-          <ul>
-            <li>Crypto and digital assets</li>
-            <li>FX and precious metals</li>
-            <li>Equities and ETFs</li>
-            <li>Selective alternative & sports markets</li>
-          </ul>
-          <p>
-            Every strategy is built with explicit objectives: risk-adjusted return, robustness, and adaptability to changing regimes.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
+  <div class="trading-feature__card">
+    <h2 class="trading-feature__title">Innovating Global Trading</h2>
+    <p class="trading-feature__body">
+      We design adaptive algorithmic trading systems that provide liquidity
+      and price discovery across digital assets, FX, and equities — so our
+      counterparties can trade what they want, when they want, in all
+      market conditions.
+    </p>
+  </div>
+</section>
 
-  <!-- ========== TOMORROW FRAMEWORK ========== -->
-  <section class="page-section" id="framework">
-    <div class="container stack-lg">
-      <div class="stack-md">
-        <h2>The Tomorrow framework: four decision layers</h2>
-        <p class="lede">
-          Markets are complex, so our architecture is layered. We optimise the business, the portfolio, the strategies and the execution —
-          each with its own models, yet fully connected.
-        </p>
-      </div>
-
-      <div class="grid grid-4">
-        <div class="kpi">
-          <div class="pillars-label">Layer I</div>
-          <h3>Expansion & Ventures</h3>
-          <p>
-            Decide <em>where</em> to play: new markets, products and business lines. We quantify opportunity size,
-            competitive dynamics and risk before committing capital or engineering time.
-          </p>
-        </div>
-        <div class="kpi">
-          <div class="pillars-label">Layer II</div>
-          <h3>Portfolio & Capital Allocation</h3>
-          <p>
-            Allocate capital across asset classes, strategies and horizons. We use portfolio optimisation and scenario analysis
-            to balance growth, drawdown and liquidity.
-          </p>
-        </div>
-        <div class="kpi">
-          <div class="pillars-label">Layer III</div>
-          <h3>Strategy & Signal Research</h3>
-          <p>
-            Design and validate trading signals using statistical learning, microstructure analytics and physics-inspired models.
-            Robustness beats anecdotes; empirical results drive decisions.
-          </p>
-        </div>
-        <div class="kpi">
-          <div class="pillars-label">Layer IV</div>
-          <h3>Execution & Microstructure</h3>
-          <p>
-            Turn signals into fills. We optimise order placement, routing and inventory using real-time market data,
-            with strict controls on slippage, impact and latency.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== MARKETS, RESEARCH & INFRA ========== -->
-  <section class="page-section section--dark" id="research">
-    <div class="container stack-xl">
-      <div class="stack-md">
-        <h2>Research, AI & infrastructure</h2>
-        <p class="lede">
-          Tomorrow Capital is a research and engineering company as much as it is a trading firm. Our edge comes from the way we
-          model markets, the tools we build, and the data we maintain.
-        </p>
-      </div>
-
-      <div class="grid grid-3">
-        <div class="kpi">
-          <h3>Quantitative research</h3>
-          <p>
-            We combine classical statistics with modern machine learning: regime detection, market-state models,
-            point processes, reinforcement learning and multi-agent simulations.
-          </p>
-        </div>
-        <div class="kpi">
-          <h3>Technology & data</h3>
-          <p>
-            From low-latency C++ components to Python research stacks, our infrastructure is built to iterate quickly
-            and deploy safely. We maintain structured, high-resolution data across our markets.
-          </p>
-        </div>
-        <div class="kpi">
-          <h3>Risk & governance</h3>
-          <p>
-            Risk is treated as a first-class object: pre-trade constraints, live monitoring and post-trade analysis
-            are embedded at every layer, from individual strategy to firm-wide capital.
-          </p>
-        </div>
-      </div>
-
-      <div class="stack-md">
-        <h3>Who we work with</h3>
-        <p>
-          Over time, we aim to partner with allocators, institutions and founders who share our belief that
-          finance can be rebuilt on systematic, transparent and intelligent foundations.
-        </p>
-        <a href="contact.html" class="button button--primary">Discuss collaboration</a>
-        <a href="research.html" class="button button--ghost">Explore our research</a>
-      </div>
-    </div>
-  </section>
+  
 
   <!-- ================= -->
   <!--  3️⃣  FOOTER SLOT  -->

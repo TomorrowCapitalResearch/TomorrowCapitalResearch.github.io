@@ -34,6 +34,67 @@
   --gold:#C59B3B;                 /* optional accent for chevrons/links */
   --radius:14px;
 }
+
+/* Values section */
+.values-section {
+  padding: 72px 20px 80px;
+  background-color: #ffffff;
+}
+
+.values-inner {
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+  color: #111827;
+}
+
+.values-label {
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin: 0 0 32px;
+  color: #6b7280;
+}
+
+/* Individual value blocks */
+.value-item {
+  margin-bottom: 56px;
+}
+
+.value-item:last-of-type {
+  margin-bottom: 0;
+}
+
+.value-item h2 {
+  font-size: 22px;
+  margin: 0 0 16px;
+  font-weight: 600;
+}
+
+.value-item p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.7;
+  color: #374151;
+}
+
+/* Optional: slightly tighter spacing on very small screens */
+@media (max-width: 480px) {
+  .values-section {
+    padding-top: 56px;
+    padding-bottom: 64px;
+  }
+
+  .value-item {
+    margin-bottom: 40px;
+  }
+}
+
+
+
+
+    
 </style>
 
 <script>
@@ -122,13 +183,55 @@ async function injectFragment(hostSelector, url, baseHref) {
     );
   </script>
 
-  <!-- ===================== -->
-  <!--  MAIN PAGE CONTENT    -->
-  <!-- ===================== -->
-  <main style="min-height:70vh;padding:40px;">
-    <h1>Welcome to Tomorrow Capital Research</h1>
-    <p>Your page content here.</p>
-  </main>
+
+<section class="values-section">
+  <div class="values-inner">
+
+    <p class="values-label">OUR PRINCIPLES</p>
+
+    <!-- 1 -->
+    <article class="value-item">
+      <h2>Aligned, Ethical Trading</h2>
+      <p>
+        We build strategies that respect market structure and counterparties.
+        We avoid hidden risks, opaque products, and behaviour that misaligns us
+        from our partners or clients. Integrity is a constraint, not a trade-off.
+      </p>
+    </article>
+
+    <!-- 2 -->
+    <article class="value-item">
+      <h2>Scientific Rigor</h2>
+      <p>
+        Decisions are driven by data, not ego. We design experiments, measure
+        uncertainty, and change our minds when the evidence demands it. Clear
+        thinking and honest backtests matter more than clever stories.
+      </p>
+    </article>
+
+    <!-- 3 -->
+    <article class="value-item">
+      <h2>Curiosity Without Boundaries</h2>
+      <p>
+        Great ideas rarely fit neatly inside a job title. People at Tomorrow
+        Capital explore markets, math, engineering, and design wherever their
+        curiosity leads—then share what they learn with the team.
+      </p>
+    </article>
+
+    <!-- 4 -->
+    <article class="value-item">
+      <h2>Low Ego, High Ownership</h2>
+      <p>
+        We keep hierarchy light and collaboration strong. Everyone is expected
+        to take responsibility for their work, admit mistakes quickly, and help
+        others succeed. We win as a team or not at all.
+      </p>
+    </article>
+
+  </div>
+</section>
+
 
   <!-- ================= -->
   <!--  3️⃣  FOOTER SLOT  -->

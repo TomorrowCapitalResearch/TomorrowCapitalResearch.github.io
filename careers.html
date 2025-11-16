@@ -40,93 +40,6 @@
     --radius:14px;
   }
 
-  /* ========= Shared layout utilities ========= */
-  h1,h2,h3{
-    margin:0 0 12px 0;
-    line-height:1.15;
-    letter-spacing:-0.02em;
-  }
-  h1{
-    font-weight:800;
-    font-size:clamp(32px,4vw,40px);
-    color:var(--brand-blue);
-  }
-  h2{
-    font-weight:700;
-    font-size:clamp(22px,2.6vw,26px);
-    color:var(--ink);
-  }
-
-  .lede{
-    font-size:clamp(18px,2.2vw,20px);
-    color:#333;
-    max-width: 60rem;
-  }
-
-  .container{
-    max-width: var(--page-max);
-    margin: 0 auto;
-    padding: 0 var(--side-pad);
-  }
-
-  .grid{
-    display:grid;
-    gap:24px;
-  }
-
-  @media (min-width: 720px){
-    .grid-2{ grid-template-columns:1fr 1fr; }
-  }
-
-  .stack-xxl > * + * { margin-top:48px; }
-  .stack-xl  > * + * { margin-top:32px; }
-  .stack-md  > * + * { margin-top:16px; }
-
-  .section--alt{
-    background:var(--lb);
-    padding: clamp(56px,8vw,80px) 0;
-  }
-
-  .button,
-  a.button{
-    display:inline-block;
-    border-radius:999px;
-    padding:10px 18px;
-    font-weight:600;
-    font-size:15px;
-    text-decoration:none;
-    cursor:pointer;
-    transition:background .2s ease, color .2s ease, transform .08s ease;
-  }
-  .button--primary{
-    background:var(--brand-blue);
-    color:#fff;
-    border:1px solid var(--brand-blue);
-  }
-  .button--primary:hover{
-    background:#0f2f7d;
-    transform:translateY(-1px);
-  }
-
-  /* Simple card styling reused for careers roles */
-  .kpi{
-    background:#F6F7F9;
-    border-radius:var(--radius);
-    padding:22px 20px;
-    border:1px solid rgba(10,10,10,0.06);
-  }
-  .kpi p{
-    font-size:15px;
-    line-height:1.5;
-    color:#333;
-  }
-  .kpi ul{
-    padding-left:1.2rem;
-    margin:8px 0 12px;
-    font-size:15px;
-    color:#333;
-  }
-
   /* ========= Navbar ========= */
   .nav{position:sticky; top:0; z-index:1000; background:#ffffff; border-bottom:1px solid rgba(0,0,0,.06)}
   .nav-inner{max-width:100%; margin:auto; padding:20px 20px; display:flex; align-items:center; justify-content:space-between}
@@ -353,6 +266,177 @@
     .footer-social{ justify-content:flex-start; }
   }
 
+
+
+    
+/* Base layout */
+.careers-page {
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Helvetica, Arial, sans-serif;
+  color: #0b1220;
+  background-color: #ffffff;
+}
+
+/* Hero */
+.careers-hero {
+  padding: 72px 20px 40px;
+  background-color: #ffffff;
+  background-image: linear-gradient(
+      to right,
+      rgba(15, 23, 42, 0.04) 1px,
+      transparent 1px
+    );
+  background-size: 120px 100%;
+}
+
+.careers-hero-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.careers-hero-title {
+  font-size: clamp(40px, 6vw, 64px);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  margin: 0;
+}
+
+.careers-hero-gradient {
+  margin: 24px 0 32px;
+  height: 4px;
+  max-width: 360px;
+  background: linear-gradient(90deg, #1357ff, #6d00ff);
+  border-radius: 999px;
+}
+
+.careers-hero-text {
+  max-width: 640px;
+  font-size: 18px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Openings section */
+.careers-openings {
+  padding: 24px 20px 64px;
+  background-color: #ffffff;
+}
+
+.careers-openings-header {
+  max-width: 1080px;
+  margin: 0 auto 24px;
+}
+
+.careers-openings-header h2 {
+  font-size: 24px;
+  margin: 0 0 4px;
+}
+
+.careers-openings-header p {
+  margin: 0;
+  color: #4b5563;
+}
+
+.job-list {
+  max-width: 1080px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+.job-card {
+  border-radius: 16px;
+  padding: 24px 24px 20px;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+}
+
+.job-header h3 {
+  margin: 0 0 4px;
+  font-size: 20px;
+}
+
+.job-location {
+  margin: 0 0 12px;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.job-intro {
+  margin: 0 0 12px;
+  color: #111827;
+}
+
+.job-bullets {
+  margin: 0 0 12px 0;
+  padding-left: 18px;
+  color: #111827;
+}
+
+.job-bullets li {
+  margin-bottom: 4px;
+}
+
+.job-highlight {
+  margin: 0;
+  font-size: 14px;
+  color: #111827;
+}
+
+.job-highlight .label {
+  font-weight: 600;
+}
+
+/* Who we look for */
+.careers-who {
+  padding: 56px 20px 80px;
+  background: #050816;
+  color: #e5e7eb;
+}
+
+.careers-who-inner {
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+.careers-who h2 {
+  font-size: 26px;
+  margin: 0 0 16px;
+}
+
+.careers-who p {
+  margin: 0 0 14px;
+  line-height: 1.7;
+}
+
+.who-meta {
+  font-size: 14px;
+  color: #9ca3af;
+}
+
+.who-apply a {
+  color: #60a5fa;
+  text-decoration: none;
+}
+
+.who-apply a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive layout */
+@media (min-width: 900px) {
+  .careers-hero {
+    padding-top: 96px;
+    padding-bottom: 56px;
+  }
+
+  .job-list {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
   </style>
 </head>
 <body>
@@ -461,83 +545,145 @@
     </div>
   </header>
 
-  <!-- CAREERS CONTENT -->
-  <section class="section--alt">
-    <div class="container stack-xxl">
-      <div class="stack-md">
-        <h1>Careers at Tomorrow Capital</h1>
-        <p class="lede">
-          We are building the next generation of algorithmic finance — where curiosity, collaboration, and precision define success.
-          If you are driven to learn, to build, and to push boundaries, we want to hear from you.
-        </p>
-      </div>
+<main class="careers-page">
 
-      <div class="grid grid-2 stack-xl">
-        <!-- Role 1 -->
-        <div class="kpi">
-          <h2>Algorithmic Trader — London</h2>
-          <p>Design, test, and run live trading strategies across global markets.  
-          You’ll work within our adaptive execution and portfolio frameworks to explore new alpha ideas and market microstructures.</p>
-          <ul>
-            <li>Strong quantitative reasoning and comfort with uncertainty</li>
-            <li>Fluency in Python, R, or a similar analytical language</li>
-            <li>Passion for markets and data-driven strategy design</li>
-          </ul>
-          <p><strong>What matters most:</strong> curiosity, discipline, and the will to learn faster than markets evolve.</p>
-        </div>
-
-        <!-- Role 2 -->
-        <div class="kpi">
-          <h2>Quantitative Developer (C++) — London</h2>
-          <p>Engineer low-latency systems and scalable research tools powering our multi-asset trading engine.  
-          Collaborate with researchers to turn models into production-grade pipelines.</p>
-          <ul>
-            <li>Proficiency in modern C++ (17/20) and multithreaded design</li>
-            <li>Knowledge of data structures, performance tuning, and networking</li>
-            <li>Interest in quantitative finance and real-time systems</li>
-          </ul>
-          <p><strong>What matters most:</strong> clean code, curiosity, and ownership from concept to deployment.</p>
-        </div>
-
-        <!-- Role 3 -->
-        <div class="kpi">
-          <h2>HR / Payroll / Accounting — London</h2>
-          <p>Join the core operations team supporting our growing research and trading organization.  
-          You’ll manage payroll, accounting records, and employee logistics with precision and trust.</p>
-          <ul>
-            <li>Experience or interest in HR, finance, or bookkeeping systems</li>
-            <li>Structured mindset and strong attention to detail</li>
-            <li>Comfort with Excel / Sheets and modern HR software</li>
-          </ul>
-          <p><strong>What matters most:</strong> reliability, integrity, and a passion for enabling world-class teams.</p>
-        </div>
-
-        <!-- Role 4 -->
-        <div class="kpi">
-          <h2>Quantitative Researcher — HFT / MFT (Crypto · FX · Equities) — London</h2>
-          <p>Research short- and medium-frequency trading signals using advanced statistical and machine-learning methods.  
-          You will prototype and test new strategies within our high-performance simulation environment.</p>
-          <ul>
-            <li>Strong analytical and mathematical foundation</li>
-            <li>Experience with Python, C++, or similar quantitative tools</li>
-            <li>Understanding of markets or data science concepts</li>
-          </ul>
-          <p><strong>What matters most:</strong> independent thinking, scientific rigour, and the drive to explore new frontiers.</p>
-        </div>
-      </div>
-
-      <div class="stack-md">
-        <h3>Who We Look For</h3>
-        <p>
-          We value passion and independence over titles or credentials.<br>
-          A formal degree is not required — only a demonstrated ability to think clearly, code effectively, and learn continuously.<br>
-          If you thrive on solving complex problems and believe finance can be reinvented through technology, we invite you to join us.
-        </p>
-        <p><strong>Location:</strong> London or Remote · <strong>Type:</strong> Full-time · <strong>Start:</strong> start to middle of 2025 intake</p>
-        <p>Send an email to: tomorrowcapitalresearch@gmail.com</p>
-      </div>
+  <!-- Hero / Title -->
+  <section class="careers-hero">
+    <div class="careers-hero-inner">
+      <h1 class="careers-hero-title">Careers at Tomorrow Capital</h1>
+      <div class="careers-hero-gradient"></div>
+      <p class="careers-hero-text">
+        We are building the next generation of algorithmic finance — where curiosity, collaboration,
+        and precision define success. If you are driven to learn, to build, and to push boundaries,
+        we want to hear from you.
+      </p>
     </div>
   </section>
+
+  <!-- Job Openings -->
+  <section class="careers-openings">
+    <div class="careers-openings-header">
+      <h2>Open Roles</h2>
+      <p>We’re currently hiring for a small, focused team in London and remote.</p>
+    </div>
+
+    <div class="job-list">
+
+      <!-- Algorithmic Trader -->
+      <article class="job-card">
+        <header class="job-header">
+          <h3>Algorithmic Trader</h3>
+          <p class="job-location">London · Full-time · 2025 intake</p>
+        </header>
+        <p class="job-intro">
+          Design, test, and run live trading strategies across global markets. Work within our
+          adaptive execution and portfolio frameworks to explore new alpha ideas and market microstructures.
+        </p>
+        <ul class="job-bullets">
+          <li>Strong quantitative reasoning and comfort with uncertainty.</li>
+          <li>Fluency in Python, R, or a similar analytical language.</li>
+          <li>Passion for markets and data-driven strategy design.</li>
+        </ul>
+        <p class="job-highlight">
+          <span class="label">What matters most:</span>
+          curiosity, discipline, and the will to learn faster than markets evolve.
+        </p>
+      </article>
+
+      <!-- Quant Dev -->
+      <article class="job-card">
+        <header class="job-header">
+          <h3>Quantitative Developer (C++)</h3>
+          <p class="job-location">London · Full-time · 2025 intake</p>
+        </header>
+        <p class="job-intro">
+          Engineer low-latency systems and scalable research tools powering our multi-asset trading engine.
+          Collaborate with researchers to turn models into production-grade pipelines.
+        </p>
+        <ul class="job-bullets">
+          <li>Proficiency in modern C++ (17/20) and multithreaded design.</li>
+          <li>Knowledge of data structures, performance tuning, and networking.</li>
+          <li>Interest in quantitative finance and real-time systems.</li>
+        </ul>
+        <p class="job-highlight">
+          <span class="label">What matters most:</span>
+          clean code, curiosity, and ownership from concept to deployment.
+        </p>
+      </article>
+
+      <!-- HR / Payroll / Accounting -->
+      <article class="job-card">
+        <header class="job-header">
+          <h3>HR / Payroll / Accounting</h3>
+          <p class="job-location">London · Full-time · 2025 intake</p>
+        </header>
+        <p class="job-intro">
+          Join the core operations team supporting our growing research and trading organization. Manage payroll,
+          accounting records, and employee logistics with precision and trust.
+        </p>
+        <ul class="job-bullets">
+          <li>Experience or interest in HR, finance, or bookkeeping systems.</li>
+          <li>Structured mindset and strong attention to detail.</li>
+          <li>Comfort with Excel / Sheets and modern HR software.</li>
+        </ul>
+        <p class="job-highlight">
+          <span class="label">What matters most:</span>
+          reliability, integrity, and a passion for enabling world-class teams.
+        </p>
+      </article>
+
+      <!-- Quant Researcher -->
+      <article class="job-card">
+        <header class="job-header">
+          <h3>Quantitative Researcher — HFT / MFT (Crypto · FX · Equities)</h3>
+          <p class="job-location">London · Full-time · 2025 intake</p>
+        </header>
+        <p class="job-intro">
+          Research short- and medium-frequency trading signals using advanced statistical and machine-learning methods.
+          Prototype and test new strategies within our high-performance simulation environment.
+        </p>
+        <ul class="job-bullets">
+          <li>Strong analytical and mathematical foundation.</li>
+          <li>Experience with Python, C++, or similar quantitative tools.</li>
+          <li>Understanding of markets or data-science concepts.</li>
+        </ul>
+        <p class="job-highlight">
+          <span class="label">What matters most:</span>
+          independent thinking, scientific rigour, and the drive to explore new frontiers.
+        </p>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- Who We Look For -->
+  <section class="careers-who">
+    <div class="careers-who-inner">
+      <h2>Who We Look For</h2>
+      <p>
+        We value passion and independence over titles or credentials. A formal degree is not required —
+        only a demonstrated ability to think clearly, code effectively, and learn continuously.
+      </p>
+      <p>
+        If you thrive on solving complex problems and believe finance can be reinvented through technology,
+        we invite you to join us.
+      </p>
+
+      <p class="who-meta">
+        Location: London or Remote · Type: Full-time · Start: start to middle of 2025 intake
+      </p>
+
+      <p class="who-apply">
+        To apply, send your CV, a short introduction, and any relevant work (GitHub, research, projects) to:<br>
+        <a href="mailto:tomorrowcapitalresearch@gmail.com">
+          tomorrowcapitalresearch@gmail.com
+        </a>
+      </p>
+    </div>
+  </section>
+
+</main>
+
 
   <!-- FOOTER -->
   <footer class="site-footer">

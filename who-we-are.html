@@ -222,6 +222,9 @@
   }
 }
 
+
+
+    
 .alt-feature-section {
   background: var(--db, #0E3275); /* Your deep blue */
   padding: 80px 20px;
@@ -235,15 +238,29 @@
   display: flex;
   align-items: center;
   gap: 40px;
+  flex-direction: row;
 }
 
 .alt-feature-block:last-of-type {
   margin-bottom: 0;
 }
 
-/* Reverse layout */
-.alt-feature-block.reverse {
-  flex-direction: row-reverse;
+/* Default order: image left, text right */
+.alt-feature-block .alt-feature-media {
+  order: 1;
+}
+    
+.alt-feature-block .alt-feature-text {
+  order: 2;
+}
+
+/* Reverse layout: text left, image right */
+.alt-feature-block.reverse .alt-feature-media {
+  order: 2;
+}
+
+.alt-feature-block.reverse .alt-feature-text {
+  order: 1;
 }
 
 /* Images */
@@ -304,12 +321,9 @@
     text-align: center;
   }
 
-  .alt-feature-text {
-    max-width: none;
-  }
-
-  .alt-feature-button {
-    margin: 0 auto;
+  .alt-feature-block .alt-feature-media,
+  .alt-feature-block .alt-feature-text {
+    order: initial; /* stack in DOM order on mobile */
   }
 }
 

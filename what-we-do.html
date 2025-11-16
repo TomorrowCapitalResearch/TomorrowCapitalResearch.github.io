@@ -114,6 +114,100 @@
   }
 }
 
+
+/* ===== What We Do section (chapter heading + blue panel) ===== */
+
+.wwd-section {
+  padding: 60px 0 80px;
+  background: #f8f7f5; /* light paper-like background */
+}
+
+/* Top intro row: number + heading/text */
+.wwd-intro {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 24px;
+  align-items: flex-start;
+  margin-bottom: 40px;
+}
+
+.wwd-intro-number {
+  font-family: "Georgia", "Times New Roman", serif;
+  font-size: 32px;
+  line-height: 1;
+  color: #222;
+  padding-top: 6px;
+}
+
+.wwd-intro-title {
+  font-size: 28px;
+  font-weight: 500;
+  margin: 0 0 12px 0;
+  letter-spacing: 0.02em;
+}
+
+.wwd-intro-body {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #363636;
+  max-width: 60rem;
+  text-align: justify; /* similar feel to D.E. Shaw PDF */
+}
+
+/* Blue panel block */
+.wwd-panel {
+  margin-top: 24px;
+  padding: 32px 40px;
+  background: var(--db);          /* deep blue from your palette */
+  color: #ffffff;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+}
+
+/* Small top label: “3.1 Investment Approach” */
+.wwd-panel-top {
+  display: flex;
+  gap: 20px;
+  align-items: baseline;
+  margin-bottom: 18px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  opacity: 0.9;
+}
+
+.wwd-panel-index {
+  font-weight: 500;
+}
+
+.wwd-panel-subtitle {
+  font-weight: 500;
+}
+
+/* Main text inside blue panel */
+.wwd-panel-body {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.7;
+  max-width: 60rem;
+}
+
+/* Responsive: stack number above text on small screens */
+@media (max-width: 768px) {
+  .wwd-intro {
+    grid-template-columns: 1fr;
+  }
+  .wwd-intro-number {
+    font-size: 24px;
+  }
+  .wwd-panel {
+    padding: 24px 20px;
+  }
+}
+
+
+
+    
 /* ===== Asset classes section ===== */
 
 .asset-section {
@@ -302,6 +396,9 @@ async function injectFragment(hostSelector, url, baseHref) {
     );
   </script>
 
+
+
+  
  <section class="trading-feature">
   <div class="trading-feature__media"></div>
 
@@ -316,6 +413,44 @@ async function injectFragment(hostSelector, url, baseHref) {
   </div>
 </section>
 
+<section class="wwd-section">
+  <div class="container">
+
+    <!-- Top heading + paragraph -->
+    <div class="wwd-intro">
+      <div class="wwd-intro-number">3</div>
+      <div class="wwd-intro-main">
+        <h2 class="wwd-intro-title">What We Do</h2>
+        <p class="wwd-intro-body">
+          Tomorrow Capital designs systematic trading and investment strategies that seek the
+          optimal balance of risk and long-term compounding. While we are built on
+          quantitative research and automation, we also emphasise robust risk management,
+          market microstructure expertise, and disciplined execution across digital assets,
+          FX, and equities.
+        </p>
+      </div>
+    </div>
+
+    <!-- Blue panel sub-section -->
+    <div class="wwd-panel">
+      <div class="wwd-panel-top">
+        <span class="wwd-panel-index">3.1</span>
+        <span class="wwd-panel-subtitle">Investment Approach</span>
+      </div>
+
+      <p class="wwd-panel-body">
+        Within Tomorrow Capital, we run on collaboration rather than internal competition.
+        Researchers, engineers, and traders work together to share ideas, identify and
+        address risks, build tools, and explore new opportunities. Our team brings together
+        quantitative finance, software engineering, and market experience to design systems
+        that are data-driven, adaptive, and built to endure across market regimes.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+  
 <section class="asset-section">
   <!-- Top blue band content -->
   <div class="asset-head">

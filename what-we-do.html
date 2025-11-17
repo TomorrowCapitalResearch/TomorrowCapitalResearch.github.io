@@ -48,7 +48,7 @@
 .trading-feature__media {
   width: 100%;
   height: 600px;                /* adjust to taste */
-  background-image: url("assets/A2.jpeg"); /* your image here */
+  background-image: url("assets/A6.jpeg"); /* your image here */
   background-size: cover;
   background-position: center;
 }
@@ -107,7 +107,7 @@
 
 .wwd-section {
   padding: 60px 0 80px;
-  background: #f8f7f5; /* light paper-like background */
+  background: var(--lb); /* light paper-like background */
 }
 
 /* Top intro row: number + heading/text */
@@ -467,49 +467,12 @@ async function injectFragment(hostSelector, url, baseHref) {
   </div>
 </section>
 
-<section class="wwd-section">
-  <div class="container">
-
-    <!-- Top heading + paragraph -->
-    <div class="wwd-intro">
-      <div class="wwd-intro-number">3</div>
-      <div class="wwd-intro-main">
-        <h2 class="wwd-intro-title">What We Do</h2>
-        <p class="wwd-intro-body">
-          Tomorrow Capital designs systematic trading and investment strategies that seek the
-          optimal balance of risk and long-term compounding. While we are built on
-          quantitative research and automation, we also emphasise robust risk management,
-          market microstructure expertise, and disciplined execution across digital assets,
-          FX, and equities.
-        </p>
-      </div>
-    </div>
-
-    <!-- Blue panel sub-section -->
-    <div class="wwd-panel">
-      <div class="wwd-panel-top">
-        <span class="wwd-panel-index">3.1</span>
-        <span class="wwd-panel-subtitle">Investment Approach</span>
-      </div>
-
-      <p class="wwd-panel-body">
-        Within Tomorrow Capital, we run on collaboration rather than internal competition.
-        Researchers, engineers, and traders work together to share ideas, identify and
-        address risks, build tools, and explore new opportunities. Our team brings together
-        quantitative finance, software engineering, and market experience to design systems
-        that are data-driven, adaptive, and built to endure across market regimes.
-      </p>
-    </div>
-
-  </div>
-</section>
-
   
 <section class="asset-section">
   <!-- Top blue band content -->
   <div class="asset-head">
     <div>
-      <h2 class="asset-title">Expertise Across Asset Classes</h2>
+      <h2 class="asset-title">The Core Framework</h2>
     </div>
     <div>
       <p class="asset-copy">
@@ -523,30 +486,36 @@ async function injectFragment(hostSelector, url, baseHref) {
   <!-- Overlapping cards -->
   <div class="asset-cards">
     <article class="asset-card">
-      <h3>Crypto & Digital Assets</h3>
+      <h3>Expand, Establish, Excel</h3>
       <p>
         Market making and systematic strategies in major spot and derivative
         venues, with 24/7 coverage and exchange-level microstructure insight.
-      </p>
-      <a href="#crypto" class="asset-link">Explore Digital Assets</a>
-    </article>
 
-    <article class="asset-card asset-card--active">
-      <h3>FX & Metals</h3>
-      <p>
-        Short- and medium-horizon trading in currencies and precious metals,
-        combining macro factors with order-book dynamics and flow signals.
+                Systematic alpha, statistical arbitrage and liquidity provision across
+        single names, ETFs and index products in developed and emerging markets.
       </p>
-      <a href="#fx" class="asset-link">Explore FX & Metals</a>
     </article>
 
     <article class="asset-card">
-      <h3>Equities & Index Products</h3>
+      <h3>Optimization & Market Dynamics</h3>
+      <p>
+        Short- and medium-horizon trading in currencies and precious metals,
+        combining macro factors with order-book dynamics and flow signals.
+
+                Systematic alpha, statistical arbitrage and liquidity provision across
+        single names, ETFs and index products in developed and emerging markets.
+      </p>
+    </article>
+
+    <article class="asset-card">
+      <h3>Central price forecasting</h3>
       <p>
         Systematic alpha, statistical arbitrage and liquidity provision across
         single names, ETFs and index products in developed and emerging markets.
+
+                Systematic alpha, statistical arbitrage and liquidity provision across
+        single names, ETFs and index products in developed and emerging markets.
       </p>
-      <a href="#equities" class="asset-link">Explore Equities</a>
     </article>
   </div>
 </section>
@@ -562,6 +531,7 @@ async function injectFragment(hostSelector, url, baseHref) {
           We bring together curious, independent minds across quantitative finance,
           software engineering and research. Our people are encouraged to question
           assumptions, share ideas and take ownership from concept to live trading.
+          
         </p>
       </article>
 

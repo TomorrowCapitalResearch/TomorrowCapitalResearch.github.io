@@ -73,7 +73,7 @@
 }
 
 .trading-feature__body {
-  margin: 0 0 0 10px;
+  margin: 0 0 0 30px;
   font-size: 15px;
   line-height: 1.5;
   color: #e5ecff;
@@ -102,104 +102,11 @@
   }
 }
 
-
-/* ===== What We Do section (chapter heading + blue panel) ===== */
-
-.wwd-section {
-  padding: 60px 0 80px;
-  background: var(--lb); /* light paper-like background */
-}
-
-/* Top intro row: number + heading/text */
-.wwd-intro {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  gap: 24px;
-  align-items: flex-start;
-  margin-bottom: 40px;
-}
-
-.wwd-intro-number {
-  font-family: "Georgia", "Times New Roman", serif;
-  font-size: 32px;
-  line-height: 1;
-  color: #222;
-  padding-top: 6px;
-}
-
-.wwd-intro-title {
-  font-size: 28px;
-  font-weight: 500;
-  margin: 0 0 12px 0;
-  letter-spacing: 0.02em;
-}
-
-.wwd-intro-body {
-  margin: 0;
-  font-size: 16px;
-  line-height: 1.6;
-  color: #363636;
-  max-width: 60rem;
-  text-align: justify; /* similar feel to D.E. Shaw PDF */
-}
-
-/* Blue panel block */
-.wwd-panel {
-  margin-top: 24px;
-  padding: 32px 40px;
-  background: var(--db);          /* deep blue from your palette */
-  color: #ffffff;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
-}
-
-/* Small top label: “3.1 Investment Approach” */
-.wwd-panel-top {
-  display: flex;
-  gap: 20px;
-  align-items: baseline;
-  margin-bottom: 18px;
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  opacity: 0.9;
-}
-
-.wwd-panel-index {
-  font-weight: 500;
-}
-
-.wwd-panel-subtitle {
-  font-weight: 500;
-}
-
-/* Main text inside blue panel */
-.wwd-panel-body {
-  margin: 0;
-  font-size: 15px;
-  line-height: 1.7;
-  max-width: 60rem;
-}
-
-/* Responsive: stack number above text on small screens */
-@media (max-width: 768px) {
-  .wwd-intro {
-    grid-template-columns: 1fr;
-  }
-  .wwd-intro-number {
-    font-size: 24px;
-  }
-  .wwd-panel {
-    padding: 24px 20px;
-  }
-}
-
-
-
     
 /* ===== Asset classes section ===== */
 
 .asset-section {
-  background: var(--db);          /* deep blue band */
+  background: var(--text);          /* deep blue band */
   color: #ffffff;
   padding: 64px 0 120px;         /* extra bottom so cards can “sit” */
 }
@@ -215,8 +122,8 @@
 }
 
 .asset-title {
-  font-size: clamp(30px, 4vw, 40px);
-  font-weight: 700;
+  font-size: clamp(30px, 4vw, 60px);
+  font-weight: 500;
   line-height: 1.1;
   margin: 0;
 }
@@ -243,10 +150,8 @@
 /* Individual card */
 .asset-card {
   background: #F6F7F9;
-  color: #111827;
+  color: var(--text);
   padding: 22px 22px 24px;
-  border-radius: 4px;
-  box-shadow: 0 12px 24px rgba(0,0,0,0.10);
   border-top: 4px solid transparent;
 }
 
@@ -298,8 +203,8 @@
 /* ===== Competitive Advantage section ===== */
 
 .advantage-section {
-  padding: 56px 0;
-  background: var(--paper);
+  padding: 56px 56px;
+  background: var(--white);
 }
 
 .advantage-inner {
@@ -310,7 +215,7 @@
 
 .advantage-title {
   font-size: clamp(28px, 3.2vw, 34px);
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: -0.02em;
   margin: 0 0 28px 0;
   color: var(--ink);
@@ -330,7 +235,7 @@
 /* add vertical divider on middle + right cards */
 .advantage-item:nth-child(2),
 .advantage-item:nth-child(3) {
-  border-left: 1px solid rgba(0,0,0,0.12);
+  border-left: 1px solid var(--lb);
   padding-left: 24px;
 }
 

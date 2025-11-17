@@ -101,6 +101,73 @@
     font-size: 24px;
   }
 }
+    
+/* ===== Split hero/info sections (Citadel-style) ===== */
+
+.split-section {
+  padding: clamp(56px, 8vw, 80px) 0;
+}
+
+.split-section--muted {
+  background: var(--card);        /* warm grey / light band */
+}
+
+.split-section--white {
+  background: var(--paper);       /* plain white */
+}
+
+.split-inner {
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: 0 var(--side-pad);
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1.4fr);
+  gap: 40px;
+  align-items: flex-start;
+}
+
+/* Left big heading */
+.split-heading {
+  font-size: clamp(32px, 5vw, 46px);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  font-weight: 500;
+  margin: 0;
+  color: var(--ink);
+}
+
+/* Right body text */
+.split-body {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #32363b;
+  max-width: 45rem;
+}
+
+.split-body p {
+  margin: 0 0 18px 0;
+}
+
+/* Button in second section */
+.split-actions {
+  margin-top: 8px;
+}
+
+.split-actions .button--primary {
+  background: var(--db);
+  border-color: var(--db);
+}
+
+/* Responsive: stack */
+@media (max-width: 900px) {
+  .split-inner {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .split-heading {
+    font-size: clamp(28px, 8vw, 36px);
+  }
+}
 
     
 /* ===== Asset classes section ===== */
@@ -372,7 +439,54 @@ async function injectFragment(hostSelector, url, baseHref) {
   </div>
 </section>
 
-  
+  <!-- Section 1: high-level What We Do -->
+<section class="split-section split-section--muted">
+  <div class="split-inner">
+    <div>
+      <h2 class="split-heading">The Next-Generation Systematic Markets Firm</h2>
+    </div>
+    <div class="split-body">
+      <p>
+        Tomorrow Capital designs systematic trading and investment strategies that seek
+        the optimal balance of risk, robustness, and long-term compounding.
+      </p>
+      <p>
+        Our work is powered by the deep integration of quantitative research, AI, and
+        engineering expertise. By combining market microstructure insight with
+        cutting-edge analytics and technology, we deliver disciplined, data-driven
+        performance across digital assets, FX, and equities — while building the
+        market systems of tomorrow.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Section 2: people / platform + CTA -->
+<section class="split-section split-section--white">
+  <div class="split-inner">
+    <div>
+      <h2 class="split-heading">Proven Innovators. Trusted Partners.</h2>
+    </div>
+    <div class="split-body">
+      <p>
+        Incredible people. Powerful predictive models. Systems that scale. We
+        leverage our strengths to turn complex markets into transparent, systematic
+        processes — from signal research and portfolio construction to execution and
+        risk management.
+      </p>
+      <p>
+        Whether we’re providing liquidity, running systematic strategies, or
+        exploring new asset classes, we focus on one thing: building resilient,
+        adaptive infrastructure you can depend on across market regimes.
+      </p>
+      <div class="split-actions">
+        <a href="what-we-do.html" class="button button--primary">Explore What We Do</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
 <section class="asset-section">
   <!-- Top blue band content -->
   <div class="asset-head">

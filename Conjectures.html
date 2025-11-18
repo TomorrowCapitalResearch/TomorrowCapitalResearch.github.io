@@ -11,10 +11,16 @@
       --card: #EEE9DF;
       --accent: #22d3ee;
       --accent-soft: rgba(34,211,238,0.16);
-      --ink: #e5e7eb;
-      --muted: #9ca3af;
+      --ink: #000;
+      --muted: #2C3639;
       --border: #1f2937;
       --max-width: 1100px;
+      --palladian: #EEE9DF;
+      --oatmeal: #C9C1B1;
+      --blue-fantastic: #2C3B4D;
+      --burning-flame: #FFB162;
+      --truffle-trouble: #A35139;
+      --abyssal-blue: #1B2632;
     }
 
     * {
@@ -25,13 +31,13 @@
       margin: 0;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
         "Inter", sans-serif;
-      background: radial-gradient(circle at top, #ffffff 0, #f4f1ec 55%, #DAD1C8 100%);
+      background: radial-gradient(circle at top, var(--palladian) 0, var(--oatmeal) 55%, var(--burning-flame) 100%);
       color: var(--ink);
       -webkit-font-smoothing: antialiased;
     }
 
     a {
-      color: var(--accent);
+      color: var(--ink);
       text-decoration: none;
     }
     a:hover {
@@ -275,7 +281,7 @@
           Tomorrow Capital Research · Research Initiative
         </div>
         <h1 class="tc-hero-title">Tomorrow’s Conjectures</h1>
-        <p>Disclaimer: This page is a working mock-up for a future initiative. All content is provisional and should be treated as illustrative only.</p>
+        <p>Disclaimer: This page is a working mock-up for a future initiative. All content is provisional and should be treated as illustrative only. <br></p>
         <p class="tc-hero-subtitle">
 It outlines a proposed programme built around five grand unsolved problems of algorithmic finance
 —a long-horizon challenge inspired by the Hilbert Problems and the Millennium Prize Problems,

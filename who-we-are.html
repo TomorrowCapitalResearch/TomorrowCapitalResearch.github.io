@@ -35,61 +35,6 @@
   --radius:14px;
 }
 
-/* Values section */
-.values-section {
-  padding: 72px 20px 80px;
-  background-color: #ffffff;
-}
-
-.values-inner {
-  max-width: 720px;
-  margin: 0 auto;
-  text-align: center;
-  color: #111827;
-}
-
-.values-label {
-  font-size: 11px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  font-weight: 600;
-  margin: 0 0 32px;
-  color: #6b7280;
-}
-
-/* Individual value blocks */
-.value-item {
-  margin-bottom: 56px;
-}
-
-.value-item:last-of-type {
-  margin-bottom: 0;
-}
-
-.value-item h2 {
-  font-size: 22px;
-  margin: 0 0 16px;
-  font-weight: 600;
-}
-
-.value-item p {
-  margin: 0;
-  font-size: 15px;
-  line-height: 1.7;
-  color: #374151;
-}
-
-/* Optional: slightly tighter spacing on very small screens */
-@media (max-width: 480px) {
-  .values-section {
-    padding-top: 56px;
-    padding-bottom: 64px;
-  }
-
-  .value-item {
-    margin-bottom: 40px;
-  }
-}
 
 /* ------------------------------ */
 /* Layout Wrapper                 */
@@ -241,7 +186,7 @@
 
     
 .alt-feature-section {
-  background: var(--db, #0E3275); /* Your deep blue */
+  background: var(--text); /* Your deep blue */
   padding: 80px 20px;
   color: #ffffff;
 }
@@ -286,9 +231,7 @@
 .alt-feature-media img {
   width: 100%;
   height: auto;
-  border-radius: 8px;
   object-fit: cover;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
 }
 
 /* Text */
@@ -321,7 +264,6 @@
   color: #0e3275;
   font-weight: 600;
   text-decoration: none;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
 }
 
 .alt-feature-button:hover {
@@ -342,7 +284,61 @@
   }
 }
 
+/* Values section */
+.values-section {
+  padding: 72px 20px 80px;
+  background-color: #ffffff;
+}
 
+.values-inner {
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+  color: #111827;
+}
+
+.values-label {
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin: 0 0 32px;
+  color: #6b7280;
+}
+
+/* Individual value blocks */
+.value-item {
+  margin-bottom: 56px;
+}
+
+.value-item:last-of-type {
+  margin-bottom: 0;
+}
+
+.value-item h2 {
+  font-size: 22px;
+  margin: 0 0 16px;
+  font-weight: 500;
+}
+
+.value-item p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.7;
+  color: #374151;
+}
+
+/* Optional: slightly tighter spacing on very small screens */
+@media (max-width: 480px) {
+  .values-section {
+    padding-top: 56px;
+    padding-bottom: 64px;
+  }
+
+  .value-item {
+    margin-bottom: 40px;
+  }
+}
     
 </style>
 
@@ -436,7 +432,7 @@ async function injectFragment(hostSelector, url, baseHref) {
 
 <section class="overlap-hero">
   <div class="overlap-image">
-    <img src="assets/A1.jpeg" alt="Team working at trading screens">
+    <img src="assets/A10.png" alt="Team working at trading screens">
   </div>
 
   <div class="overlap-panel">
@@ -495,7 +491,6 @@ async function injectFragment(hostSelector, url, baseHref) {
         Many of our leaders have built their careers here. They are committed to
         developing ambitious talent and moving forward together toward shared goals.
       </p>
-      <a href="#" class="alt-feature-button">View Leadership Team</a>
     </div>
   </div>
 
@@ -508,7 +503,6 @@ async function injectFragment(hostSelector, url, baseHref) {
         beyond the workplace. Our civic leadership efforts expand access to
         education, support local initiatives, and strengthen our communities.
       </p>
-      <a href="#" class="alt-feature-button">Learn About Our Civic Leadership</a>
     </div>
 
     <div class="alt-feature-media">

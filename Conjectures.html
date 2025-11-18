@@ -4,374 +4,919 @@
   <meta charset="UTF-8" />
   <title>Tomorrow’s Conjectures | Tomorrow Capital Research</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <script>
-    window.MathJax = {
-      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] }
-    };
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+  <style>
+    :root {
+      --bg: #050816;
+      --bg-alt: #0b1220;
+      --card: #0f172a;
+      --accent: #22d3ee;
+      --accent-soft: rgba(34,211,238,0.16);
+      --ink: #e5e7eb;
+      --muted: #9ca3af;
+      --border: #1f2937;
+      --max-width: 1100px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Inter", sans-serif;
+      background: radial-gradient(circle at top, #111827 0, #020617 55%, #000 100%);
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .tc-page {
+      min-height: 100vh;
+      padding: 40px 20px 80px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .tc-inner {
+      width: 100%;
+      max-width: var(--max-width);
+    }
+
+    .tc-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background: rgba(15, 23, 42, 0.8);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+    .tc-tag-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 10px var(--accent-soft);
+    }
+
+    .tc-hero {
+      margin-bottom: 40px;
+    }
+
+    .tc-hero-title {
+      font-size: clamp(32px, 4vw, 40px);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin: 0 0 16px;
+    }
+
+    .tc-hero-subtitle {
+      max-width: 650px;
+      font-size: 16px;
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    .tc-hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 16px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .tc-pill {
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: rgba(15, 23, 42, 0.7);
+    }
+
+    .tc-section {
+      margin-top: 40px;
+      padding: 28px 24px;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: radial-gradient(circle at top left, rgba(34,211,238,0.08), transparent 55%),
+                  radial-gradient(circle at bottom right, rgba(59,130,246,0.08), transparent 55%),
+                  linear-gradient(145deg, rgba(15,23,42,0.9), rgba(3,7,18,0.95));
+      backdrop-filter: blur(12px);
+    }
+
+    .tc-section + .tc-section {
+      margin-top: 28px;
+    }
+
+    .tc-section-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .tc-section-kicker {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--accent);
+    }
+
+    .tc-section-title {
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin: 0;
+    }
+
+    .tc-section-body p {
+      margin: 0 0 10px;
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--ink);
+    }
+
+    .tc-section-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    .tc-section-body ul {
+      margin: 6px 0 10px 1.2rem;
+      padding: 0;
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--ink);
+    }
+
+    .tc-section-body li + li {
+      margin-top: 4px;
+    }
+
+    .tc-section-body small {
+      color: var(--muted);
+    }
+
+    .tc-conjectures-list {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      margin-top: 10px;
+    }
+
+    .tc-conjecture {
+      border-radius: 16px;
+      border: 1px solid rgba(15, 23, 42, 0.9);
+      background: rgba(15,23,42,0.9);
+      padding: 18px 18px 16px;
+    }
+
+    .tc-conjecture-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .tc-conjecture-title {
+      font-size: 15px;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    .tc-conjecture-tag {
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.5);
+      color: var(--muted);
+    }
+
+    .tc-conjecture-body h4 {
+      margin: 8px 0 4px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .tc-conjecture-body p {
+      margin: 0 0 8px;
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--ink);
+    }
+
+    .tc-conjecture-body ul {
+      margin: 4px 0 8px 1.2rem;
+      padding: 0;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .tc-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 6px;
+      font-size: 13px;
+    }
+
+    .tc-table th,
+    .tc-table td {
+      padding: 6px 8px;
+      border: 1px solid rgba(55,65,81,0.7);
+      vertical-align: top;
+    }
+
+    .tc-table th {
+      background: rgba(15,23,42,0.9);
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .tc-footnote {
+      margin-top: 14px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    @media (max-width: 720px) {
+      .tc-section {
+        padding: 20px 16px;
+      }
+      .tc-conjecture {
+        padding: 14px 12px;
+      }
+      .tc-table th,
+      .tc-table td {
+        font-size: 12px;
+      }
+    }
+  </style>
 </head>
 <body>
-  <main class="research-page">
-    <article class="research-article">
-
-      <header class="research-header">
-        <h1>Tomorrow’s Conjectures: Establishing the Foundational Unsolved Problems of Algorithmic Finance</h1>
+  <div class="tc-page">
+    <main class="tc-inner">
+      <!-- HERO -->
+      <header class="tc-hero">
+        <div class="tc-tag">
+          <span class="tc-tag-dot"></span>
+          Tomorrow Capital Research · Research Initiative
+        </div>
+        <h1 class="tc-hero-title">Tomorrow’s Conjectures</h1>
+        <p class="tc-hero-subtitle">
+          Five foundational unsolved problems of algorithmic finance. A long-horizon
+          challenge programme inspired by the Hilbert Problems and the Millennium
+          Prize Problems, focused on rigorous theory with deployable algorithms.
+        </p>
+        <div class="tc-hero-meta">
+          <span class="tc-pill">5 conjectures</span>
+          <span class="tc-pill">Monetary prize for each</span>
+          <span class="tc-pill">Tomorrow Medal &amp; formal recognition</span>
+          <span class="tc-pill">Open to researchers &amp; practitioners</span>
+        </div>
       </header>
 
-      <!-- I. Strategic Rationale and Foundational Framework -->
-      <section id="strategic-rationale">
-        <h2>I. Strategic Rationale and Foundational Framework</h2>
-
-        <section id="grand-challenges">
-          <h3>I.A. The Imperative for Grand Challenges in Quantitative Finance</h3>
-
+      <!-- SECTION I: STRATEGIC RATIONALE -->
+      <section class="tc-section" id="rationale">
+        <div class="tc-section-header">
+          <div class="tc-section-kicker">I. Strategic Framework</div>
+          <h2 class="tc-section-title">
+            The imperative for grand challenges in quantitative finance
+          </h2>
+        </div>
+        <div class="tc-section-body">
           <p>
-            The trajectory of scientific progress has historically been defined by the focused pursuit of profound, unanswered theoretical questions. This approach, exemplified by David Hilbert’s list of unsolved problems at the turn of the 20th century and, more recently, by the Clay Mathematics Institute’s (CMI) Millennium Prize Problems, concentrates intellectual resources toward resolving foundational hurdles. For instance, the successful resolution of the Poincaré conjecture, initially posed in 1904, stimulated widespread research and redefined understanding within the field of topology. The stated intent of such initiatives is to preserve the intrinsic nature and integrity of fundamental inquiry.
+            The trajectory of scientific progress has often been shaped by the
+            deliberate pursuit of profound, unanswered questions. David Hilbert’s
+            famous list of problems and, more recently, the Clay Mathematics
+            Institute’s Millennium Prize Problems, concentrated intellectual effort
+            on foundational hurdles and reshaped entire fields.
           </p>
-
           <p>
-            Financial markets are highly complex, non-stationary adaptive systems. Progress in quantitative finance cannot rely solely on incremental algorithmic improvements. A true advancement necessitates resolving fundamental theoretical limits related to microstructure, non-linearity, competitive dynamics, and informational efficiency. While the “Grand Challenges” methodology has been employed effectively in areas like global health to align funding and efforts toward critical developmental issues, the quantitative finance community requires a comparable set of technically rigorous, foundational open problems.
+            The resolution of the Poincaré conjecture, first posed in 1904, is a
+            canonical example: beyond solving a single puzzle, it stimulated decades
+            of research and redefined the landscape of topology. These initiatives
+            preserve the integrity of fundamental inquiry by setting clear, ambitious,
+            technically rigorous targets.
           </p>
-
           <p>
-            It is observed that established structures, such as the accepted legal and accounting frameworks governing corporations, can sometimes obstruct efforts to address complex challenges like income inequality. This suggests that defining clear intellectual targets&mdash;challenges that transcend current systemic constraints&mdash;is vital. By framing these targets as formal Conjectures, Tomorrow Capital Research (TCR) aims to establish a high theoretical benchmark, thereby distinguishing verifiable intellectual breakthroughs from transient empirical performance gains. The focus is placed on breakthroughs that provide verifiable computational or game-theoretic solutions, moving beyond market-specific optimizations.
+            Financial markets, by contrast, are highly complex, non-stationary
+            adaptive systems. Progress in quantitative finance cannot rely solely on
+            incremental algorithmic improvements or isolated empirical “edges”.
+            Genuine advancement requires confronting fundamental theoretical limits
+            on:
           </p>
-        </section>
-
-        <section id="nomenclature">
-          <h3>I.B. Defining the Nomenclature: Tomorrow's Conjectures ($\mathcal{TC}$)</h3>
-
-          <p>
-            The semantic precision of the nomenclature is essential to set the intellectual tone and scope of the initiative. The decision rests between “Conjecture” and “Postulate.”
-          </p>
-
-          <p>
-            A <strong>Postulate</strong>, or Axiom, is a fundamental assumption that defines the rules of a mathematical system and is accepted without requiring proof. For example, the non-Euclidean geometries are built by modifying one of Euclid's postulates. This term implies foundational acceptance, which is counterproductive when soliciting solutions.
-          </p>
-
-          <p>
-            In contrast, a <strong>Conjecture</strong> is a statement believed to be true, but which remains unproven or undisproven. The goal of presenting these five problems is to invite researchers to produce a formal proof&mdash;thereby elevating the conjecture to a theorem&mdash;or provide decisive, generalized empirical validation via an algorithmic implementation. Since the aim is to resolve major theoretical uncertainties, Tomorrow's Conjectures ($\mathcal{TC}$) is the required nomenclature.
-          </p>
-
-          <p>
-            A successful submission resolving a conjecture must meet rigorous standards, aligning with the highest expectations for academic research in quantitative finance. Three necessary components define a comprehensive solution:
-          </p>
-
           <ul>
-            <li>
-              <strong>Formal Mathematical Statement:</strong>
-              A rigorous proof demonstrating the existence, uniqueness, or properties of the optimal solution within a defined model, or a decisive counterexample if the original premise is found to be false.
-            </li>
-            <li>
-              <strong>Verifiable Algorithm:</strong>
-              A fully implemented, computationally tractable algorithm derived directly from the formal mathematical proof, suitable for deployment.
-            </li>
-            <li>
-              <strong>Comprehensive Validation:</strong>
-              Exhaustive empirical testing against public and, critically, blinded, out-of-sample data sets. This testing protocol, often involving public/private scoring splits, is essential to confirm the solution's generalization capability and mitigate the risk of statistical overfitting.
-            </li>
+            <li>Market microstructure and order-book dynamics</li>
+            <li>Non-linearity, path dependence, and roughness</li>
+            <li>Adversarial and competitive interactions between agents</li>
+            <li>Informational efficiency, learning, and regime shifts</li>
           </ul>
-        </section>
+          <p>
+            Other domains, such as global health and climate, have successfully used
+            “Grand Challenge” frameworks to align capital, talent, and institutions
+            around their hardest problems. Quantitative and algorithmic finance still
+            lacks a comparably coherent set of formally posed, foundational problems.
+          </p>
+          <p>
+            Tomorrow’s Conjectures are our attempt to supply this. By framing a small
+            number of central questions as formal conjectures, Tomorrow Capital
+            Research (TCR) aims to distinguish verifiable intellectual breakthroughs
+            from transient performance gains tied to specific regimes or datasets.
+            The focus is on breakthroughs that yield provable computational or
+            game-theoretic solutions, with clear paths to implementation.
+          </p>
+          <p>
+            As quants, we also know that the pursuit of deep, grand problems—with the
+            intention to understand and improve upon the structure of markets—is the
+            driving force for many of us. Tomorrow’s Conjectures are intended as
+            shared targets for that ambition.
+          </p>
+        </div>
       </section>
 
-      <!-- II. Formal Formulation of Tomorrow’s Conjectures -->
-      <section id="formal-conjectures">
-        <h2>II. Formal Formulation of Tomorrow’s Conjectures</h2>
-
-        <!-- Conjecture 1 -->
-        <section id="conjecture-1">
-          <h3>Conjecture 1: The Robust Market Regime Engine (The $\mathcal{RME}$ Problem)</h3>
-
-          <h4>Challenge Statement</h4>
+      <!-- SECTION I.B: NOMENCLATURE & PRIZES -->
+      <section class="tc-section" id="nomenclature">
+        <div class="tc-section-header">
+          <div class="tc-section-kicker">I.B. Nomenclature &amp; rewards</div>
+          <h2 class="tc-section-title">Why “conjectures”? What is awarded?</h2>
+        </div>
+        <div class="tc-section-body">
           <p>
-            To design and formally validate a Market Regime Engine (MRE) that optimizes the real-time Speed-Accuracy Trade-Off Function ($\mathcal{SATF}$), providing the highest classification fidelity of latent market states (volatility, trend, segmentation) subject to microsecond-level computational latency constraints ($\Lambda_{max}$).
+            The semantic choice between “postulate” and “conjecture” is deliberate.
           </p>
-
-          <h4>Formalizing Regime Detection and the SAT Constraint</h4>
           <p>
-            Market regimes represent distinct states of a financial market, such as periods of high volatility or persistent bullish trends, characterized by persistent underlying market conditions. Accurately identifying these regimes is crucial because they dictate the relevance of investment factors and the expected success of trading strategies. Due to the constantly evolving, non-stationary nature of financial markets, researchers frequently employ unsupervised learning methods, such as Hidden Markov Models (HMMs), Gaussian Mixture Models (GMMs), or advanced clustering like Wasserstein k-means, to segment data into these latent states.
+            A <strong>Postulate</strong> (or Axiom) is a fundamental assumption that
+            defines the rules of a mathematical system and is accepted without proof.
+            Non-Euclidean geometries, for example, arise by modifying a single
+            Euclidean postulate. Such statements are not posed as challenges;
+            accepting them as given would be counterproductive when our aim is to
+            invite solutions.
           </p>
-
           <p>
-            The data presents unique obstacles: financial returns exhibit heavy tails, making them sensitive to outliers, and are temporally dependent (autocorrelated), violating the independence assumptions of many standard machine learning models. A successful MRE must rigorously define the latent state space $\mathcal{S}$ and provide a classification method $\hat{s}_t \in \mathcal{S}$ that robustly handles both distributional characteristics and temporal dependencies simultaneously.
+            A <strong>Conjecture</strong>, by contrast, is a precise statement
+            believed to be true (or false) but not yet proven. The purpose of
+            Tomorrow’s Conjectures is precisely to invite the community to:
           </p>
-
-          <p>
-            The defining constraint of the $\mathcal{RME}$ problem is the fundamental trade-off between the speed of data processing and the resulting accuracy of the insight. While the integration of complex data streams and advanced analytics (such as machine learning algorithms) can enhance predictive accuracy, it introduces computational overhead, increasing latency ($\Lambda$). In high-speed trading, delays of even a few milliseconds can render an accurate decision worthless. The goal is not merely maximum theoretical accuracy, but maximum utility under severe latency pressure.
-          </p>
-
-          <p>
-            The core of the $\mathcal{RME}$ problem is to maximize the generalized utility function $U_{RME}$, which is defined along the acceptable Speed-Accuracy Trade-Off curve:
-          </p>
-
-          <p class="equation">
-            $$\max U_{RME} = A(\hat{s}_t) - \lambda \cdot P(\Lambda)$$
-          </p>
-
-          <p>
-            where $A(\hat{s}_t)$ is the accuracy metric (e.g., F1-score of the classification or log-likelihood of fit), and $P(\Lambda)$ is a penalty function, weighted by $\lambda$, that enforces a strict ceiling on latency, $\Lambda_{max}$ (e.g., $P(\Lambda) \to \infty$ if $\Lambda &gt; \Lambda_{max}$). This formulation requires finding the optimal balance point, quantifying how accuracy trades off with response time in a manner analogous to established methodologies in cognitive science research.
-          </p>
-
-          <h4>Required Output and Success Metrics</h4>
-          <p>
-            <strong>Primary Metric:</strong> The Area Under the Curve (AUC) of the generalized $\mathcal{SATF}$. This curve plots the achieved classification accuracy against the associated latency across a spectrum of computational resource constraints (represented by varying $\lambda$). The AUC must be maximized specifically within the region where $\Lambda \leq \Lambda_{max}$, thereby prioritizing solutions that deliver robust fidelity within real-time constraints.
-          </p>
-
-          <p>
-            <strong>Secondary Metric:</strong> The demonstrated statistical superiority of the MRE's regime transition model. The solution must show that the detected shift in the latent state significantly explains and forecasts subsequent volatility clustering and return dynamics, verifiably outperforming established unsupervised techniques like HMMs or GMMs.
-          </p>
-        </section>
-
-        <!-- Conjecture 2 -->
-        <section id="conjecture-2">
-          <h3>Conjecture 2: The Constrained Optimization Frontier (The $\mathcal{CFO}$ Problem)</h3>
-
-          <h4>Challenge Statement</h4>
-          <p>
-            To develop a generalized, tractable framework for Convex Portfolio Optimization under uncertainty that simultaneously incorporates non-linear market friction constraints, specifically dynamic Liquidation Speed Capacity ($\mathcal{LSC}$) and Factor-Adjusted Diversification ($\mathcal{FAD}$), achieving a defined Fixed Return/Risk (R/R) profile.
-          </p>
-
-          <h4>Integrating Constraints and Frictions</h4>
-          <p>
-            Real-world portfolio management necessitates moving beyond the theoretical assumptions of classical Modern Portfolio Theory (MPT), which typically minimizes variance without addressing liquidity or executability frictions. Practical constraints&mdash;such as position limits, budget constraints, and risk controls&mdash;must be incorporated, often requiring complex numerical optimization algorithms. The $\mathcal{CFO}$ problem requires integrating two crucial, non-linear constraints: liquidation stress and correlation-based diversification.
-          </p>
-
-          <h4>Formalizing Liquidation Speed Capacity ($\mathcal{LSC}$)</h4>
-          <p>
-            Liquidity constraints are vital for ensuring portfolio manageability, particularly during stress events. Liquidation Speed Capacity ($\mathcal{LSC}$) relates the portfolio's size and the desired changes in asset weights to the available financial volume, preventing an investor from creating undue market impact when rebalancing. The maximum value possible to be liquidated on asset $i$ is denoted $\theta_i$.
-          </p>
-
-          <p>
-            The $\mathcal{CFO}$ solution must formalize $\mathcal{LSC}$ as a time-dependent participation limit. If $V_i(t)$ is the average daily trading volume for asset $i$, the constraint must ensure that the change in exposure $|\Delta x_i|$ over the rebalancing period $\Delta t$ does not exceed a predefined maximum market participation rate $\gamma$:
-          </p>
-
-          <p class="equation">
-            $$|\Delta x_i| \leq \gamma \cdot V_i(t)$$
-          </p>
-
-          <p>
-            The conjecture requires solving for the maximum achievable, stable Risk/Return ratio ($R/R^*$) subject to a fixed, constrained $\gamma$. This demonstrates the capacity to execute the portfolio optimally even when facing strict limits on market influence, ensuring resilience under liquidation stress.
-          </p>
-
-          <h4>Formalizing Factor-Adjusted Diversification ($\mathcal{FAD}$)</h4>
-          <p>
-            Diversification is often quantified using the Herfindahl-Hirschman Index (HHI), which sums the squares of the portfolio proportions ($c_i^2$). The HHI provides a measure of concentration, and its reciprocal, $1/\text{HHI}$, yields the "effective number of entities" across which exposure is distributed.
-          </p>
-
-          <p>
-            However, traditional HHI only measures concentration based on position size. A portfolio’s true risk exposure depends fundamentally on the correlation structure between assets. An effective measure of diversification must penalize exposure to assets that share common risk factors or belong to highly correlated sectors.
-          </p>
-
-          <p>
-            The $\mathcal{FAD}$ mandates the development of a generalized HHI ($\text{HHI}_{\mathcal{FAD}}$) that explicitly incorporates the asset covariance matrix ($\Sigma$) or factor loadings ($\mathbf{B}$). This factor-adjusted metric must penalize correlated exposures more heavily than uncorrelated ones, moving beyond simple size-based metrics. The ultimate goal is to find the optimal weight vector $\mathbf{x}^*$ that satisfies the dual constraints:
-          </p>
-
-          <p class="equation">
-            $$\mathbf{x}^* = \arg \min R(\mathbf{x}, \Sigma) \quad \text{s.t.} \quad \mathcal{LSC}(\mathbf{x}, \gamma, \Delta t) \text{ holds, and } \text{HHI}_{\mathcal{FAD}}(\mathbf{x}, \mathbf{B}) \leq D_{max}$$
-          </p>
-
-          <p>
-            The central challenge here is maintaining mathematical tractability (e.g., convexity) in the optimization problem while integrating these non-linear and complex market friction constraints.
-          </p>
-
-          <h4>Required Output and Success Metrics</h4>
-          <p>
-            <strong>Primary Metric:</strong> The Efficiency Ratio, calculated as the achieved R/R (e.g., Sharpe Ratio) obtained by the constrained portfolio divided by the theoretical (unconstrained) R/R. The maximization of this ratio demonstrates the solution’s efficacy in achieving optimal performance given the rigorous bounds imposed by $\mathcal{LSC}$ and $\mathcal{FAD}$.
-          </p>
-
-          <p>
-            <strong>Secondary Metric:</strong> The Factor-Adjusted Diversification Score ($1/\text{HHI}_{\mathcal{FAD}}$), verified to be statistically higher than the score achieved by equivalent portfolios optimized solely under MPT variance minimization, proving superior factor-level risk mitigation.
-          </p>
-        </section>
-
-        <!-- Conjecture 3 -->
-        <section id="conjecture-3">
-          <h3>Conjecture 3: The Cryptographic Execution Problem (The $\mathcal{CEP}$ Problem)</h3>
-
-          <h4>Challenge Statement</h4>
-          <p>
-            To derive the Optimal Order Distribution Strategy ($\mathbf{\nu}^*$) for large volume execution in a competitive market, framed as a game-theoretic problem, where the strategy maximizes expected P&amp;L by minimizing informational leakage and subsequent alpha decay induced by $N \ge 2$ competitor agents.
-          </p>
-
-          <h4>Execution as a Game</h4>
-          <p>
-            Optimal execution is traditionally concerned with minimizing implementation shortfall&mdash;the difference between the theoretical entry price and the realized execution price&mdash;by balancing permanent and temporary market impact against holding risk. However, this framework typically assumes a passive market environment. In competitive algorithmic trading, the execution agent's strategy ($\nu_j$) must be optimal not just against price impact, but also against the strategic detection and exploitation efforts of other intelligent, self-interested participants ($\nu_{-j}$).
-          </p>
-
-          <p>
-            This problem belongs to the domain of Algorithmic Game Theory (AGT), which analyzes systems where strategic agents interact and inputs (order flow) may be manipulated or strategically provided. The goal is to maximize the agent's utility $H_j(\nu_j, \nu_{-j})$, incorporating accumulated cash and various penalties.
-          </p>
-
-          <h4>Modeling Stealth and Information Leakage</h4>
-          <p>
-            The competitive execution problem necessitates solving for the Nash Equilibrium (NE)&mdash;the set of strategies $\mathbf{\nu}^*$ where no agent can individually improve its payoff by changing its strategy&mdash;within a market context involving numerous interacting parties. Given the complexity of modeling a large population of agents, a Mean Field Game (MFG) approach is often required to approximate the equilibrium structure.
-          </p>
-
-          <p>
-            Informational asymmetry models, where subsets of traders possess private information, have dominated market microstructure research, particularly concerning price discovery. The execution agent's actions inherently leak information, which can be detected by competing "sniffing algorithms" designed to identify underlying intent and front-run the remaining order. Since the utility derived from a strategy can be a convex function of the opponent's strategy distribution, the optimal stealth strategy is often mixed or probabilistic.
-          </p>
-
-          <p>
-            The $\mathcal{CEP}$ requires formally defining an optimal execution strategy $\nu^*$ that minimizes the implementation shortfall while explicitly maximizing the time-to-detection (or minimizing the probability of detection, $P_D$) by competing algorithms. This involves defining an alpha decay function $D$ that links the observed trading behavior to the inevitable reduction in the execution agent's alpha.
-          </p>
-
-          <h4>Required Output and Success Metrics</h4>
-          <p>
-            <strong>Primary Metric:</strong> The percentage reduction in Implementation Shortfall (IS) achieved by the derived $\mathbf{\nu}^*$ compared to a standard baseline (e.g., passive VWAP or time-sliced execution), conditional on a quantifiable measure of stealth. This stealth is best quantified by maximizing the Detection Entropy of the order distribution, which measures the unpredictability of the flow to a rational, observing competitor.
-          </p>
-
-          <p>
-            <strong>Secondary Metric:</strong> Rigorous demonstration of a stable, computationally feasible Nash Equilibrium solution ($\mathbf{\nu}^*$) within a simulated environment containing $N \ge 4$ self-interested, adaptive agents, validated through MFG techniques.
-          </p>
-        </section>
-
-        <!-- Conjecture 4 -->
-        <section id="conjecture-4">
-          <h3>Conjecture 4: The Dynamic Ownership Paradigm (The $\mathcal{DOP}$ Problem)</h3>
-
-          <h4>Challenge Statement</h4>
-          <p>
-            To formulate a dynamic asset control policy that determines, at time $t$, whether an asset should be Held (passive allocation) or Traded (active management) solely based on objective, time-series features of its market microstructure&mdash;specifically Market Capitalization ($\mathcal{MC}$), Trading Volume ($\mathcal{TV}$), and inferred Institutional Ownership Structure ($\mathcal{IOS}$).
-          </p>
-
-          <h4>The Hold vs. Trade Decision Boundary</h4>
-          <p>
-            Asset allocation is an investment strategy aimed at balancing risk and reward by adjusting asset percentages based on risk tolerance and market outlook. Dynamic Asset Allocation (DAA) involves continuously altering these weights based on evolving market conditions. The $\mathcal{DOP}$ problem introduces a binary decision $D_t \in \{0, 1\}$ for each individual asset: $D_t = 1$ triggers active rebalancing, incurring transaction costs; $D_t = 0$ maintains the current weight, incurring only holding risk.
-          </p>
-
-          <p>
-            The decision boundary should rely on objective microstructure properties, as these directly determine the cost-benefit trade-off of active management. Large $\mathcal{MC}$ and high $\mathcal{TV}$ imply high liquidity and low friction, which generally support active trading. Conversely, small $\mathcal{MC}$ and thin trading volumes demand a passive approach to avoid high market impact costs.
-          </p>
-
-          <h4>Microstructure Input Features and Deduction</h4>
-          <p>
-            The proposed optimal policy $\pi^*$ must rely on market microstructure features, which have been successfully employed in dynamic asset allocation frameworks, often utilizing time-series models like LSTMs. The solution must define the state space $s_t$ based on $\mathcal{MC}_t$, $\mathcal{TV}_t$, and the Inferred Institutional Ownership Structure ($\mathcal{IOS}_t$).
-          </p>
-
-          <p>
-            Direct data on ownership ($\mathcal{IOS}$) is often delayed or incomplete, requiring deduction from market activity. The solution must construct a methodology to infer structural characteristics (e.g., institutional block trade dominance versus retail flow) using high-frequency volume profiles and trade size distributions. Different ownership biases can lead to asymmetric price elasticities, further influencing the optimal decision.
-          </p>
-
-          <p>
-            The optimal policy $\pi^*$ maximizes the expected long-term utility $E$ by selecting $D_t$:
-          </p>
-
-          <p class="equation">
-            $$\pi^*(s_t) = D_t \in \{0, 1\} \quad \text{where } s_t = f(\mathcal{MC}_t, \mathcal{TV}_t, \mathcal{IOS}_t)$$
-          </p>
-
-          <p>
-            The function $f(\cdot)$ must determine the optimal dynamic threshold such that $D_t = 1$ (Trade) is selected only when the expected risk reduction or return capture outweighs the anticipated execution costs associated with the asset’s deduced ownership profile and current liquidity.
-          </p>
-
-          <h4>Required Output and Success Metrics</h4>
-          <p>
-            <strong>Primary Metric:</strong> Maximization of the Sortino Ratio adjusted for turnover ($\text{Sortino Ratio}_{\text{adj}}$). The Sortino Ratio is selected for its focus on downside risk (deviation below the risk-free rate). The adjustment explicitly and significantly penalizes high portfolio turnover, ensuring that the policy $D_t$ demonstrates true efficiency in capital deployment rather than merely maximizing gross returns through excessive, costly rebalancing.
-          </p>
-
-          <p>
-            <strong>Secondary Metric:</strong> Statistical proof that the active decision ($D_t = 1$) is invoked only when the predicted reduction in expected risk/return correlation (achievable through rebalancing) reliably exceeds the estimated transaction and market impact costs for the given asset, thereby validating the efficiency of the decision boundary.
-          </p>
-        </section>
-
-        <!-- Conjecture 5 -->
-        <section id="conjecture-5">
-          <h3>Conjecture 5: The Multiplayer Strategic Equilibrium (The $\mathcal{MSE}$ Problem)</h3>
-
-          <h4>Challenge Statement</h4>
-          <p>
-            For any complex, partially observable, stochastic strategy game involving $I \ge 4$ rational players, define and solve for the Pareto Optimal Strategy Set ($\mathcal{POSS}$) by proposing a three-part strategy framework (Information, Actions, Goals) that robustly integrates communication and alliance formation to achieve a globally maximized utility function, even when individual player goals conflict.
-          </p>
-
-          <h4>The $I \ge 4$ Strategy Challenge</h4>
-          <p>
-            AI research has consistently used complex games as fundamental challenges, moving from two-player perfect information systems to multi-agent, partial-observability, real-time strategy games like StarCraft II and Diplomacy. Diplomacy is particularly challenging because success depends on forming alliances and coordinating plans through natural language negotiation, making it a game about strategic interpersonal interaction rather than purely moving pieces.
-          </p>
-
-          <p>
-            In competitive strategic environments involving $I \ge 4$ agents (like large hedge funds competing for alpha), achieving the highest collective outcome ($U_{\text{Global}} = \sum U_i$) often requires coordination that is susceptible to individual defection. While the Nash Equilibrium (NE) dictates self-interest, the optimal cooperative outcome often lies on the Pareto Optimal Frontier&mdash;a state where no player can improve their utility without harming another. In scenarios like the N-player Stag Hunt, achieving the collective optimum requires conditional cooperation and trust, which may contradict individual incentives to defect.
-          </p>
-
-          <h4>Formalizing the 3-Part Strategy Structure</h4>
-          <p>
-            The solution must provide a formal algorithmic framework $G = (I, \mathcal{I}, \mathcal{A}, \mathcal{G}, U)$ for defining and solving these large-scale games, akin to academic systems that separate planning processes into goals and actions linked by shared external information.
-          </p>
-
-          <p>
-            The three required components of the strategic solution are:
-          </p>
-
           <ul>
             <li>
-              <strong>Information ($\mathcal{I}$):</strong>
-              The formal protocol for state observation, belief propagation, and communication. This must model partial observability and account for the strategic use of communication, including deception and information leakage, as crucial variables in the planning system.
+              Produce a formal proof that resolves the conjecture and elevates it to
+              the status of a theorem, or
             </li>
             <li>
-              <strong>Actions ($\mathcal{A}$):</strong>
-              The comprehensive set of moves, including standard game actions and any meta-actions related to negotiation, alliance formation, or commitment devices.
+              Provide a decisive counterexample or re-formulation, supported by
+              algorithmic implementation and empirical validation.
+            </li>
+          </ul>
+          <p>
+            For each of the five conjectures, TCR intends to award successful
+            resolutions with:
+          </p>
+          <ul>
+            <li><strong>A monetary prize</strong> (size to be announced)</li>
+            <li>
+              <strong>The Tomorrow Medal</strong>, our highest formal recognition for
+              theoretical achievement
             </li>
             <li>
-              <strong>Goals ($\mathcal{G}$):</strong>
-              The explicit definition of the individual utility function $U_i$.
+              <strong>Endorsement and amplification</strong> of the work as a landmark
+              result, shared as widely as possible across academic and industry
+              networks
+            </li>
+          </ul>
+          <p>
+            A successful submission must meet rigorous standards comparable to
+            top-tier academic research in quantitative finance. Three components are
+            required:
+          </p>
+          <ul>
+            <li>
+              <strong>Formal mathematical statement.</strong> A rigorous proof
+              demonstrating the existence, uniqueness, or key properties of the
+              solution within a clearly defined model—or a decisive counterexample
+              that falsifies or reformulates the conjecture.
+            </li>
+            <li>
+              <strong>Verifiable algorithm.</strong> A computationally tractable
+              algorithm derived from the formal result, with sufficient detail for
+              independent implementation and analysis.
+            </li>
+            <li>
+              <strong>Comprehensive validation.</strong> Exhaustive testing against
+              public and, where possible, blinded out-of-sample datasets using
+              transparent, statistically sound methodologies that guard against
+              overfitting and regime-specific artifacts.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- SECTION II: FORMAL CONJECTURES -->
+      <section class="tc-section" id="conjectures">
+        <div class="tc-section-header">
+          <div class="tc-section-kicker">II. The five conjectures</div>
+          <h2 class="tc-section-title">Formal formulation of Tomorrow’s Conjectures</h2>
+        </div>
+        <div class="tc-section-body">
+          <p>
+            The five conjectures outlined below are intentionally diverse in scope:
+            from regime detection and portfolio optimization to execution, dynamic
+            ownership, and multi-player strategic equilibrium. Each targets a
+            structural limit or friction within algorithmic finance and requires both
+            theoretical and practical resolution.
+          </p>
+
+          <div class="tc-conjectures-list">
+            <!-- Conjecture 1 -->
+            <article class="tc-conjecture" id="conjecture-1">
+              <div class="tc-conjecture-header">
+                <h3 class="tc-conjecture-title">
+                  Conjecture 1: The Robust Market Regime Engine (The MRE Problem)
+                </h3>
+                <span class="tc-conjecture-tag">Regime Detection · Speed–Accuracy Trade-off</span>
+              </div>
+              <div class="tc-conjecture-body">
+                <h4>Challenge statement</h4>
+                <p>
+                  Design and formally validate a Market Regime Engine (MRE) that
+                  optimizes a real-time Speed–Accuracy Trade-Off function, providing
+                  the highest classification fidelity of latent market states
+                  (volatility, trend, segmentation) subject to strict computational
+                  latency constraints (e.g., microseconds–milliseconds).
+                </p>
+
+                <h4>Formalizing regime detection and the SAT constraint</h4>
+                <p>
+                  Market regimes represent persistent states of a financial market,
+                  such as high-volatility episodes or sustained directional trends.
+                  Accurately classifying these regimes is critical, as they
+                  condition the relevance of factors and the expected performance of
+                  trading strategies.
+                </p>
+                <p>
+                  In practice, regime detection frequently relies on unsupervised or
+                  semi-supervised methods, such as Hidden Markov Models, Gaussian
+                  Mixture Models, or advanced clustering (e.g., Wasserstein
+                  k-means). However, financial return series present challenges:
+                </p>
+                <ul>
+                  <li>Heavy-tailed distributions and sensitivity to outliers</li>
+                  <li>Temporal dependence and autocorrelation</li>
+                  <li>Non-stationarity and regime transitions</li>
+                </ul>
+                <p>
+                  A successful MRE must rigorously define the latent state space and
+                  provide a classification method that jointly handles distributional
+                  properties and temporal dependence. The defining constraint is the
+                  speed–accuracy trade-off: complex models may improve theoretical
+                  accuracy but introduce latency that renders decisions useless in
+                  high-frequency contexts.
+                </p>
+                <p>
+                  The conjecture seeks to maximize a generalized utility function
+                  defined along an acceptable Speed–Accuracy Trade-Off curve, where
+                  accuracy (e.g., F1-score, log-likelihood) is penalized by a
+                  latency-dependent term that enforces a strict upper bound on
+                  decision time. The optimal solution identifies the balance point
+                  that maximizes utility under real-time constraints.
+                </p>
+
+                <h4>Required output and success metrics</h4>
+                <ul>
+                  <li>
+                    <strong>Primary metric:</strong> Area Under the Curve (AUC) of
+                    the generalized utility function over accuracy–latency space,
+                    evaluated specifically within the region that satisfies the
+                    real-time latency ceiling.
+                  </li>
+                  <li>
+                    <strong>Secondary metric:</strong> Statistical superiority of
+                    the MRE’s regime transition model in explaining and forecasting
+                    volatility clustering and return dynamics, compared against
+                    established unsupervised baselines (e.g., HMMs, GMMs).
+                  </li>
+                </ul>
+              </div>
+            </article>
+
+            <!-- Conjecture 2 -->
+            <article class="tc-conjecture" id="conjecture-2">
+              <div class="tc-conjecture-header">
+                <h3 class="tc-conjecture-title">
+                  Conjecture 2: The Constrained Optimization Frontier (The COF Problem)
+                </h3>
+                <span class="tc-conjecture-tag">Portfolio Optimization · Liquidity &amp; Factors</span>
+              </div>
+              <div class="tc-conjecture-body">
+                <h4>Challenge statement</h4>
+                <p>
+                  Develop a generalized, tractable framework for convex portfolio
+                  optimization under uncertainty that simultaneously incorporates
+                  non-linear market frictions—specifically dynamic liquidation speed
+                  capacity and factor-adjusted diversification—while achieving a
+                  defined, stable return/risk profile.
+                </p>
+
+                <h4>Integrating constraints and frictions</h4>
+                <p>
+                  Classical Modern Portfolio Theory focuses on variance minimization
+                  and typically ignores key real-world frictions: liquidity limits,
+                  execution capacity, and factor concentration. Practical portfolio
+                  construction must embed:
+                </p>
+                <ul>
+                  <li>Position limits, leverage and budget constraints</li>
+                  <li>Liquidity &amp; liquidation speed constraints</li>
+                  <li>Factor and sector concentration controls</li>
+                </ul>
+
+                <h4>Liquidation speed capacity</h4>
+                <p>
+                  Liquidation Speed Capacity models the relationship between
+                  portfolio size, desired changes in asset weights, and available
+                  market volume. For asset <em>i</em>, with average daily volume
+                  <em>ADV<sub>i</sub></em>, the change in exposure over a
+                  rebalancing window must respect a maximum participation rate
+                  <em>λ<sub>max</sub></em>, ensuring that rebalancing does not
+                  create undue market impact.
+                </p>
+                <p>
+                  The conjecture requires solving for the maximum achievable,
+                  <em>stable</em> return/risk ratio subject to a fixed, constrained
+                  liquidation capacity, demonstrating resilience under liquidation
+                  stress scenarios.
+                </p>
+
+                <h4>Factor-adjusted diversification</h4>
+                <p>
+                  Simple concentration metrics like the Herfindahl–Hirschman Index
+                  (HHI) consider only position sizes. True diversification, however,
+                  depends critically on the correlation structure between assets and
+                  their exposure to common risk factors.
+                </p>
+                <p>
+                  The conjecture mandates a generalized HHI that incorporates either
+                  the asset covariance matrix or factor loadings, penalizing highly
+                  correlated exposures more aggressively than uncorrelated ones. The
+                  goal is to find weight vectors that satisfy:
+                </p>
+                <ul>
+                  <li>
+                    A target constrained return/risk profile, and
+                  </li>
+                  <li>
+                    A provably optimal factor-adjusted diversification score, under
+                    liquidity and participation constraints.
+                  </li>
+                </ul>
+                <p>
+                  The central challenge is preserving mathematical tractability
+                  (e.g., convexity) in the presence of such non-linear frictions.
+                </p>
+
+                <h4>Required output and success metrics</h4>
+                <ul>
+                  <li>
+                    <strong>Primary metric:</strong> An efficiency ratio defined as
+                    the constrained return/risk (e.g., Sharpe Ratio) divided by the
+                    theoretical unconstrained optimum. Maximizing this ratio
+                    demonstrates efficient performance under stringent liquidity and
+                    factor constraints.
+                  </li>
+                  <li>
+                    <strong>Secondary metric:</strong> A factor-adjusted
+                    diversification score statistically higher than those achieved by
+                    portfolios optimized only under classical MPT variance
+                    minimization, demonstrating superior factor-level risk mitigation.
+                  </li>
+                </ul>
+              </div>
+            </article>
+
+            <!-- Conjecture 3 -->
+            <article class="tc-conjecture" id="conjecture-3">
+              <div class="tc-conjecture-header">
+                <h3 class="tc-conjecture-title">
+                  Conjecture 3: The Cryptographic Execution Problem (The CXP Problem)
+                </h3>
+                <span class="tc-conjecture-tag">Execution · Game Theory · Stealth</span>
+              </div>
+              <div class="tc-conjecture-body">
+                <h4>Challenge statement</h4>
+                <p>
+                  Derive the optimal order distribution strategy for large-volume
+                  execution in a competitive market, framed as a game-theoretic
+                  problem, where the strategy maximizes expected P&amp;L by
+                  minimizing informational leakage and subsequent alpha decay induced
+                  by competing agents.
+                </p>
+
+                <h4>Execution as a game</h4>
+                <p>
+                  Traditional optimal execution focuses on minimizing implementation
+                  shortfall by balancing permanent and temporary impact against
+                  holding risk. In modern electronic markets, this is insufficient:
+                  other algorithmic participants actively observe and respond to
+                  order flow.
+                </p>
+                <p>
+                  The execution agent’s strategy must therefore be optimal not only
+                  with respect to impact, but also with respect to strategic
+                  detection and exploitation by other self-interested agents. This
+                  places the problem squarely within algorithmic game theory, where
+                  utility depends on both one’s own strategy and the distribution of
+                  opponents’ strategies.
+                </p>
+
+                <h4>Modeling stealth and information leakage</h4>
+                <p>
+                  The conjecture requires a formal market model in which:
+                </p>
+                <ul>
+                  <li>
+                    The execution agent’s order flow generates signals observable to
+                    competing algorithms.
+                  </li>
+                  <li>
+                    Competing agents attempt to infer latent order intent and front-run
+                    or otherwise exploit the detected pattern.
+                  </li>
+                  <li>
+                    The execution agent’s utility depends on implementation shortfall
+                    and an explicit alpha decay term linked to detectability.
+                  </li>
+                </ul>
+                <p>
+                  The goal is to solve for a (possibly mixed) strategy that minimizes
+                  implementation shortfall while maximizing time-to-detection or
+                  minimizing detection probability, within a Nash or mean-field game
+                  equilibrium framework.
+                </p>
+
+                <h4>Required output and success metrics</h4>
+                <ul>
+                  <li>
+                    <strong>Primary metric:</strong> Percentage reduction in
+                    implementation shortfall achieved by the derived strategy
+                    relative to baseline methods (e.g., VWAP, TWAP), conditional on a
+                    quantifiable stealth measure such as detection entropy of the
+                    order stream.
+                  </li>
+                  <li>
+                    <strong>Secondary metric:</strong> Existence and construction of
+                    a stable, computationally feasible Nash (or mean-field)
+                    equilibrium in a simulated multi-agent market with adaptive
+                    competitors, together with empirical validation of its robustness.
+                  </li>
+                </ul>
+              </div>
+            </article>
+
+            <!-- Conjecture 4 -->
+            <article class="tc-conjecture" id="conjecture-4">
+              <div class="tc-conjecture-header">
+                <h3 class="tc-conjecture-title">
+                  Conjecture 4: The Dynamic Ownership Paradigm (The DOP Problem)
+                </h3>
+                <span class="tc-conjecture-tag">Asset Allocation · Microstructure</span>
+              </div>
+              <div class="tc-conjecture-body">
+                <h4>Challenge statement</h4>
+                <p>
+                  Formulate a dynamic asset control policy that determines, at each
+                  time step, whether an asset should be held (passive allocation) or
+                  actively traded, based solely on objective time-series features of
+                  its market microstructure—specifically market capitalization,
+                  trading volume, and inferred ownership structure.
+                </p>
+
+                <h4>The Hold vs. Trade decision boundary</h4>
+                <p>
+                  Dynamic Asset Allocation adjusts weights in response to evolving
+                  conditions. The Dynamic Ownership Paradigm introduces a binary
+                  decision for each asset:
+                </p>
+                <ul>
+                  <li><strong>Trade</strong>: trigger active rebalancing, incurring transaction costs</li>
+                  <li><strong>Hold</strong>: maintain current weight, incurring only holding risk</li>
+                </ul>
+                <p>
+                  The decision boundary must be defined purely by microstructure
+                  variables, reflecting the trade-off between expected benefit of
+                  active management and its cost, under realistic liquidity and
+                  ownership conditions.
+                </p>
+
+                <h4>Microstructure inputs and ownership inference</h4>
+                <p>
+                  The optimal policy should use:
+                </p>
+                <ul>
+                  <li>
+                    <strong>Market cap</strong> and <strong>trading volume</strong> as
+                    proxies for liquidity and depth
+                  </li>
+                  <li>
+                    <strong>Inferred institutional ownership structure</strong> from
+                    block trade patterns, volume profiles, and trade size distributions
+                  </li>
+                </ul>
+                <p>
+                  Because ownership data is often delayed or incomplete, the solution
+                  must provide a robust inference mechanism. Different ownership
+                  regimes (e.g., institutional dominance vs. retail-driven flow)
+                  imply different impact profiles and hence different thresholds for
+                  when active trading is justified.
+                </p>
+
+                <h4>Required output and success metrics</h4>
+                <ul>
+                  <li>
+                    <strong>Primary metric:</strong> Maximization of a Sortino
+                    Ratio-like measure adjusted for turnover, where downside risk is
+                    penalized and high turnover is explicitly and significantly
+                    penalized in the denominator. The policy must demonstrate true
+                    capital efficiency, not just raw returns.
+                  </li>
+                  <li>
+                    <strong>Secondary metric:</strong> Statistical proof that active
+                    decisions are invoked only when the predicted improvement in
+                    risk/return trade-off reliably exceeds estimated transaction and
+                    impact costs for the asset’s inferred ownership regime.
+                  </li>
+                </ul>
+              </div>
+            </article>
+
+            <!-- Conjecture 5 -->
+            <article class="tc-conjecture" id="conjecture-5">
+              <div class="tc-conjecture-header">
+                <h3 class="tc-conjecture-title">
+                  Conjecture 5: The Multiplayer Strategic Equilibrium (The MSE Problem)
+                </h3>
+                <span class="tc-conjecture-tag">Multi-Agent Games · Pareto Optimality</span>
+              </div>
+              <div class="tc-conjecture-body">
+                <h4>Challenge statement</h4>
+                <p>
+                  For any complex, partially observable, stochastic strategy game
+                  involving many rational players, define and solve for a Pareto
+                  optimal strategy set by proposing a three-part strategy framework
+                  (Information, Actions, Goals) that robustly integrates communication
+                  and alliance formation to achieve globally maximized utility, even
+                  when individual goals conflict.
+                </p>
+
+                <h4>The multi-agent strategy challenge</h4>
+                <p>
+                  AI research has progressed from two-player perfect information games
+                  to multi-agent, partially observable environments such as StarCraft
+                  II and Diplomacy. In such games, success is fundamentally about
+                  coordinating beliefs, communication, and commitments, not merely
+                  about selecting moves in isolation.
+                </p>
+                <p>
+                  In financial analogues—large hedge funds and trading firms
+                  competing for alpha—the highest collective outcome often lies on
+                  the Pareto frontier, where no agent can improve their utility
+                  without harming another. Yet, individual incentives and equilibrium
+                  concepts like Nash often favor defection over cooperation.
+                </p>
+
+                <h4>Formal 3-part strategy structure</h4>
+                <p>
+                  The conjecture requires a formal algorithmic framework decomposed
+                  into:
+                </p>
+                <ul>
+                  <li>
+                    <strong>Information:</strong> protocols for state observation,
+                    belief propagation, and communication, including strategic
+                    deception and signaling.
+                  </li>
+                  <li>
+                    <strong>Actions:</strong> both standard game actions and meta-actions
+                    related to negotiation, alliance formation, commitments, and
+                    sanctions.
+                  </li>
+                  <li>
+                    <strong>Goals:</strong> explicit representation of individual
+                    utility functions and collective objectives.
+                  </li>
+                </ul>
+                <p>
+                  The core requirement is a mechanism, built from these components,
+                  that allows agents to predict and influence one another’s beliefs
+                  and to stably coordinate on cooperative solutions.
+                </p>
+
+                <h4>Pareto optimal equilibrium requirement</h4>
+                <p>
+                  The ultimate breakthrough sought is a constructive proof of
+                  existence and an algorithm for attaining a Pareto optimal strategy
+                  set in complex, multi-player strategy spaces. The algorithm must
+                  demonstrate that rational, self-interested agents can systematically
+                  coordinate to achieve outcomes that are strictly superior to Nash
+                  equilibria in terms of global utility.
+                </p>
+
+                <h4>Required output and success metrics</h4>
+                <ul>
+                  <li>
+                    <strong>Primary metric:</strong> Average percentage of global
+                    maximum attainable utility achieved by the proposed strategies
+                    across a diverse benchmark suite of strategic games or financial
+                    competition simulations. The solution must consistently deliver
+                    super-Nash collective outcomes.
+                  </li>
+                  <li>
+                    <strong>Secondary metric:</strong> Formal verification of the
+                    game-theoretic structure in a machine-checkable proof language
+                    (e.g., Lean), establishing mathematical rigor for both the
+                    strategy framework and the associated equilibrium proofs.
+                  </li>
+                </ul>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION III: IMPLEMENTATION & ADJUDICATION -->
+      <section class="tc-section" id="adjudication">
+        <div class="tc-section-header">
+          <div class="tc-section-kicker">III. Implementation</div>
+          <h2 class="tc-section-title">Adjudication and governance framework</h2>
+        </div>
+        <div class="tc-section-body">
+          <h4>Scientific Advisory Board</h4>
+          <p>
+            The long-term credibility of Tomorrow’s Conjectures depends on an
+            uncompromising standard of adjudication, paralleling governance models
+            used by institutions such as the Clay Mathematics Institute.
+          </p>
+          <p>
+            Tomorrow Capital Research will establish a Scientific Advisory Board
+            (SAB) composed of:
+          </p>
+          <ul>
+            <li>Leading academics in mathematics and computer science</li>
+            <li>Researchers in quantitative finance and market microstructure</li>
+            <li>
+              Practitioners experienced in algorithmic trading, execution, and risk
+              management
+            </li>
+          </ul>
+          <p>
+            The SAB is responsible for preserving the integrity and spirit of the
+            conjectures, defining and updating award rules, and verifying that any
+            claimed solution satisfies the stated standards.
+          </p>
+
+          <h4>Submission requirements</h4>
+          <p>
+            Submissions will be welcomed from university students, independent
+            researchers, and quantitative professionals. Each submission must include:
+          </p>
+          <ul>
+            <li>
+              A research paper (e.g., 5–7 pages) summarizing the contribution,
+              providing context, and clearly stating the main results.
+            </li>
+            <li>
+              Complete technical documentation, including proofs, algorithms, and
+              implementation details sufficient for independent reproduction.
+            </li>
+            <li>
+              A clear separation between in-sample development results and final
+              out-of-sample validation, with reproducible code and experiment logs
+              where applicable.
             </li>
           </ul>
 
+          <h4>Scoring and validation criteria</h4>
           <p>
-            The challenge mandates a robust mechanism&mdash;built from $\mathcal{I}, \mathcal{A},$ and $\mathcal{G}$&mdash;that permits the agents to predict and influence one another's beliefs, allowing for the stable commitment to a cooperative solution.
+            Adjudication will weight scientific merit, innovation, and practical
+            impact equally. A proposed scoring breakdown is:
           </p>
-
-          <h4>The Pareto Optimal Equilibrium Requirement</h4>
-          <p>
-            The core breakthrough sought by $\mathcal{MSE}$ is the proof of existence for, and the provision of an algorithm to achieve, the Pareto Optimal Strategy Set ($\mathcal{POSS}$) in complex strategy spaces involving $I \ge 4$ players. The algorithm must demonstrate that rational, self-interested agents can systematically coordinate to achieve a globally maximized outcome.
-          </p>
-
-          <p>
-            This strategy set $\mathbf{\nu}^*$ must be robustly verifiable in simulation against adaptive, rational opponents. The solution is required to be rigorously defined, possibly leveraging formal proof languages like Lean, which provide precision for representing and reasoning about complex game theory structures.
-          </p>
-
-          <h4>Required Output and Success Metrics</h4>
-          <p>
-            <strong>Primary Metric:</strong> The Average Percentage of Global Maximum Utility Achieved by the proposed algorithmic strategy set $\mathbf{\nu}^*$ across a predefined, diverse suite of $I \ge 4$ strategy games (e.g., complex resource allocation games, or strategic financial competition simulations). The strategy must consistently demonstrate super-Nash collective outcomes, confirming the successful integration of conditional cooperation.
-          </p>
-
-          <p>
-            <strong>Secondary Metric:</strong> The formal verification of the game-theoretic structure using external proof languages, establishing the mathematical rigor of the proposed $\mathcal{POSS}$ and the associated existence proofs for the equilibrium.
-          </p>
-        </section>
-      </section>
-
-      <!-- III. Implementation and Adjudication Framework -->
-      <section id="implementation-framework">
-        <h2>III. Implementation and Adjudication Framework</h2>
-
-        <section id="adjudication-structure">
-          <h3>III.A. Adjudication Structure and Governance</h3>
-
-          <p>
-            The long-term credibility of Tomorrow’s Conjectures depends on maintaining an uncompromising standard of adjudication, paralleling the CMI’s governance model. TCR must establish a Scientific Advisory Board (SAB) comprising leading academics in mathematics, computer science, and quantitative finance, alongside domain experts familiar with the practical implications of algorithmic trading and market microstructure. The SAB is tasked with preserving the integrity and spirit of the challenges and formally endorsing the award rules.
-          </p>
-
-          <p>
-            Submissions should be welcomed from university students and quantitative professionals, requiring a research paper that summarizes the work (e.g., 5–7 pages) and provides the complete technical details and original research. A successful solution must be entirely original research focused on quantitative finance. The judging process will enforce a rigorous separation between in-sample development results and final out-of-sample validation to ensure generalization capability.
-          </p>
-        </section>
-
-        <section id="scoring-validation">
-          <h3>III.B. Detailed Scoring and Validation Metrics</h3>
-
-          <p>
-            The adjudication criteria will weight scientific merit, innovation, and practical impact equally, ensuring solutions are both theoretically profound and practically applicable.
-          </p>
-
-          <h4>Adjudication Criteria for Tomorrow’s Conjectures</h4>
-
-          <table class="criteria-table">
+          <table class="tc-table">
             <thead>
               <tr>
                 <th>Criterion</th>
-                <th>Weight (%)</th>
-                <th>Description &amp; Relevance</th>
+                <th>Weight</th>
+                <th>Description</th>
               </tr>
             </thead>
             <tbody>
@@ -379,57 +924,82 @@
                 <td>Applicability &amp; Relevance</td>
                 <td>30%</td>
                 <td>
-                  Assessment of the solution's transformative utility and scalability for real-world
-                  capital management or systemic risk reduction.
+                  Transformative utility and scalability for real-world capital
+                  management, systemic risk reduction, or market design.
                 </td>
               </tr>
               <tr>
                 <td>Innovation &amp; Novelty</td>
                 <td>30%</td>
                 <td>
-                  The extent to which the submission introduces fundamentally new mathematical models,
-                  game-theoretic solutions, or algorithmic architectures.
+                  Introduction of fundamentally new mathematical models,
+                  game-theoretic constructions, or algorithmic architectures.
                 </td>
               </tr>
               <tr>
                 <td>Accuracy &amp; Completeness</td>
                 <td>30%</td>
                 <td>
-                  Quantitative precision, stability, statistical significance (out-of-sample), and the
-                  logical completeness of any mathematical proofs.
+                  Quantitative precision, stability, statistical significance
+                  (especially out-of-sample), and logical completeness of proofs.
                 </td>
               </tr>
               <tr>
                 <td>Formal Presentation &amp; Clarity</td>
                 <td>10%</td>
                 <td>
-                  Rigor of the mathematical formulation, lucidity of the explanation, and adherence to
-                  established academic and technical standards.
+                  Rigor of formulation, clarity of exposition, and adherence to
+                  academic standards.
                 </td>
               </tr>
             </tbody>
           </table>
-
-          <p>
-            The validation metrics specified for each conjecture (e.g., AUC of the $\mathcal{SATF}$, Factor-Adjusted HHI, Detection Entropy) are designed to provide objective, quantitative measures of success, moving beyond simple P&amp;L to assess efficiency, computational cost, and competitive robustness.
+          <p class="tc-footnote">
+            Each conjecture also specifies its own validation metrics (e.g., AUC of the
+            Speed–Accuracy trade-off curve, factor-adjusted diversification scores,
+            detection entropy, Pareto efficiency measures), designed to move beyond
+            simple P&amp;L and capture efficiency, computational cost, and competitive
+            robustness.
           </p>
-        </section>
+        </div>
       </section>
 
-      <!-- IV. Conclusions and Recommendations -->
-      <section id="conclusions">
-        <h2>IV. Conclusions and Recommendations</h2>
-
-        <p>
-          Tomorrow’s Conjectures provides a robust and academically rigorous framework for directing future research in algorithmic finance. The challenges are designed to attract researchers specializing not only in finance but also in deep areas of computer science, game theory, and pure mathematics. The required outputs move beyond empirical backtests, demanding the derivation of generalized, provable optimal strategies under realistic market frictions and competitive conditions.
-        </p>
-
-        <p>
-          TCR is advised to position these challenges not merely as trading competitions, but as calls for fundamental theoretical resolution, drawing parallels to the Millennium Prize Problems to maximize visibility and intellectual gravity. The final award of any prize money should be conditional upon verification by the Scientific Advisory Board that the solution meets the highest standards of proof and robustness, confirming a true advancement in the theoretical framework of quantitative finance.
-        </p>
+      <!-- SECTION IV: CONCLUSION -->
+      <section class="tc-section" id="conclusion">
+        <div class="tc-section-header">
+          <div class="tc-section-kicker">IV. Outlook</div>
+          <h2 class="tc-section-title">Conclusions and next steps</h2>
+        </div>
+        <div class="tc-section-body">
+          <p>
+            Tomorrow’s Conjectures are intended as a long-horizon, academically
+            rigorous framework for directing future research in algorithmic finance.
+            They are designed to attract not only quantitative finance specialists,
+            but also researchers in computer science, game theory, and pure
+            mathematics.
+          </p>
+          <p>
+            The required outputs intentionally go beyond backtests and empirical
+            heuristics, demanding generalized, provable strategies that remain valid
+            under realistic frictions and competitive dynamics. In this sense,
+            Tomorrow’s Conjectures are closer to the Millennium Prize Problems than to
+            a trading competition.
+          </p>
+          <p>
+            Final award of any prize money and conferment of the Tomorrow Medal will
+            be conditional upon SAB verification that the solution meets the highest
+            standards of proof, robustness, and reproducibility, and that it truly
+            advances the theoretical framework of quantitative finance.
+          </p>
+          <p>
+            Details on formal submission procedures, timelines, and prize amounts will
+            be published in a subsequent update. For expressions of interest or to be
+            notified when submissions open, please contact Tomorrow Capital Research
+            through our official channels.
+          </p>
+        </div>
       </section>
-
-    </article>
-  </main>
+    </main>
+  </div>
 </body>
 </html>

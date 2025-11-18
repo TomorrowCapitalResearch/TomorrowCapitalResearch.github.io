@@ -45,17 +45,11 @@
       text-decoration: underline;
     }
 
-    .tc-page {
-      min-height: 100vh;
-      padding: 40px 20px 80px;
-      display: flex;
-      justify-content: center;
-    }
-
-    .tc-inner {
-      max-width: var(--max-width);
-    }
-
+  .tc-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;              /* <-- centers horizontally */
+  padding: 40px 20px 80px;     /* moved from .tc-page */
+}
     .tc-tag {
       display: inline-flex;
       align-items: center;

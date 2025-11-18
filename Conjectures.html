@@ -18,9 +18,10 @@
       --palladian: #EEE9DF;
       --oatmeal: #C9C1B1;
       --blue-fantastic: #2C3B4D;
+      --blue: #2B324A;
+      --abyssal-blue: #1B2632;
       --burning-flame: #FFB162;
       --truffle-trouble: #A35139;
-      --abyssal-blue: #1B2632;
     }
 
     * {
@@ -183,10 +184,12 @@
     .tc-conjecture {
       border-radius: 16px;
       border: 1px solid rgba(15, 23, 42, 0.9);
-      background: rgba(15,23,42,0.9);
+      background: radial-gradient(circle at top left, var(--blue-fantastic), transparent 55%),
+                  radial-gradient(circle at bottom right, var(--blue), transparent 55%),
+                  linear-gradient(145deg, var(--blue-fantastic), var(--abyssal-blue));
       padding: 18px 18px 16px;
     }
-
+    
     .tc-conjecture-header {
       display: flex;
       flex-wrap: wrap;

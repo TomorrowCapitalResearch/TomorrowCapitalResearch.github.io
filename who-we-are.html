@@ -36,49 +36,47 @@
 }
 
 
-/* ------------------------------ */
-/* Layout Wrapper                 */
-/* ------------------------------ */
+/* Layout wrapper */
 .overlap-hero {
   position: relative;
   background: #ffffff;
   overflow: hidden;
 }
 
-/* ------------------------------ */
-/* Top Image Section              */
-/* ------------------------------ */
+/* NEW — the container that creates left/right spacing */
+.overlap-image-container {
+  max-width: 1400px;           /* change this to control total width */
+  width: calc(100% - 80px);    /* 40px on each side — adjust as needed */
+  margin: 0 auto;
+}
+
+/* The image itself */
 .overlap-image img {
   width: 100%;
-  height: 520px;      /* Adjust height as needed */
+  height: 520px;
   object-fit: cover;
   display: block;
 }
 
-/* ------------------------------ */
-/* Lower white band               */
-/* ------------------------------ */
+/* Lower white band */
 .overlap-lower {
-  height: 180px;      /* Adjust depending on desired spacing */
+  height: 180px;
   background: #ffffff;
 }
 
-/* ------------------------------ */
-/* The overlapping blue panel     */
-/* ------------------------------ */
+/* Overlapping box */
 .overlap-panel {
   position: absolute;
   left: 10%;
   transform: translateX(-10%);
-  bottom: 40px;       /* How far it overlaps the white area */
-  background: var(--text);      /* Your deep blue */
-  color: var(--white);
+  bottom: 40px;
+  background: var(--text);
+  color: #ffffff;
   padding: 32px 40px;
   width: 70%;
   max-width: 700px;
 }
 
-/* Blue panel text */
 .overlap-panel-inner h2 {
   margin: 0 0 14px;
   font-size: clamp(28px, 4vw, 38px);
@@ -92,9 +90,7 @@
   color: #e5e7eb;
 }
 
-/* ------------------------------ */
-/* Mobile Responsive Layout       */
-/* ------------------------------ */
+/* Mobile */
 @media (max-width: 768px) {
 
   .overlap-image img {
@@ -109,6 +105,11 @@
 
   .overlap-lower {
     height: 140px;
+  }
+
+  /* Smaller side spacing on mobile */
+  .overlap-image-container {
+    width: calc(100% - 40px);   /* 20px each side */
   }
 }
 
@@ -412,17 +413,17 @@ async function injectFragment(hostSelector, url, baseHref) {
 
 
 <section class="overlap-hero">
-  <div class="overlap-image">
+
+  <div class="overlap-image-container">
+    <div class="overlap-image">
     <img src="assets/A10.png" alt="Team working at trading screens">
+    </div>
   </div>
 
   <div class="overlap-panel">
     <div class="overlap-panel-inner">
       <h2>Who We Are</h2>
-      <p>
-        We’re a team of traders, researchers and technologists, solving the
-        most critical problems in modern markets.
-      </p>
+      <p>We’re a team of traders, researchers and technologists...</p>
     </div>
   </div>
 

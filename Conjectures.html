@@ -441,7 +441,6 @@
     <p>
       More concretely:
     </p>
-
     <ol>
       <li>
         <strong>Initial selection (T = 0 → 10).</strong>
@@ -452,7 +451,6 @@
         distance or loss function (e.g. squared error). Denote this path by
         <em>X<sup>(i★)</sup></em>.
       </li>
-
       <li>
         <strong>Re-simulation (T = 10 → 20).</strong>
         At time <em>T = 10</em>, starting from the realised price at <em>T = 10</em>,
@@ -461,7 +459,6 @@
         path (or stitched path) that best matches the realised trajectory over the
         full interval <em>[0, 20]</em>.
       </li>
-
       <li>
         <strong>Path adjustment.</strong>
         It may happen that the globally best-matching path over <em>[0, 20]</em> is
@@ -474,7 +471,6 @@
         </ul>
       </li>
     </ol>
-
     <p>
       The challenge is to either:
       <strong>(a)</strong> formulate a mathematical framework (loss function and
@@ -486,28 +482,72 @@
   </div>
 </article>
 
-        <!-- 2 -->
-        <article class="tc-conjecture">
-          <div class="tc-conjecture-header">
-            <h3 class="tc-conjecture-title">
-              Conjecture 2 — Constrained Optimization Frontier
-            </h3>
-            <span class="tc-conjecture-tag">Portfolio · Liquidity &amp; Factors</span>
-          </div>
-          <div class="tc-conjecture-body">
-            <p>
-              Can we characterise the true efficient frontier for portfolios
-              when we explicitly model <strong>liquidation speed</strong> and
-              <strong>factor-driven concentration</strong>, not just variance?
-            </p>
-            <p>
-              The conjecture seeks a convex, tractable framework that delivers
-              near-optimal risk/return under realistic liquidity and factor
-              constraints, with a clear measure of factor-adjusted
-              diversification.
-            </p>
-          </div>
-        </article>
+<!-- 2 -->
+  <article class="tc-conjecture">
+  <div class="tc-conjecture-header">
+    <h3 class="tc-conjecture-title">
+      Conjecture 3 — Future Price Dependence on Market Dynamics
+    </h3>
+    <span class="tc-conjecture-tag">Pricing · Market Microstructure</span>
+  </div>
+
+  <div class="tc-conjecture-body">
+    <p>
+      Consider a generalised asset with a stochastic price path
+      <em>{P<sub>t</sub>}</em>, such that the price is known for all times
+      <em>t ≤ T</em>, but unknown for all <em>t &gt; T</em>.
+    </p>
+
+    <p>
+      The conjecture states that a statistically significant price estimate for
+      <em>t &gt; T</em> can be constructed if at least one of the following
+      statements holds:
+    </p>
+
+    <ol>
+      <li>
+        <strong>Historical dynamics dependence.</strong>
+        The price of the asset at a future time <em>t &gt; T</em> is correlated
+        with the market and participant dynamics observed up to time
+        <em>t ≤ T</em> (order flow, liquidity, volatility regimes, participant
+        behaviour, etc.).
+      </li>
+      <li>
+        <strong>Immediate impact dependence.</strong>
+        The price of the asset at time <em>T + 1</em> is strongly correlated
+        with the orders, inventory changes and market impact of participants at
+        time <em>T</em>.
+      </li>
+    </ol>
+
+    <p>
+      In other words, there should exist a statistically significant mapping
+      from observable market and participant features at or before time
+      <em>T</em> to an estimate of future prices <em>P<sub>t</sub></em> for
+      <em>t &gt; T</em>.
+    </p>
+
+    <p>
+      <strong>Research note.</strong>
+      A special interest is reserved for researchers who can generalise this
+      formulation into a unified pricing framework that simultaneously
+      encompasses:
+    </p>
+
+    <ul>
+      <li>the market-maker’s short-horizon pricing problem,</li>
+      <li>the high-frequency trading pricing problem, and</li>
+      <li>the medium- to long-term asset pricing problem.</li>
+    </ul>
+
+    <p>
+      The goal is a single theoretical structure that connects microstructural
+      effects, participant behaviour and longer-term price formation under a
+      common set of assumptions.
+    </p>
+  </div>
+</article>
+
 
         <!-- 3 -->
         <article class="tc-conjecture">

@@ -434,6 +434,7 @@
         a high-level overview of the five conjectures we propose to open:
       </p>
 
+
 <article class="tc-conjecture">
   <div class="tc-conjecture-header">
     <h3 class="tc-conjecture-title">
@@ -494,7 +495,8 @@
   </div>
 </article>
 
-<!-- 2 -->
+
+      
   <article class="tc-conjecture">
   <div class="tc-conjecture-header">
     <h3 class="tc-conjecture-title">
@@ -561,28 +563,97 @@
 </article>
 
 
-        <!-- 3 -->
-        <article class="tc-conjecture">
-          <div class="tc-conjecture-header">
-            <h3 class="tc-conjecture-title">
-              Conjecture 3 — Cryptographic Execution Problem
-            </h3>
-            <span class="tc-conjecture-tag">Execution · Game Theory</span>
-          </div>
-          <div class="tc-conjecture-body">
-            <p>
-              In a market full of algorithmic adversaries, does there exist an
-              execution strategy that is provably optimal in the sense of
-              <strong>minimising implementation shortfall</strong> while
-              <strong>maximising stealth</strong> against detection?
-            </p>
-            <p>
-              Formulated as a game-theoretic or mean-field game problem, this
-              conjecture asks for a constructive equilibrium strategy for large,
-              information-bearing orders.
-            </p>
-          </div>
-        </article>
+<article class="tc-conjecture">
+  <div class="tc-conjecture-header">
+    <h3 class="tc-conjecture-title">
+      Conjecture 3 — Stealth-Optimal Execution Distributions
+    </h3>
+    <span class="tc-conjecture-tag">Execution · Slippage · Stealth</span>
+  </div>
+
+  <div class="tc-conjecture-body">
+    <p>
+      Let an algorithmic trading strategy (alpha) prescribe a desired net position change
+      of notional size <em>Q</em> (e.g. <em>Q = 1,000,000 USD</em>) to be executed over an
+      acceptable time horizon <em>[0, T]</em>. The execution problem is to determine how to
+      distribute this order in time and size so as to maximise <strong>stealth</strong> and
+      minimise <strong>slippage</strong>.
+    </p>
+
+    <p>
+      Model an execution schedule as either:
+    </p>
+    <ul>
+      <li>
+        a discrete sequence of trades <em>{(t<sub>k</sub>, q<sub>k</sub>)}</em> with
+        <em>0 ≤ t<sub>k</sub> ≤ T</em> and <em>∑<sub>k</sub> q<sub>k</sub> = Q</em>, or
+      </li>
+      <li>
+        a continuous-time order-size density <em>φ(t)</em> on <em>[0, T]</em> such that
+        <em>∫<sub>0</sub><sup>T</sup> φ(t) dt = Q</em>.
+      </li>
+    </ul>
+
+    <p>
+      Assume that:
+    </p>
+
+    <ol>
+      <li>
+        <strong>Impact / stealth trade-off.</strong>
+        There exists a market impact / detectability relationship in which the
+        effective “loss of stealth” associated with executing a trade of size
+        <em>q</em> grows approximately with a square-root law, e.g.
+        <em>footprint ∝ √|q|</em>. Executing the full notional <em>Q</em> at
+        <em>t = 0</em> destroys stealth, while executing very small slices
+        (e.g. <em>10 USD</em>) alters stealth only negligibly.
+      </li>
+
+      <li>
+        <strong>Account-splitting constraint.</strong>
+        The trader may split the total notional <em>Q</em> across at most
+        <em>N<sub>max</sub> = 100</em> accounts,
+        <em>Q = ∑<sub>i=1</sub><sup>N</sup> Q<sub>i</sub></em> with
+        <em>N ≤ N<sub>max</sub></em>, where each account follows its own
+        execution schedule. This prevents the degenerate solution of
+        “infinitely many infinitesimal accounts”.
+      </li>
+    </ol>
+
+    <p>
+      <strong>Conjecture.</strong>
+      Under a reasonable microstructure model (including a square-root–type
+      impact / detectability law), there exists an <em>optimal joint distribution</em>
+      of execution times and order sizes — possibly including an optimal split of
+      <em>Q</em> across up to 100 accounts — that:
+    </p>
+
+    <ul>
+      <li>
+        maximises a chosen notion of <strong>stealth</strong>
+        (minimal detectability / information leakage), and
+      </li>
+      <li>
+        simultaneously minimises expected <strong>slippage</strong> with respect to the
+        alpha’s target price path,
+      </li>
+    </ul>
+
+    <p>
+      subject to the constraints <em>t ∈ [0, T]</em>, <em>∑ q = Q</em> and
+      <em>N ≤ 100</em>.
+    </p>
+
+    <p>
+      The challenge is to derive:
+      <strong>(a)</strong> a mathematical formulation of this optimisation problem
+      (objective functional over time–size distributions and account splits),
+      and/or <strong>(b)</strong> an explicit algorithm that, given an alpha,
+      a horizon <em>T</em> and total notional <em>Q</em>, produces the
+      stealth-optimal execution distribution.
+    </p>
+  </div>
+</article>
 
         <!-- 4 -->
         <article class="tc-conjecture">

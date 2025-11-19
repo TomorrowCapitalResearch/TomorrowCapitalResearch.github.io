@@ -439,7 +439,7 @@
 <article class="tc-conjecture">
   <div class="tc-conjecture-header">
     <h3 class="tc-conjecture-title">
-      Conjecture 1 — The path switching problem
+      Conjecture 1 — The Path Switching Problem
     </h3>
     <span class="tc-conjecture-tag">Stochastic Processes · Path Stitching</span>
   </div>
@@ -742,28 +742,81 @@
   </div>
 </article>
 
-        <!-- 5 -->
         <article class="tc-conjecture">
-          <div class="tc-conjecture-header">
-            <h3 class="tc-conjecture-title">
-              Conjecture 5 — Multiplayer Strategic Equilibrium
-            </h3>
-            <span class="tc-conjecture-tag">Multi-Agent · Cooperation</span>
-          </div>
-          <div class="tc-conjecture-body">
-            <p>
-              In complex, partially observable games with many rational players
-              (including financial analogues), can we construct a strategy
-              framework that reliably achieves <strong>Pareto-optimal</strong>,
-              super-Nash outcomes?
-            </p>
-            <p>
-              The conjecture seeks a formally verified three-part strategy
-              architecture (Information, Actions, Goals) that shows how rational
-              agents can coordinate and maintain cooperative equilibria.
-            </p>
-          </div>
-        </article>
+  <div class="tc-conjecture-header">
+    <h3 class="tc-conjecture-title">
+      Conjecture X — Unified Optimal Portfolio Framework
+    </h3>
+    <span class="tc-conjecture-tag">Portfolio · Optimisation · Risk–Return</span>
+  </div>
+
+  <div class="tc-conjecture-body">
+    <p>
+      Let an investor start with an initial capital <em>V</em> and a universe of
+      <em>X</em> tradable assets. The assets are grouped into
+      <em>K</em> categories (sectors, styles, regions, strategies, etc.), each
+      category associated with a vector of descriptive features.
+    </p>
+
+    <p>
+      Each individual asset carries:
+    </p>
+
+    <ul>
+      <li>a current price,</li>
+      <li>expected and realised return,</li>
+      <li>expected and realised risk (volatility, drawdown, etc.), and</li>
+      <li>
+        a vector of fundamentals and microstructure attributes, such as
+        liquidation speed, correlations with other assets, transaction cost,
+        dividend or funding rate, and other relevant characteristics.
+      </li>
+    </ul>
+
+    <p>
+      <strong>Problem.</strong><br>
+      Construct a decision framework (or dynamic rule) that, given:
+    </p>
+
+    <ul>
+      <li>the initial capital <em>V</em>,</li>
+      <li>the feature set of all assets and categories, and</li>
+      <li>possibly evolving information about returns and risks,</li>
+    </ul>
+
+    <p>
+      produces an <strong>optimal portfolio configuration</strong> — i.e. a set of
+      weights over assets and categories — that simultaneously:
+    </p>
+
+    <ul>
+      <li>maximises expected return, and</li>
+      <li>minimises an appropriate notion of risk (or maximises a chosen risk–return functional, e.g. utility or Sharpe-like ratio).</li>
+    </ul>
+
+    <p>
+      <strong>The conjecture.</strong><br>
+      There exists a principled, implementable framework (static or dynamic)
+      that maps the full feature set
+      (prices, expected/realised returns, risks, fundamentals and correlations)
+      into an optimal portfolio in this sense — providing a
+      <em>single</em> rule that generalises across:
+    </p>
+
+    <ul>
+      <li>different asset classes and categories, and</li>
+      <li>different objectives along the return–risk trade-off.</li>
+    </ul>
+
+    <p>
+      The challenge is to specify this framework mathematically
+      (objective, constraints and decision rule), and to demonstrate that it
+      consistently yields portfolios that are optimal under the chosen
+      risk–return criterion.
+    </p>
+  </div>
+</article>
+
       </div>
     </div>
   </section>

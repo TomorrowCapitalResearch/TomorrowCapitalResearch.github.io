@@ -186,6 +186,87 @@
   }
 }
 
+.zigzag {
+  background: #ffffff;
+  padding: 72px 40px;
+}
+
+.zigzag__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.zigzag__title {
+  font-size: clamp(28px, 3.2vw, 36px);
+  margin: 0 0 40px 0;
+  font-weight: 500;
+}
+
+/* Rows */
+.zigzag__row {
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+  margin-bottom: 64px;
+}
+
+/* Alternate sides */
+.zigzag__row:nth-child(odd) {
+  flex-direction: row;          /* image left, text right */
+}
+
+.zigzag__row:nth-child(even) {
+  flex-direction: row-reverse;  /* image right, text left */
+}
+
+/* Image */
+.zigzag__media {
+  flex: 0 0 48%;
+  margin: 0;
+}
+
+.zigzag__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Text */
+.zigzag__content {
+  flex: 1;
+  max-width: 520px;
+}
+
+.zigzag__content h3 {
+  font-size: 22px;
+  margin: 0 0 16px 0;
+}
+
+.zigzag__content p {
+  font-size: 16px;
+  line-height: 1.7;
+  margin: 0 0 10px 0;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .zigzag {
+    padding: 48px 20px;
+  }
+
+  .zigzag__row,
+  .zigzag__row:nth-child(even),
+  .zigzag__row:nth-child(odd) {
+    flex-direction: column;
+  }
+
+  .zigzag__media,
+  .zigzag__content {
+    flex: 1 1 auto;
+    max-width: 100%;
+  }
+}
 
 
     
@@ -552,6 +633,84 @@ async function injectFragment(hostSelector, url, baseHref) {
     </div>
   </section>
 
+<section class="zigzag">
+  <div class="zigzag__inner">
+    <h2 class="zigzag__title">The Business of Tomorrow Capital Research</h2>
+
+    <!-- Row 1 -->
+    <div class="zigzag__row">
+      <figure class="zigzag__media">
+        <img src="assets/research-1.jpg" alt="Research desk with trading screens">
+      </figure>
+      <div class="zigzag__content">
+        <h3>Business &amp; Expansion Strategy</h3>
+        <p>
+          We sequence our expansion across asset classes and business lines, treating each new
+          venture as an option that must earn its place in the portfolio of businesses.
+        </p>
+        <p>
+          Data, simulations and risk constraints guide when and how we grow, not fashion or hype.
+        </p>
+      </div>
+    </div>
+
+    <!-- Row 2 -->
+    <div class="zigzag__row">
+      <figure class="zigzag__media">
+        <img src="assets/research-2.jpg" alt="Abstract portfolio visualisation">
+      </figure>
+      <div class="zigzag__content">
+        <h3>Portfolio Management System</h3>
+        <p>
+          Our portfolio engine allocates capital across strategies, assets and time horizons,
+          optimising for return, risk, liquidity and diversification at the same time.
+        </p>
+        <p>
+          It continuously rebalances as regimes and market conditions change.
+        </p>
+      </div>
+    </div>
+
+    <!-- Row 3 -->
+    <div class="zigzag__row">
+      <figure class="zigzag__media">
+        <img src="assets/research-3.jpg" alt="Code and models on screens">
+      </figure>
+      <div class="zigzag__content">
+        <h3>Trading Strategies</h3>
+        <p>
+          We maintain a library of systematic strategies across styles: market-making,
+          statistical arbitrage, trend, mean-reversion and event-driven models.
+        </p>
+        <p>
+          A structured research pipeline moves ideas from backtest to controlled live deployment.
+        </p>
+      </div>
+    </div>
+
+    <!-- Row 4 -->
+    <div class="zigzag__row">
+      <figure class="zigzag__media">
+        <img src="assets/research-4.jpg" alt="Execution and market microstructure">
+      </figure>
+      <div class="zigzag__content">
+        <h3>Execution &amp; Microstructure</h3>
+        <p>
+          Our execution layer handles smart routing, order scheduling and safety checks so that
+          strategies interact with markets efficiently and securely.
+        </p>
+        <p>
+          Detailed fill and impact metrics feed back into strategy and portfolio decisions.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+  
   <!-- Closing loop -->
   <section class="tc-section" id="research-loop">
     <div class="tc-section-header">

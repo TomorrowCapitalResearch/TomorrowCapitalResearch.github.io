@@ -269,7 +269,51 @@
 }
 
 
-    
+   /* Outer blue strip */
+.strip-feature {
+  background: #174ea6;           /* blue band */
+  padding: 8px 0 32px;           /* thin blue top, space below the card */
+}
+
+.strip-feature__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Light grey card */
+.strip-feature__card {
+  background: #f2f3f4;           /* light grey */
+  display: grid;
+  grid-template-columns: minmax(0, 0.6fr) minmax(0, 1.4fr);
+  column-gap: 48px;
+  padding: 32px 40px;
+}
+
+/* Left side – title */
+.strip-feature__left h2 {
+  font-size: clamp(26px, 3vw, 32px);
+  line-height: 1.2;
+  margin: 0;
+  font-weight: 500;
+}
+
+/* Right side – body */
+.strip-feature__right p {
+  margin: 0 0 10px 0;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+/* Responsive stacking */
+@media (max-width: 800px) {
+  .strip-feature__card {
+    grid-template-columns: 1fr;
+    row-gap: 16px;
+    padding: 24px 20px;
+  }
+}
+ 
     
 </style>
 
@@ -390,6 +434,34 @@ async function injectFragment(hostSelector, url, baseHref) {
            alt="Trader at a desk monitoring several market screens">
     </figure>
 
+  </div>
+</section>
+
+  <section class="strip-feature">
+  <div class="strip-feature__inner">
+    <div class="strip-feature__card">
+      
+      <div class="strip-feature__left">
+        <h2>A Better Deal for Retail Equities</h2>
+      </div>
+
+      <div class="strip-feature__right">
+        <p>
+          For retail equity investors, market makers regularly offer a better price on
+          securities than the public exchanges. This is known as price improvement.
+        </p>
+        <p>
+          The benefits of price improvement flow directly into investors’ pockets.
+          Our work helps reduce the cost of market participation and increase access to
+          financial opportunity.
+        </p>
+        <p>
+          Our clients seek the best execution. Our efforts to deliver ultimately benefit
+          the entire marketplace.
+        </p>
+      </div>
+
+    </div>
   </div>
 </section>
 
@@ -708,6 +780,33 @@ async function injectFragment(hostSelector, url, baseHref) {
   </div>
 </section>
 
+<section class="strip-feature">
+  <div class="strip-feature__inner">
+    <div class="strip-feature__card">
+      
+      <div class="strip-feature__left">
+        <h2>A Better Deal for Retail Equities</h2>
+      </div>
+
+      <div class="strip-feature__right">
+        <p>
+          For retail equity investors, market makers regularly offer a better price on
+          securities than the public exchanges. This is known as price improvement.
+        </p>
+        <p>
+          The benefits of price improvement flow directly into investors’ pockets.
+          Our work helps reduce the cost of market participation and increase access to
+          financial opportunity.
+        </p>
+        <p>
+          Our clients seek the best execution. Our efforts to deliver ultimately benefit
+          the entire marketplace.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
 
 
   

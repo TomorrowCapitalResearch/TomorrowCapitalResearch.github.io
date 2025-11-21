@@ -36,6 +36,79 @@
 }
 
 
+
+
+
+
+
+.mm-section {
+  background: #174ea6;       /* main blue background – adjust to your palette */
+  color: #ffffff;
+  padding: 64px 32px;
+}
+
+.mm-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.mm-title {
+  font-size: clamp(32px, 4vw, 44px);
+  font-weight: 500;
+  margin: 0 0 40px 0;
+}
+
+.mm-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  column-gap: 48px;
+}
+
+/* Each column */
+.mm-col {
+  padding: 0 24px 0 24px;
+  border-left: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.mm-col:first-child {
+  border-left: none;     /* no line at far left */
+  padding-left: 0;
+}
+
+.mm-col h3 {
+  font-size: 22px;
+  margin: 0 0 16px 0;
+}
+
+.mm-col p {
+  font-size: 15px;
+  line-height: 1.6;
+  margin: 0 0 12px 0;
+}
+
+/* Responsive: stack on small screens */
+@media (max-width: 900px) {
+  .mm-grid {
+    grid-template-columns: 1fr;
+    row-gap: 32px;
+  }
+
+  .mm-col {
+    border-left: none;
+    padding: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    padding-top: 24px;
+  }
+
+  .mm-col:first-child {
+    border-top: none;
+    padding-top: 0;
+  }
+}
+
+
+
+    
     
 </style>
 
@@ -188,6 +261,60 @@ async function injectFragment(hostSelector, url, baseHref) {
     </div>
   </section>
 
+
+<section class="mm-section">
+  <div class="mm-inner">
+    <h2 class="mm-title">The Importance of Market Making</h2>
+
+    <div class="mm-grid">
+      <article class="mm-col">
+        <h3>Liquidity &amp; Depth</h3>
+        <p>
+          Market makers make it easier for investors to buy or sell a security quickly or in large
+          volumes, delivering liquidity and depth to the market.
+        </p>
+        <p>
+          In times of volatility, they help keep markets resilient when other participants may step back.
+        </p>
+      </article>
+
+      <article class="mm-col">
+        <h3>Greater Dependability</h3>
+        <p>
+          Their presence smooths execution of trades, reduces price fluctuations and helps close
+          short-term supply–demand gaps.
+        </p>
+        <p>
+          This supports confidence among market participants and keeps markets functioning reliably.
+        </p>
+      </article>
+
+      <article class="mm-col">
+        <h3>Efficient Capital Allocation</h3>
+        <p>
+          Market makers help ensure orderly trading in listed securities, including during IPOs and
+          other capital-raising events.
+        </p>
+        <p>
+          This contributes to the efficient flow of capital and broader economic growth.
+        </p>
+      </article>
+
+      <article class="mm-col">
+        <h3>Price Discovery &amp; Stability</h3>
+        <p>
+          Continuous quoting and trading activity helps reveal fair prices and tighten bid–ask spreads.
+        </p>
+        <p>
+          This stabilises markets and improves execution quality for all participants.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+  
   <!-- Layer 1: Business Strategy -->
   <section class="tc-section" id="business-strategy">
     <div class="tc-section-header">

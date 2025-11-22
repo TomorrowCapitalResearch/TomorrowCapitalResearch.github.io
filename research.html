@@ -35,6 +35,22 @@
   --radius:14px;
 }
 
+
+.img-wrapper {
+  width: 100%;        /* or a fixed width if you prefer */
+  height: 220px;      /* make all images same visual height */
+  overflow: hidden;   /* hides anything that sticks out */
+}
+
+.img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;  /* fills box and crops edges instead of squishing */
+  display: block;
+}
+
+    
+    
 .hero-split {
   background: #f5f6f8;         /* light background, adjust to your palette */
   padding: 72px 40px;
@@ -513,11 +529,13 @@ At Tomorrow Capital Research, we treat the firm as a single integrated system ra
   <div class="zigzag__inner">
     <h2 class="zigzag__title">The Business of Tomorrow Capital Research</h2>
 
-    <!-- Row 1 -->
+
+
+    
     <div class="zigzag__row">
-      <figure class="zigzag__media">
-        <img src="assets/R1.jpeg" alt="Business">
-      </figure>
+    <div class="img-wrapper">
+    <img src="assets/R1.jpeg" alt="Business & Expansion">
+    </div>
       <div class="zigzag__content">
         <h3>Business &amp; Expansion Strategy</h3>
         <p>
@@ -532,9 +550,9 @@ At Tomorrow Capital Research, we treat the firm as a single integrated system ra
 
     <!-- Row 2 -->
     <div class="zigzag__row">
-      <figure class="zigzag__media">
-        <img src="assets/R2.jpeg" alt="Abstract portfolio visualisation">
-      </figure>
+    <div class="img-wrapper">
+    <img src="assets/R2.jpeg" alt="Business & Expansion">
+    </div>
       <div class="zigzag__content">
         <h3>Portfolio Management System</h3>
         <p>
@@ -549,9 +567,9 @@ At Tomorrow Capital Research, we treat the firm as a single integrated system ra
 
     <!-- Row 3 -->
     <div class="zigzag__row">
-      <figure class="zigzag__media">
-        <img src="assets/R3.png" alt="Code and models on screens">
-      </figure>
+    <div class="img-wrapper">
+    <img src="assets/R3.png" alt="Business & Expansion">
+    </div>
       <div class="zigzag__content">
         <h3>Trading Strategies</h3>
         <p>
@@ -566,9 +584,9 @@ At Tomorrow Capital Research, we treat the firm as a single integrated system ra
 
     <!-- Row 4 -->
     <div class="zigzag__row">
-      <figure class="zigzag__media">
-        <img src="assets/R4.jpg" alt="Execution and market microstructure">
-      </figure>
+    <div class="img-wrapper">
+    <img src="assets/R4.jpg" alt="Business & Expansion">
+    </div>
       <div class="zigzag__content">
         <h3>Execution &amp; Microstructure</h3>
         <p>

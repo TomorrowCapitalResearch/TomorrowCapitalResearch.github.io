@@ -287,8 +287,8 @@
 
    /* Outer blue strip */
 .strip-feature {
-  background: #174ea6;           /* blue band */
-  padding: 8px 0 32px;           /* thin blue top, space below the card */
+  background: var(--lb);           /* blue band */
+  padding: 60px 0 60px;           /* thin blue top, space below the card */
 }
 
 .strip-feature__inner {
@@ -299,7 +299,7 @@
 
 /* Light grey card */
 .strip-feature__card {
-  background: #f2f3f4;           /* light grey */
+  background: var(--white);           /* light grey */
   display: grid;
   grid-template-columns: minmax(0, 0.6fr) minmax(0, 1.4fr);
   column-gap: 48px;
@@ -308,7 +308,7 @@
 
 /* Left side – title */
 .strip-feature__left h2 {
-  font-size: clamp(26px, 3vw, 32px);
+  font-size: clamp(32px, 3vw, 40px);
   line-height: 1.2;
   margin: 0;
   font-weight: 500;

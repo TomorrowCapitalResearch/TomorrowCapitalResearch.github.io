@@ -6,12 +6,10 @@
   <title>Tomorrow</title>
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-
   
   <style>
   *{box-sizing:border-box}
   html,body{margin:0;padding:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:#ffffff}
-
 :root{
   --white:#ffffff; /* White */
   --black:#000000; /* Black */
@@ -35,1020 +33,305 @@
   --paper:#FFFFFF;
   --gold:#C59B3B;                 /* optional accent for chevrons/links */
   --radius:14px;
-  
-}
-
-
-
-
-    
-/* Navbar basics you already have */
-.nav{position:sticky; top:0; z-index:1000; background:#ffffff; border-bottom:1px solid rgba(0,0,0,.06)}
-.nav-inner{max-width:100%; margin:auto; padding:20px 20px; display:flex; align-items:center; justify-content:space-between}
-.menu{display:flex; gap:12px; align-items:center}
-.menu .menu-trigger, .menu .menu-link{
-  font:500 16px/1.2 "Inter", sans-serif;
-  color:var(--text);
-  background:none; border:0; padding:30px 10px; cursor:pointer;
-  text-decoration:none;
-}
-
-.menu .menu-trigger:hover, .menu .menu-link:hover{
-  color:var(--texthover);
-  text-decoration:underline;
-  text-decoration-color:var(--texthover);
-  text-decoration-thickness:3px;
-  text-underline-offset:5px;
-}
-
-/* MEGA container spans full width under header */
-.mega{
-  position:absolute; left:0; right:0; top:0;  /* JS sets top dynamically */
-  display:none; isolation:isolate; z-index:900;
-}
-    
-.mega.open{ display:block; }
-
-/* Each panel */
-.mega-panel{
-  display: none;
-  width: 100%;
-  min-height:280px;
-  background: linear-gradient(to right, var(--blue), var(--lb));
-  color:var(--text);
-  border-top:1px solid rgba(125,125,125,.5);
-  box-shadow:0 40px 40px rgba(10,29,69,.35);
-  padding:40px 30px;
-  grid-template-columns: 1fr auto 3fr; /* left | divider | right */
-  align-items: start;              /* vertical alignment for left/right */
-  column-gap: 40px;
-}
-    
-.mega-panel.open{ display:grid; }
-    
-.divider {
-  grid-column: 2;
-  width: 1px;
-  background-color: rgba(255, 255, 255, 1); /* subtle line */
-  align-self:stretch;
-  margin-block: 10px;  
-}
-    
-.mega-left{ grid-column:1; display:flex; flex-direction:column; justify-content:flex-start; align-items:flex-start; gap:30px; padding-block:5px; }
-.mega-left h2{
-  margin: 0;
-  font-family: "Inter", sans-serif;
-  font-weight: 500;                                   /* lighter */
-  font-size: 40px;                  /* big & responsive */
-  line-height: 1.05;
-  letter-spacing: 0.2px;                              /* slightly open */
-  color: var(--text);                                        /* white */
-}
-.mega-left .btn{
-  display:inline-flex;
-  justify-content:center;
-  align-items: center;
-  gap: 10px;
-  padding:12px 16px;
-  border-radius:9999px; 
-  font-family: "Inter", sans-serif;
-  font-weight: 500;
-  font-size: 18px;
-  text-decoration:none;
-  
-  background:var(--white); 
-  color:var(--text);
-  
-  
-
-  
-}
-    
-.mega-right{ grid-column:3; display:flex; justify-content:left; }
-.mega-right ul{ display:flex; flex-direction:column; list-style: none; gap:0px; margin:0; padding:0; }
-.mega-right li{ margin: 5px 0; }
-.mega-right a{
-  display:inline-block;
-  color:var(--text);
-  font:500 16px/1 "Inter", sans-serif;
-  text-decoration:none;
-}
-.mega-right a:hover{ text-decoration:none; filter:brightness(0.95); }
-
-/* Close button (X) */
-.mega-close{
-  position:absolute; top:16px; right:24px;
-  background:transparent; border:0; color:#ffffff; font-size:40px; line-height:1; cursor:pointer;
-}
-.mega-close:hover{ opacity:1 }
-
-/* Prevent page content from being overlapped awkwardly */
-body{position:relative}
-
-
-  .brand {
-  display: flex;
-  align-items: center;
-  gap: 10px;        /* space between logo + text */
-  pointer-events: none; /* ensures it's not clickable anywhere */
-}
-
-.brand img {
-  height: 40px;    /* Adjust logo size here */
-  width: auto;
-}
-
-.brand-text {
-  font-family: "Inter", sans-serif;   /* ensures Arial is used */
-  font-size:48px;                   /* adjust to preferred size */
-  letter-spacing:-1px;              /* pulls characters closer together */
-  color:var(--text);                    /* same blue as your logo */
-  line-height:1;                    /* ensures text sits nicely next to logo */
-  user-select:none;
-}
-
-.brand span {
-  color: var(--text);
-  font-size: 48px;
-  letter-spacing:-1px;
-  line-height: 1;
-}
-
-/* - */
-/* - */
-/* Footer shell */
-.site-footer{
-  background: var(--text);
-  color: var(--white);
-  padding: 20px 0 20px;
-}
-    
-.footer-inner{
-  max-width: 100%;
-  margin: 0 auto;
-  padding: 20px 20px;
-}
-
-/* Top row */
-.footer-top{
-  display:flex;
-  align-items:flex-start;
-  justify-content:space-between;
-  gap: 40px;
-  min-height: 120px;
-  margin-bottom: 28px; /* adjust as needed */
-}
-    
-.footer-brand{
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-    
-.footer-brand img{ height:40px; width:auto; display:block; }
-.footer-brand span{ font:500 48px "Inter", sans-serif; letter-spacing:-1px; }
-
-/* Right side quick links */
-.footer-links{
-  display:flex;
-  flex-direction:column;
-  gap:8px;
-  text-align:right;
-}
-    
-.footer-links a{
-  color: var(--white);
-  text-decoration:none;
-  font:500 16px/1.4 "Inter", sans-serif;
-}
-    
-.footer-links a:hover{
-  text-decoration:underline;
-  text-underline-offset:3px;
-}
-
-/* Divider */
-.footer-rule{
-  border:0;
-  border-top:1px solid rgba(255,255,255,1);
-  margin:  12px 0;
-}
-
-/* Bottom row */
-.footer-bottom{
-  display:grid;
-  grid-template-columns: 1fr 1fr auto;
-  align-items:center;
-  gap:22px;
-}
-.footer-legal{
-  display:flex;
-  gap:22px;
-  flex-wrap:wrap;
-}
-.footer-legal a{
-  color: var(--white);
-  text-decoration:none;
-  font:500 14px/1.6 "Inter", sans-serif;
-}
-.footer-legal a:hover{ text-decoration:underline; text-underline-offset:3px; }
-
-.footer-copy{
-  color: var(--white);
-  font:500 14px/1.6 "Inter", sans-serif;
-}
-
-/* Social round buttons */
-.footer-social{
-  display:flex; gap:14px;
-}
-.social-btn{
-  width:40px; height:40px; display:grid; place-items:center;
-  color: var(--white);
-  border:1px solid rgba(255,255,255,1);
-  border-radius:999px;
-  text-decoration:none;
-}
-.social-btn:hover{
-  background: rgba(255,255,255,.45);
-  border-color: rgba(255,255,255,.45);
-}
-
-/* Footnotes link */
-.footer-footnotes{
-  margin-top: 10px;
-}
-.footer-footnotes a{
-  color: var(--white)
-}
-
-/* Responsive */
-@media (max-width: 900px){
-  .footer-top{ flex-direction:column; align-items:flex-start; text-align:left; }
-  .footer-links{ text-align:left; }
-  .footer-bottom{ grid-template-columns: 1fr; text-align:left; }
-  .footer-social{ justify-content:flex-start; }
-}
-
-
-
-  .hero-wrap {
-    max-width: 95%;
-    margin: 0 auto;
-    padding: 0 var(--side-pad);
-  }
-
-  .hero {
-    position: relative;
-    overflow: clip;
-  }
-
-  /* Media area */
-  .hero-media {
-    width: 100%;
-    height: 580px; /* choose whichever looks right */
-    background-image: var(--hero-image);
-    background-size: cover;
-    background-position: center;
-  }
-
-  /* Caption box with a downward-sloped right edge */
-  .hero-caption {
-    position: absolute;
-    left: 0px;
-    bottom: 0px;
-    max-width: 650px;
-    padding: 24px 28px;
-    color: var(--text);
-    background: var(--white);
-    box-shadow:
-      0 10px 20px rgba(0,0,0,.08),
-      0 2px 6px rgba(0,0,0,.04);
-  }
-
-  .hero-caption h3 {
-    margin: 0 0 8px 0;
-    font-weight: 500;
-    font-size: 40px;
-    line-height: 1.15;
-    letter-spacing: .1px;
-  }
-
-  .hero-caption p {
-    margin: 0;
-    font-size: 22px;
-    line-height: 1.45;
-    color: var(--muted);
-  }
-
-  /* Make the box breathe on small screens */
-  @media (max-width: 640px){
-    .hero-caption{
-      max-width: 92%;
-      padding: 16px 18px;
-      left: 4%;
-      right: 4%;
-      /* slightly softer slope on tiny screens */
+  --hero-image:url("assets/A1.jpeg");
+  --hero-overlay: linear-gradient(180deg, rgba(10,10,10,.45), rgba(10,10,10,.55));
     }
-  }
 
-
-/* Divider between hero and following content */
-.section-divider {
-  
-  height: 2px;
-  width: 400px;
-  background: linear-gradient(to right, var(--blue), var(--lb));
-  margin: 10px auto; /* adjust spacing to taste */
-}
-
-/* Section background colors */
-.info-section.light {
-  background: var(--lb);
-}
-
-.info-section.white {
-  background: var(--white);
-}
-
-.info-section.contrast {
-  background: var(--contrast);
-}
-
-/* Layout container */
-.info-container {
-  display: grid;
-  grid-template-columns: 1fr 1.30fr;
-  gap: 30px;
-  max-width: 1400px;
+.contact-section {
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 80px 80px;
-}
-
-/* Left column headline */
-.info-left h2 {
-  font-size: 40px;
-  font-weight: 500;
-  line-height: 1.1;
-  color: var(--text);
-  margin: 0;
-}
-
-/* Right column supporting text */
-.info-right p {
-  font-size: 18px;
-  line-height: 1.5;
-  max-width: 900px;
-  margin: 0;
-  color: var(--text);
-}
-
-/* Responsive (mobile / tablet behavior) */
-@media (max-width: 900px) {
-  .info-container {
-    grid-template-columns: 1fr;
-  }
-
-  .info-left h2 {
-    font-size: 42px;
-    margin-bottom: 24px;
-  }
-}
-
-
-
-
-
-    
-/* Section wrapper */
-.kpis{
-  background: var(--paper);
-  padding: 20px 20px;
-}
-    
-.kpi-grid {
+  padding: 80px 40px;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0; /* We remove gaps — we will create dividers ourselves */
-  max-width: 1400px;
-  margin: 0 auto;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+  gap: 48px;
+  align-items: stretch;
 }
 
-/* Each KPI card */
-.kpi-card {
-  padding: 30px 30px;
-  background: #F1EFED;
+/* Left visual block */
+.contact-section__visual {
+  background: linear-gradient(135deg, #b3e5fc, #29b6f6, #1565c0);
+  border-radius: 12px;
   position: relative;
-  box-shadow:0 1px 0 rgba(10,10,10,0.03);
-  transition:transform .2s ease, box-shadow .2s ease;
+  overflow: hidden;
 }
 
-/* Horizontal Divider */
-.kpi-card:nth-child(1),
-.kpi-card:nth-child(2) {
-  border-bottom: none;
-}
-.kpi-card:nth-child(3),
-.kpi-card:nth-child(4) {
-  border-top: none;
-}
-
-/* Add top & bottom gradient lines */
-.kpi-card:not(:nth-child(1)):not(:nth-child(2))::before {
-  content: "";
+.contact-section__visual-inner {
   position: absolute;
-  top: 0;
-  left: 15%;
-  right: 15%;
-  height: 2px;
-  background: linear-gradient(to right, var(--blue), var(--lb));
+  inset: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  color: #ffffff;
 }
 
-/* Vertical Divider (middle vertical line) */
-.kpi-card:nth-child(odd)::after {
-  content: "";
-  position: absolute;
-  top: 15%;
-  bottom: 15%;
-  right: 0;
-  width: 2px;
-  background: linear-gradient(to bottom, var(--blue), var(--lb));
+.contact-section__visual-inner h2 {
+  margin: 0 0 8px;
+  font-size: 1.4rem;
 }
 
-.kpi-card:hover{
-  transform:translateY(-2px);
-  box-shadow:0 10px 24px rgba(10,10,10,.08);
+.contact-section__visual-inner p {
+  margin: 0;
+  max-width: 260px;
+  line-height: 1.4;
 }
 
-/* Big blue metric (Citadel style) */
-.kpi-metric{
-  font-weight:500;
-  font-size:120px;
-  line-height:.85;
-  letter-spacing:-2px;
-  color:var(--text);
-  margin:0 0 16px 0;
-  display:flex;
-  align-items:flex-start;
-  gap:8px;
-}
-.kpi-prefix{ font-size:.35em; line-height:1; transform:translateY(10px); }
-.kpi-suffix{ font-size:.35em; line-height:1; transform:translateY(12px); }
-
-/* Titles & body */
-.kpi-title{
-  font:500 28px/1.2 "Inter",system-ui,sans-serif;
-  color:var(--ink);
-  margin:10px 0 10px;
-}
-.kpi-desc{
-  color:var(--muted);
-  font-size:18px;
-  line-height:1.5;
-  margin:0 0 18px 0;
-  max-width:46ch;
+/* Right column */
+.contact-section__content h1 {
+  margin-top: 0;
+  margin-bottom: 16px;
+  font-size: 2.2rem;
 }
 
-/* Link styled like Rothschild chevron */
-.kpi-link{
-  display:inline-flex;
-  align-items:center;
-  gap:10px;
-  color:#1D2E73;                 /* muted navy */
-  text-decoration:none;
-  font-weight:500;
-}
-.kpi-link::before{
-  content:"›";
-  color:var(--gold);
-  font-size:22px;
-  line-height:1;
-  transform:translateY(-1px);
+.contact-section__content h3 {
+  margin-top: 32px;
+  margin-bottom: 8px;
+  font-size: 1.2rem;
 }
 
-/* Responsive */
-@media (max-width: 960px){
-  .kpi-grid{ grid-template-columns:1fr; gap:32px; }
-  .kpi-metric{ font-size:96px; }
-  .kpi-title{ font-size:24px; }
+.contact-section__content p {
+  margin: 0 0 12px;
+  line-height: 1.6;
 }
 
-
-/* Layout container */
-.about-section {
-  display: grid;
-  grid-template-columns: 1.3fr 1fr;
-  align-items: center;
-  max-width: 1600px;
-  margin: 0 auto;
-  padding: 120px 60px;
-  gap: 60px;
+.contact-section__list {
+  margin: 0 0 12px 0;
+  padding-left: 18px;
 }
 
-/* Left Image Panel */
-.about-image {
-  height: 520px;
-  background-image: url("your-image.jpg"); /* replace this */
-  background-size: cover;
-  background-position: center;
-  clip-path: polygon(0 0, 100% 0, 90% 100%, 0% 100%);
-  border-radius: 4px;
+.contact-section__list li {
+  margin-bottom: 8px;
+  line-height: 1.5;
 }
 
-/* Right Text Column */
-.about-text h2 {
-  font-family: "Georgia", "Times New Roman", serif;
-  font-size: 44px;
-  font-weight: 500;
-  color: #1D2E73; /* deep Rothschild blue */
-  margin-bottom: 24px;
-}
-
-.about-text p {
-  font-size: 20px;
-  line-height: 1.55;
-  color: #3d3e41;
-  max-width: 46ch;
-  margin-bottom: 32px;
-}
-
-/* Link with Gold Chevron */
-.about-link {
+/* Email call-to-action */
+.contact-section__cta {
+  margin-top: 24px;
+  padding: 14px 18px;
+  border-radius: 8px;
+  background: #f3f4f6;
   display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  font-size: 20px;
-  color: #1D2E73;
-  text-decoration: none;
-  font-weight: 500;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: baseline;
 }
 
-.about-link::before {
-  content: "›";
-  color: #C59B3B; /* Rothschild gold */
-  font-size: 26px;
-  line-height: 1;
+.contact-section__cta a {
+  font-weight: 600;
+  text-decoration: none;
+  color: #1f2933;
+}
+
+.contact-section__cta a:hover {
+  text-decoration: underline;
 }
 
 /* Responsive */
-@media(max-width: 900px){
-  .about-section {
+@media (max-width: 900px) {
+  .contact-section {
     grid-template-columns: 1fr;
-    padding: 80px 30px;
+    padding: 60px 20px;
   }
-  .about-image {
-    height: 380px;
-    clip-path: none; /* unclipped on small screens for simpler display */
+
+  .contact-section__visual {
+    min-height: 220px;
   }
-  .about-text h2 { font-size: 36px; }
+
+  .contact-section__visual-inner {
+    inset: 24px;
+  }
 }
 
 
-    
-  </style>
-</head>
-<body>
-
-
-
-
-
-
-
-  
-  <!-- NAVBAR -->
-<header class="nav">
-  <div class="nav-inner">
-    <div class="brand">
-    <img src="assets/logo.png" alt="Tomorrow Capital Research logo">
-    <span class="brand-text">Tomorrow</span>
-    </div>
-
-    
-    <nav class="menu" aria-label="Primary">
-      <button class="menu-trigger" data-panel="mega-wwa" aria-haspopup="true" aria-expanded="false">Who We Are</button>
-      <button class="menu-trigger" data-panel="mega-wwd" aria-haspopup="true" aria-expanded="false">What We Do</button>
-      <button class="menu-trigger" data-panel="mega-news" aria-haspopup="true" aria-expanded="false">What Is New</button>
-      <button class="menu-trigger" data-panel="mega-research" aria-haspopup="true" aria-expanded="false">Research</button>
-      <button class="menu-trigger" data-panel="mega-careers" aria-haspopup="true" aria-expanded="false">How To Join</button>
-      <a class="menu-link" href="contact.html">Contact</a>
-    </nav>
-  </div>
-
-
-<!-- MEGA DROPDOWN AREA -->
-<div class="mega" id="mega-root" aria-live="polite">
-  
-  <!-- Who We Are Panel -->
-  <section id="mega-wwa" class="mega-panel" role="dialog" aria-label="Who We Are menu" aria-modal="false">
-    <button class="mega-close" aria-label="Close menu">×</button>
-    <div class="mega-left">
-      <h2>Who We Are</h2>
-      <a class="btn" href="who-we-are.html">Learn More</a>
-      
-    </div>  
-    <div class="divider"></div>
-    <div class="mega-right">
-      <ul>
-        <li><a href="mission.html">Mission & Values</a></li>
-        <li><a href="team.html">Team</a></li>
-        <li><a href="culture.html">Culture</a></li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- What We Do panel -->
-  <section id="mega-wwd" class="mega-panel" role="dialog" aria-label="What We Do menu" aria-modal="false">
-    <button class="mega-close" aria-label="Close menu">×</button>
-    <div class="mega-left">
-      <h2>What We Do</h2>
-      <a class="btn" href="what-we-do.html">Learn More</a>
-      
-    </div>  
-    <div class="divider"></div>
-    <div class="mega-right">
-      <ul>
-        <li><a href="test.html">tests</a></li>
-      </ul>
-    </div>
-  </section>
-
-    <!-- What Is New panel -->
-  <section id="mega-news" class="mega-panel" role="dialog" aria-label="What Is New menu" aria-modal="false">
-    <button class="mega-close" aria-label="Close menu">×</button>
-    
-    <div class="mega-left">
-      <h2>What Is New</h2>
-      <a class="btn" href="news.html">Learn More</a>
-    </div>
-    <div class="divider"></div>
-    <div class="mega-right">
-      <ul>
-        <li><a href="corp.html">corporate news</a></li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- Research panel -->
-  <section id="mega-research" class="mega-panel" role="dialog" aria-label="Research menu" aria-modal="false">
-    <button class="mega-close" aria-label="Close menu">×</button>
-    
-    <div class="mega-left">
-      <h2>Research</h2>
-      <a class="btn" href="research.html">Learn More</a>
-    </div>
-    <div class="divider"></div>
-    <div class="mega-right">
-      <ul>
-        <li><a href="signals.html">Signals</a></li>
-        <li><a href="portfolio.html">Portfolio</a></li>
-        <li><a href="execution.html">Execution</a></li>
-        <li><a href="notes.html">Research Notes</a></li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- How To Join panel -->
-  <section id="mega-careers" class="mega-panel" role="dialog" aria-label="How To Join menu" aria-modal="false">
-    <button class="mega-close" aria-label="Close menu">×</button>
-    
-    <div class="mega-left">
-      <h2>How To Join</h2>
-      <a class="btn" href="careers.html">Open Roles</a>
-    </div>
-    <div class="divider"></div>
-    <div class="mega-right">
-      <ul>
-        <li><a href="careers.html">Experienced</a></li>
-        <li><a href="internships.html">Internships</a></li>
-        <li><a href="culture.html">Life at TCR</a></li>
-      </ul>
-    </div>
-  </section>
-</div>
-  
-</header>
-
-  <section class="hero-wrap">
-    <div class="hero">
-      <div class="hero-media"></div>
-
-      <div class="hero-caption" role="note" aria-label="Intro">
-        <h3>We work for a better Tomorrow</h3>
-        <p>Our mission is to shape a financial system that empowers opportunity, stability, and innovation.
-We combine insight, intelligence, and integrity to move markets forward.</p>
-        
-      </div>
-    </div>
-  </section>
-
-<!-- ✅ Section 1 (Light Blue Background) -->
-<section class="info-section light">
-  <div class="info-container">
-    <div class="info-left">
-      <h2>The Future of Trading,<br> Today</h2>
-    </div>
-    <div class="info-right">
-      <p>
-We bring tomorrow’s innovations in algorithmic trading, systematic investing, and quantitative finance into the world today.
-At the intersection of mathematics, technology, and financial expertise, we design adaptive systems that outperform, evolve, and predict with precision.<br>
-Our mission is simple: to lead the next generation of intelligent markets.
-      </p>
-    </div>
-  </div>
-</section>
-
-<!-- ✅ Section 2 (White Background) -->
-<section class="info-section white">
-  <div class="info-container">
-    <div class="info-left">
-      <h2>Optimizing Returns,<br>Controlling Risk</h2>
-    </div>
-    <div class="info-right">
-      <p>
-Our frameworks are built to maximize performance under disciplined risk control.
-Through advanced predictive modelling, adaptive portfolio design, and real-time intelligence, we extract efficiency where others see noise.<br>
-Every layer — from research to execution — is optimized to deliver consistent, risk-adjusted excellence.
-      </p>
-    </div>
-  </div>
-</section>
-
-<!-- ✅ KPI Section -->
-<section class="kpis">
-  <div class="kpi-grid">
-
-    <!-- Card 1 -->
-    <article class="kpi-card">
-      <div class="kpi-metric">36<span class="kpi-prefix">%</span></div>
-      <h3 class="kpi-title">Live Net Annual Returng</h3>
-      <p class="kpi-desc">Exceptional returns every year since inception.</p>
-      <a class="kpi-link" href="#">Learn more</a>
-    </article>
-
-    <!-- Card 2 -->
-    <article class="kpi-card">
-      <div class="kpi-metric"><span class="kpi-prefix">$</span>654<span class="kpi-suffix">B</span></div>
-      <h3 class="kpi-title">Assets Under Management</h3>
-      <p class="kpi-desc">Read what our clients and customers say about us.</p>
-      <a class="kpi-link" href="#">Read our Reviews</a>
-    </article>
-
-    <!-- Card 3 -->
-    <article class="kpi-card">
-      <div class="kpi-metric">2<span class="kpi-suffix">.1</span></div>
-      <h3 class="kpi-title">Average Sharpe Ratio</h3>
-      <p class="kpi-desc">Read about how we innovate and research.</p>
-      <a class="kpi-link" href="#">What we do</a>
-    </article>
-
-    <!-- Card 4 (example) -->
-    <article class="kpi-card">
-      <div class="kpi-metric"><5<span class="kpi-suffix">%</span></div>
-      <h3 class="kpi-title">Average Maximum Drawdown</h3>
-      <p class="kpi-desc">We manage risks like no other firm.</p>
-      <a class="kpi-link" href="#">See our risk strategy</a>
-    </article>
-
-  </div>
-</section>
-
-
-  
-<div class="section-divider"></div>
-
-<!-- ✅ Section 3 (blue Background) -->
-<section class="info-section contrast">
-  <div class="info-container">
-    <div class="info-left">
-      <h2>Built to Endure. <br> Driven to Excel.</h2>
-    </div>
-    <div class="info-right">
-      <p>
-We design systems that are built to live beyond generations — precise, adaptive, and enduring.
-Our team unites exceptional minds in quantitative research, engineering, and trading to create what others only imagine.
-Driven by discipline, innovation, and relentless pursuit, we don’t just follow the future — we build it.
-      </p>
-    </div>
-  </div>
-</section>
-
-<!-- ✅ Section 4 (blue Background) -->
-<section class="info-section white">
-  <div class="info-container">
-    <div class="info-left">
-      <h2> Not just words.<br> Actions too.</h2>
-    </div>
-    <div class="info-right">
-      <p>
-We design systems that are built to live beyond generations — precise, adaptive, and enduring.
-Our team unites exceptional minds in quantitative research, engineering, and trading to create what others only imagine.
-Driven by discipline, innovation, and relentless pursuit, we don’t just follow the future — we build it.
-      </p>
-    </div>
-  </div>
-</section>
-
-
-
-<section class="about-section">
-  <div class="about-image"></div>
-
-  <div class="about-text">
-    <h2>About us</h2>
-    <p>
-      We are a leading global financial services group, with seven generations
-      of stewardship and a long-standing presence at the centre of international
-      financial markets. Our approach is built on responsibility, discretion,
-      and a commitment to long-term value.
-    </p>
-
-    <a href="#" class="about-link">Learn more</a>
-  </div>
-</section>
-
-
-
-
-
-
-  
-  
-  <!-- FOOTER -->
-<footer class="site-footer">
-  <div class="footer-inner">
-    <!-- Top row -->
-    <div class="footer-top">
-      <div class="footer-brand">
-        <img src="assets/logo2.png" alt="Tomorrow Capital Research" />
-        <span>Tomorrow</span>
-      </div>
-
-      <nav class="footer-links" aria-label="Footer quick links">
-        <a href="about.html">Who We Are</a>
-        <a href="research.html">What We Do</a>
-        <a href="news.html">News & Insights</a>
-        <a href="careers.html">Careers</a>
-      </nav>
-    </div>
-
-    <hr class="footer-rule" />
-
-    <!-- Bottom row -->
-    <div class="footer-bottom">
-      <nav class="footer-legal" aria-label="Legal">
-        <a href="privacy.html">Privacy</a>
-        <a href="terms.html">Terms of Use</a>
-        <a href="notices.html">Notices</a>
-        <a href="disclosures.html">Disclosures</a>
-      </nav>
-
-      <div class="footer-copy">© <span id="year"></span> Tomorrow Capital Research. All rights reserved.</div>
-
-      <div class="footer-social" aria-label="Social">
-        <!-- LinkedIn -->
-        <a class="social-btn" href="https://www.linkedin.com/company/tomorrow-capital-research" aria-label="LinkedIn">
-          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M4.98 3.5A2.5 2.5 0 1 1 0 3.5a2.5 2.5 0 0 1 4.98 0zM.5 8.5h4.9V24H.5zM8.5 8.5h4.7v2.1h.1c.7-1.2 2.4-2.5 4.9-2.5 5.2 0 6.2 3.4 6.2 7.7V24h-4.9v-6.8c0-1.6 0-3.7-2.2-3.7-2.2 0-2.6 1.7-2.6 3.6V24H8.5z"/></svg>
-        </a>
-        <!-- Facebook -->
-        <a class="social-btn" href="#" aria-label="Facebook">
-          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2.3V12h2.3V9.7c0-2.2 1.3-3.4 3.3-3.4.95 0 1.9.17 1.9.17v2.1h-1.1c-1 0-1.3.64-1.3 1.3V12h2.3l-.37 2.9h-1.9v7A10 10 0 0 0 22 12z"/></svg>
-        </a>
-        <!-- Instagram -->
-        <a class="social-btn" href="#" aria-label="Instagram">
-          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5A5.5 5.5 0 1 1 6.5 13 5.51 5.51 0 0 1 12 7.5zm0 2A3.5 3.5 0 1 0 15.5 13 3.5 3.5 0 0 0 12 9.5zm6.25-2.75a1.25 1.25 0 1 1-1.25 1.25 1.25 1.25 0 0 1 1.25-1.25z"/></svg>
-        </a>
-        <!-- YouTube -->
-        <a class="social-btn" href="#" aria-label="YouTube">
-          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.3 3.5 12 3.5 12 3.5s-7.3 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c2.1.6 9.4.6 9.4.6s7.3 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.8 15.5V8.5l6.3 3.5z"/></svg>
-        </a>
-      </div>
-    </div>
-
-    <hr class="footer-rule" />
-
-    <!-- Optional footnotes link -->
-    <div class="footer-footnotes">
-      <a href="#footnotes">View footnotes for this page.</a>
-    </div>
-
-    <div>
-      <p>
-        this website is subject to continuous updates
-      </p>
-    </div>
-  </div>
-</footer>
-
-
-
-
-
-
-
-
-
-
-
-  
+</style>
 <script>
-  document.getElementById('year').textContent = new Date().getFullYear();
+function absolutizeAttr(node, attr, base) {
+  const val = node.getAttribute(attr);
+  if (!val || /^(https?:)?\/\//i.test(val) || val.startsWith('data:') || val.startsWith('mailto:') || val.startsWith('#')) return;
+  try { node.setAttribute(attr, new URL(val, base).href); } catch {}
+}
 
-  const nav     = document.querySelector('.nav');
-  const menu    = document.querySelector('.menu');
-  const root    = document.getElementById('mega-root');
-  const triggers= document.querySelectorAll('.menu .menu-trigger');
-  const panels  = document.querySelectorAll('.mega-panel');
+function loadScriptInOrder(s) {
+  return new Promise(resolve => {
+    const el = document.createElement('script');
+    if (s.src) {
+      el.src = s.src;
+      // don't copy defer/async; we want deterministic order
+      el.onload = () => resolve();
+      el.onerror = () => resolve(); // fail-soft so the rest still run
+      document.body.appendChild(el);
+    } else {
+      // inline: execute synchronously
+      el.textContent = s.textContent;
+      if (s.type) el.type = s.type; // handles type="module" inline
+      document.body.appendChild(el);
+      resolve();
+    }
+  });
+}
 
-  // If navbar height changes (responsive), keep the panel snug under it
-  const placeMega = () => {
-    const navRect = nav.getBoundingClientRect();
-    root.style.top = `${navRect.height}px`;
-  };
-  placeMega();
-  window.addEventListener('resize', placeMega);
+async function injectFragment(hostSelector, url, baseHref) {
+  const host = document.querySelector(hostSelector);
+  if (!host) { console.error("inject: host not found", hostSelector); return false; }
 
-  let hoverCloseTimer = null;
+  try {
+    const res = await fetch(url, { cache: "no-store" });
+    if (!res.ok) throw new Error(`HTTP ${res.status} for ${url}`);
+    const html = await res.text();
 
-  function openPanel(id){
-    root.classList.add('open');
-    panels.forEach(p => p.classList.toggle('open', p.id === id));
-    triggers.forEach(t => t.setAttribute('aria-expanded', String(t.dataset.panel === id)));
+    const doc = new DOMParser().parseFromString(html, "text/html");
+
+    // 1) Absolutize all URLs so relative paths resolve to the shared repo
+    const base = baseHref || (new URL(url, location.href)).href;
+    doc.querySelectorAll('a[href], link[href], img[src], script[src]').forEach(el => {
+      if (el.hasAttribute('href')) absolutizeAttr(el, 'href', base);
+      if (el.hasAttribute('src'))  absolutizeAttr(el, 'src',  base);
+    });
+
+    // 2) Move styles into <head> (avoid duplicates)
+    doc.querySelectorAll('link[rel="stylesheet"]').forEach(link => {
+      const href = link.getAttribute('href');
+      if (!href) return;
+      const exists = [...document.styleSheets].some(s => s.href === href);
+      if (!exists) document.head.appendChild(link.cloneNode(true));
+    });
+    doc.querySelectorAll('style').forEach(style => {
+      document.head.appendChild(style.cloneNode(true));
+    });
+
+    // 3) Inject DOM (but strip scripts for now)
+    const root = doc.querySelector('header, footer, body') || doc.body;
+    const fragment = root.cloneNode(true);
+    fragment.querySelectorAll('script').forEach(s => s.remove());
+    host.replaceChildren(...fragment.childNodes);
+
+    // 4) Execute scripts sequentially and await each
+    const scripts = [...doc.querySelectorAll('script')];
+    for (const s of scripts) {
+      await loadScriptInOrder(s);
+    }
+
+    // 5) After scripts are loaded, adjust mega position & z-index
+    const nav  = host.querySelector('.nav');
+    const mega = host.querySelector('#mega-root');
+    if (nav && mega) {
+      const placeMega = () => {
+        const h = nav.getBoundingClientRect().height || nav.offsetHeight || 0;
+        mega.style.top = h + 'px';
+        mega.style.zIndex = '1001';
+      };
+      placeMega();
+      addEventListener('load', placeMega);
+      addEventListener('resize', placeMega);
+    }
+
+    // 6) Signal to any listeners that header/footer is ready
+    document.dispatchEvent(new CustomEvent('tmrw:header-ready', { detail: { host: hostSelector } }));
+    return true;
+
+  } catch (e) {
+    console.error('inject failed:', e);
+    host.innerHTML = '<div style="padding:12px;color:#a00;background:#fee;border:1px solid #fbb">Failed to load shared fragment.</div>';
+    return false;
   }
-
-  function closeAll(){
-    root.classList.remove('open');
-    panels.forEach(p => p.classList.remove('open'));
-    triggers.forEach(t => t.setAttribute('aria-expanded','false'));
-  }
-
-  // Open/switch on hover or click
-  triggers.forEach(btn => {
-    const id = btn.dataset.panel;
-    btn.addEventListener('mouseenter', () => openPanel(id));
-    btn.addEventListener('click', (e) => { e.preventDefault(); openPanel(id); });
-    // Keyboard accessibility: open when focused with Tab
-    btn.addEventListener('focus', () => openPanel(id));
-  });
-
-  // Close with the X
-  root.addEventListener('click', (e) => {
-    if (e.target.closest('.mega-close')) closeAll();
-  });
-
-  // Close on Escape
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeAll(); });
-
-  // Helper: are we hovering inside nav or mega?
-  const isInsideHoverZone = (event) => {
-    const insideNav  = event.relatedTarget && (event.relatedTarget === nav || nav.contains(event.relatedTarget));
-    const insideMega = event.relatedTarget && (event.relatedTarget === root || root.contains(event.relatedTarget));
-    return insideNav || insideMega;
-  };
-
-  // Start a short timer when leaving nav or panel; cancel if the pointer enters the other region
-  const startCloseTimer = () => {
-    clearTimeout(hoverCloseTimer);
-    hoverCloseTimer = setTimeout(() => {
-      // If the pointer is not over nav or mega when timer fires, close.
-      const hovered = document.querySelector(':hover');
-      const overNav  = hovered && (hovered === nav || nav.contains(hovered));
-      const overMega = hovered && (hovered === root || root.contains(hovered));
-      if (!overNav && !overMega) closeAll();
-    }, 120); // small delay prevents flicker during the gap between elements
-  };
-
-  // Leave handlers for both zones
-  nav.addEventListener('mouseleave', (e) => { if (!isInsideHoverZone(e)) startCloseTimer(); });
-  root.addEventListener('mouseleave', (e) => { if (!isInsideHoverZone(e)) startCloseTimer(); });
-
-  // Entering either zone cancels any pending close
-  nav.addEventListener('mouseenter', () => clearTimeout(hoverCloseTimer));
-  root.addEventListener('mouseenter', () => clearTimeout(hoverCloseTimer));
-
-  // Optional: clicking anywhere outside both zones closes it
-  document.addEventListener('click', (e) => {
-    if (!e.target.closest('.mega') && !e.target.closest('.menu')) closeAll();
-  });
-
-  // Touch support: tap a trigger toggles its panel; tap outside closes
-  // (prevents immediate navigation on mobile when you want to open the panel)
-  triggers.forEach(btn => {
-    btn.addEventListener('touchstart', (e) => {
-      const id = btn.dataset.panel;
-      const alreadyOpen = root.classList.contains('open') && document.getElementById(id).classList.contains('open');
-      if (!alreadyOpen) {
-        e.preventDefault();
-        openPanel(id);
-      }
-    }, {passive:false});
-  });
+}
 </script>
 
+</head>
+  
+<body>
+
+  <!-- ================= -->
+  <!--  2️⃣  HEADER SLOT  -->
+  <!-- ================= -->
+  <div id="site-header"></div>
+  <script>
+    injectFragment(
+      "#site-header",
+      "https://tomorrowcapitalresearch.github.io/shared/header.html",
+      "https://tomorrowcapitalresearch.github.io/shared/"
+    );
+  </script>
 
 
+<section class="contact-section">
+  <!-- Left visual block -->
+  <div class="contact-section__visual">
+    <div class="contact-section__visual-inner">
+      <h2>Get in touch</h2>
+      <p>Thoughtful problems. Bold ideas. Real conversations.</p>
+    </div>
+  </div>
+
+  <!-- Right content -->
+  <div class="contact-section__content">
+    <h1>Contact Tomorrow Capital Research</h1>
+
+    <p>
+      We are a focused research and trading firm. To protect deep work and our team’s time,
+      this contact page is deliberately narrow in scope.
+    </p>
+
+    <h3>When <em>not</em> to contact us</h3>
+    <ul class="contact-section__list">
+      <li>
+        <strong>Recruitment & headhunters:</strong>
+        We are not currently hiring and we do not work with external recruiters.
+        For future hiring needs, we have chosen to partner with Alexander Chapman.
+      </li>
+      <li>
+        <strong>Investors:</strong>
+        We are not raising capital and do not respond to unsolicited investment approaches.
+        If we believe there is a mutual fit, we will reach out first.
+      </li>
+      <li>
+        <strong>Sales & vendors:</strong>
+        We prefer to discover data providers, infrastructure partners and tooling
+        through our own research and in-person conversations. Please do not use this
+        form for cold sales outreach.
+      </li>
+    </ul>
+
+    <h3>Who we’d love to hear from</h3>
+    <p>
+      If any of the following describe you, we’d be very happy to hear from you:
+    </p>
+    <ul class="contact-section__list">
+      <li>Researchers, quants or engineers with ideas that intersect our conjectures.</li>
+      <li>Partners for genuine, long-term collaborations rather than short-term transactions.</li>
+      <li>Creatives and designers interested in the intersection of markets, data and storytelling.</li>
+      <li>Aspiring quants or curious individuals who want to exchange thoughts and build a network.</li>
+    </ul>
+
+    <p>
+      If that sounds like you, send us a short note explaining who you are,
+      what you’re working on, and why you think we should speak.
+    </p>
+
+    <div class="contact-section__cta">
+      <span>Write to us at</span>
+      <a href="mailto:tomorrowcapitalresearch@gmail.com">
+        tomorrowcapitalresearch@gmail.com
+      </a>
+    </div>
+  </div>
+</section>
 
 
+  
+  
+  <!-- ================= -->
+  <!--  3️⃣  FOOTER SLOT  -->
+  <!-- ================= -->
+  <div id="site-footer"></div>
+  <script>
+    injectFragment(
+      "#site-footer",
+      "https://tomorrowcapitalresearch.github.io/shared/footer.html",
+      "https://tomorrowcapitalresearch.github.io/shared/"
+    );
+  </script>
 
 </body>
+
+  
 </html>

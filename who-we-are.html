@@ -50,12 +50,17 @@
   margin: 0 auto;
 }
 
-/* The image itself */
-.overlap-image img {
+/* The hero background – now a gradient, not an image */
+.overlap-image {
   width: 100%;
   height: 620px;
-  object-fit: cover;
-  display: block;
+  background: linear-gradient(
+    135deg,
+    #021528 0%,   /* deep navy */
+    var(--db) 30%,/* your deep brand blue */
+    var(--blue) 70%,  /* brighter blue */
+    var(--lb) 100%    /* light blue */
+  );
 }
 
 /* Lower white band */
@@ -90,10 +95,9 @@
   color: var(--text);
 }
 
-/* Mobile */
 @media (max-width: 768px) {
 
-  .overlap-image img {
+  .overlap-image {
     height: 260px;
   }
 
@@ -107,11 +111,11 @@
     height: 140px;
   }
 
-  /* Smaller side spacing on mobile */
   .overlap-image-container {
-    width: calc(100% - 40px);   /* 20px each side */
+    width: calc(100% - 40px);
   }
 }
+
 
 
 .split-intro {
@@ -410,12 +414,10 @@ async function injectFragment(hostSelector, url, baseHref) {
     );
   </script>
 
-
 <section class="overlap-hero">
 
   <div class="overlap-image-container">
     <div class="overlap-image">
-    <img src="assets/A10.png" alt="faded blur">
     </div>
   </div>
 

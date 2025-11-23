@@ -50,9 +50,13 @@
 /* Big image at the top */
 .trading-feature__media {
   height: 600px;                /* adjust to taste */
-  background-image: url("assets/A11.jpeg"); /* your image here */
-  background-size: cover;
-  background-position: center;
+  background: linear-gradient(
+    135deg,
+    #e7f3ff 0%,
+    #dceaf7 25%,
+    #9fd9ff 60%,
+    #61cbf4 100%
+  );
 }
 
 /* Blue card that overlaps image and white band */
@@ -78,7 +82,7 @@
   margin: 0 0 0 30px;
   font-size: 15px;
   line-height: 1.5;
-  color: #e5ecff;
+  color: var(--text);
 }
 
 /* Add some space under the whole block so the card has room */
@@ -175,8 +179,8 @@
 /* ===== Asset classes section ===== */
 
 .asset-section {
-  background: var(--text);          /* deep blue band */
-  color: #ffffff;
+  background: var(--white);          /* deep blue band */
+  color: var(--text);
   padding: 64px 0 120px;         /* extra bottom so cards can “sit” */
 }
 
@@ -218,8 +222,8 @@
 
 /* Individual card */
 .asset-card {
-  background: #F6F7F9;
-  color: var(--text);
+  background: var(--text);
+  color: var(--white);
   padding: 22px 22px 24px;
   border-top: 4px solid transparent;
 }

@@ -37,7 +37,109 @@
   --hero-overlay: linear-gradient(180deg, rgba(10,10,10,.45), rgba(10,10,10,.55));
     }
 
-  
+  /* Front-page split hero */
+.front-hero {
+  padding: 72px 24px 96px;
+  background: #ffffff;
+}
+
+.front-hero__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: 64px;
+  align-items: center;
+}
+
+/* Left gradient panel */
+.front-hero__visual {
+  border-radius: 24px;
+  min-height: 360px;
+  background: linear-gradient(
+    135deg,
+    #e7f3ff 0%,
+    var(--lb) 40%,
+    var(--blue) 100%
+  );
+}
+
+/* Right text column */
+.front-hero__copy h1 {
+  margin: 0 0 18px;
+  font-size: clamp(32px, 4vw, 44px);
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.front-hero__copy p {
+  margin: 0 0 28px;
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+/* Buttons */
+.front-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.front-hero__primary,
+.front-hero__secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 22px;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 500;
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  text-decoration: none;
+  transition: background-color .18s ease, color .18s ease, border-color .18s ease;
+}
+
+.front-hero__primary {
+  background: var(--text);
+  color: #ffffff;
+  border: 1px solid var(--text);
+}
+
+.front-hero__primary:hover,
+.front-hero__primary:focus-visible {
+  background: var(--texthover);
+  border-color: var(--texthover);
+}
+
+.front-hero__secondary {
+  background: #ffffff;
+  color: var(--text);
+  border: 1px solid rgba(0,0,0,0.1);
+}
+
+.front-hero__secondary:hover,
+.front-hero__secondary:focus-visible {
+  border-color: var(--texthover);
+  color: var(--texthover);
+}
+
+/* Mobile stack */
+@media (max-width: 768px) {
+  .front-hero {
+    padding: 56px 20px 72px;
+  }
+
+  .front-hero__inner {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .front-hero__visual {
+    min-height: 220px;
+  }
+}
+
 
 </style>
 <script>
@@ -149,7 +251,38 @@ async function injectFragment(hostSelector, url, baseHref) {
     );
   </script>
 
- 
+ <!-- ===== Front Page Hero ===== -->
+<section class="front-hero">
+  <div class="front-hero__inner">
+
+    <!-- Left gradient block -->
+    <div class="front-hero__visual" aria-hidden="true"></div>
+
+    <!-- Right text column -->
+    <div class="front-hero__copy">
+      <h1>Engineering Tomorrow’s Trading</h1>
+      <p>
+        We build adaptive algorithmic trading systems that extract structure from market chaos,
+        delivering liquidity, price discovery, and resilient returns across digital assets and
+        other markets.
+      </p>
+
+      <div class="front-hero__actions">
+        <a href="https://tomorrowcapitalresearch.github.io/what-we-do.html"
+           class="front-hero__primary">
+          What We Do
+        </a>
+        <a href="https://tomorrowcapitalresearch.github.io/research.html"
+           class="front-hero__secondary">
+          Explore Our Research
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+<!-- ===== /Front Page Hero ===== -->
+
   
   <!-- ================= -->
   <!--  3️⃣  FOOTER SLOT  -->

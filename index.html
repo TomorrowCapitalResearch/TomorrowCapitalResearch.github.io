@@ -308,6 +308,101 @@
   }
 }
 
+
+/* ===== Complementary Businesses ===== */
+
+.businesses {
+  background: #ffffff;
+  padding: 80px 24px 96px;
+}
+
+.businesses__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.businesses__title {
+  margin: 0 0 56px;
+  text-align: center;
+  font-size: clamp(32px, 4vw, 44px);
+  font-weight: 400;
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--brand-blue, #1f355d);
+}
+
+/* Grid: 2 cards per row on desktop */
+.businesses__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 48px 40px;
+}
+
+/* Each business card */
+.business-card {
+  position: relative;
+}
+
+/* Big image */
+.business-card__image img {
+  width: 100%;
+  height: 330px;
+  object-fit: cover;
+  display: block;
+}
+
+/* Overlapping content panel */
+.business-card__content {
+  position: relative;
+  max-width: 520px;
+  margin-top: -80px;                 /* pull card up over image */
+  margin-left: 40px;                 /* slight inset like the example */
+  padding: 32px 36px 32px;
+  background: var(--card, #f1efed);  /* your warm grey card colour */
+  box-shadow: 0 18px 35px rgba(0, 0, 0, 0.08);
+}
+
+.business-card__content h3 {
+  margin: 0 0 16px;
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--brand-blue, #1f355d);
+}
+
+.business-card__content p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--muted, #444444);
+}
+
+/* ===== Responsive ===== */
+
+@media (max-width: 960px) {
+  .businesses {
+    padding: 64px 20px 80px;
+  }
+
+  .businesses__grid {
+    grid-template-columns: 1fr;      /* stack cards */
+    gap: 56px;
+  }
+
+  .business-card__content {
+    margin: -60px 20px 0;            /* center a bit more on smaller screens */
+  }
+}
+
+@media (max-width: 600px) {
+  .business-card__image img {
+    height: 260px;
+  }
+
+  .business-card__content {
+    margin: -50px 12px 0;
+    padding: 24px 22px 24px;
+  }
+}
+
 </style>
 <script>
 function absolutizeAttr(node, attr, base) {
@@ -550,6 +645,76 @@ async function injectFragment(hostSelector, url, baseHref) {
   </div>
 </section>
 <!-- ===== /Insights / Features Section ===== -->
+
+  <!-- ===== Complementary Businesses Section ===== -->
+<section class="businesses">
+  <div class="businesses__inner">
+
+    <h2 class="businesses__title">Four complementary businesses</h2>
+
+    <div class="businesses__grid">
+
+      <!-- Card 1 -->
+      <article class="business-card">
+        <div class="business-card__image">
+          <img src="assets/business-1.jpeg" alt="People collaborating in a courtyard">
+        </div>
+        <div class="business-card__content">
+          <h3>Algorithmic Trading</h3>
+          <p>
+            Systematic trading strategies across digital assets and FX,
+            built on rigorous research, robust execution, and disciplined risk
+            management.
+          </p>
+        </div>
+      </article>
+
+      <!-- Card 2 -->
+      <article class="business-card">
+        <div class="business-card__image">
+          <img src="assets/business-2.jpeg" alt="Team standing in a modern office">
+        </div>
+        <div class="business-card__content">
+          <h3>Systematic Investing</h3>
+          <p>
+            Long-only and alternative portfolios that combine quantitative
+            insights with careful capital allocation over multi-year horizons.
+          </p>
+        </div>
+      </article>
+
+      <!-- Card 3 -->
+      <article class="business-card">
+        <div class="business-card__image">
+          <img src="assets/business-3.jpeg" alt="Modern trading floor">
+        </div>
+        <div class="business-card__content">
+          <h3>Market Making</h3>
+          <p>
+            Liquidity provision in fragmented markets, focused on tight pricing,
+            resilient inventories, and technology-driven risk control.
+          </p>
+        </div>
+      </article>
+
+      <!-- Card 4 -->
+      <article class="business-card">
+        <div class="business-card__image">
+          <img src="assets/business-4.jpeg" alt="Research and data visualisation">
+        </div>
+        <div class="business-card__content">
+          <h3>Research & Infrastructure</h3>
+          <p>
+            Tools, data pipelines, and research programmes that power our
+            trading, from market microstructure to portfolio construction.
+          </p>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+<!-- ===== /Complementary Businesses Section ===== -->
 
   
   <!-- ================= -->

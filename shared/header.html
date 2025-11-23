@@ -56,6 +56,8 @@
   display:flex;
   align-items:center;
   gap:10px;
+  text-decoration:none;  /* ensure no underline */
+  color:inherit;         /* keep text color as before */
 }
 
 .brand img{
@@ -126,11 +128,13 @@
 
 <header class="nav">
   <div class="nav-inner">
-    <div class="brand">
+    <a class="brand"
+       href="https://tomorrowcapitalresearch.github.io/"
+       aria-label="Tomorrow Capital Research – Home">
       <img src="https://tomorrowcapitalresearch.github.io/assets/logo.png"
            alt="Tomorrow Capital Research logo">
       <span class="brand-text">Tomorrow</span>
-    </div>
+    </a>
 
     <nav class="menu" aria-label="Primary">
       <a class="menu-link" href="https://tomorrowcapitalresearch.github.io/who-we-are.html">

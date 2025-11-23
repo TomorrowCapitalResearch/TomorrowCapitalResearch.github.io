@@ -219,6 +219,193 @@
   }
 }
 
+/* ===== Insights Section ===== */
+
+.insights {
+  background: #f4f7f9;           /* light section background */
+  padding: 80px 24px 96px;
+}
+
+.insights__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* --- Top feature row --- */
+
+.insights-feature {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  gap: 56px;
+  align-items: center;
+  background: #e9f1f6;           /* subtle pane like in the example */
+  padding: 40px 40px 48px;
+  position: relative;
+}
+
+/* faint vertical strip behind the image edge */
+.insights-feature::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: -40px;
+  left: 0;
+  width: 50%;
+  background: #f4f7f9;
+  z-index: -1;
+}
+
+.insights-feature__media img {
+  width: 100%;
+  height: 360px;
+  object-fit: cover;
+  display: block;
+}
+
+.insights-feature__body {
+  max-width: 480px;
+}
+
+.insights-eyebrow {
+  margin: 0 0 8px;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.insights-feature__title {
+  margin: 0 0 16px;
+  font-size: clamp(28px, 3.2vw, 34px);
+  line-height: 1.25;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.insights-feature__text {
+  margin: 0 0 24px;
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--muted);
+}
+
+/* Feature button */
+.insights-feature__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 11px 28px;
+  border-radius: 999px;
+  background: var(--text);
+  color: #ffffff;
+  border: 1px solid var(--text);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background-color .18s ease, border-color .18s ease, color .18s ease;
+}
+
+.insights-feature__btn:hover,
+.insights-feature__btn:focus-visible {
+  background: var(--texthover);
+  border-color: var(--texthover);
+}
+
+/* --- Lower cards row --- */
+
+.insights-grid {
+  margin-top: 56px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.insights-card {
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.insights-card__media img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  display: block;
+}
+
+.insights-card__body {
+  padding: 20px 22px 24px;
+}
+
+.insights-card__title {
+  margin: 6px 0 6px;
+  font-size: 17px;
+  line-height: 1.4;
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.insights-card__meta {
+  margin: 0 0 10px;
+  font-size: 12px;
+  color: #76808a;
+}
+
+.insights-card__text {
+  margin: 0 0 16px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.insights-card__link {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.insights-card__link:hover,
+.insights-card__link:focus-visible {
+  color: var(--texthover);
+  text-decoration: underline;
+}
+
+/* --- Responsive --- */
+
+@media (max-width: 960px) {
+  .insights-feature {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 32px 24px 40px;
+  }
+
+  .insights-feature__media img {
+    height: 260px;
+  }
+
+  .insights-feature::before {
+    display: none;  /* simplify on mobile */
+  }
+
+  .insights-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .insights {
+    padding: 56px 16px 72px;
+  }
+
+  .insights-grid {
+    grid-template-columns: 1fr;
+  }
+}
 
 </style>
 <script>
@@ -358,6 +545,7 @@ async function injectFragment(hostSelector, url, baseHref) {
 </section>
 <!-- ===== /Front Page Hero ===== -->
 
+  
 <!-- ===== Split Hero Section (text left, image right) ===== -->
 <section class="split-hero">
   <div class="split-hero__inner">
@@ -389,6 +577,103 @@ async function injectFragment(hostSelector, url, baseHref) {
   </div>
 </section>
 <!-- ===== /Split Hero Section ===== -->
+
+  <!-- ===== Insights / Features Section ===== -->
+<section class="insights">
+  <div class="insights__inner">
+
+    <!-- Top feature row -->
+    <div class="insights-feature">
+      <div class="insights-feature__media">
+        <img src="assets/A1.jpeg" alt="City skyline over water">
+      </div>
+
+      <div class="insights-feature__body">
+        <p class="insights-eyebrow">GLOBAL RESEARCH</p>
+        <h2 class="insights-feature__title">
+          Perspectives from Asia Pacific
+        </h2>
+        <p class="insights-feature__text">
+          Heightened volatility and uncertainty continue to shape markets
+          as investors assess liquidity, policy risk, and new sources of
+          structural change. We explore how firms across digital assets and
+          traditional markets are adapting.
+        </p>
+
+        <a href="research.html" class="insights-feature__btn">
+          Find out more
+        </a>
+      </div>
+    </div>
+
+    <!-- Lower cards row -->
+    <div class="insights-grid">
+
+      <article class="insights-card">
+        <div class="insights-card__media">
+          <img src="assets/card1.jpeg" alt="Research illustration">
+        </div>
+        <div class="insights-card__body">
+          <p class="insights-eyebrow">MARKET MICROSTRUCTURE</p>
+          <h3 class="insights-card__title">
+            Liquidity regimes in 24/7 markets
+          </h3>
+          <p class="insights-card__meta">Nov 12, 2025</p>
+          <p class="insights-card__text">
+            What happens when traditional session-based liquidity models
+            meet continuous digital venues? A look at spreads, depth, and
+            adverse selection risk.
+          </p>
+          <a href="research.html#liquidity" class="insights-card__link">
+            Read more
+          </a>
+        </div>
+      </article>
+
+      <article class="insights-card">
+        <div class="insights-card__media">
+          <img src="assets/card2.jpeg" alt="Architecture detail">
+        </div>
+        <div class="insights-card__body">
+          <p class="insights-eyebrow">PORTFOLIO ENGINEERING</p>
+          <h3 class="insights-card__title">
+            Building resilient systematic books
+          </h3>
+          <p class="insights-card__meta">Oct 28, 2025</p>
+          <p class="insights-card__text">
+            How we think about capacity, turnover, and correlation risk
+            when combining medium-frequency alpha with structural trades.
+          </p>
+          <a href="research.html#portfolio" class="insights-card__link">
+            Read more
+          </a>
+        </div>
+      </article>
+
+      <article class="insights-card">
+        <div class="insights-card__media">
+          <img src="assets/card3.jpeg" alt="Satellite and terrain images">
+        </div>
+        <div class="insights-card__body">
+          <p class="insights-eyebrow">VOLATILITY & RISK</p>
+          <h3 class="insights-card__title">
+            A turbulence lens on cross-asset risk
+          </h3>
+          <p class="insights-card__meta">Sep 30, 2025</p>
+          <p class="insights-card__text">
+            Using regime-aware volatility engines to allocate risk across
+            crypto, FX, and equities in stressed environments.
+          </p>
+          <a href="research.html#volatility" class="insights-card__link">
+            Read more
+          </a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+<!-- ===== /Insights / Features Section ===== -->
 
   
   <!-- ================= -->

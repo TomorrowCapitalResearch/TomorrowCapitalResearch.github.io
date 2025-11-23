@@ -119,105 +119,6 @@
   }
 }
 
-/* Split hero base */
-.split-hero {
-  position: relative;
-  background: #ffffff;
-  padding: 80px 24px 96px;
-}
-
-.split-hero__inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
-  gap: 72px;
-  align-items: center;
-}
-
-/* Left column */
-.split-hero__copy h1 {
-  margin: 0 0 28px;
-  font-size: clamp(38px, 4.8vw, 54px);
-  line-height: 1.15;
-  font-weight: 400;
-  color: var(--ink);
-}
-
-.split-hero__accent {
-  display: inline;
-  color: var(--gold);            /* warm accent like the example */
-}
-
-.split-hero__copy p {
-  margin: 0 0 32px;
-  max-width: 36rem;
-  font-size: 18px;
-  line-height: 1.7;
-  color: var(--muted);
-}
-
-/* Button */
-.split-hero__btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 12px 32px;
-  border-radius: 999px;
-  background: var(--text);
-  color: #ffffff;
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  text-decoration: none;
-  border: 1px solid var(--text);
-  transition: background-color .18s ease, border-color .18s ease, color .18s ease;
-}
-
-.split-hero__btn:hover,
-.split-hero__btn:focus-visible {
-  background: var(--texthover);
-  border-color: var(--texthover);
-}
-
-/* Right image */
-.split-hero__media {
-  align-self: stretch;
-  display: flex;
-  justify-content: flex-end;
-}
-
-.split-hero__media img {
-  display: block;
-  width: 100%;
-  max-width: 540px;
-  height: 420px;
-  object-fit: cover;
-  border-radius: 0 0 0 0;
-  border-bottom: 4px solid var(--gold); /* small accent line like the reference */
-}
-
-/* Mobile / tablet */
-@media (max-width: 900px) {
-  .split-hero {
-    padding: 56px 20px 72px;
-  }
-
-  .split-hero__inner {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-
-  .split-hero__media {
-    justify-content: flex-start;
-  }
-
-  .split-hero__media img {
-    height: 260px;
-    max-width: 100%;
-  }
-}
 
 /* ===== Insights Section ===== */
 
@@ -532,7 +433,12 @@ async function injectFragment(hostSelector, url, baseHref) {
 
       <a href="https://tomorrowcapitalresearch.github.io/what-we-do.html"
          class="home-hero__btn">
-        Learn more
+        What we do?
+      </a>
+
+        <a href="https://tomorrowcapitalresearch.github.io/research.html"
+         class="home-hero__btn">
+        Research
       </a>
     </div>
 
@@ -546,37 +452,7 @@ async function injectFragment(hostSelector, url, baseHref) {
 <!-- ===== /Front Page Hero ===== -->
 
   
-<!-- ===== Split Hero Section (text left, image right) ===== -->
-<section class="split-hero">
-  <div class="split-hero__inner">
 
-    <!-- Left: copy -->
-    <div class="split-hero__copy">
-      <h1>
-        Our team, models and partners are at the
-        <span class="split-hero__accent">center of everything we do</span>
-      </h1>
-
-      <p>
-        We design and operate systematic trading strategies that combine rigorous
-        research, robust engineering, and disciplined risk management to serve
-        our clients and counterparties across global markets.
-      </p>
-
-      <a href="https://tomorrowcapitalresearch.github.io/who-we-are.html"
-         class="split-hero__btn">
-        Learn more about us
-      </a>
-    </div>
-
-    <!-- Right: image -->
-    <div class="split-hero__media">
-      <img src="assets/A1.jpeg" alt="People moving through a financial plaza">
-    </div>
-
-  </div>
-</section>
-<!-- ===== /Split Hero Section ===== -->
 
   <!-- ===== Insights / Features Section ===== -->
 <section class="insights">

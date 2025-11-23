@@ -37,108 +37,88 @@
   --hero-overlay: linear-gradient(180deg, rgba(10,10,10,.45), rgba(10,10,10,.55));
     }
 
-  /* Front-page split hero */
-.front-hero {
-  padding: 72px 24px 96px;
+/* Front page hero: text left, image right */
+.home-hero {
   background: #ffffff;
+  padding: 80px 24px 96px;
 }
 
-.front-hero__inner {
+.home-hero__inner {
   max-width: 1200px;
   margin: 0 auto;
   display: grid;
   grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
-  gap: 64px;
+  gap: 72px;
   align-items: center;
 }
 
-/* Left gradient panel */
-.front-hero__visual {
-  border-radius: 24px;
-  min-height: 360px;
-  background: linear-gradient(
-    135deg,
-    #e7f3ff 0%,
-    var(--lb) 40%,
-    var(--blue) 100%
-  );
-}
-
-/* Right text column */
-.front-hero__copy h1 {
-  margin: 0 0 18px;
-  font-size: clamp(32px, 4vw, 44px);
+/* Text column */
+.home-hero__text h1 {
+  margin: 0 0 24px;
+  font-size: clamp(34px, 4.2vw, 46px);
   font-weight: 600;
+  line-height: 1.2;
   color: var(--ink);
 }
 
-.front-hero__copy p {
-  margin: 0 0 28px;
+.home-hero__text p {
+  margin: 0 0 32px;
   font-size: 18px;
   line-height: 1.7;
   color: var(--muted);
+  max-width: 34rem;
 }
 
-/* Buttons */
-.front-hero__actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-}
-
-.front-hero__primary,
-.front-hero__secondary {
+/* Button */
+.home-hero__btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 10px 22px;
+  padding: 12px 32px;
   border-radius: 999px;
+  background: var(--text);
+  color: #ffffff;
   font-size: 15px;
   font-weight: 500;
   font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   text-decoration: none;
-  transition: background-color .18s ease, color .18s ease, border-color .18s ease;
-}
-
-.front-hero__primary {
-  background: var(--text);
-  color: #ffffff;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   border: 1px solid var(--text);
+  transition: background-color .18s ease, border-color .18s ease, color .18s ease;
 }
 
-.front-hero__primary:hover,
-.front-hero__primary:focus-visible {
+.home-hero__btn:hover,
+.home-hero__btn:focus-visible {
   background: var(--texthover);
   border-color: var(--texthover);
 }
 
-.front-hero__secondary {
-  background: #ffffff;
-  color: var(--text);
-  border: 1px solid rgba(0,0,0,0.1);
+/* Image column */
+.home-hero__media img {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  display: block;
+  border-radius: 12px;
 }
 
-.front-hero__secondary:hover,
-.front-hero__secondary:focus-visible {
-  border-color: var(--texthover);
-  color: var(--texthover);
-}
-
-/* Mobile stack */
-@media (max-width: 768px) {
-  .front-hero {
+/* Mobile / tablet stack */
+@media (max-width: 900px) {
+  .home-hero {
     padding: 56px 20px 72px;
   }
 
-  .front-hero__inner {
+  .home-hero__inner {
     grid-template-columns: 1fr;
-    gap: 32px;
+    gap: 40px;
   }
 
-  .front-hero__visual {
-    min-height: 220px;
+  .home-hero__media img {
+    height: 260px;
   }
 }
+
 
 
 </style>
@@ -251,37 +231,34 @@ async function injectFragment(hostSelector, url, baseHref) {
     );
   </script>
 
- <!-- ===== Front Page Hero ===== -->
-<section class="front-hero">
-  <div class="front-hero__inner">
+<!-- ===== Front Page Hero (text left, image right) ===== -->
+<section class="home-hero">
+  <div class="home-hero__inner">
 
-    <!-- Left gradient block -->
-    <div class="front-hero__visual" aria-hidden="true"></div>
-
-    <!-- Right text column -->
-    <div class="front-hero__copy">
-      <h1>For a better tomorrw</h1>
+    <!-- Left text column -->
+    <div class="home-hero__text">
+      <h1>Engineering Tomorrow’s Trading</h1>
       <p>
-        We build adaptive algorithmic trading systems that extract structure from market chaos,
-        delivering liquidity, price discovery, and resilient returns across digital assets and
-        other markets.
+        We build adaptive algorithmic trading systems that extract structure
+        from market chaos, delivering liquidity, price discovery, and resilient
+        returns across digital assets and other markets.
       </p>
 
-      <div class="front-hero__actions">
-        <a href="https://tomorrowcapitalresearch.github.io/what-we-do.html"
-           class="front-hero__primary">
-          What We Do
-        </a>
-        <a href="https://tomorrowcapitalresearch.github.io/research.html"
-           class="front-hero__secondary">
-          Explore Our Research
-        </a>
-      </div>
+      <a href="https://tomorrowcapitalresearch.github.io/what-we-do.html"
+         class="home-hero__btn">
+        Learn more
+      </a>
+    </div>
+
+    <!-- Right image column -->
+    <div class="home-hero__media">
+      <img src="assets/A1.jpeg" alt="Digital markets visual">
     </div>
 
   </div>
 </section>
 <!-- ===== /Front Page Hero ===== -->
+
 
   
   <!-- ================= -->

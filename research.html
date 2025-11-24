@@ -117,6 +117,48 @@
   object-fit: cover;           /* fills vertical area like the example */
 }
 
+.hero-split__actions {
+  margin-top: 28px;
+}
+
+/* Hero button */
+.hero-split__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 24px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+
+  background: var(--ink, #111827);   /* falls back to dark if --ink not set */
+  color: var(--white, #ffffff);
+
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.25);
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    background 0.15s ease,
+    opacity 0.15s ease;
+}
+
+.hero-split__btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 32px rgba(15, 23, 42, 0.32);
+  background: #020617;
+}
+
+.hero-split__btn:active {
+  transform: translateY(0);
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.18);
+  opacity: 0.9;
+}
+
+
+    
 /* Responsive: stack on small screens */
 @media (max-width: 900px) {
   .hero-split {
@@ -372,6 +414,13 @@ At Tomorrow Capital Research, we treat the firm as a single integrated system ra
       </p>
     </div>
 
+<div class="hero-split-actions">
+  <a href="#research-overview" class="tc-btn tc-btn-primary">
+    Explore Our Research Stack
+  </a>
+</div>
+
+    
     <!-- Right: image -->
     <figure class="hero-split__image">
       <img src="assets/R5.png"

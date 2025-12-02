@@ -534,70 +534,142 @@ that is path-wise coherent, cost-efficient, and robust across Monte Carlo scenar
 
 
       
-  <article class="tc-conjecture">
+<article class="tc-conjecture">
   <div class="tc-conjecture-header">
     <h3 class="tc-conjecture-title">
-      Conjecture 2 — The Central Price Problem
+      Conjecture 2 — The Central Price Problem (Multi-Asset Extension)
     </h3>
-    <span class="tc-conjecture-tag">Pricing · Market Microstructure</span>
+    <span class="tc-conjecture-tag">
+      Pricing · Market Microstructure · Mean-Field Effects
+    </span>
   </div>
 
   <div class="tc-conjecture-body">
     <p>
-      Consider a generalised asset with a stochastic price path
-      <em>{P<sub>t</sub>}</em>, such that the price is known for all times
-      <em>t ≤ T</em>, but unknown for all <em>t &gt; T</em>.
+      We extend the Central Price Problem from a single asset to a system of
+      <em>N &gt; 3</em> interacting assets.
     </p>
 
-    <p>
-      The conjecture states that a statistically significant price estimate for
-      <em>t &gt; T</em> can be constructed if at least one of the following
-      statements holds:
-    </p>
-
-    <ol>
-      <li>
-        <strong>Historical dynamics dependence.</strong>
-        The price of the asset at a future time <em>t &gt; T</em> is correlated
-        with the market and participant dynamics observed up to time
-        <em>t ≤ T</em> (order flow, liquidity, volatility regimes, participant
-        behaviour, etc.).
-      </li>
-      <li>
-        <strong>Immediate impact dependence.</strong>
-        The price of the asset at time <em>T + 1</em> is strongly correlated
-        with the orders, inventory changes and market impact of participants at
-        time <em>T</em>.
-      </li>
-    </ol>
+    <h4>Setup</h4>
 
     <p>
-      In other words, there should exist a statistically significant mapping
-      from observable market and participant features at or before time
-      <em>T</em> to an estimate of future prices <em>P<sub>t</sub></em> for
+      Consider <em>N &gt; 3</em> generalised assets with stochastic price paths
+      <em>{P<sup>(i)</sup><sub>t</sub>}</em>, <em>i = 1, …, N</em>, observed at
+      discrete times
+      <em>0 = t<sub>0</sub> &lt; t<sub>1</sub> &lt; … &lt; t<sub>T</sub></em>,
+      with prices known for all <em>t &le; T</em> and unknown for
       <em>t &gt; T</em>.
     </p>
 
     <p>
-      <strong>Research note.</strong>
-      A special interest is reserved for researchers who can generalise this
-      formulation into a unified pricing framework that simultaneously
-      encompasses:
+      For concreteness, one may think of an underlying asset <em>A</em>, its
+      option <em>A*</em> and swap <em>&#771;A</em>; another underlying
+      <em>B</em> with <em>B*</em> and <em>&#771;B</em>; and more generally
+      underlying assets <em>A, B, C, D, …</em> with associated derivatives
+      <em>A*, &#771;A, B*, &#771;B</em> and so on.
+    </p>
+
+    <ol>
+      <li>
+        <strong>Immediate vs historical dependence.</strong>
+        The one-step-ahead price of each asset admits a decomposition
+        <em>P<sup>(i)</sup><sub>T+1</sub></em> as a weighted combination of
+        an “immediate impact” term and a “historical dynamics” term. The
+        relative weight <em>&alpha;<sup>(i)</sup><sub>T</sub> &in; [0, 1]</em>
+        may vary over time, but the weights always sum to one.
+      </li>
+      <li>
+        <strong>Historical dynamics.</strong>
+        The historical term may depend on past prices
+        <em>{P<sup>(j)</sup><sub>t</sub>}</em> for <em>t &le; T</em>,
+        cross-asset and cross-derivative correlations, order flow, liquidity,
+        volatility regimes, fundamentals, and longer-horizon features such as
+        drift and mean reversion.
+      </li>
+      <li>
+        <strong>Immediate impact and behavioural effects.</strong>
+        The immediate impact term captures order-book mechanics and
+        behavioural/flow effects, such as large buy orders pushing prices
+        upward, short-horizon supply–demand imbalances, and stylised
+        mean-reversion patterns around local extremes, while still allowing
+        for a persistent long-horizon drift.
+      </li>
+      <li>
+        <strong>Information set.</strong>
+        The modeller has access to (i) the full joint price and volume
+        history of all <em>N</em> assets up to time <em>T</em>, (ii) the
+        financial statements and fundamentals of the corresponding issuers,
+        and (iii) the aggregate positions of other market participants, so
+        that pricing must be treated as a mean-field problem rather than a
+        single-agent one.
+      </li>
+      <li>
+        <strong>Own-price impact.</strong>
+        Your orders move the mid-price according to a simple impact rule, for
+        example:
+        <code>
+          new_mid = current_mid + (your_price - current_mid) * sqrt(order_volume)
+        </code>.
+        This is a toy model; researchers are free to propose more realistic
+        impact specifications.
+      </li>
+    </ol>
+
+    <h4>Statement of the Conjecture</h4>
+
+    <p>
+      Under the multi-asset, mean-field setting above, the conjecture states
+      that there exists:
+    </p>
+
+    <ol>
+      <li>
+        <strong>Short-horizon central price estimator.</strong>
+        A statistically significant and practically accurate formula (or class
+        of models) for the “central” or “immediate” price of each asset at
+        time <em>T + 1</em>, constructed from observable market and
+        participant features at or before time <em>T</em>.
+      </li>
+      <li>
+        <strong>Multi-step confidence regions.</strong>
+        A statistical procedure that produces confidence intervals (or more
+        general confidence sets) for the joint price paths
+        <em>{P<sup>(i)</sup><sub>t</sub>}</em> over
+        <em>t = T + 1, …, T + H</em>, with <em>H &ge; 5</em> and
+        <em>i = 1, …, N</em>, achieving empirically valid coverage
+        probabilities (“reasonable accuracy”) under realistic market
+        conditions.
+      </li>
+    </ol>
+
+    <p>
+      In other words, there should exist a non-trivial, empirically testable
+      mapping from historical dynamics (prices, volumes, correlations, regimes,
+      fundamentals) and immediate impact (order-book state, flows, participant
+      positions, your own trades) to short-term central prices and medium-
+      horizon price ranges for a system of interacting assets.
+    </p>
+
+    <h4>Research Note</h4>
+
+    <p>
+      Special interest is reserved for solutions that embed this multi-asset
+      formulation into a unified pricing framework that simultaneously covers:
     </p>
 
     <ul>
-      <li>the market-maker’s short-horizon pricing problem,</li>
+      <li>the market-maker’s very short-horizon pricing problem,</li>
       <li>the high-frequency trading pricing problem, and</li>
-      <li>the medium- to long-term asset pricing problem.</li>
+      <li>the medium- to long-term asset pricing problem,</li>
     </ul>
 
     <p>
-      The goal is a single theoretical structure that connects microstructural
-      effects, participant behaviour and longer-term price formation under a
-      common set of assumptions.
+      under a common set of assumptions linking microstructure, participant
+      behaviour and longer-term price formation.
     </p>
   </div>
 </article>
+
 
 
 <article class="tc-conjecture">

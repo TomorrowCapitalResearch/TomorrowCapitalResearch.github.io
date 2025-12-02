@@ -682,11 +682,44 @@ that is path-wise coherent, cost-efficient, and robust across Monte Carlo scenar
 
   <div class="tc-conjecture-body">
     <p>
-      Let an algorithmic trading strategy (alpha) prescribe a desired net position change
-      of notional size <em>Q</em> (e.g. <em>Q = 1,000,000 USD</em>) to be executed over an
-      acceptable time horizon <em>[0, T]</em>. The execution problem is to determine how to
-      distribute this order in time and size so as to maximise <strong>stealth</strong> and
-      minimise <strong>slippage</strong>.
+      This conjecture has already attracted special interest from multiple founders.
+      It asks: once an algorithmic strategy becomes consistently profitable and capital
+      starts to accumulate behind it, what is the <strong>stealth-optimal</strong> way
+      to execute the resulting trades?
+    </p>
+
+    <p>
+      As order sizes and positions grow, firms almost universally see performance
+      degrade: market impact rises, slippage increases and the alpha becomes easier
+      to detect and copy. At that point, they are managing two sides of the same coin:
+    </p>
+
+    <ul>
+      <li><strong>Market impact</strong> — how much your own trading moves the price.</li>
+      <li><strong>Execution stealth</strong> — how easy it is for others to infer what you are doing.</li>
+    </ul>
+
+    <p>
+      Large, obvious orders (think a single 1&nbsp;million&nbsp;USD buy at the top of the book)
+      skew order imbalance, push prices away and leave a very visible footprint in the tape.
+      Over time, this can accelerate <strong>alpha decay</strong> as competitors reverse-engineer
+      your behaviour, and invite <strong>vulturing</strong> (e.g. sandwiching or predatory strategies).
+    </p>
+
+    <p>
+      The execution problem therefore cannot be treated in isolation. It has to sit alongside
+      questions of <strong>inventory</strong>, <strong>risk</strong> and <strong>alpha discovery</strong>:
+      how much you hold, how fast you adjust, and how long your edge survives once others see it.
+      This conjecture focuses on the execution piece.
+    </p>
+
+    <h4>Formal problem</h4>
+
+    <p>
+      Let an algorithmic trading strategy (an alpha) prescribe a desired net position change
+      of notional size <em>Q</em> (e.g. <em>Q = 1,000,000&nbsp;USD</em>) to be executed over an
+      acceptable time horizon <em>[0, T]</em>. Think of this as the total order associated with
+      a single signal firing.
     </p>
 
     <p>
@@ -695,46 +728,55 @@ that is path-wise coherent, cost-efficient, and robust across Monte Carlo scenar
     <ul>
       <li>
         a discrete sequence of trades <em>{(t<sub>k</sub>, q<sub>k</sub>)}</em> with
-        <em>0 ≤ t<sub>k</sub> ≤ T</em> and <em>∑<sub>k</sub> q<sub>k</sub> = Q</em>, or
+        <em>0 ≤ t<sub>k</sub> ≤ T</em> and
+        <em>&sum;<sub>k</sub> q<sub>k</sub> = Q</em>, or
       </li>
       <li>
         a continuous-time order-size density <em>φ(t)</em> on <em>[0, T]</em> such that
-        <em>∫<sub>0</sub><sup>T</sup> φ(t) dt = Q</em>.
+        <em>&int;<sub>0</sub><sup>T</sup> φ(t) dt = Q</em>.
       </li>
     </ul>
 
     <p>
-      Assume that:
+      We make the following assumptions:
     </p>
 
     <ol>
       <li>
-        <strong>Impact / stealth trade-off.</strong>
-        There exists a market impact / detectability relationship in which the
-        effective “loss of stealth” associated with executing a trade of size
-        <em>q</em> grows approximately with a square-root law, e.g.
-        <em>footprint ∝ √|q|</em>. Executing the full notional <em>Q</em> at
-        <em>t = 0</em> destroys stealth, while executing very small slices
-        (e.g. <em>10 USD</em>) alters stealth only negligibly.
+        <strong>Impact / stealth trade-off (square-root law).</strong>
+        There exists a market impact / detectability relationship in which the effective
+        “loss of stealth” associated with executing a trade of size <em>q</em> grows
+        approximately with a square-root law, e.g. <em>footprint ∝ √|q|</em>.
+        Executing the full notional <em>Q</em> at <em>t = 0</em> effectively destroys
+        stealth, while executing very small slices (e.g. <em>10&nbsp;USD</em>) alters
+        stealth only negligibly.
       </li>
 
       <li>
         <strong>Account-splitting constraint.</strong>
         The trader may split the total notional <em>Q</em> across at most
         <em>N<sub>max</sub> = 100</em> accounts,
-        <em>Q = ∑<sub>i=1</sub><sup>N</sup> Q<sub>i</sub></em> with
-        <em>N ≤ N<sub>max</sub></em>, where each account follows its own
-        execution schedule. This prevents the degenerate solution of
-        “infinitely many infinitesimal accounts”.
+        <em>Q = &sum;<sub>i=1</sub><sup>N</sup> Q<sub>i</sub></em> with
+        <em>N ≤ N<sub>max</sub></em>, where each account follows its own execution schedule.
+        This rules out the degenerate solution of “infinitely many infinitesimal accounts”.
+      </li>
+
+      <li>
+        <strong>Costs and frictions (simplified base case).</strong>
+        For simplicity, assume a generalised cost rate of <em>k%</em> per trade
+        (transaction fees plus immediate slippage), no extra friction purely from
+        splitting across accounts (beyond the constraints above), and an optional
+        “memory horizon” for the market such that accounts can be recycled
+        (e.g. up to 100 new accounts per month) and may regain some stealth over time.
       </li>
     </ol>
 
     <p>
       <strong>Conjecture.</strong>
       Under a reasonable microstructure model (including a square-root–type
-      impact / detectability law), there exists an <em>optimal joint distribution</em>
-      of execution times and order sizes — possibly including an optimal split of
-      <em>Q</em> across up to 100 accounts — that:
+      impact / detectability law and bounded account splitting), there exists an
+      <em>optimal joint distribution</em> of execution times, order sizes and account splits
+      that:
     </p>
 
     <ul>
@@ -743,26 +785,27 @@ that is path-wise coherent, cost-efficient, and robust across Monte Carlo scenar
         (minimal detectability / information leakage), and
       </li>
       <li>
-        simultaneously minimises expected <strong>slippage</strong> with respect to the
-        alpha’s target price path,
+        simultaneously minimises expected <strong>slippage</strong> and trading cost
+        with respect to the alpha’s target price path,
       </li>
     </ul>
 
     <p>
-      subject to the constraints <em>t ∈ [0, T]</em>, <em>∑ q = Q</em> and
-      <em>N ≤ 100</em>.
+      subject to the constraints <em>t ∈ [0, T]</em>,
+      <em>&sum; q = Q</em> and <em>N ≤ 100</em>.
     </p>
 
     <p>
       The challenge is to derive:
-      <strong>(a)</strong> a mathematical formulation of this optimisation problem
-      (objective functional over time–size distributions and account splits),
-      and/or <strong>(b)</strong> an explicit algorithm that, given an alpha,
-      a horizon <em>T</em> and total notional <em>Q</em>, produces the
-      stealth-optimal execution distribution.
+      <strong>(a)</strong> a rigorous mathematical formulation of this optimisation problem
+      (an objective functional over time–size distributions and account splits), and/or
+      <strong>(b)</strong> an explicit algorithm that, given an alpha, a horizon <em>T</em>
+      and total notional <em>Q</em>, produces the stealth-optimal execution schedule
+      and account allocation.
     </p>
   </div>
 </article>
+
 
 <article class="tc-conjecture">
   <div class="tc-conjecture-header">

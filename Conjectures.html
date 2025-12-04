@@ -672,140 +672,202 @@ that is path-wise coherent, cost-efficient, and robust across Monte Carlo scenar
 
 
 
-<article class="tc-conjecture">
+<article class="tc-conjecture" id="conjecture-3-stealth-optimal-execution">
+<article class="tc-conjecture" id="conjecture-3-stealth-optimal-execution">
   <div class="tc-conjecture-header">
     <h3 class="tc-conjecture-title">
-      Conjecture 3 — Stealth-Optimal Execution Distributions
+      Conjecture 3 &mdash; Stealth-Optimal Execution Distributions
     </h3>
-    <span class="tc-conjecture-tag">Execution · Slippage · Stealth</span>
+    <span class="tc-conjecture-tag">Execution &middot; Market Impact &middot; Stealth</span>
   </div>
 
   <div class="tc-conjecture-body">
+    <h4>Motivation</h4>
     <p>
-      This conjecture has already attracted special interest from multiple founders.
-      It asks: once an algorithmic strategy becomes consistently profitable and capital
-      starts to accumulate behind it, what is the <strong>stealth-optimal</strong> way
-      to execute the resulting trades?
+      This conjecture has already attracted special interest from a couple of other founders.
     </p>
-
     <p>
-      As order sizes and positions grow, firms almost universally see performance
-      degrade: market impact rises, slippage increases and the alpha becomes easier
-      to detect and copy. At that point, they are managing two sides of the same coin:
+      The underlying problem is simple to state. Given an algorithmic trading strategy with strong returns,
+      it is almost inevitable that capital will accumulate. As capital scales, order sizes and average
+      position sizes grow &mdash; and firms consistently observe that returns deteriorate. A large part of this
+      degradation comes from <strong>market impact</strong> and <strong>loss of execution stealth</strong>.
     </p>
-
+    <p>
+      We are therefore looking at two sides of the same coin:
+    </p>
     <ul>
-      <li><strong>Market impact</strong> — how much your own trading moves the price.</li>
-      <li><strong>Execution stealth</strong> — how easy it is for others to infer what you are doing.</li>
+      <li><strong>Market impact</strong>: how much our orders move prices against us.</li>
+      <li><strong>Execution stealth</strong>: how detectable our trading footprint and intent become to other participants.</li>
     </ul>
-
     <p>
-      Large, obvious orders (think a single 1&nbsp;million&nbsp;USD buy at the top of the book)
-      skew order imbalance, push prices away and leave a very visible footprint in the tape.
-      Over time, this can accelerate <strong>alpha decay</strong> as competitors reverse-engineer
-      your behaviour, and invite <strong>vulturing</strong> (e.g. sandwiching or predatory strategies).
+      Big, obvious orders (for example a single multi-million buy sweep) tend to:
+    </p>
+    <ul>
+      <li>push the order book and short-term imbalance in our disfavoured direction, and</li>
+      <li>leave a visible footprint that other firms can learn from over time.</li>
+    </ul>
+    <p>
+      This can lead to <strong>alpha decay</strong>: competitors infer the structure of the strategy,
+      trade ahead of it, or &ldquo;vulture&rdquo; around it with sandwich-like behaviour. Execution design
+      is therefore not a side quest &mdash; it sits alongside <strong>inventory control</strong>,
+      <strong>risk management</strong>, and <strong>alpha discovery</strong> as a core problem.
+    </p>
+    <p>
+      This conjecture asks for a principled way to design <strong>stealth-optimal execution distributions</strong>:
+      how to spread a given order across <em>time</em>, <em>size</em>, and <em>accounts</em> to maximise stealth
+      and minimise slippage / cost.
     </p>
 
+    <h4>Informal problem statement</h4>
     <p>
-      The execution problem therefore cannot be treated in isolation. It has to sit alongside
-      questions of <strong>inventory</strong>, <strong>risk</strong> and <strong>alpha discovery</strong>:
-      how much you hold, how fast you adjust, and how long your edge survives once others see it.
-      This conjecture focuses on the execution piece.
+      Suppose an algorithmic trading signal (alpha) fires and prescribes a net position change of notional size
+      <em>Q</em> (e.g. <em>Q = 1,000,000 USD</em>) to be executed over an acceptable time horizon
+      <em>T = [0, &tau;]</em>, from signal time <em>t = 0</em> to a hard time limit <em>&tau;</em>.
+    </p>
+    <p>
+      We want to determine:
+    </p>
+    <blockquote>
+      A joint distribution over <strong>execution times</strong> and <strong>order sizes</strong>
+      (and, optionally, <strong>accounts</strong>) that <strong>maximises stealth</strong> and
+      <strong>minimises slippage / cost</strong> over the horizon <em>T</em>.
+    </blockquote>
+    <p>
+      The order flow here is not the entire portfolio inventory, but the <strong>total notional associated with
+      this specific signal</strong>. The strategy may trigger repeatedly over time, either to build a position
+      into an attractive opportunity or to gradually unwind into a profit-taking region.
     </p>
 
-    <h4>Formal problem</h4>
-
+    <h4>Modelling set-up</h4>
     <p>
-      Let an algorithmic trading strategy (an alpha) prescribe a desired net position change
-      of notional size <em>Q</em> (e.g. <em>Q = 1,000,000&nbsp;USD</em>) to be executed over an
-      acceptable time horizon <em>[0, T]</em>. Think of this as the total order associated with
-      a single signal firing.
-    </p>
-
-    <p>
-      Model an execution schedule as either:
+      We can model an execution schedule in either of two ways:
     </p>
     <ul>
       <li>
-        a discrete sequence of trades <em>{(t<sub>k</sub>, q<sub>k</sub>)}</em> with
-        <em>0 ≤ t<sub>k</sub> ≤ T</em> and
-        <em>&sum;<sub>k</sub> q<sub>k</sub> = Q</em>, or
+        <strong>Discrete trades</strong>: a sequence of trades
+        <em>{(t<sub>k</sub>, q<sub>k</sub>)}</em> with
+        <em>0 &le; t<sub>k</sub> &le; &tau;</em> and
+        <em>&sum; q<sub>k</sub> = Q</em>.
       </li>
       <li>
-        a continuous-time order-size density <em>φ(t)</em> on <em>[0, T]</em> such that
-        <em>&int;<sub>0</sub><sup>T</sup> φ(t) dt = Q</em>.
+        <strong>Continuous order-size density</strong>:
+        a function <em>&varphi;(t)</em> on <em>[0, &tau;]</em> such that
+        <em>&int;<sub>0</sub><sup>&tau;</sup> &varphi;(t) dt = Q</em>.
       </li>
     </ul>
-
     <p>
-      We make the following assumptions:
+      We assume, at minimum, the following microstructure ingredients:
     </p>
-
     <ol>
       <li>
-        <strong>Impact / stealth trade-off (square-root law).</strong>
-        There exists a market impact / detectability relationship in which the effective
-        “loss of stealth” associated with executing a trade of size <em>q</em> grows
-        approximately with a square-root law, e.g. <em>footprint ∝ √|q|</em>.
-        Executing the full notional <em>Q</em> at <em>t = 0</em> effectively destroys
-        stealth, while executing very small slices (e.g. <em>10&nbsp;USD</em>) alters
-        stealth only negligibly.
+        <strong>Impact / stealth trade-off (square-root visibility).</strong><br>
+        The &ldquo;loss of stealth&rdquo; or footprint associated with a trade of size <em>q</em>
+        grows approximately as a square-root law,
+        <em>footprint(q) &prop; &radic;|q|</em>.
+        Executing the full notional <em>Q</em> at <em>t = 0</em> effectively destroys stealth; executing tiny
+        slices (e.g. <em>10 USD</em>) changes stealth only negligibly.
       </li>
-
       <li>
-        <strong>Account-splitting constraint.</strong>
-        The trader may split the total notional <em>Q</em> across at most
-        <em>N<sub>max</sub> = 100</em> accounts,
-        <em>Q = &sum;<sub>i=1</sub><sup>N</sup> Q<sub>i</sub></em> with
-        <em>N ≤ N<sub>max</sub></em>, where each account follows its own execution schedule.
-        This rules out the degenerate solution of “infinitely many infinitesimal accounts”.
+        <strong>Account-splitting constraint.</strong><br>
+        The trader may split <em>Q</em> across at most <em>N<sub>max</sub> = 100</em> accounts,
+        <em>Q = &sum;<sub>i=1</sub><sup>N</sup> Q<sub>i</sub></em> with <em>N &le; N<sub>max</sub></em>,
+        where each account <em>i</em> follows its own execution schedule. This rules out the degenerate
+        &ldquo;infinitely many infinitesimal accounts&rdquo; solution.
       </li>
-
       <li>
-        <strong>Costs and frictions (simplified base case).</strong>
-        For simplicity, assume a generalised cost rate of <em>k%</em> per trade
-        (transaction fees plus immediate slippage), no extra friction purely from
-        splitting across accounts (beyond the constraints above), and an optional
-        “memory horizon” for the market such that accounts can be recycled
-        (e.g. up to 100 new accounts per month) and may regain some stealth over time.
+        <strong>Execution cost / slippage.</strong><br>
+        For simplicity, each individual trade incurs:
+        <ul>
+          <li>a base cost modelled as a fixed <em>k%</em> rate (covering immediate slippage and explicit fees), and</li>
+          <li>a market impact component consistent with the square-root visibility law above.</li>
+        </ul>
+        Optionally, transaction costs may shrink by a factor <em>c%</em> as order size increases, capturing
+        fee discounts for larger tickets.
+      </li>
+      <li>
+        <strong>Cross-impact and opposite flow.</strong><br>
+        One may allow for inverse impact or partial cancellation when buy and sell orders of similar size
+        interact in opposite directions over short horizons.
+      </li>
+      <li>
+        <strong>Market &ldquo;memory&rdquo; / recycle rate.</strong><br>
+        The market (and counterparties) can be assumed to have a finite memory horizon: after some time, or
+        after recycling accounts, previous order flow becomes less informative. For example, one could assume:
+        <ul>
+          <li>up to 100 &ldquo;fresh&rdquo; accounts can be created per month, and</li>
+          <li>each new account starts with a &ldquo;stealth bonus&rdquo; that decays with its cumulative activity.</li>
+        </ul>
       </li>
     </ol>
 
+    <h4>Conjecture &mdash; Stealth-Optimal Execution Distributions</h4>
     <p>
-      <strong>Conjecture.</strong>
-      Under a reasonable microstructure model (including a square-root–type
-      impact / detectability law and bounded account splitting), there exists an
-      <em>optimal joint distribution</em> of execution times, order sizes and account splits
+      Under a reasonable microstructure model incorporating:
+    </p>
+    <ul>
+      <li>a square-root–type impact / detectability relationship in trade size,</li>
+      <li>optional cross-impact between opposing flows,</li>
+      <li>account-splitting constraints <em>N &le; 100</em>, and</li>
+      <li>size-dependent transaction costs,</li>
+    </ul>
+    <p>
+      there exists an <strong>optimal joint distribution</strong> of:
+    </p>
+    <ul>
+      <li>execution times,</li>
+      <li>trade sizes, and</li>
+      <li>account splits (up to 100 accounts),</li>
+    </ul>
+    <p>
       that:
     </p>
-
     <ul>
       <li>
-        maximises a chosen notion of <strong>stealth</strong>
-        (minimal detectability / information leakage), and
+        <strong>maximises stealth</strong> &mdash; in the sense of minimising information leakage or
+        detectability of the underlying strategy; and
       </li>
       <li>
-        simultaneously minimises expected <strong>slippage</strong> and trading cost
-        with respect to the alpha’s target price path,
+        <strong>minimises expected slippage and total execution cost</strong> relative to the alpha&rsquo;s
+        target price path,
       </li>
     </ul>
-
     <p>
-      subject to the constraints <em>t ∈ [0, T]</em>,
-      <em>&sum; q = Q</em> and <em>N ≤ 100</em>.
+      subject to:
     </p>
+    <ul>
+      <li><em>t &in; [0, &tau;]</em>,</li>
+      <li><em>&sum; q<sub>k</sub> = Q</em> (or <em>&int;<sub>0</sub><sup>&tau;</sup> &varphi;(t) dt = Q</em>),</li>
+      <li><em>N &le; 100</em>.</li>
+    </ul>
 
+    <h4>Challenge</h4>
     <p>
-      The challenge is to derive:
-      <strong>(a)</strong> a rigorous mathematical formulation of this optimisation problem
-      (an objective functional over time–size distributions and account splits), and/or
-      <strong>(b)</strong> an explicit algorithm that, given an alpha, a horizon <em>T</em>
-      and total notional <em>Q</em>, produces the stealth-optimal execution schedule
-      and account allocation.
+      The challenge is to:
     </p>
+    <ol>
+      <li>
+        <strong>Formulate</strong> a precise optimisation problem over time–size–account distributions, specifying:
+        <ul>
+          <li>a stealth / detectability functional,</li>
+          <li>an impact and cost model, and</li>
+          <li>any market-memory or recycle-rate dynamics.</li>
+        </ul>
+      </li>
+      <li>
+        <strong>Prove existence and (where possible) uniqueness</strong> of stealth-optimal execution distributions
+        under this model.
+      </li>
+      <li>
+        <strong>Design explicit algorithms</strong> which, given an alpha signal, a total notional <em>Q</em>,
+        and a horizon <em>&tau;</em>, produce a stealth-optimal execution schedule, including:
+        <ul>
+          <li>how to split <em>Q</em> across up to 100 accounts, and</li>
+          <li>how to allocate each account&rsquo;s flow over time.</li>
+        </ul>
+      </li>
+    </ol>
   </div>
 </article>
-
 
 <article class="tc-conjecture">
   <div class="tc-conjecture-header">

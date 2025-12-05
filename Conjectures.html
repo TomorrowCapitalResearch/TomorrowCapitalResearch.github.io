@@ -872,7 +872,7 @@ that is path-wise coherent, cost-efficient, and robust across Monte Carlo scenar
 <article class="tc-conjecture" id="conjecture-optimal-strategy">
   <div class="tc-conjecture-header">
     <h3 class="tc-conjecture-title">
-      Conjecture 4 — Existence of Optimal Strategies in the Full Multi-Layer Market Model
+      Conjecture X — Existence of Optimal Strategies in the Full Multi-Layer Market Model
     </h3>
     <span class="tc-conjecture-tag">Hybrid geometry · Mean-field games · Optimal control</span>
   </div>
@@ -888,7 +888,9 @@ that is path-wise coherent, cost-efficient, and robust across Monte Carlo scenar
 
     <p>
       In a simplified, finite, fully discrete version of this environment, the decision problem of a fully-informed agent reduces to a Markov Decision Process, and classical Bellman theory guarantees existence of an optimal policy, computable by dynamic programming.
-      The conjecture asks whether an analogous guarantee holds in the <strong>full geometric–informational, hybrid, multi-agent setting</strong>, where the state is infinite-dimensional (fields + agents), time is hybrid (flows + jumps), and interactions are game-theoretic / mean-field rather than a single MDP.
+      The conjecture asks whether an analogous guarantee holds in the
+      <strong>full geometric–informational, hybrid, multi-agent setting</strong>,
+      where the state is infinite-dimensional (fields + agents), time is hybrid (flows + jumps), and interactions are game-theoretic / mean-field rather than a single MDP.
     </p>
 
     <h4>Informal statement</h4>
@@ -906,18 +908,24 @@ that is path-wise coherent, cost-efficient, and robust across Monte Carlo scenar
 
     <h4>Formal version (single optimal agent)</h4>
     <p>
-      Let \( X_t \) denote the global state (fields, graphs, agents) evolving as a hybrid dynamical system
-      with flows and jumps on \( X = M \times S \), where \( M \) is a (possibly time-varying) manifold
-      and \( S \) indexes discrete modes / frames.
-      A distinguished “Tomorrow” agent observes \( X_t \) and chooses controls \( a_t \in A(X_t) \).
+      Let <em>X<sub>t</sub></em> denote the global state (fields, graphs, agents) evolving as a hybrid dynamical system
+      with flows and jumps on <em>X = M &times; S</em>, where <em>M</em> is a (possibly time-varying) manifold
+      and <em>S</em> indexes discrete modes / frames.
+      A distinguished “Tomorrow” agent observes <em>X<sub>t</sub></em> and chooses controls
+      <em>a<sub>t</sub> &in; A(X<sub>t</sub>)</em>.
     </p>
 
     <p>
-      The agent’s monetary performance under policy \( \pi \) is
-      \[
-        J(\pi) = \mathbb{E}\Bigg[\sum_{t=0}^{T} \gamma^t \big(R(X_t,\pi(X_t)) - L(X_t,\pi(X_t))\big)\Bigg],
-      \]
-      for \( 0 < \gamma \le 1 \), with reward \( R \) and loss \( L \) defined by the full market model.
+      The agent’s monetary performance under policy <em>&pi;</em> is
+    </p>
+    <p>
+      <em>
+        J(&pi;) = E&#91; &sum;<sub>t=0</sub><sup>T</sup> &gamma;<sup>t</sup>
+        ( R(X<sub>t</sub>, &pi;(X<sub>t</sub>)) - L(X<sub>t</sub>, &pi;(X<sub>t</sub>)) ) &#93;,
+      </em>
+    </p>
+    <p>
+      for <em>0 &lt; &gamma; &le; 1</em>, with reward function <em>R</em> and loss function <em>L</em> defined by the full market model.
     </p>
 
     <p>
@@ -925,35 +933,42 @@ that is path-wise coherent, cost-efficient, and robust across Monte Carlo scenar
       Under natural regularity conditions on:
     </p>
     <ul>
-      <li>the hybrid state dynamics (well-posed flows and jump maps on \( M \times S \)),</li>
-      <li>the action sets \( A(x) \) (compact, measurable),</li>
-      <li>and the reward / loss structure (bounded or suitably integrable, Markov in \( (X_t, a_t) \)),</li>
+      <li>the hybrid state dynamics (well-posed flows and jump maps on <em>M &times; S</em>),</li>
+      <li>the action sets <em>A(x)</em> (compact, measurable),</li>
+      <li>and the reward / loss structure (bounded or suitably integrable, Markov in <em>(X<sub>t</sub>, a<sub>t</sub>)</em>),</li>
     </ul>
     <p>
-      there exists an <strong>optimal admissible policy</strong> \( \pi^\* \) such that
-      \[
-        J(\pi^\*) = \sup_{\pi} J(\pi),
-      \]
-      and \( \pi^\* \) can be chosen from a structured class, for example:
+      there exists an <strong>optimal admissible policy</strong> <em>&pi;<sup>*</sup></em> such that
+    </p>
+    <p>
+      <em>
+        J(&pi;<sup>*</sup>) = &sup;<sub>&pi;</sub> J(&pi;),
+      </em>
+    </p>
+    <p>
+      and <em>&pi;<sup>*</sup></em> can be chosen from a structured class, for example:
     </p>
     <ul>
-      <li>a <strong>Markov / feedback policy</strong> \( \pi^\*(x) \) depending only on the current state, or</li>
-      <li>a <strong>variational / geometric policy</strong> that realizes a least-action trajectory on the manifold
+      <li>
+        a <strong>Markov / feedback policy</strong> <em>&pi;<sup>*</sup>(x)</em> depending only on the current state, or
+      </li>
+      <li>
+        a <strong>variational / geometric policy</strong> that realizes a least-action trajectory on the manifold
         (solution of an HJB / Euler–Lagrange system associated with the full model).
       </li>
     </ul>
 
     <p>
       A stronger version asks for <strong>constructive</strong> existence:
-      that \( \pi^\* \) can be obtained as the limit of a convergent sequence of algorithms
+      that <em>&pi;<sup>*</sup></em> can be obtained as the limit of a convergent sequence of algorithms
       (e.g. value iteration, policy iteration, or actor–critic methods)
       implemented within the same market simulator.
     </p>
 
     <h4>Multi-agent / equilibrium extension</h4>
     <p>
-      In the many-agent setting, each agent \( i \) has its own objective
-      \( J_i(\pi_1,\dots,\pi_N) \) defined over the same hybrid geometric field,
+      In the many-agent setting, each agent <em>i</em> has its own objective
+      <em>J<sub>i</sub>(&pi;<sub>1</sub>, &hellip;, &pi;<sub>N</sub>)</em> defined over the same hybrid geometric field,
       with coupling via prices, fields, and information graphs.
     </p>
     <p>
@@ -977,12 +992,12 @@ that is path-wise coherent, cost-efficient, and robust across Monte Carlo scenar
     <ul>
       <li>
         An existence theorem (single agent): precise assumptions + proof that an optimal feedback policy
-        \( \pi^\* \) exists for the full hybrid geometric–informational model
+        <em>&pi;<sup>*</sup></em> exists for the full hybrid geometric–informational model
         (beyond the finite, discretized MDP case).
       </li>
       <li>
-        A constructive characterization: a scheme (e.g. an HJB on \( M \times S \) or a convergent
-        dynamic-programming / RL algorithm) that provably converges to \( \pi^\* \).
+        A constructive characterization: a scheme (e.g. an HJB on <em>M &times; S</em> or a convergent
+        dynamic-programming / RL algorithm) that provably converges to <em>&pi;<sup>*</sup></em>.
       </li>
       <li>
         An equilibrium existence result (multi-agent / mean-field): proof that,
@@ -998,6 +1013,7 @@ that is path-wise coherent, cost-efficient, and robust across Monte Carlo scenar
     </p>
   </div>
 </article>
+
 
 
         <article class="tc-conjecture">

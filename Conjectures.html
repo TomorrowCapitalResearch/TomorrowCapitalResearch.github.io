@@ -869,91 +869,136 @@ that is path-wise coherent, cost-efficient, and robust across Monte Carlo scenar
   </div>
 </article>
 
-<article class="tc-conjecture">
+<article class="tc-conjecture" id="conjecture-optimal-strategy">
   <div class="tc-conjecture-header">
     <h3 class="tc-conjecture-title">
-      Conjecture 4 — The Simplified Optimal Inventory Problem
+      Conjecture 4 — Existence of Optimal Strategies in the Full Multi-Layer Market Model
     </h3>
-    <span class="tc-conjecture-tag">Inventory · Execution · Optimal Control</span>
+    <span class="tc-conjecture-tag">Hybrid geometry · Mean-field games · Optimal control</span>
   </div>
 
   <div class="tc-conjecture-body">
-
     <p>
-      Consider an algorithmic trading strategy that executes at random timesteps
-      <em>T₁, T₂, T₃, …</em>. Each execution is <strong>guaranteed</strong> to produce
-      a positive return, irrespective of trade size. Let <em>I(t)</em> denote the
-      inventory held at time <em>t</em>.
+      We model financial markets as a coupled, multi-layer system:
+      a time-varying market/asset graph and value surface,
+      a network of interacting agents with utilities and information links,
+      a hierarchy of rules governing dynamics,
+      and (in the most general version) a geometric / hybrid frame where agents move on a manifold with continuous flows and discrete jumps.
     </p>
 
     <p>
-      The task is to determine an <strong>optimal inventory schedule</strong> — how much
-      inventory should be held at each time-step — in order to maximise surplus
-      profit at a set of future reporting times, such as <em>T₁₀, T₂₀, T₃₀</em>.
-      These times are random, but the example uses 10, 20 and 30 for clarity.
+      In a simplified, finite, fully discrete version of this environment, the decision problem of a fully-informed agent reduces to a Markov Decision Process, and classical Bellman theory guarantees existence of an optimal policy, computable by dynamic programming.
+      The conjecture asks whether an analogous guarantee holds in the <strong>full geometric–informational, hybrid, multi-agent setting</strong>, where the state is infinite-dimensional (fields + agents), time is hybrid (flows + jumps), and interactions are game-theoretic / mean-field rather than a single MDP.
     </p>
 
-    <p><strong>Constraints and considerations:</strong></p>
+    <h4>Informal statement</h4>
+    <p class="tc-conjecture-quote">
+      Can we prove that, in the full Tomorrow Markets framework, there exists at least one optimal strategy
+      (or equilibrium strategy profile) for agents, and characterize it in a reasonably “simple” class
+      (Markov, feedback, or geodesic / variational policies)?
+    </p>
 
+    <p>
+      In other words: once you accept the market model as a hybrid geometric–informational multi-agent system,
+      is it mathematically guaranteed that there is a <strong>best possible way to trade</strong>
+      (or a best equilibrium configuration of strategies) consistent with the rules of the world?
+    </p>
+
+    <h4>Formal version (single optimal agent)</h4>
+    <p>
+      Let \( X_t \) denote the global state (fields, graphs, agents) evolving as a hybrid dynamical system
+      with flows and jumps on \( X = M \times S \), where \( M \) is a (possibly time-varying) manifold
+      and \( S \) indexes discrete modes / frames.
+      A distinguished “Tomorrow” agent observes \( X_t \) and chooses controls \( a_t \in A(X_t) \).
+    </p>
+
+    <p>
+      The agent’s monetary performance under policy \( \pi \) is
+      \[
+        J(\pi) = \mathbb{E}\Bigg[\sum_{t=0}^{T} \gamma^t \big(R(X_t,\pi(X_t)) - L(X_t,\pi(X_t))\big)\Bigg],
+      \]
+      for \( 0 < \gamma \le 1 \), with reward \( R \) and loss \( L \) defined by the full market model.
+    </p>
+
+    <p>
+      <strong>Conjecture (Existence of optimal strategy).</strong>
+      Under natural regularity conditions on:
+    </p>
     <ul>
-      <li>
-        <strong>No market impact (for now).</strong>
-        Execution does not move price, but emptying inventory too early may cause
-        opportunity loss if profitable execution opportunities occur later.
-      </li>
-
-      <li>
-        <strong>Guaranteed alpha.</strong>
-        Executions at any timestep <em>Tₖ</em> yield positive return, so distributing
-        inventory linearly over time (e.g., selling a little at each timestep) may
-        seem optimal at first glance.
-      </li>
-
-      <li>
-        <strong>Refill option.</strong>
-        Inventory can be repurchased at any timestep at a fixed penalty rate of
-        <em>−k%</em>, ensuring an explicit cost for replenishing inventory too late.
+      <li>the hybrid state dynamics (well-posed flows and jump maps on \( M \times S \)),</li>
+      <li>the action sets \( A(x) \) (compact, measurable),</li>
+      <li>and the reward / loss structure (bounded or suitably integrable, Markov in \( (X_t, a_t) \)),</li>
+    </ul>
+    <p>
+      there exists an <strong>optimal admissible policy</strong> \( \pi^\* \) such that
+      \[
+        J(\pi^\*) = \sup_{\pi} J(\pi),
+      \]
+      and \( \pi^\* \) can be chosen from a structured class, for example:
+    </p>
+    <ul>
+      <li>a <strong>Markov / feedback policy</strong> \( \pi^\*(x) \) depending only on the current state, or</li>
+      <li>a <strong>variational / geometric policy</strong> that realizes a least-action trajectory on the manifold
+        (solution of an HJB / Euler–Lagrange system associated with the full model).
       </li>
     </ul>
 
     <p>
-      <strong>Simplified problem formulation.</strong><br>
-      Find an inventory trajectory <em>I(t)</em> on <em>[0, T]</em> that maximises expected
-      surplus at reporting times, subject to:
+      A stronger version asks for <strong>constructive</strong> existence:
+      that \( \pi^\* \) can be obtained as the limit of a convergent sequence of algorithms
+      (e.g. value iteration, policy iteration, or actor–critic methods)
+      implemented within the same market simulator.
     </p>
 
+    <h4>Multi-agent / equilibrium extension</h4>
+    <p>
+      In the many-agent setting, each agent \( i \) has its own objective
+      \( J_i(\pi_1,\dots,\pi_N) \) defined over the same hybrid geometric field,
+      with coupling via prices, fields, and information graphs.
+    </p>
+    <p>
+      <strong>Extended Conjecture (Existence of geometric–informational equilibrium).</strong><br>
+      For the full multi-agent model (or for its mean-field limit),
+      under suitable compactness / continuity / monotonicity assumptions,
+      there exists at least one <strong>equilibrium strategy profile</strong>:
+    </p>
     <ul>
-      <li><em>I(t)</em> is freely adjustable at each timestep,</li>
-      <li>executions yield strictly positive return,</li>
-      <li>inventory replenishment incurs a penalty of <em>k%</em>, and</li>
-      <li>reporting times <em>T₁₀, T₂₀, T₃₀</em> are unknown in advance.</li>
+      <li>a Nash equilibrium in feedback strategies, or</li>
+      <li>a mean-field game equilibrium (solution of a coupled HJB–Fokker–Planck system on the manifold),</li>
+    </ul>
+    <p>
+      compatible with the hybrid dynamics and information network.
+    </p>
+
+    <h4>What counts as a solution</h4>
+    <p>
+      Any of the following would constitute a serious solution to this conjecture:
+    </p>
+    <ul>
+      <li>
+        An existence theorem (single agent): precise assumptions + proof that an optimal feedback policy
+        \( \pi^\* \) exists for the full hybrid geometric–informational model
+        (beyond the finite, discretized MDP case).
+      </li>
+      <li>
+        A constructive characterization: a scheme (e.g. an HJB on \( M \times S \) or a convergent
+        dynamic-programming / RL algorithm) that provably converges to \( \pi^\* \).
+      </li>
+      <li>
+        An equilibrium existence result (multi-agent / mean-field): proof that,
+        in the interacting-agent version, at least one Nash / mean-field equilibrium exists
+        in feedback / geometric strategies.
+      </li>
     </ul>
 
     <p>
-      <strong>The conjecture.</strong><br>
-      There exists a principled optimal control rule for the inventory process
-      <em>I(t)</em> that balances:
+      <strong>Bonus:</strong> Beyond proving that an optimal strategy exists,
+      explicit constructions, structural characterisations (e.g. geodesic, layered across time-scales),
+      or practically implementable algorithms that find it will be given special recognition.
     </p>
-
-    <ul>
-      <li>
-        <strong>profit-taking from guaranteed alpha</strong> at intermediate times, and
-      </li>
-      <li>
-        <strong>preservation of inventory</strong> to avoid costly repurchase prior to
-        unknown reporting times.
-      </li>
-    </ul>
-
-    <p>
-      The challenge is to derive this optimal policy in closed form or algorithmic
-      form, providing conditions under which inventory should be
-      <em>retained, gradually reduced, or replenished</em> in anticipation of
-      random future reporting requirements.
-    </p>
-
   </div>
 </article>
+
 
         <article class="tc-conjecture">
   <div class="tc-conjecture-header">

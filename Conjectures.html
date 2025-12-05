@@ -1014,80 +1014,129 @@ that is path-wise coherent, cost-efficient, and robust across Monte Carlo scenar
 
 
 
-        <article class="tc-conjecture">
+<article class="tc-conjecture">
   <div class="tc-conjecture-header">
     <h3 class="tc-conjecture-title">
-      Conjecture 5 — The Simplified Optimal Portfolio Problem
+      Conjecture 5 — The Final Problem
     </h3>
-    <span class="tc-conjecture-tag">Portfolio · Optimisation · Risk–Return</span>
+    <span class="tc-conjecture-tag">Portfolio · Optimisation · Multiscale</span>
   </div>
 
   <div class="tc-conjecture-body">
     <p>
-      Let an investor start with an initial capital <em>V</em> and a universe of
-      <em>X</em> tradable assets. The assets are grouped into
-      <em>K</em> categories (sectors, styles, regions, strategies, etc.), each
-      category associated with a vector of descriptive features.
+      Modern financial firms are built as hierarchies of decision makers:
+      firm &rarr; portfolio &rarr; strategy &rarr; execution. Each layer has its
+      own objectives, constraints and key performance indicators, yet all of
+      them act on the <em>same</em> underlying market and the same pool of capital.
     </p>
 
     <p>
-      Each individual asset carries:
+      Fix a single firm-wide portfolio <em>A</em>, with total capital
+      <em>V</em>, trading over a universe of assets with associated features
+      (prices, returns, volatilities, liquidity, funding, fundamentals and
+      microstructure attributes). The portfolio <em>A</em> is decomposed into
+      internal components:
     </p>
 
     <ul>
-      <li>a current price,</li>
-      <li>expected and realised return,</li>
-      <li>expected and realised risk (volatility, drawdown, etc.), and</li>
+      <li>strategy pods and sub-portfolios,</li>
+      <li>risk and hedging books,</li>
+      <li>execution and routing policies,</li>
+      <li>and any further sub-components (desks, regions, time-horizons).</li>
+    </ul>
+
+    <p>
+      Each component <em>X</em> in this hierarchy:
+    </p>
+
+    <ul>
       <li>
-        a vector of fundamentals and microstructure attributes, such as
-        liquidation speed, correlations with other assets, transaction cost,
-        dividend or funding rate, and other relevant characteristics.
+        controls a local state (positions, risk exposures, cash, inventory),
+      </li>
+      <li>
+        faces its own constraints (risk limits, turnover, liquidity, leverage,
+        drawdown, stealth, capital budget),
+      </li>
+      <li>
+        and optimises a local objective functional
+        (e.g. Sharpe, PnL, risk-adjusted return, tracking error, execution cost).
       </li>
     </ul>
 
     <p>
+      At the same time, the firm as a whole optimises a <em>global</em>
+      objective functional over the full configuration of all components:
+      long-horizon risk–return, drawdown and survival probabilities, capital
+      efficiency, and systemic risk.
+    </p>
+
+    <p>
       <strong>Problem.</strong><br>
-      Construct a decision framework (or dynamic rule) that, given:
+      Specify a mathematical framework (objective, constraints and decision
+      rules) that, given:
     </p>
 
     <ul>
-      <li>the initial capital <em>V</em>,</li>
-      <li>the feature set of all assets and categories, and</li>
-      <li>possibly evolving information about returns and risks,</li>
+      <li>the hierarchical decomposition of the firm (components and sub-components),</li>
+      <li>the feature set of all traded assets and strategies, and</li>
+      <li>the evolving market state and information flow,</li>
     </ul>
 
     <p>
-      produces an <strong>optimal portfolio configuration</strong> — i.e. a set of
-      weights over assets and categories — that simultaneously:
+      produces a <strong>configuration of decisions</strong> (capital
+      allocations, positions, risk limits and execution policies) that is
+      simultaneously:
     </p>
 
     <ul>
-      <li>maximises expected return, and</li>
-      <li>minimises an appropriate notion of risk (or maximises a chosen risk–return functional, e.g. utility or Sharpe-like ratio).</li>
+      <li>
+        <strong>globally optimal</strong> for the firm-wide objective
+        (risk–return, survival, capital efficiency), and
+      </li>
+      <li>
+        <strong>locally optimal</strong> for every component and sub-component,
+        given its constraints and its local view of the environment.
+      </li>
     </ul>
+
+    <p>
+      In other words, the same capital and information must support a
+      configuration where the whole portfolio <em>A</em> is optimal inside the
+      market, and each internal piece of <em>A</em> is optimal inside its own
+      local neighbourhood of constraints and interactions.
+    </p>
 
     <p>
       <strong>The conjecture.</strong><br>
-      There exists a principled, implementable framework (static or dynamic)
-      that maps the full feature set
-      (prices, expected/realised returns, risks, fundamentals and correlations)
-      into an optimal portfolio in this sense — providing a
-      <em>single</em> rule that generalises across:
+      There exists a principled, implementable <em>multiscale optimisation
+      principle</em> — a single rule, or variational framework — that maps the
+      full state of the market and the firm
+      (prices, returns, risks, liquidity, fundamentals, correlations and
+      hierarchical structure) into such a configuration of decisions, and that:
     </p>
 
     <ul>
-      <li>different asset classes and categories, and</li>
-      <li>different objectives along the return–risk trade-off.</li>
+      <li>
+        applies uniformly across layers (firm, portfolio, strategy, execution),
+      </li>
+      <li>
+        respects all local constraints and risk budgets, and
+      </li>
+      <li>
+        yields configurations that are stable under feedback from market
+        dynamics and from the actions of other agents.
+      </li>
     </ul>
 
     <p>
-      The challenge is to specify this framework mathematically
-      (objective, constraints and decision rule), and to demonstrate that it
-      consistently yields portfolios that are optimal under the chosen
-      risk–return criterion.
+      The challenge is to write down this multiscale principle explicitly and to
+      show that, under realistic assumptions on markets and constraints, its
+      solutions are indeed <em>simultaneously globally and locally optimal</em>
+      in the above sense.
     </p>
   </div>
 </article>
+
 
       </div>
     </div>

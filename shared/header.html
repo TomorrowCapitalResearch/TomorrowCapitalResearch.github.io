@@ -1,285 +1,131 @@
-<!-- ===== Tomorrow Shared Header (HTML+CSS+JS) ===== -->
+<!-- ===== Tomorrow shared header =====
+     Lives at /shared/header.html and is injected into each page by injectFragment().
+     All classes are prefixed tm- so they can't collide with page styles.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,300;8..60,400&display=swap">
 
 <style>
-*{box-sizing:border-box}
-  html,body{margin:0;padding:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:#ffffff}
-
 :root{
-  --white:#ffffff; /* White */
-  --black:#000000; /* Black */
+  /* Brand tokens */
+  --tm-white:#FFFFFF;
+  --tm-deep:#0E3275;     /* deep blue: brand, links */
+  --tm-navy:#0A1D45;     /* navy: text, footer, bottom of hero */
+  --tm-slate:#4A5878;    /* secondary text */
+  --tm-mist:#DCE3EE;     /* hairlines */
+  --tm-sans:"Hanken Grotesk", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --tm-serif:"Source Serif 4", "Iowan Old Style", Georgia, serif;
+  --tm-max:1200px;
+  --tm-pad:24px;
+  --tm-header-h:72px;
 
-  /* Primary colors */
-  --lb: #DCEAF7; /* Light Blue*/
-  --blue:#61CBF4; /* Blue */
-  --footer: #CAEEFB; /* footer blue */
-
-  /* Secondary colors */
-  --db:#0E3275;  /* Deep Blue */
-  --contrast:#0A1D45;   /* Contrast elements Grey */
-  --text:#156082;
-  --texthover:#0F9ED5;
-  --brand-blue:#153E9F;          /* Citadel-like deep blue */
-  --ink:#0A0A0A;
-  --muted:#2A2A2A;
-  --card:#F1EFED;                 /* Rothschild-like warm grey card */
-  --paper:#FFFFFF;
-  --gold:#C59B3B;                 /* optional accent for chevrons/links */
-
-  
-  /*geometrics*/
-  --page-max: 1200px;
-  --side-pad: 24px;
-  --hero-image: url("assets/A1.jpeg");
-  --radius:14px;  
-  }
-
-/* Sticky top nav */
-.nav{
-  position:sticky;
-  top:0;
-  z-index:1000;
-  background:#ffffff;
-  border-bottom:1px solid rgba(0,0,0,.06);
+  /* Legacy tokens still used by older pages. Safe to delete once those pages are migrated. */
+  --db:#0E3275; --contrast:#0A1D45; --text:#156082; --texthover:#0F9ED5;
 }
 
-.nav-inner{
-  max-width:1200px;
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+
+/* The header is injected into #site-header, so that wrapper is what has to stick. */
+#site-header{position:sticky;top:0;z-index:1000}
+
+.tm-header{
+  background:var(--tm-white);
+  border-bottom:1px solid transparent;
+  transition:border-color .2s ease;
+}
+.tm-header.is-scrolled{border-bottom-color:var(--tm-mist)}
+
+.tm-header__inner{
+  max-width:var(--tm-max);
   margin:0 auto;
-  padding:16px 24px;
+  padding:0 var(--tm-pad);
+  min-height:var(--tm-header-h);
   display:flex;
   align-items:center;
   justify-content:space-between;
+  gap:24px;
 }
 
-/* Brand */
-.brand{
-  display:flex;
+.tm-brand{
+  display:inline-flex;
   align-items:center;
   gap:10px;
-  text-decoration:none;  /* ensure no underline */
-  color:inherit;         /* keep text color as before */
-}
-
-.brand img{
-  height:40px;
-  width:auto;
-}
-
-.brand-text{
-  font-family:"Inter",sans-serif;
-  font-size:32px;
-  letter-spacing:-0.04em;
-  color:var(--text);
-  line-height:1;
-}
-
-/* Simple horizontal menu */
-.menu{
-  display:flex;
-  gap:18px;
-  align-items:center;
-}
-
-.menu-link{
-  font:500 16px/1 "Inter",sans-serif;
-  color:var(--text);
+  color:var(--tm-deep);
   text-decoration:none;
-  padding:8px 4px;
-  position:relative;
+}
+.tm-brand img{height:32px;width:auto;display:block}
+.tm-brand span{
+  font:400 26px/1 var(--tm-sans);
+  letter-spacing:-.035em;
 }
 
-.menu-link::after{
-  content:"";
-  position:absolute;
-  left:0;
-  right:0;
-  bottom:-4px;
-  height:3px;
-  background:var(--texthover);
-  transform:scaleX(0);
-  transform-origin:center;
-  transition:transform .18s ease-out;
+.tm-nav{display:flex;align-items:center;gap:32px}
+.tm-nav a{
+  font:500 15px/1 var(--tm-sans);
+  color:var(--tm-navy);
+  text-decoration:none;
+  padding:10px 0;
+  text-underline-offset:8px;
+  text-decoration-thickness:1px;
+}
+.tm-nav a:hover,
+.tm-nav a[aria-current="page"]{
+  color:var(--tm-deep);
+  text-decoration-line:underline;
 }
 
-.menu-link:hover,
-.menu-link:focus-visible{
-  color:var(--texthover);
+.tm-header a:focus-visible{
+  outline:2px solid var(--tm-deep);
+  outline-offset:4px;
+  border-radius:2px;
 }
 
-.menu-link:hover::after,
-.menu-link:focus-visible::after{
-  transform:scaleX(1);
+@media (max-width:560px){
+  .tm-header__inner{flex-wrap:wrap;row-gap:4px;column-gap:16px;padding:12px 20px}
+  .tm-brand{gap:8px}
+  .tm-brand span{font-size:22px}
+  .tm-brand img{height:26px}
+  .tm-nav{gap:18px}
+  .tm-nav a{font-size:14px}
 }
-
-/* Mobile: simple wrap for now */
-@media (max-width:720px){
-  .nav-inner{
-    flex-direction:column;
-    gap:10px;
-    align-items:flex-start;
-  }
-  .menu{
-    flex-wrap:wrap;
-    row-gap:8px;
-  }
+@media (prefers-reduced-motion:reduce){
+  .tm-header{transition:none}
 }
-
 </style>
 
-<header class="nav">
-  <div class="nav-inner">
-    <a class="brand"
-       href="https://tomorrowcapitalresearch.github.io/"
-       aria-label="Tomorrow Capital Research – Home">
-      <img src="https://tomorrowcapitalresearch.github.io/assets/logo.png"
-           alt="Tomorrow Capital Research logo">
-      <span class="brand-text">Tomorrow</span>
+<header class="tm-header">
+  <div class="tm-header__inner">
+    <a class="tm-brand" href="https://tomorrowcapitalresearch.github.io/" aria-label="Tomorrow Capital Research, home">
+      <img src="https://tomorrowcapitalresearch.github.io/assets/logo.png" alt="">
+      <span>Tomorrow</span>
     </a>
 
-    <nav class="menu" aria-label="Primary">
-      <a class="menu-link" href="https://tomorrowcapitalresearch.github.io/who-we-are.html">
-        Who We Are
-      </a>
-      <a class="menu-link" href="https://tomorrowcapitalresearch.github.io/what-we-do.html">
-        What We Do
-      </a>
-      <a class="menu-link" href="https://tomorrowcapitalresearch.github.io/research.html">
-        Research
-      </a>
-      <a class="menu-link" href="https://tomorrowcapitalresearch.github.io/careers.html">
-        Join Us
-      </a>
-      <a class="menu-link" href="https://tomorrowcapitalresearch.github.io/contact.html">
-        Contact
-      </a>
+    <nav class="tm-nav" aria-label="Primary">
+      <a href="https://tomorrowcapitalresearch.github.io/who-we-are.html">About</a>
+      <a href="https://tomorrowcapitalresearch.github.io/research.html">Research</a>
+      <a href="https://tomorrowcapitalresearch.github.io/contact.html">Contact</a>
     </nav>
   </div>
 </header>
 
-
-<script>
-  const yearEl = document.getElementById('year');
-  if (yearEl) yearEl.textContent = new Date().getFullYear();
-
-
-  const nav     = document.querySelector('.nav');
-  const menu    = document.querySelector('.menu');
-  const root    = document.getElementById('mega-root');
-  const triggers= document.querySelectorAll('.menu .menu-trigger');
-  const panels  = document.querySelectorAll('.mega-panel');
-
-  // If navbar height changes (responsive), keep the panel snug under it
-  const placeMega = () => {
-    const navRect = nav.getBoundingClientRect();
-    root.style.top = `${navRect.height}px`;
-  };
-  placeMega();
-  window.addEventListener('resize', placeMega);
-
-  let hoverCloseTimer = null;
-
-  function openPanel(id){
-    root.classList.add('open');
-    panels.forEach(p => p.classList.toggle('open', p.id === id));
-    triggers.forEach(t => t.setAttribute('aria-expanded', String(t.dataset.panel === id)));
-  }
-
-  function closeAll(){
-    root.classList.remove('open');
-    panels.forEach(p => p.classList.remove('open'));
-    triggers.forEach(t => t.setAttribute('aria-expanded','false'));
-  }
-
-  // Open/switch on hover or click
-  triggers.forEach(btn => {
-    const id = btn.dataset.panel;
-    btn.addEventListener('mouseenter', () => openPanel(id));
-    btn.addEventListener('click', (e) => { e.preventDefault(); openPanel(id); });
-    // Keyboard accessibility: open when focused with Tab
-    btn.addEventListener('focus', () => openPanel(id));
-  });
-
-  // Close with the X
-  root.addEventListener('click', (e) => {
-    if (e.target.closest('.mega-close')) closeAll();
-  });
-
-  // Close on Escape
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeAll(); });
-
-  // Helper: are we hovering inside nav or mega?
-  const isInsideHoverZone = (event) => {
-    const insideNav  = event.relatedTarget && (event.relatedTarget === nav || nav.contains(event.relatedTarget));
-    const insideMega = event.relatedTarget && (event.relatedTarget === root || root.contains(event.relatedTarget));
-    return insideNav || insideMega;
-  };
-
-  // Start a short timer when leaving nav or panel; cancel if the pointer enters the other region
-  const startCloseTimer = () => {
-    clearTimeout(hoverCloseTimer);
-    hoverCloseTimer = setTimeout(() => {
-      // If the pointer is not over nav or mega when timer fires, close.
-      const hovered = document.querySelector(':hover');
-      const overNav  = hovered && (hovered === nav || nav.contains(hovered));
-      const overMega = hovered && (hovered === root || root.contains(hovered));
-      if (!overNav && !overMega) closeAll();
-    }, 120); // small delay prevents flicker during the gap between elements
-  };
-
-  // Leave handlers for both zones
-  nav.addEventListener('mouseleave', (e) => { if (!isInsideHoverZone(e)) startCloseTimer(); });
-  root.addEventListener('mouseleave', (e) => { if (!isInsideHoverZone(e)) startCloseTimer(); });
-
-  // Entering either zone cancels any pending close
-  nav.addEventListener('mouseenter', () => clearTimeout(hoverCloseTimer));
-  root.addEventListener('mouseenter', () => clearTimeout(hoverCloseTimer));
-
-  // Optional: clicking anywhere outside both zones closes it
-  document.addEventListener('click', (e) => {
-    if (!e.target.closest('.mega') && !e.target.closest('.menu')) closeAll();
-  });
-
-  // Touch support: tap a trigger toggles its panel; tap outside closes
-  // (prevents immediate navigation on mobile when you want to open the panel)
-  triggers.forEach(btn => {
-    btn.addEventListener('touchstart', (e) => {
-      const id = btn.dataset.panel;
-      const alreadyOpen = root.classList.contains('open') && document.getElementById(id).classList.contains('open');
-      if (!alreadyOpen) {
-        e.preventDefault();
-        openPanel(id);
-      }
-    }, {passive:false});
-  });
-</script>
-
-<!-- ===== /Tomorrow Shared Header ===== -->
-
 <script>
 (function(){
-  const nav  = document.querySelector('.nav');
-  const root = document.getElementById('mega-root');
-  const triggers = document.querySelectorAll('.menu .menu-trigger');
-  const panels   = document.querySelectorAll('.mega-panel');
-  if (!nav || !root || !triggers.length || !panels.length) return;
+  var header = document.querySelector('.tm-header');
+  if (!header) return;
 
-  const placeMega = () => {
-    const h = nav.getBoundingClientRect().height || 0;
-    root.style.top = h + 'px';
-  };
-  placeMega(); addEventListener('resize', placeMega);
+  // Hairline under the header once the page scrolls.
+  var onScroll = function(){ header.classList.toggle('is-scrolled', window.scrollY > 8); };
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive:true });
 
-  function openPanel(id){ root.classList.add('open'); panels.forEach(p=>p.classList.toggle('open', p.id===id)); triggers.forEach(t=>t.setAttribute('aria-expanded', String(t.dataset.panel===id))); }
-  function closeAll(){ root.classList.remove('open'); panels.forEach(p=>p.classList.remove('open')); triggers.forEach(t=>t.setAttribute('aria-expanded','false')); }
-
-  triggers.forEach(btn => {
-    const id = btn.dataset.panel;
-    btn.addEventListener('mouseenter', () => openPanel(id));
-    btn.addEventListener('click', e => { e.preventDefault(); openPanel(id); });
-    btn.addEventListener('focus', () => openPanel(id));
+  // Mark the current page in the nav.
+  var here = location.pathname.replace(/index\.html$/, '');
+  header.querySelectorAll('.tm-nav a').forEach(function(a){
+    var path = new URL(a.href).pathname.replace(/index\.html$/, '');
+    if (path === here) a.setAttribute('aria-current', 'page');
   });
-  root.addEventListener('click', e => { if (e.target.closest('.mega-close')) closeAll(); });
-  addEventListener('keydown', e => { if (e.key === 'Escape') closeAll(); });
 })();
 </script>
-
+<!-- ===== /Tomorrow shared header ===== -->

@@ -1,0 +1,131 @@
+<!-- ===== Tomorrow shared header =====
+     Lives at /shared/header.html and is injected into each page by injectFragment().
+     All classes are prefixed tm- so they can't collide with page styles.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,300;8..60,400&display=swap">
+
+<style>
+:root{
+  /* Brand tokens */
+  --tm-white:#FFFFFF;
+  --tm-deep:#0E3275;     /* deep blue: brand, links */
+  --tm-navy:#0A1D45;     /* navy: text, footer, bottom of hero */
+  --tm-slate:#4A5878;    /* secondary text */
+  --tm-mist:#DCE3EE;     /* hairlines */
+  --tm-sans:"Hanken Grotesk", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --tm-serif:"Source Serif 4", "Iowan Old Style", Georgia, serif;
+  --tm-max:1200px;
+  --tm-pad:24px;
+  --tm-header-h:72px;
+
+  /* Legacy tokens still used by older pages. Safe to delete once those pages are migrated. */
+  --db:#0E3275; --contrast:#0A1D45; --text:#156082; --texthover:#0F9ED5;
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+
+/* The header is injected into #site-header, so that wrapper is what has to stick. */
+#site-header{position:sticky;top:0;z-index:1000}
+
+.tm-header{
+  background:var(--tm-white);
+  border-bottom:1px solid transparent;
+  transition:border-color .2s ease;
+}
+.tm-header.is-scrolled{border-bottom-color:var(--tm-mist)}
+
+.tm-header__inner{
+  max-width:var(--tm-max);
+  margin:0 auto;
+  padding:0 var(--tm-pad);
+  min-height:var(--tm-header-h);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+}
+
+.tm-brand{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  color:var(--tm-deep);
+  text-decoration:none;
+}
+.tm-brand img{height:32px;width:auto;display:block}
+.tm-brand span{
+  font:400 26px/1 var(--tm-sans);
+  letter-spacing:-.035em;
+}
+
+.tm-nav{display:flex;align-items:center;gap:32px}
+.tm-nav a{
+  font:500 15px/1 var(--tm-sans);
+  color:var(--tm-navy);
+  text-decoration:none;
+  padding:10px 0;
+  text-underline-offset:8px;
+  text-decoration-thickness:1px;
+}
+.tm-nav a:hover,
+.tm-nav a[aria-current="page"]{
+  color:var(--tm-deep);
+  text-decoration-line:underline;
+}
+
+.tm-header a:focus-visible{
+  outline:2px solid var(--tm-deep);
+  outline-offset:4px;
+  border-radius:2px;
+}
+
+@media (max-width:560px){
+  .tm-header__inner{flex-wrap:wrap;row-gap:4px;column-gap:16px;padding:12px 20px}
+  .tm-brand{gap:8px}
+  .tm-brand span{font-size:22px}
+  .tm-brand img{height:26px}
+  .tm-nav{gap:18px}
+  .tm-nav a{font-size:14px}
+}
+@media (prefers-reduced-motion:reduce){
+  .tm-header{transition:none}
+}
+</style>
+
+<header class="tm-header">
+  <div class="tm-header__inner">
+    <a class="tm-brand" href="https://tomorrowcapitalresearch.github.io/" aria-label="Tomorrow Capital Research, home">
+      <img src="https://tomorrowcapitalresearch.github.io/assets/logo.png" alt="">
+      <span>Tomorrow</span>
+    </a>
+
+    <nav class="tm-nav" aria-label="Primary">
+      <a href="https://tomorrowcapitalresearch.github.io/who-we-are.html">About</a>
+      <a href="https://tomorrowcapitalresearch.github.io/research.html">Research</a>
+      <a href="https://tomorrowcapitalresearch.github.io/contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<script>
+(function(){
+  var header = document.querySelector('.tm-header');
+  if (!header) return;
+
+  // Hairline under the header once the page scrolls.
+  var onScroll = function(){ header.classList.toggle('is-scrolled', window.scrollY > 8); };
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive:true });
+
+  // Mark the current page in the nav.
+  var here = location.pathname.replace(/index\.html$/, '');
+  header.querySelectorAll('.tm-nav a').forEach(function(a){
+    var path = new URL(a.href).pathname.replace(/index\.html$/, '');
+    if (path === here) a.setAttribute('aria-current', 'page');
+  });
+})();
+</script>
+<!-- ===== /Tomorrow shared header ===== -->

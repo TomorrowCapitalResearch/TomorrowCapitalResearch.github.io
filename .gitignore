@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.DS_Store
+.openai/
+node_modules/
+dist/
+*.zip

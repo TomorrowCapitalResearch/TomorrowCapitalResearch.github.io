@@ -1,292 +1,39 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Tomorrow’s Conjectures | Tomorrow Capital Research</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <style>
-    :root {
-      --bg: #ffffff;
-      --bg-alt: #ffffff;
-      --card: #EEE9DF;
-      --accent: #22d3ee;
-      --accent-soft: rgba(34,211,238,0.16);
-      --ink: #000;
-      --muted: #2C3639;
-      --border: #1f2937;
-      --max-width: 1100px;
-      --palladian: #EEE9DF;
-      --oatmeal: #C9C1B1;
-      --luster: #F4F1EC;
-      --jordhpur: #DAD1C8;
-      --burning-flame: #FFB162;
-      --truffle-trouble: #A35139;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
-        "Inter", sans-serif;
-      background: var(--bg);
-      color: var(--ink);
-      -webkit-font-smoothing: antialiased;
-    }
-
-    a {
-      color: var(--ink);
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-
-  .tc-inner {
-  max-width: var(--max-width);
-  margin: 0 auto;              /* <-- centers horizontally */
-  padding: 40px 20px 80px;     /* moved from .tc-page */
-}
-    .tc-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 4px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      background: var(--bg);
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--ink);
-      margin-bottom: 12px;
-    }
-    .tc-tag-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 999px;
-      background: var(--accent);
-    }
-
-    .tc-hero {
-      margin-bottom: 40px;
-    }
-
-    .tc-hero-title {
-      font-size: clamp(32px, 4vw, 40px);
-      color: var(--ink);
-      line-height: 1.1;
-      letter-spacing: -0.03em;
-      margin: 0 0 16px;
-    }
-
-    .tc-hero-subtitle {
-      max-width: 650px;
-      font-size: 16px;
-      color: var(--ink);
-      margin-bottom: 18px;
-    }
-
-    .tc-hero-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px 16px;
-      font-size: 12px;
-      color: var(--ink);
-    }
-
-    .tc-pill {
-      padding: 4px 10px;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      background: var(--bg);
-    }
-
-    .tc-section {
-      margin-top: 40px;
-      padding: 28px 24px;
-      border: 1px solid var(--border);
-      background: radial-gradient(circle at top left, var(--burning-flame), transparent 55%),
-                  radial-gradient(circle at bottom right, var(--truffle-trouble), transparent 55%),
-                  linear-gradient(145deg, var(--oatmeal), var(--burning-flame));
-      backdrop-filter: blur(12px);
-    }
-
-    .tc-section + .tc-section {
-      margin-top: 28px;
-    }
-
-    .tc-section-header {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: baseline;
-      gap: 10px;
-      margin-bottom: 14px;
-    }
-
-    .tc-section-kicker {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--ink);
-    }
-
-    .tc-section-title {
-      font-size: 18px;
-      font-weight: 600;
-      letter-spacing: -0.01em;
-      margin: 0;
-    }
-
-    .tc-section-body p {
-      margin: 0 0 10px;
-      font-size: 14px;
-      line-height: 1.6;
-      color: var(--ink);
-    }
-
-    .tc-section-body p:last-child {
-      margin-bottom: 0;
-    }
-
-    .tc-section-body ul {
-      margin: 6px 0 10px 1.2rem;
-      padding: 0;
-      font-size: 14px;
-      line-height: 1.6;
-      color: var(--ink);
-    }
-
-    .tc-section-body li + li {
-      margin-top: 4px;
-    }
-
-    .tc-section-body small {
-      color: var(--ink);
-    }
-
-    .tc-conjectures-list {
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-      margin-top: 10px;
-    }
-
-    .tc-conjecture {
-      border-radius: 16px;
-      border: 1px solid rgba(15, 23, 42, 0.9);
-      background: radial-gradient(circle at top left, var(--bg), transparent 55%),
-                  radial-gradient(circle at bottom right, var(--oatmeal), transparent 55%),
-                  linear-gradient(145deg, var(--luster), var(--jordhpur));
-      padding: 18px 18px 16px;
-      margin-bottom: 18px;
-    }
-  
-    .tc-conjecture-header {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 8px;
-      margin-bottom: 10px;
-    }
-
-    .tc-conjecture-title {
-      font-size: 15px;
-      color: var(--ink);
-      font-weight: 600;
-      margin: 0;
-    }
-
-    .tc-conjecture-tag {
-      font-size: 11px;
-      padding: 3px 8px;
-      border-radius: 999px;
-      border: 1px solid var(--bg);
-      color: var(--ink);
-    }
-
-    .tc-conjecture-body h4 {
-      margin: 8px 0 4px;
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--ink);
-    }
-
-    .tc-conjecture-body p {
-      margin: 0 0 8px;
-      font-size: 13px;
-      line-height: 1.6;
-      color: var(--ink);
-    }
-
-    .tc-conjecture-body ul {
-      margin: 4px 0 8px 1.2rem;
-      padding: 0;
-      font-size: 13px;
-      color: var(--ink);
-      line-height: 1.6;
-    }
-
-    .tc-conjecture-body ol {
-  font-size: 0.98rem;     /* slightly smaller */
-  line-height: 1.55;
-  font-size: 13px;
-  margin-left: 1.4rem;    /* clean alignment */
-}
-
-.tc-conjecture-body ol li {
-  font-size: 13px;
-  margin-bottom: 0.6rem;  /* space between items */
-}
-
-    .tc-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 6px;
-      font-size: 13px;
-      color: var(--ink);
-    }
-
-    .tc-table th,
-    .tc-table td {
-      padding: 6px 8px;
-      border: 1px solid var(--bg);
-      vertical-align: top;
-    }
-
-    .tc-table th {
-      background: var(--bg);
-      font-weight: 500;
-      color: var(--ink);
-      white-space: nowrap;
-    }
-
-    .tc-footnote {
-      margin-top: 14px;
-      font-size: 12px;
-      color: var(--ink);
-    }
-
-    @media (max-width: 720px) {
-      .tc-section {
-        padding: 20px 16px;
-      }
-      .tc-conjecture {
-        padding: 14px 12px;
-      }
-      .tc-table th,
-      .tc-table td {
-        font-size: 12px;
-      }
-    }
-  </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#123655">
+  <meta name="description" content="An earlier, provisional conjectures concept, preserved as part of the research record.">
+<meta name="robots" content="noindex, follow">
+  <title>Earlier conjectures — archive | Tomorrow Capital Research</title>
+  <link rel="canonical" href="https://tomorrowcapitalresearch.github.io/Conjectures.html">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/archive.css">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Tomorrow Capital Research">
+  <meta property="og:title" content="Earlier conjectures — archive | Tomorrow Capital Research">
+  <meta property="og:description" content="An earlier, provisional conjectures concept, preserved as part of the research record.">
+  <meta property="og:url" content="https://tomorrowcapitalresearch.github.io/Conjectures.html">
+  <meta property="og:image" content="https://tomorrowcapitalresearch.github.io/assets/social-card.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <script defer src="assets/site.js"></script>
 </head>
-  
-<body>
-  <main class="tc-inner">
-  <!-- HERO -->
+<body class="archive-page">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header"><div class="shell header-inner">
+    <a class="brand" href="index.html" aria-label="Tomorrow Capital Research — home">
+      <img class="brand-icon" src="assets/growth-mark.svg" width="42" height="42" alt="">
+      <span><span class="brand-name">Tomorrow</span><span class="brand-descriptor">Capital Research</span></span>
+    </a>
+    <button class="nav-toggle" type="button" data-menu-toggle aria-controls="primary-menu" aria-expanded="false">Menu</button>
+    <nav class="primary-nav" id="primary-menu" data-menu aria-label="Primary navigation"><a href="about.html">About</a> <a href="approach.html">Approach</a> <a href="work.html">Work</a> <a href="research.html">Research</a> <a href="contact.html">Contact</a></nav>
+  </div></header>
+  <main id="main" tabindex="-1">
+    <div class="shell archive-banner" role="note"><h2>Earlier conjectures / Provisional concept archive</h2><p>This original text is retained as a research record while the Library collection is developed. The proposed programme and rewards are provisional concept material, not a current offer. <a href="research.html">Explore current research resources</a> or <a href="https://tomorrowlibrary.github.io/">visit Tomorrow Library</a>.</p></div><div class="tc-inner"><!-- HERO -->
   <header class="tc-hero">
     <div class="tc-tag">
       <span class="tc-tag-dot"></span>
@@ -1205,7 +952,16 @@ that is path-wise coherent, cost-efficient, and robust across Monte Carlo scenar
       </p>
     </div>
   </section>
-</main>
-
+</div>
+  </main>
+  <footer class="site-footer"><div class="shell">
+    <div class="footer-top"><div class="footer-brand"><a class="brand" href="index.html" aria-label="Tomorrow Capital Research — home">
+      <img class="brand-icon" src="assets/growth-mark-white.svg" width="42" height="42" alt="">
+      <span><span class="brand-name">Tomorrow</span><span class="brand-descriptor">Capital Research</span></span>
+    </a><p>Making tomorrow better, step by step.</p></div>
+    <div class="footer-links"><div><p>The company</p><a href="about.html">About</a><a href="approach.html">Approach</a><a href="work.html">Work</a><a href="research.html">Research</a><a href="contact.html">Contact</a></div>
+    <div><p>Explore Tomorrow</p><a href="https://tomorrowlibrary.github.io/">Tomorrow Library ↗</a><a href="https://tomorrowmarkets.github.io/">Tomorrow Markets ↗</a><a href="https://github.com/TomorrowCapitalResearch">GitHub ↗</a><a href="https://www.linkedin.com/company/tomorrow-capital-research">LinkedIn ↗</a></div></div></div>
+    <div class="footer-bottom"><p>© <span data-year>2026</span> Tomorrow Capital Research</p><nav aria-label="Website information"><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="disclosures.html">Research notes</a></nav></div>
+  </div></footer>
 </body>
 </html>

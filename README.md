@@ -1,60 +1,105 @@
-# Tomorrow Capital Research — flagship website
+# Tomorrow Capital Research
 
-Complete static website rebuild with a wave/equilibrium/emergence visual identity.
+A complete static rebuild of the company website: a compact introduction, a clear explanation of the approach, selected work, a directory to public research, and contact channels.
 
-## What is in this package
+This is the **company repository**. Tomorrow Markets and Tomorrow Library are separate websites; neither repository is modified by this update.
 
-- `index.html`: institutional home with animated layered wavefronts and a calm navy/gold aesthetic.
-- `who-we-are.html`: organisation and research philosophy.
-- `approach.html`: methodology plus an interactive *illustrative* damped-wave/equilibrium experiment.
-- `research.html`: inquiry themes and public research links.
-- `systems.html`: engineering and research infrastructure.
-- `platforms.html`: links to Tomorrow Library and Tomorrow Markets.
-- `contact.html`: public contact channels (no misleading non-functional web form).
-- `privacy.html`, `terms.html`, `disclosures.html`: general information pages — **review before publication**.
-- `404.html`, `robots.txt`, `sitemap.xml`: static site housekeeping.
-- `assets/site.css`: global design and responsive layout.
-- `assets/site.js`: mobile navigation, reveal effects, procedural waves, equilibrium demo.
-- `assets/wave-mark.svg`, `assets/favicon.svg`: original line-based mark (no rings).
-- `assets/conjectures-bridge.css`: an optional non-destructive restyle for the *existing* `Conjectures.html`.
-- `previews/`: representative desktop/mobile captures.
+## Implement this update
 
-## Deploy to the existing GitHub Pages repository
+The generated website is already included. No build tool, framework, installation, API key or backend is needed to publish it.
 
-Target: `TomorrowCapitalResearch/TomorrowCapitalResearch.github.io` (branch `main`).
+1. Extract the package.
+2. Copy the **contents inside the package** into the root of `TomorrowCapitalResearch/TomorrowCapitalResearch.github.io`, merging folders and replacing files with matching names. `index.html` must be at the repository root, with `assets/` beside it. Do not upload the outer ZIP folder as a new subdirectory.
+3. Include the new `about.html`, `work.html`, `src/`, `scripts/`, and `docs/` files. Keep the existing images and video in `assets/`; the new design does not load them, but they remain available.
+4. Commit the update to the branch used by GitHub Pages. For the existing setup, retain `main` and the root publication folder. No Pages settings change is required by this rebuild.
+5. After Pages publishes, check the home page, navigation, research directory and contact links.
 
-1. **Back up the existing repository first** (or create a new branch and make a pull request for review).
-2. Copy **the files at the root of this package** into the **root** of that repository, keeping `assets/` inside `assets/`. The new `index.html` replaces the original home page.
-3. **Do not delete the existing `assets/` images/video, `Conjectures.html`, or `shared/` files**. Those assets are not duplicated in this package; the upload should add/overwrite matching filenames, not replace the entire assets folder.
-4. To bring the original `Conjectures.html` onto the dark palette without changing its mathematics, place this line just before the closing `</head>` of the **existing** file, after its inline `<style>`:
+The compact update ZIP contains all changed and new repository files. The full repository ZIP also includes the existing media assets. Both contain the complete new website; the compact package is easiest to upload over the existing repository.
 
-   ```html
-   <link rel="stylesheet" href="assets/conjectures-bridge.css">
-   ```
+**Publication status:** the connected GitHub account has read-only access to this repository. These packages have been prepared and checked locally; no GitHub commit, pull request or production deployment has been made.
 
-   The source content, conjectures and provisional programme text remain unchanged. Review that page's prize/equity wording separately before public launch.
-5. Test `index.html`, the new internal pages, and the original conjectures archive after GitHub Pages publishes.
-6. Review `privacy.html`, `terms.html` and `disclosures.html` for legal accuracy, business identity and any future changes to analytics, mailing lists or contact processing.
-7. Keep the existing GitHub Pages custom-domain or repository settings unchanged unless you deliberately wish to update them.
+## Preview locally
 
-## Important decisions
+From the extracted package's root, run:
 
-**No deployment has been performed.** The connected GitHub account can read this repository but has no push permission. This package is an upload-ready build.
+```sh
+python -m http.server 8000
+```
 
-**No fake performance statistics.** No Sharpe, assets under management, track record, institutional scale or guarantees are asserted. The equilibrium wave model is explicitly labelled illustrative—not observed prices and not a working market forecaster.
+Open `http://localhost:8000/`. The generated pages also use relative assets and can be opened directly, though an HTTP preview gives the most representative behaviour, especially for redirects and the 404 page.
 
-**No external animation libraries or videos.** Geometry is drawn in Canvas 2D, with `requestAnimationFrame` paused when out of view and disabled for users who prefer reduced motion. This approach is intentionally lighter than a video-heavy flagship.
+## Structure
 
-**No artificial contact form.** LinkedIn and GitHub are the only contact links; replace or supplement them once an official mailbox or contact backend is available.
+| Page | Purpose |
+| --- | --- |
+| `index.html` | Short company introduction and directory |
+| `about.html` | Purpose, scope and principles |
+| `approach.html` | Research process and chronological evaluation schematic |
+| `work.html` | Tomorrow Markets, Tomorrow Library and systems development |
+| `research.html` | Direct links to verified Library sections and the earlier archive |
+| `contact.html` | Existing LinkedIn and GitHub channels |
+| `Conjectures.html` | Preserved provisional research text with a clear archive notice |
+| `privacy.html`, `terms.html`, `disclosures.html` | Supporting website information |
+| `404.html` | Recovery page for missing URLs |
 
-**Static GitHub Pages compatible.** No build tools, framework, database or API keys are required.
+Existing URLs continue to work:
 
-**Typography.** Source Serif 4, Inter and DM Mono are loaded from Google Fonts. The pages have generic fallback fonts if Google Fonts is unavailable; review third-party font loading in your privacy notice.
+| Earlier URL | Destination |
+| --- | --- |
+| `who-we-are.html` | `about.html` |
+| `systems.html` | `work.html#systems` |
+| `platforms.html` | `work.html#platforms` |
+| `Conjectures.html#…` | Preserved page and original section IDs |
 
-## Responsive and functional checks
+## Edit and iterate
 
-All 11 HTML pages were inspected at 1440 × 900 and 390 × 844 in a headless Chromium test with scripts/styles injected into an isolated preview. Checks confirmed no horizontal document overflow, no uncaught JavaScript errors, and working mobile navigation and the perturbation control under reduced motion.
+The website is published from the ready-made HTML files at the root. The optional Python scripts keep shared content consistent across pages.
 
-## Subsequent phase
+| Change | Source |
+| --- | --- |
+| Colours, layout, spacing and typography | `assets/site.css` |
+| Page copy and sections | `src/pages/*.html` |
+| Navigation, public URLs, page titles and descriptions | `src/site.json` |
+| Shared page shell | `src/templates/page.html` |
+| Header, footer, logo and geometric illustrations | `scripts/build_site.py` |
+| Navigation behaviour | `assets/site.js` |
+| Archive presentation | `assets/archive.css` |
+| Social preview artwork | `assets/social-card.svg` and the pre-exported PNG |
 
-The next separate project is restyling Tomorrow Library's `assets/site.css` with coordinated mid-blue surfaces. No Tomorrow Library files have been changed in this build. Markets remains the brighter application.
+After editing source content, run:
+
+```sh
+python scripts/build_site.py
+python scripts/check_site.py
+```
+
+Commit the regenerated root HTML, shared fragments, sitemap and brand assets alongside the source changes. Direct edits to generated files work, but a later rebuild will overwrite them. Prefer editing `src/` when using the generator.
+
+The builder uses the Python standard library only. `--preview` optionally stages the active public files in an ignored `dist/` directory. The checked-in PNG is already exported; exporting a revised social card is a separate image-export step, not a prerequisite for building the pages.
+
+## Design direction
+
+Paper white, deep navy and a clear medium blue. Editorial serif headings, small sans-serif body text, thin rules and generous space. No stock photography or ornamental animation is needed to explain the work.
+
+The logo combines discrete steps with a compounding curve. The home illustration expands the same idea. Neither represents a return profile or financial forecast.
+
+See `docs/design-direction.md` for the palette, logo logic and next design decisions, and `docs/library-migration.md` for the research handoff.
+
+## Research and platform boundaries
+
+The company presents its purpose, method and selected systems. The research directory sends readers to existing Library pages for papers, process, code, data and engineering. Conjectures are retained until a real Library destination is published; no content has been silently removed or redirected to a nonexistent article.
+
+Work lists two public platforms and separately labels WTech as research and development. It does not invent commercial services, clients, staff numbers, investment results or product availability. Contact uses the existing public channels rather than an invented mailbox or an unconnected form.
+
+Tomorrow Markets retains its current design. The Library's blue redesign is a separate implementation; this package establishes its role and links without changing its content or features.
+
+## Validation
+
+- Static checks pass for all 11 complete pages, local links and assets, anchor targets, metadata, sitemap and compatibility routes.
+- Browser layout checks cover all 11 pages in 320, 390, 768 and 1440 pixel-wide frames. No horizontal document overflow was detected. These are responsive browser checks, not physical-device testing.
+- Desktop composition was inspected for the introduction, About, platform presentations and evaluation schematic.
+- Mobile menu opening, Escape dismissal, navigation without JavaScript and all three compatibility redirects were checked.
+- The original conjectures main content is preserved exactly in `src/pages/conjectures.html` and reproduced in the archive page.
+- Existing binary assets are retained unchanged. Images in `previews/` document the previous design and are not previews of this revision.
+
+Source baseline: `1f140a2669529830423ffa6b405e8c56407f0fcc` on `main`, retrieved 29 October 2026.

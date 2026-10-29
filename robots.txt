@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://tomorrowcapitalresearch.github.io/sitemap.xml

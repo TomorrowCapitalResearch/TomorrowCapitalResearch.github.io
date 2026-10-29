@@ -1,0 +1,37 @@
+{
+  "name": "Tomorrow Capital Research",
+  "url": "https://tomorrowcapitalresearch.github.io",
+  "description": "Independent quantitative research and systems development. Studying financial markets and complex systems, and building tools that make ideas useful.",
+  "navigation": [
+    {"label": "About", "href": "about.html"},
+    {"label": "Approach", "href": "approach.html"},
+    {"label": "Work", "href": "work.html"},
+    {"label": "Research", "href": "research.html"},
+    {"label": "Contact", "href": "contact.html"}
+  ],
+  "links": {
+    "library": "https://tomorrowlibrary.github.io/",
+    "markets": "https://tomorrowmarkets.github.io/",
+    "github": "https://github.com/TomorrowCapitalResearch",
+    "linkedin": "https://www.linkedin.com/company/tomorrow-capital-research",
+    "wtech": "https://github.com/MarkBrezina/WTech"
+  },
+  "pages": [
+    {"file": "index.html", "source": "home.html", "title": "Tomorrow Capital Research", "class": "home-page", "description": "Making tomorrow better, step by step. Independent quantitative research and systems development."},
+    {"file": "about.html", "source": "about.html", "title": "About", "class": "about-page", "description": "An independent research and development initiative connecting mathematics, financial markets and useful systems."},
+    {"file": "approach.html", "source": "approach.html", "title": "Approach", "class": "approach-page", "description": "Our approach: observe, formalise, test and build. Explicit assumptions, reproducible experiments and evidence that can be challenged."},
+    {"file": "work.html", "source": "work.html", "title": "Work", "class": "work-page", "description": "Selected platforms and systems from Tomorrow Capital Research, including Tomorrow Markets, Tomorrow Library and quantitative research engineering."},
+    {"file": "research.html", "source": "research.html", "title": "Research", "class": "research-page", "description": "A directory to public research, methods, code and data in Tomorrow Library, with an earlier conjectures archive."},
+    {"file": "contact.html", "source": "contact.html", "title": "Contact", "class": "contact-page", "description": "Connect with Tomorrow Capital Research about research, systems development and collaboration."},
+    {"file": "privacy.html", "source": "privacy.html", "title": "Privacy", "class": "document-page", "description": "How this static website handles technical data and external links."},
+    {"file": "terms.html", "source": "terms.html", "title": "Terms", "class": "document-page", "description": "Conditions for using the Tomorrow Capital Research website and its public information."},
+    {"file": "disclosures.html", "source": "disclosures.html", "title": "Research notes & disclosures", "class": "document-page", "description": "How to interpret conceptual illustrations, hypotheses, simulations and research materials."},
+    {"file": "Conjectures.html", "source": "conjectures.html", "title": "Earlier conjectures — archive", "class": "archive-page", "description": "An earlier, provisional conjectures concept, preserved as part of the research record.", "noindex": true},
+    {"file": "404.html", "source": "404.html", "title": "Page not found", "class": "not-found-page", "description": "Find your way back to Tomorrow Capital Research.", "noindex": true}
+  ],
+  "redirects": {
+    "who-we-are.html": "about.html",
+    "systems.html": "work.html#systems",
+    "platforms.html": "work.html#platforms"
+  }
+}

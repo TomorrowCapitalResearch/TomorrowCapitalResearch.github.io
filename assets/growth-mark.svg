@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none">
+  <title>Tomorrow — progress, step by step</title>
+  <path d="M6 55H16V52H26V47H36V39H46V27H56V9" stroke="#123655" stroke-width="2.8"/>
+  <path d="M6 55C28 53 47 36 56 9" stroke="#1769bd" stroke-width="1.2" stroke-dasharray="1.5 2.7"/>
+  <path d="M10 60h2m8 0h2m8 0h2m8 0h2m8 0h2m8 0h2" stroke="#1769bd" stroke-width="2"/>
+  <path d="M53 6h6v6h-6z" fill="#123655"/>
+</svg>

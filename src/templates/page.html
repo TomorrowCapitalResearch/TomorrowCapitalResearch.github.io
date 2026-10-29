@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#123655">
+  <meta name="description" content="$description">
+$extra_head
+  <title>$title</title>
+  <link rel="canonical" href="$canonical">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/site.css">
+$extra_css
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Tomorrow Capital Research">
+  <meta property="og:title" content="$title">
+  <meta property="og:description" content="$description">
+  <meta property="og:url" content="$canonical">
+  <meta property="og:image" content="$base_url/assets/social-card.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <script defer src="assets/site.js"></script>
+</head>
+<body class="$body_class">
+  <a class="skip-link" href="#main">Skip to content</a>
+  $header
+  <main id="main" tabindex="-1">
+    $content
+  </main>
+  $footer
+</body>
+</html>

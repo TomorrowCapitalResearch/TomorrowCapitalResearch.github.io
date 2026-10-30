@@ -93,6 +93,19 @@ Work lists two public platforms and separately labels WTech as research and deve
 
 Tomorrow Markets retains its current design. The Library's blue redesign is a separate implementation; this package establishes its role and links without changing its content or features.
 
+
+### Services to share
+These services haven't yet been developed, but we will first and foremost setup the data pipeline for ourself and than to be built into the system for sharing online as well. 
+A range of the research subscription pieces will also have to be shared soon enough. I will be setting them into one place and sharing them on the library first, than I will try
+To also setup the subscription piece, such that it all works.
+
+
+- Portfolio management application, get access to our portfolio management solution, implement your own fictious or real 
+- Data pipeline, data samples, get a direct pipeline or get a pack of data samples that we use for our research and active trading
+- Signals subscriptions, get a pipeline that sends out signals from our system setup
+- Research subscription, get notes on our research and solutions as they come along
+
+
 ## Validation
 
 - Static checks pass for all 11 complete pages, local links and assets, anchor targets, metadata, sitemap and compatibility routes.

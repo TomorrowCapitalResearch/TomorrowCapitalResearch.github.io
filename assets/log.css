@@ -1,0 +1,79 @@
+/* Research log page. Uses the shared tokens in site.css. */
+.log-page { --c-holds: #1769bd; --c-mixed: #8bb3d3; --c-fails: #b9c6d1; --c-reversed: #5b7488; --c-open: #e2ebf3; --c-notrun: #ffffff; }
+.log-status, .log-findings, .log-results, .log-standard, .log-next { display: grid; grid-template-columns: 1fr 2fr; gap: 70px; border-top: 1px solid var(--line); padding-block: 62px 80px; }
+.log-page .section-label > p { max-width: 220px; }
+.log-status .large-copy { max-width: 640px; }
+.log-bar { display: flex; gap: 2px; height: 16px; margin-top: 44px; }
+.log-bar .seg { display: block; min-width: 3px; }
+.seg-holds, .dot-holds { background: var(--c-holds); }
+.seg-mixed, .dot-mixed { background: var(--c-mixed); }
+.seg-fails, .dot-fails { background: var(--c-fails); }
+.seg-reversed, .dot-reversed { background: var(--c-reversed); }
+.seg-open, .dot-open { background: var(--c-open); box-shadow: inset 0 0 0 1px #b8cddd; }
+.seg-notrun, .dot-notrun { background: var(--c-notrun); box-shadow: inset 0 0 0 1px #b8cddd; }
+.log-legend { list-style: none; margin: 26px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px 28px; }
+.log-legend li { display: flex; align-items: baseline; gap: 10px; font-size: 13px; color: var(--muted); line-height: 1.5; }
+.log-legend strong { font-family: var(--serif); font-weight: 400; font-size: 30px; color: var(--ink); letter-spacing: -.5px; min-width: 2ch; }
+.dot { width: 10px; height: 10px; flex: 0 0 10px; align-self: center; }
+
+.findings-grid { display: grid; grid-template-columns: 1fr; gap: 0; }
+.findings-grid article { padding: 26px 0; border-top: 1px solid var(--line); }
+.findings-grid article:first-child { border-top: 0; padding-top: 0; }
+.findings-grid h3 { font-family: var(--serif); font-size: clamp(24px, 2.4vw, 32px); line-height: 1.25; letter-spacing: -.5px; }
+.findings-grid p { margin-top: 12px; font-size: 15px; line-height: 1.85; color: var(--muted); max-width: 680px; }
+
+.log-note { font-size: 13px; line-height: 1.85; max-width: 700px; }
+.log-note a { text-decoration: underline; text-underline-offset: 3px; }
+.log-filters { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 30px; }
+.log-filters[hidden], .log-count[hidden], .log-row[hidden] { display: none; }
+.log-filter { min-height: 44px; padding: 8px 16px; background: transparent; color: var(--ink); border: 1px solid var(--line); cursor: pointer; font-family: var(--mono); font-size: 11px; letter-spacing: 1px; text-transform: uppercase; display: inline-flex; align-items: center; gap: 10px; transition: border-color .18s, background-color .18s, color .18s; }
+.log-filter span { color: var(--muted); }
+.log-filter:hover { border-color: var(--blue); }
+.log-filter[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: #fff; }
+.log-filter[aria-pressed="true"] span { color: #cfe2f4; }
+.log-count { margin-top: 18px; font-size: 12px; color: var(--muted); }
+
+.log-list { margin-top: 26px; }
+.log-row { display: grid; grid-template-columns: 80px minmax(0, 1fr) 170px; gap: 28px; padding: 34px 0; border-top: 1px solid var(--line); }
+.log-row:target { background: var(--pale); box-shadow: -18px 0 0 var(--pale), 18px 0 0 var(--pale); }
+.log-meta { display: flex; flex-direction: column; gap: 6px; padding-top: 5px; }
+.log-area { font-size: 12px; color: var(--muted); }
+.log-main h3 { font-family: var(--serif); font-size: clamp(22px, 2.2vw, 28px); line-height: 1.25; letter-spacing: -.45px; }
+.log-main p { margin-top: 12px; font-size: 14px; line-height: 1.85; color: var(--muted); max-width: 640px; }
+.log-side { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; padding-top: 4px; }
+.log-side small { font-size: 12px; line-height: 1.6; color: var(--muted); }
+.badge { display: inline-flex; align-items: center; gap: 9px; min-height: 30px; padding: 4px 12px 4px 4px; border: 1px solid var(--line); background: var(--white); font-family: var(--mono); font-size: 11px; letter-spacing: .9px; text-transform: uppercase; line-height: 1.4; }
+.badge .glyph { display: inline-grid; place-items: center; width: 22px; height: 22px; font-family: var(--sans); font-size: 13px; line-height: 1; }
+.badge-holds .glyph { background: var(--c-holds); color: #fff; }
+.badge-mixed .glyph { background: var(--c-mixed); color: var(--ink); }
+.badge-fails .glyph { background: var(--c-fails); color: var(--ink); }
+.badge-reversed .glyph { background: var(--c-reversed); color: #fff; }
+.badge-open .glyph, .badge-notrun .glyph { background: var(--c-open); color: var(--ink); }
+
+.standard-list { margin: 0; padding: 0; list-style: none; counter-reset: bar; max-width: 720px; }
+.standard-list li { counter-increment: bar; display: flex; gap: 22px; padding: 18px 0; border-top: 1px solid var(--line); font-size: 15px; line-height: 1.7; color: var(--ink); }
+.standard-list li:first-child { border-top: 0; padding-top: 0; }
+.standard-list li::before { content: counter(bar, decimal-leading-zero); font-family: var(--mono); font-size: 11px; letter-spacing: 1.25px; color: var(--muted); padding-top: 5px; flex: 0 0 24px; }
+.next-list { list-style: none; margin: 28px 0 0; padding: 0; max-width: 720px; }
+.next-list li { display: flex; gap: 22px; padding: 18px 0; border-top: 1px solid var(--line); }
+.next-list .index { flex: 0 0 48px; padding-top: 5px; }
+.next-list p { font-size: 15px; line-height: 1.75; color: var(--ink); }
+
+@media (max-width: 1050px) {
+  .log-status, .log-findings, .log-results, .log-standard, .log-next { grid-template-columns: 1fr; gap: 28px; }
+  .log-row { grid-template-columns: 90px minmax(0, 1fr); }
+  .log-side { grid-column: 2; flex-direction: row; flex-wrap: wrap; align-items: center; gap: 14px; }
+  .log-legend { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 760px) {
+  .log-status, .log-findings, .log-results, .log-standard, .log-next { padding-block: 44px 56px; }
+  .log-row { grid-template-columns: 1fr; gap: 14px; padding: 28px 0; }
+  .log-meta { flex-direction: row; align-items: baseline; gap: 14px; padding-top: 0; }
+  .log-side { grid-column: auto; }
+  .log-legend { grid-template-columns: 1fr 1fr; gap: 14px 18px; }
+  .log-legend strong { font-size: 26px; }
+  .log-filters { gap: 6px; }
+  .log-filter { padding: 8px 12px; }
+  .log-row:target { box-shadow: -12px 0 0 var(--pale), 12px 0 0 var(--pale); }
+}
+@media print { .log-filters, .log-count { display: none; } .log-row[hidden] { display: grid; } }

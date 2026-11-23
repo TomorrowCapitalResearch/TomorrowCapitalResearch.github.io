@@ -104,6 +104,40 @@ def library_figure():
     </svg>'''
 
 
+def log_context():
+    """Render the research-log fragments from src/log.json (add a row there, then rebuild)."""
+    data = json.loads((ROOT / 'src/log.json').read_text(encoding='utf-8'))
+    counts, labels = data['counts'], data['labels']
+    order = ['holds', 'mixed', 'fails', 'reversed', 'open', 'notrun']
+    glyph = {'holds': '✓', 'mixed': '~', 'fails': '✕', 'reversed': '↺', 'open': '?', 'notrun': '–'}
+    total = sum(counts.values())
+    bar = ''.join(f'<span class="seg seg-{k}" style="flex:{counts[k]}"></span>' for k in order)
+    legend = ''.join(
+        f'<li><span class="dot dot-{k}" aria-hidden="true"></span><strong>{counts[k]}</strong><span>{escape(labels[k])}</span></li>'
+        for k in order)
+    rows = data['rows']
+    shown = {k: sum(r['status'] == k for r in rows) for k in order}
+    buttons = f'<button type="button" class="log-filter" data-filter="all" aria-pressed="true">All <span>{len(rows)}</span></button>' + ''.join(
+        f'<button type="button" class="log-filter" data-filter="{k}" aria-pressed="false">{escape(labels[k])} <span>{shown[k]}</span></button>'
+        for k in order if shown[k])
+    items = []
+    for r in rows:
+        k = r['status']
+        items.append(
+            f'<article class="log-row" id="{escape(r["id"].lower(), quote=True)}" data-status="{k}">'
+            f'<div class="log-meta"><span class="index">{escape(r["id"])}</span><span class="log-area">{escape(r["area"])}</span></div>'
+            f'<div class="log-main"><h3>{escape(r["question"])}</h3><p>{escape(r["result"])}</p></div>'
+            f'<div class="log-side"><span class="badge badge-{k}"><span class="glyph" aria-hidden="true">{glyph[k]}</span>{escape(labels[k])}</span>'
+            f'<small>{escape(r["scope"])}</small></div></article>')
+    nxt = ''.join(f'<li><span class="index">{escape(n["id"])}</span><p>{escape(n["text"])}</p></li>' for n in data['next'])
+    bar_items = ''.join(f'<li>{escape(b)}</li>' for b in data['bar'])
+    return {
+        'log_total': str(total), 'log_shown': str(len(rows)), 'log_updated': escape(data['updated']), 'log_data_to': escape(data['data_to']),
+        'log_bar': bar, 'log_legend': legend, 'log_filters': buttons, 'log_rows': '\n    '.join(items),
+        'log_next': nxt, 'log_standard': bar_items,
+    }
+
+
 def write_marks():
     # A smooth compounding idea plus five discrete steps. No upward arrow or return claim.
     for filename, primary, secondary in [('growth-mark.svg', '#123655', '#1769bd'), ('growth-mark-white.svg', '#ffffff', '#9ed0fc')]:
@@ -126,12 +160,17 @@ def build():
         **{key: escape(value, quote=True) for key, value in CONFIG['links'].items()},
         'arrow': icon(), 'external_arrow': icon('external'), 'down_arrow': icon('down'),
         'growth_figure': growth_figure(), 'markets_figure': markets_figure(), 'library_figure': library_figure(),
+        **log_context(),
     }
     for page in CONFIG['pages']:
         file = page['file']
         content = Template((ROOT / 'src/pages' / page['source']).read_text(encoding='utf-8')).substitute(substitutions)
         extra_head = '<meta name="robots" content="noindex, follow">' if page.get('noindex') else ''
         extra_css = ''
+        if page.get('css'):
+            extra_css = f'<link rel="stylesheet" href="{escape(page["css"], quote=True)}">'
+        if page.get('js'):
+            extra_head += f'\n  <script defer src="{escape(page["js"], quote=True)}"></script>'
         if file == '404.html':
             extra_head += '\n  <base href="/">'
         if file == 'Conjectures.html':

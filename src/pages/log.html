@@ -1,0 +1,52 @@
+<section class="page-intro shell">
+  <p class="eyebrow">Research log</p>
+  <h1>What we tested.<br>What <em>held up.</em></h1>
+  <p class="page-lead">A running log of hypotheses about market dynamics, with the result of every test, including the ones that failed. Here is how it stands and a selection of what it contains.</p>
+</section>
+
+<section class="log-status shell" aria-labelledby="status-title">
+  <div class="section-label"><span class="index">01</span><h2 id="status-title">How it stands</h2><p>Log updated $log_updated. Data: 1-minute bars to $log_data_to.</p></div>
+  <div class="editorial-body">
+    <p class="large-copy">$log_total hypotheses logged. Most do not hold, and that is the useful part.</p>
+    <div class="log-bar" role="img" aria-label="Status of all logged hypotheses, proportions shown in the list below">$log_bar</div>
+    <ul class="log-legend">$log_legend</ul>
+  </div>
+</section>
+
+<section class="log-findings shell" aria-labelledby="findings-title">
+  <div class="section-label"><span class="index">02</span><h2 id="findings-title">What the log says so far</h2></div>
+  <div class="editorial-body findings-grid">
+    <article><h3>Size is predictable. Direction mostly is not.</h3><p>Shocks cluster like aftershocks, volatility persists and quiet volume comes before quiet markets, on every coin tested. Directional effects are small: 0.05σ on an hourly BTC bar is roughly 2 to 3 bps, against costs of 9 bps per side. We read them as states for a market maker (when to quote, how wide, which side) rather than as entries for a taker.</p></article>
+    <article><h3>Familiar chart rules mostly fail, and several reverse.</h3><p>Price levels as magnets, trends defined by rising highs and lows, record-high reversals and range breakouts show nothing. Runs of closes and path extremes tend to give back rather than continue.</p></article>
+    <article><h3>Nothing is shown to be tradable yet.</h3><p>Sign patterns are worth about 0.4 bps per trade at zero cost and disappear with a 0.5 bp offset. At 9 bps per side almost no cross-asset rule stays positive in both halves of the history. The log exists to find out which ideas survive that test.</p></article>
+  </div>
+</section>
+
+<section class="log-results shell" aria-labelledby="results-title">
+  <div class="section-label"><span class="index">03</span><h2 id="results-title">Selected results</h2><p>$log_shown of $log_total logged.</p></div>
+  <div class="editorial-body">
+    <p class="body-copy log-note">Sizes are in units of σ, the recent volatility of the bar, and before costs. Most rows use six coins (BTC, ETH, SOL, XRP, ADA, TRX) over 2021 to 2026, with no dead coins in the data, so results that agree across them are closer to one market than to six. Rows marked Backtest include costs where stated. <a href="disclosures.html">How to read this research</a>.</p>
+    <div class="log-filters" data-log-filters role="group" aria-label="Filter results by status" hidden>$log_filters</div>
+    <p class="log-count" data-log-count aria-live="polite" hidden></p>
+    <div class="log-list" data-log-list>
+    $log_rows
+    </div>
+  </div>
+</section>
+
+<section class="log-standard shell" aria-labelledby="standard-title">
+  <div class="section-label"><span class="index">04</span><h2 id="standard-title">What it takes to hold</h2><p>The checklist a row must pass before it is marked as holding.</p></div>
+  <div class="editorial-body">
+    <ol class="standard-list">$log_standard</ol>
+  </div>
+</section>
+
+<section class="log-next shell" aria-labelledby="next-title">
+  <div class="section-label"><span class="index">05</span><h2 id="next-title">In progress and next</h2></div>
+  <div class="editorial-body">
+    <p class="body-copy">Currently reviewing the full trading setup: backtests across several strategies, regime detection, risk, inventory, portfolio management and execution. Hypotheses written down for the next tests, none run yet:</p>
+    <ul class="next-list">$log_next</ul>
+  </div>
+</section>
+
+<section class="next-page shell"><p>Interested in how we evaluate ideas?</p><a href="approach.html">Explore our approach $arrow</a></section>

@@ -7,6 +7,7 @@
     {"label": "Approach", "href": "approach.html"},
     {"label": "Work", "href": "work.html"},
     {"label": "Research", "href": "research.html"},
+    {"label": "Research log", "href": "log.html"},
     {"label": "Contact", "href": "contact.html"}
   ],
   "links": {
@@ -22,6 +23,7 @@
     {"file": "approach.html", "source": "approach.html", "title": "Approach", "class": "approach-page", "description": "Our approach: observe, formalise, test and build. Explicit assumptions, reproducible experiments and evidence that can be challenged."},
     {"file": "work.html", "source": "work.html", "title": "Work", "class": "work-page", "description": "Selected platforms and systems from Tomorrow Capital Research, including Tomorrow Markets, Tomorrow Library and quantitative research engineering."},
     {"file": "research.html", "source": "research.html", "title": "Research", "class": "research-page", "description": "A directory to public research, methods, code and data in Tomorrow Library, with an earlier conjectures archive."},
+    {"file": "log.html", "source": "log.html", "title": "Research log", "class": "log-page", "description": "A running log of market hypotheses and what each test found: what held, what failed and what reversed.", "css": "assets/log.css", "js": "assets/log.js"},
     {"file": "contact.html", "source": "contact.html", "title": "Contact", "class": "contact-page", "description": "Connect with Tomorrow Capital Research about research, systems development and collaboration."},
     {"file": "privacy.html", "source": "privacy.html", "title": "Privacy", "class": "document-page", "description": "How this static website handles technical data and external links."},
     {"file": "terms.html", "source": "terms.html", "title": "Terms", "class": "document-page", "description": "Conditions for using the Tomorrow Capital Research website and its public information."},

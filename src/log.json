@@ -1,0 +1,273 @@
+{
+  "updated": "15 November 2026",
+  "data_to": "24 October 2026",
+  "counts": {
+    "holds": 38,
+    "mixed": 48,
+    "fails": 35,
+    "reversed": 14,
+    "open": 15,
+    "notrun": 11
+  },
+  "labels": {
+    "holds": "Holds",
+    "mixed": "Weak or mixed",
+    "fails": "Does not hold",
+    "reversed": "The opposite holds",
+    "open": "Inconclusive",
+    "notrun": "Not run yet"
+  },
+  "rows": [
+    {
+      "id": "SE-01",
+      "status": "holds",
+      "area": "Shocks",
+      "question": "Do big minute-bars come in aftershock sequences, like earthquakes?",
+      "result": "Yes, and with the same law on all six coins. After a 5σ shock the shock rate is 36 points above normal in the next minute, 17 points after 4 to 7 minutes, 4 points after 32 to 63, and back to normal after about two hours. The excess fades as a power of time with exponent 0.67 (0.64 to 0.74 by coin).",
+      "scope": "Six coins, 1-minute bars"
+    },
+    {
+      "id": "SE-03",
+      "status": "holds",
+      "area": "Shocks",
+      "question": "Does a count of recent shocks say more than the last hour's volatility?",
+      "result": "Yes. After 2 or more shocks in the last 5 minutes, a main shock follows within the hour 27.9% of the time against 8.5% otherwise. At the same volatility and hour of day the gap is still 15.7 points (z 55), on 6 of 6 coins.",
+      "scope": "Six coins, 1-minute bars"
+    },
+    {
+      "id": "SE-09",
+      "status": "holds",
+      "area": "Shocks",
+      "question": "Do shocks in other coins raise this coin's chance of a shock?",
+      "result": "Yes, on 6 of 6. With 2 or more other coins shocked, a main shock here within 15 minutes is 4.8 points more likely (z 33.5). In market-wide shocks BTC and ETH are among the first movers 60% of the time.",
+      "scope": "Six coins, 1-minute bars"
+    },
+    {
+      "id": "PR-01",
+      "status": "holds",
+      "area": "Precursors",
+      "question": "Do ranges widen in the minutes before a shock?",
+      "result": "Yes, the strongest single feature. A main shock within 15 bars follows 7.7% of top-tenth range bars against 2.3% of middle bars: +5.1 points at the same volatility and hour (z 47), on 6 of 6 coins.",
+      "scope": "Six coins, 1-minute bars"
+    },
+    {
+      "id": "V-32",
+      "status": "holds",
+      "area": "Volume",
+      "question": "Does a stretch of below-normal volume mean a quieter next window?",
+      "result": "Yes, even at equal current volatility. After 10 of 15 below-normal bars the next window is 8.6% quieter (z -48) and 3σ moves are 1.4 points rarer, on 6 of 6 coins. The information lasts about half an hour.",
+      "scope": "Six coins, 1-minute bars"
+    },
+    {
+      "id": "V-28",
+      "status": "holds",
+      "area": "Volume",
+      "question": "If dollar volume falls, do price moves shrink with it?",
+      "result": "Yes. A week with 10% less dollar volume has about 6.8% less volatility (elasticity 0.68, z 23.6, 6 of 6). Volatility itself has fallen about 13% a year since 2021.",
+      "scope": "Six coins, 2021 to 2026"
+    },
+    {
+      "id": "X1-b",
+      "status": "holds",
+      "area": "Cross-asset",
+      "question": "Are coins tied together more in crashes than in rallies?",
+      "result": "Yes. On hourly bars the lower-tail overlap with BTC exceeds the upper-tail overlap by 10 to 15 points (z 7 to 10), robust on 19 of 21 coins. Nothing in FX or metals.",
+      "scope": "21 coins, 1-hour bars"
+    },
+    {
+      "id": "X4-d",
+      "status": "holds",
+      "area": "Cross-asset",
+      "question": "Is a broad crash followed by another?",
+      "result": "Yes. After a broad crash (a quarter of the coins down in one hour) another is 5.9 points more likely within the hour (z 5.3) and 9.5 points within 6 hours (z 6.0). 467 events.",
+      "scope": "Coin panel, 1-hour bars"
+    },
+    {
+      "id": "V-25",
+      "status": "holds",
+      "area": "Volume",
+      "question": "Does net taker buying predict the next return?",
+      "result": "It changes sign with the horizon. Positive over the next minute (BTC z 13.0), nothing at 5 minutes, negative at 15 minutes (BTC z -5.4) and at 60 (BTC z -3.6).",
+      "scope": "BTC, ETH, SOL, 2023 to 2026"
+    },
+    {
+      "id": "F1-a",
+      "status": "holds",
+      "area": "Order book",
+      "question": "Do futures lead spot?",
+      "result": "At sub-second scale, yes: slope 0.31 at 0.25 seconds (z 69), worth 0.2 to 0.3 bps per step before costs. Only three days of book data behind it.",
+      "scope": "BTC order book, 3 days"
+    },
+    {
+      "id": "PS-13",
+      "status": "mixed",
+      "area": "Price",
+      "question": "After a close 2 sd below its average, does price bounce?",
+      "result": "Ups outnumber downs by 9.4 to 12.1 points over the next 5 to 30 bars (z 15 to 29, 6 of 6), yet the mean return is no different from other bars: the down moves that do come are larger. Above the average the reverse: fewer up moves, but bigger ones (PS-14). Hit rate and mean return disagree, so the strategy has to be declared before reading the row.",
+      "scope": "Six coins, 1-minute bars, no costs"
+    },
+    {
+      "id": "P-22",
+      "status": "mixed",
+      "area": "Price",
+      "question": "Does a break of a regression band on lows or highs say where the next big move goes?",
+      "result": "Half. The line forecasts the next low worse than the last low does. But after a break below the band, a 1.5σ move down is 0.2 to 2.6 points more likely than the same move up (z 2.4 to 10.7). The mean return barely moves (+0.01σ at 10 minutes). P-23 is the same for highs.",
+      "scope": "Six coins, 1- and 5-minute bars"
+    },
+    {
+      "id": "TD-01",
+      "status": "mixed",
+      "area": "Trend",
+      "question": "Does hourly momentum continue?",
+      "result": "Small and consistent: positive at every lookback, none against. The last 12 hours on the next 12: 0.027σ per σ (z 3.9, 6 of 6, robust alone on 3). A 2σ move is followed by about 0.05σ more. A tilt, not a trade.",
+      "scope": "Six coins, 1- and 4-hour bars"
+    },
+    {
+      "id": "MB-07",
+      "status": "mixed",
+      "area": "Order book",
+      "question": "Does book imbalance say which way the next second moves?",
+      "result": "On the one day tested, yes: the mid moves toward the heavier side by 0.64σ over the next second (z 36), the same in both halves of the day (1σ is about 0.35 bps). One day, one coin, spot only. A first look, not a result.",
+      "scope": "BTC spot, 1 day"
+    },
+    {
+      "id": "X3-a",
+      "status": "fails",
+      "area": "Cross-asset",
+      "question": "Does the gap between a coin and beta times BTC close?",
+      "result": "Mostly not. Of 774 tests, 9 robustly close, 6 robustly widen and 759 are not robust. Over one day the sign is mostly negative.",
+      "scope": "21 coins, 5-minute bars"
+    },
+    {
+      "id": "V-12",
+      "status": "fails",
+      "area": "Volume",
+      "question": "Are price levels magnets: yesterday's point of control, VWAP, high-volume zones?",
+      "result": "No. Yesterday's point of control is touched at 0.93 to 1.08 times the rate of the mirror level. VWAP does not act as an anchor either (V-20). High-volume zones fall from a raw lift of 1.2 to 1.6 to about 1.05 once matched on volatility (V-08).",
+      "scope": "BTC, ETH, DOGE, SOL, FX and gold"
+    },
+    {
+      "id": "P-13",
+      "status": "fails",
+      "area": "Trend",
+      "question": "Is a trend 3 of O, H, L, C rising together, and does it fade when they slow?",
+      "result": "No. After the trend switches on there is nothing, or a slight reversal. The fade signal does the opposite of its name: the trend carries on a little after it.",
+      "scope": "Six coins, 5-, 15- and 60-minute bars"
+    },
+    {
+      "id": "P-17",
+      "status": "fails",
+      "area": "Price",
+      "question": "After a new high turns over and falls 2%, does the fall continue?",
+      "result": "No. 35 of 36 testable rows show nothing, and the one that does goes the other way. On BTC the fall continues first 50.4% of the time, as a random walk would.",
+      "scope": "Six coins, zigzag tops"
+    },
+    {
+      "id": "TD-02",
+      "status": "fails",
+      "area": "Trend",
+      "question": "Does a close outside the last 1 to 7 days' range continue?",
+      "result": "No. Nothing in 12 pooled rows; the best is +0.059σ (z 2.0). High volume makes no difference (TD-04).",
+      "scope": "Six coins, 1-hour bars"
+    },
+    {
+      "id": "BT-06",
+      "status": "fails",
+      "area": "Backtest",
+      "question": "Does buying every 1% drop with a +0.5% target and -0.5% stop make money?",
+      "result": "No. BTC: 779 trades, 46.3% wins, -9.5 bps per trade, -53%. Break-even at these exits needs about 55% wins. ETH, DOGE and SOL lose 86% to 100%.",
+      "scope": "BTC, ETH, DOGE, SOL, 9 bps taker"
+    },
+    {
+      "id": "BT-11",
+      "status": "fails",
+      "area": "Backtest",
+      "question": "Does a 0.45% stop rescue the maker idea?",
+      "result": "No. With the stop: 37.6% wins, -2.06 bps per trade, out-of-sample Sharpe -0.90. Without it: 87.9% wins, but 75% exposure, a 41% drawdown and positions left open.",
+      "scope": "3,456 setups per asset, 5 assets"
+    },
+    {
+      "id": "BT-14",
+      "status": "fails",
+      "area": "Backtest",
+      "question": "Do the best in-sample maker setups carry forward?",
+      "result": "No. On BTC an in-sample Sharpe of 1.3 to 1.8 becomes -0.75 to -7.2 out of sample, and 2021 carries the result. A 9 bps fee on the stop turns +0.30 into -1.85 bps per trade.",
+      "scope": "BTC, ETH, DOGE, SOL, first 60% in sample"
+    },
+    {
+      "id": "BT-19",
+      "status": "fails",
+      "area": "Backtest",
+      "question": "Does any cross-asset rule survive 9 bps per side?",
+      "result": "Almost none. Positive in both halves at 9 bps: follow 10 of 1,300 entered at once and 0 one bar late; relative value 13 of 288 at once and 10 one bar late; contagion 5 of 150; flow 0 of 208; reverse 0 of 450. About half of the best rows were stale prices on AURORA.",
+      "scope": "178 rules per asset, 0 to 9 bps per side"
+    },
+    {
+      "id": "TR-01",
+      "status": "reversed",
+      "area": "Trend",
+      "question": "After a run of closes in one direction, does the next bar continue it?",
+      "result": "The opposite. After 3 closes one way the next bar goes against the run more often, by 2.6 points on 1-minute bars rising to 9.6 points on hourly bars (z -14 to -23). Longer runs reverse more.",
+      "scope": "Six coins, 1- to 60-minute bars"
+    },
+    {
+      "id": "P-25",
+      "status": "reversed",
+      "area": "Price",
+      "question": "After a 10% one-hour fall, does the price fall further?",
+      "result": "The opposite. A further 5% down comes first 28 to 31 points less often than 5% up (z -4.3 to -4.6). Caution: 116 cases on 3 coins, all survivors (LUNA and FTT are not in the data).",
+      "scope": "Three coins, 1-hour moves"
+    },
+    {
+      "id": "PS-17",
+      "status": "reversed",
+      "area": "Price",
+      "question": "After a path extreme down (below all averages, volume ramping), does it go on falling?",
+      "result": "The opposite: a bounce. The next bar is up more often than down by 4.4 to 10.2 points on 1-minute bars, growing with each added condition, and the mean return is positive.",
+      "scope": "Six coins, 1- and 5-minute bars"
+    },
+    {
+      "id": "X5",
+      "status": "reversed",
+      "area": "Cross-asset",
+      "question": "Does heavy BTC taker buying lift the other coins?",
+      "result": "It predicts lower returns: about -0.009 over 15 minutes (robust on 14 of 19 coins) and -0.016 over 60 minutes (19 of 19).",
+      "scope": "19 coins, 1-minute flow"
+    },
+    {
+      "id": "B1",
+      "status": "open",
+      "area": "Order book",
+      "question": "Do book imbalance and the microprice gap predict the next move (raw regression)?",
+      "result": "Not readable. Slopes blow up in one half of the data (50,088 against 0.29). Replaced by rank-based tests (MB-07) until more book days are collected.",
+      "scope": "BTC book, 3 to 4 days"
+    }
+  ],
+  "next": [
+    {
+      "id": "N-01",
+      "text": "The 1% dip bracket wins more often when the fill bar is on low volume. Baseline to beat: 46% to 47% wins against about 55% needed."
+    },
+    {
+      "id": "N-07",
+      "text": "Targets and stops in units of current volatility beat fixed percentages, compared out of sample."
+    },
+    {
+      "id": "N-11",
+      "text": "After 2 or more shocks in 5 minutes, pulling or widening quotes for 15 to 60 minutes improves markout."
+    },
+    {
+      "id": "N-12",
+      "text": "Quotes can return on a schedule: the extra shock rate decays as lag to the power -0.67, so re-entry delays of 1, 3, 8 and 20 minutes are tested."
+    }
+  ],
+  "bar": [
+    "Same sign in both halves, and q at most 0.05 inside its family",
+    "Repeats on assets outside BTC, ETH, DOGE and SOL",
+    "Still there one bar late, with the stale-price coins left out",
+    "Scored at 0 and at 9 bps per side, with touch and with through fills",
+    "Every input known at time t: no full-sample quantiles",
+    "Direction scored as that way minus the other way, never as a one-sided share",
+    "A mirrored-path null shows nothing for it on every path"
+  ]
+}
